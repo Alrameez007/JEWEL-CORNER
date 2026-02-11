@@ -1,3 +1,8 @@
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 {
     margin: 0;
     padding: 0;
@@ -8,9 +13,17 @@ body {
     font-family: 'Montserrat', sans-serif;
     background: #f8f6f2;
     color: #222;
-    line-height: 1.6;
 }
 
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 42px;
+}
+
+.hero p {
+    font-weight: 300;
+}
 a {
     text-decoration: none;
     color: inherit;
@@ -97,11 +110,10 @@ h2 {
 /* ========================= */
 
 .hero {
-    padding-top: 160px;
-    padding-bottom: 120px;
-    background: linear-gradient(to bottom, #f8f6f2, #f1ede6);
+    padding-top: 150px;
+    padding-bottom: 100px;
+    background: transparent;
 }
-
 .hero h1 {
     font-family: 'Playfair Display', serif;
     font-size: 48px;
@@ -128,9 +140,20 @@ h2 {
 .buttons {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
 }
 
+@media (max-width: 768px) {
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 85%;
+    }
+}
 .btn-primary,
 .btn-secondary {
     padding: 15px 40px;
@@ -226,41 +249,30 @@ footer {
 @media (max-width: 768px) {
 
     .nav-links {
-        position: absolute;
-        right: 20px;
-        top: 80px;
-        background: white;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 260px;
+        height: 100vh;
+        background: #f8f6f2;
         flex-direction: column;
-        width: 220px;
-        padding: 20px;
-        display: none;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        border-radius: 10px;
+        padding-top: 100px;
+        padding-left: 30px;
+        transition: 0.3s ease;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.08);
+    }
+
+    .nav-links li {
+        margin-bottom: 25px;
     }
 
     .nav-links.active {
-        display: flex;
+        right: 0;
     }
 
     .hamburger {
         display: block;
+        z-index: 1100;
     }
 
-    .hero h1 {
-        font-size: 34px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-    .buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-        width: 100%;
-    }
 }
