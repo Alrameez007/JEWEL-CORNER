@@ -245,17 +245,21 @@
         threshold: 0.2
     };
 
-    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
         entries.forEach(entry => {
+            // If the element is not yet in view, do nothing
             if (!entry.isIntersecting) {
                 return;
-            } else {
-                entry.target.classList.add('show');
-                appearOnScroll.unobserve(entry.target);
             }
+
+            // Element is in view: add class to trigger animation
+            entry.target.classList.add('show');
+            // Stop observing this element, so it animates only once
+            observer.unobserve(entry.target);
         });
     }, appearOptions);
 
+    // Observe each fade-up element
     faders.forEach(fader => {
         appearOnScroll.observe(fader);
     });
