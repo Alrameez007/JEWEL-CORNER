@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEWEL CORNER | Artificial Jewellery, Watches & Perfumes in Oman</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #333;
+}
+
+header {
+    background: #111;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+nav a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.hero {
+    background: linear-gradient(to right, #d4af37, #000);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    background: #d4af37;
+    color: black;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 250px;
+    border-radius: 10px;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.contact {
+    background: #f4f4f4;
+}
+
+input, textarea {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .products {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>JEWEL CORNER</h1>
+    <nav>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Luxury That Defines You</h2>
+    <p>Artificial Jewellery | Branded Watches | Premium Perfumes</p>
+    <a href="tel:77147645" class="btn">Call Now</a>
+    <a href="https://wa.me/96877147645" class="btn">WhatsApp Us</a>
+</section>
+
+<section id="products">
+    <h2>Our Collections</h2>
+    <div class="products">
+
+        <div class="product-card">
+            <img src="https://via.placeholder.com/250" alt="Jewellery">
+            <h3>Artificial Jewellery</h3>
+            <p>Elegant & trendy designs for every occasion.</p>
+        </div>
+
+        <div class="product-card">
+            <img src="https://via.placeholder.com/250" alt="Watches">
+            <h3>Branded Watches</h3>
+            <p>Premium quality watches for men & women.</p>
+        </div>
+
+        <div class="product-card">
+            <img src="https://via.placeholder.com/250" alt="Perfumes">
+            <h3>Luxury Perfumes</h3>
+            <p>Long-lasting fragrances that leave a statement.</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="about">
+    <h2>About JEWEL CORNER</h2>
+    <p>
+        Located in Oman, JEWEL CORNER offers a stunning collection of 
+        artificial jewellery, branded watches, and premium perfumes. 
+        We provide high-quality products at affordable prices, 
+        helping you shine with confidence.
+    </p>
+</section>
+
+<section id="contact" class="contact">
+    <h2>Book Appointment / Send Inquiry</h2>
+
+    <form action="mailto:youremail@example.com" method="post" enctype="text/plain">
+        <input type="text" placeholder="Your Name" required><br>
+        <input type="tel" placeholder="Your Phone Number" required><br>
+        <textarea placeholder="Your Message"></textarea><br>
+        <button type="submit" class="btn">Submit</button>
+    </form>
+
+    <p><strong>Call Us:</strong> 77147645 | 95252958</p>
+    <p><strong>Location:</strong> Oman</p>
+</section>
+
+<footer>
+    © 2026 JEWEL CORNER | All Rights Reserved
+</footer>
+
+</body>
+</html>
