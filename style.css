@@ -1,8 +1,14 @@
 /* GLOBAL */
-* {
+{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+.divider {
+    width: 80px;
+    height: 2px;
+    background: #c6a75e;
+    margin: 25px auto;
 }
 
 html {
@@ -14,7 +20,9 @@ body {
     background: #ffffff;
     color: #222;
 }
-
+.menu-toggle {
+    display: none;
+}
 /* HEADER */
 header {
     background: #f8f6f2;
@@ -50,6 +58,7 @@ header {
 
 /* HERO */
 .hero {
+    background: linear-gradient(to bottom, #f8f6f2, #f1ede6);
     min-height: 100vh;
     padding: 120px 20px 60px;
     padding-top: 140px;
@@ -281,6 +290,13 @@ footer {
 /* ============================= */
 
 @media (max-width: 768px) {
+        .menu-toggle {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+    }
 
     header {
     background: #f8f6f2;
