@@ -204,6 +204,31 @@ footer {
     color: #aaa;
     border-top: 1px solid #eee;
 }
+/* ================= BRANCH BUTTONS ================= */
+
+.branch-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.branch-label {
+    display: inline-block;
+    background: linear-gradient(45deg, #d4af37, #b8962e);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+/* Highlight main branch */
+.main-branch {
+    border: 2px solid #d4af37;
+    box-shadow: 0 20px 60px rgba(212,175,55,0.25);
+}
+
 
 /* ================= RESPONSIVE ================= */
 
