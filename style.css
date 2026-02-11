@@ -261,3 +261,11 @@ footer {
     font-size: 15px;
     line-height: 1.6;
 }
+.product-card h3 {
+    font-size: 18px;
+    word-break: normal;
+}
+
+.product-card p {
+    font-size: 16px;
+}
