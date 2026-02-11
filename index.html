@@ -234,9 +234,6 @@
     </div>
 </section>
 
-
-
-
 <!-- FOOTER -->
 <footer>
     <p>© JEWEL CORNER | OMAN | All Rights Reserved</p>
@@ -262,6 +259,23 @@
     faders.forEach(fader => {
         appearOnScroll.observe(fader);
     });
+</script>
+<script>
+function filterProducts(category) {
+    const products = document.querySelectorAll('.product-card');
+
+    products.forEach(product => {
+        if (category === 'all') {
+            product.style.display = 'block';
+        } else {
+            if (product.classList.contains(category)) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        }
+    });
+}
 </script>
 </body>
 </html>
