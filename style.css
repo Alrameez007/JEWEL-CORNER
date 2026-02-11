@@ -284,4 +284,16 @@ footer {
     transform: translateY(-8px);
     box-shadow: 0 20px 60px rgba(212,175,55,0.15);
 }
+/* ================= SCROLL ANIMATIONS ================= */
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.show {
+    opacity: 1;
+    transform: translateY(0);
+}
 
