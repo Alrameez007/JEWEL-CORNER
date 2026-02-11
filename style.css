@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Playfair Display', serif;
 }
 
 html {
@@ -12,7 +11,8 @@ html {
 
 body {
     background: #fdfbf7;
-    color: #222;
+    color: #1a1a1a;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* ================= HEADER ================= */
@@ -21,34 +21,52 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 80px;
+    padding: 25px 90px;
     background: white;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 30px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .logo {
-    height: 65px;
+    height: 70px;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 35px;
+    gap: 40px;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: #333;
-    font-size: 15px;
-    letter-spacing: 1px;
+    color: #444;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
     transition: 0.3s ease;
+}
+
+/* Elegant gold underline animation */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #c6a74e;
+    left: 0;
+    bottom: -6px;
+    transition: 0.4s ease;
 }
 
 .nav-links a:hover {
     color: #c6a74e;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 /* ================= HERO ================= */
@@ -64,69 +82,83 @@ header {
 }
 
 .hero-content h1 {
-    font-size: 55px;
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
     font-weight: 600;
     margin-bottom: 20px;
-    color: #111;
+    letter-spacing: 2px;
 }
 
 .hero-content p {
-    color: #666;
-    margin-bottom: 40px;
+    color: #777;
+    margin-bottom: 45px;
     font-size: 18px;
+    letter-spacing: 1px;
 }
 
 /* ================= BUTTONS ================= */
 
 .buttons {
     display: flex;
-    gap: 25px;
+    gap: 30px;
     justify-content: center;
 }
 
 .btn-primary {
-    padding: 14px 35px;
+    padding: 14px 40px;
     background: linear-gradient(45deg, #d4af37, #b8962e);
     color: white;
     text-decoration: none;
-    font-weight: 600;
-    border-radius: 30px;
+    font-weight: 500;
+    border-radius: 40px;
     transition: 0.3s;
-    box-shadow: 0 5px 20px rgba(212,175,55,0.3);
+    box-shadow: 0 10px 30px rgba(212,175,55,0.25);
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(212,175,55,0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(212,175,55,0.4);
 }
 
 .btn-secondary {
-    padding: 14px 35px;
-    border: 1px solid #d4af37;
+    padding: 14px 40px;
+    border: 1px solid #c6a74e;
     color: #b8962e;
     text-decoration: none;
-    border-radius: 30px;
+    border-radius: 40px;
     transition: 0.3s;
 }
 
 .btn-secondary:hover {
-    background: #d4af37;
+    background: #c6a74e;
     color: white;
 }
 
 /* ================= SECTIONS ================= */
 
 .section {
-    padding: 100px 80px;
+    padding: 120px 100px;
     text-align: center;
 }
 
 .section h2 {
-    font-size: 36px;
-    margin-bottom: 40px;
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    margin-bottom: 20px;
     color: #b8962e;
 }
 
+/* Elegant divider line */
+.section h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: #d4af37;
+    margin: 20px auto 0;
+}
+
+/* Soft background section */
 .dark {
     background: #faf6ee;
 }
@@ -135,22 +167,23 @@ header {
 
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px;
+    margin-top: 60px;
 }
 
 .card {
     background: white;
-    padding: 40px 25px;
-    border-radius: 15px;
-    transition: 0.3s;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    padding: 50px 30px;
+    border-radius: 20px;
+    transition: 0.4s ease;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
 }
 
 .card h3 {
+    font-family: 'Playfair Display', serif;
     margin-bottom: 15px;
-    font-weight: 600;
-    color: #111;
+    font-size: 22px;
 }
 
 .card p {
@@ -158,32 +191,37 @@ header {
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(212,175,55,0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(212,175,55,0.15);
 }
 
 /* ================= FOOTER ================= */
 
 footer {
     background: white;
-    padding: 30px;
+    padding: 40px;
     text-align: center;
-    color: #999;
+    color: #aaa;
     border-top: 1px solid #eee;
 }
 
 /* ================= RESPONSIVE ================= */
 
 @media(max-width: 768px) {
+
     header {
         padding: 20px 30px;
     }
 
     .section {
-        padding: 70px 30px;
+        padding: 80px 30px;
     }
 
     .hero-content h1 {
-        font-size: 36px;
+        font-size: 38px;
+    }
+
+    .buttons {
+        flex-direction: column;
     }
 }
