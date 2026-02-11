@@ -17,16 +17,15 @@ body {
 
 /* HEADER */
 header {
+    background: #f8f6f2;
     position: fixed;
     width: 100%;
-    background: rgba(255,255,255,0.95);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 8%;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    top: 0;
     z-index: 1000;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
+
 
 .logo {
     height: 60px;
@@ -53,12 +52,14 @@ header {
 .hero {
     min-height: 100vh;
     padding: 120px 20px 60px;
+    padding-top: 140px;
 }
 
 .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 48px;
     color: #000;
+    font-size: 42px;
+    line-height: 1.2;
 }
 
 .hero p {
@@ -84,6 +85,7 @@ header {
     font-weight: 500;
     font-size: 16px;
     display: block;
+    text-decoration: none;
 }
 
 /* Gold Button */
