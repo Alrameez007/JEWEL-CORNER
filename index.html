@@ -1,182 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JEWEL CORNER | Artificial Jewellery, Watches & Perfumes in Oman</title>
-
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fff;
-    color: #333;
-}
-
-header {
-    background: #111;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 22px;
-}
-
-nav a {
-    color: white;
-    margin-left: 15px;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.hero {
-    background: linear-gradient(to right, #d4af37, #000);
-    color: white;
-    text-align: center;
-    padding: 80px 20px;
-}
-
-.hero h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.btn {
-    background: #d4af37;
-    color: black;
-    padding: 12px 20px;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 15px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-section {
-    padding: 50px 20px;
-    text-align: center;
-}
-
-.products {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.product-card {
-    border: 1px solid #ddd;
-    padding: 20px;
-    width: 250px;
-    border-radius: 10px;
-}
-
-.product-card img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.contact {
-    background: #f4f4f4;
-}
-
-input, textarea {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-footer {
-    background: #111;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    font-size: 14px;
-}
-
-@media (max-width: 768px) {
-    .products {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <title>Jewel Corner | Luxury Collection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
+<!-- HEADER -->
 <header>
-    <h1>JEWEL CORNER</h1>
+    <div class="logo-container">
+        <img src="logo.png" alt="Jewel Corner Logo" class="logo">
+    </div>
+
     <nav>
-        <a href="#products">Products</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#location">Location</a></li>
+        </ul>
     </nav>
 </header>
 
-<section class="hero">
-    <h2>Luxury That Defines You</h2>
-    <p>Artificial Jewellery | Branded Watches | Premium Perfumes</p>
-    <a href="tel:77147645" class="btn">Call Now</a>
-    <a href="https://wa.me/96877147645" class="btn">WhatsApp Us</a>
-</section>
+<!-- HERO SECTION -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Luxury That Defines You</h1>
+        <p>Artificial Jewellery | Branded Watches | Premium Perfumes | Souvenirs</p>
 
-<section id="products">
-    <h2>Our Collections</h2>
-    <div class="products">
-
-        <div class="product-card">
-            <img src="https://via.placeholder.com/250" alt="Jewellery">
-            <h3>Artificial Jewellery</h3>
-            <p>Elegant & trendy designs for every occasion.</p>
+        <div class="buttons">
+            <a href="#collections" class="btn-primary">Explore Collections</a>
+            <a href="https://wa.me/968XXXXXXXX" class="btn-secondary">WhatsApp Us</a>
         </div>
-
-        <div class="product-card">
-            <img src="https://via.placeholder.com/250" alt="Watches">
-            <h3>Branded Watches</h3>
-            <p>Premium quality watches for men & women.</p>
-        </div>
-
-        <div class="product-card">
-            <img src="https://via.placeholder.com/250" alt="Perfumes">
-            <h3>Luxury Perfumes</h3>
-            <p>Long-lasting fragrances that leave a statement.</p>
-        </div>
-
     </div>
 </section>
 
-<section id="about">
-    <h2>About JEWEL CORNER</h2>
+<!-- ABOUT -->
+<section id="about" class="section">
+    <h2>About Jewel Corner</h2>
     <p>
-        Located in Oman, JEWEL CORNER offers a stunning collection of 
-        artificial jewellery, branded watches, and premium perfumes. 
-        We provide high-quality products at affordable prices, 
-        helping you shine with confidence.
+        Jewel Corner offers premium artificial jewellery, luxury watches,
+        exclusive perfumes and unique souvenirs in Oman.
+        We combine elegance, quality and affordability.
     </p>
 </section>
 
-<section id="contact" class="contact">
-    <h2>Book Appointment / Send Inquiry</h2>
+<!-- COLLECTIONS -->
+<section id="collections" class="section dark">
+    <h2>Our Collections</h2>
 
-    <form action="mailto:youremail@example.com" method="post" enctype="text/plain">
-        <input type="text" placeholder="Your Name" required><br>
-        <input type="tel" placeholder="Your Phone Number" required><br>
-        <textarea placeholder="Your Message"></textarea><br>
-        <button type="submit" class="btn">Submit</button>
-    </form>
+    <div class="card-container">
+        <div class="card">
+            <h3>Artificial Jewellery</h3>
+            <p>Elegant & trendy designs.</p>
+        </div>
 
-    <p><strong>Call Us:</strong> 77147645 | 95252958</p>
-    <p><strong>Location:</strong> Oman</p>
+        <div class="card">
+            <h3>Branded Watches</h3>
+            <p>Premium timepieces.</p>
+        </div>
+
+        <div class="card">
+            <h3>Premium Perfumes</h3>
+            <p>Luxury fragrances collection.</p>
+        </div>
+
+        <div class="card">
+            <h3>Souvenirs</h3>
+            <p>Memorable gift items.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <p>📞 Phone: +968 XXXXXXXX</p>
+    <p>💬 WhatsApp: +968 XXXXXXXX</p>
+    <p>📧 Email: your@email.com</p>
+</section>
+
+<!-- LOCATION -->
+<section id="location" class="section dark">
+    <h2>Our Location</h2>
+    <p>Salalah, Oman</p>
 </section>
 
 <footer>
-    © 2026 JEWEL CORNER | All Rights Reserved
+    <p>© 2026 Jewel Corner. All Rights Reserved.</p>
 </footer>
 
 </body>
