@@ -1,38 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>JEWEL CORNER | Luxury Collections in Salalah</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEWEL CORNER | Luxury Collections in Salalah</title>
 
-    <!-- SEO -->
-    <meta name="description" content="JEWEL CORNER in Salalah offers luxury artificial jewellery, watches, perfumes, and souvenirs across 5 premium locations.">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/96877147645" class="whatsapp-float" target="_blank" rel="noopener">
-    💬
-</a>
-
 <!-- HEADER -->
-<header>
-    <img src="logo.png" alt="Jewel Corner Logo" class="logo">
+<header class="header">
+    <div class="logo">JEWEL CORNER</div>
 
-    <ul class="nav-links">
+    <div class="hamburger" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <ul class="nav-links" id="navLinks">
         <li><a href="#">Home</a></li>
-        <li><a href="#about">About Us</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#collections">Collections</a></li>
-        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#gallery">Products</a></li>
+        <li><a href="#location">Branches</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#location">Locations</a></li>
     </ul>
 </header>
 
@@ -40,196 +33,97 @@
 <section class="hero">
     <div class="hero-content">
         <h1>Elegance. Luxury. Perfection.</h1>
-        <p>Premium Artificial Jewellery, Watches, Perfumes & Souvenirs in Salalah</p>
+        <p>Premium Artificial Jewellery, Watches & Perfumes in Salalah</p>
 
         <div class="buttons">
             <a href="#collections" class="btn-primary">Explore Collection</a>
-            <a href="https://wa.me/96877147645" class="btn-secondary" target="_blank" rel="noopener">
-                Order on WhatsApp
-            </a>
+            <a href="https://wa.me/96877147645" class="btn-secondary">Order on WhatsApp</a>
         </div>
     </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="section fade-up">
+<section id="about" class="section">
     <h2>About Jewel Corner</h2>
     <p>
-        JEWEL CORNER is a premium lifestyle store based in Salalah, Oman.
-        We offer elegant artificial jewellery, branded watches, luxury perfumes,
-        and unique souvenir items. We combine style, sophistication,
-        and affordability for every customer.
+        JEWEL CORNER is a premium lifestyle store in Salalah offering elegant artificial jewellery,
+        branded watches, luxury perfumes and beautiful souvenirs.
     </p>
 </section>
 
 <!-- COLLECTIONS -->
-<section id="collections" class="section dark fade-up">
+<section id="collections" class="section dark">
     <h2>Our Collections</h2>
 
     <div class="card-container">
-        <div class="card fade-up">
+        <div class="card">
             <h3>Artificial Jewellery</h3>
-            <p>Elegant necklaces, earrings, bangles & exclusive designs.</p>
+            <p>Elegant necklaces, earrings & bangles.</p>
         </div>
 
-        <div class="card fade-up">
+        <div class="card">
             <h3>Branded Watches</h3>
-            <p>Premium men & women watch collections.</p>
+            <p>Premium men & women collections.</p>
         </div>
 
-        <div class="card fade-up">
+        <div class="card">
             <h3>Luxury Perfumes</h3>
-            <p>Long-lasting premium fragrances.</p>
+            <p>Long-lasting fragrances.</p>
         </div>
 
-        <div class="card fade-up">
+        <div class="card">
             <h3>Souvenirs</h3>
-            <p>Beautiful gift items and keepsakes.</p>
+            <p>Memorable gift collections.</p>
         </div>
     </div>
 </section>
 
-<!-- GALLERY -->
-<section id="gallery" class="section fade-up">
-    <h2>Featured Products</h2>
+<!-- BRANCHES -->
+<section id="location" class="section">
+    <h2>Our Branches</h2>
 
-    <div class="filter-buttons">
-        <button onclick="filterProducts('all')">All</button>
-        <button onclick="filterProducts('jewellery')">Jewellery</button>
-        <button onclick="filterProducts('watches')">Watches</button>
-        <button onclick="filterProducts('perfumes')">Perfumes</button>
-        <button onclick="filterProducts('souvenirs')">Souvenirs</button>
-    </div>
+    <div class="branch-container">
 
-    <div class="product-container">
-
-        <div class="product-card jewellery">
-            <img src="images/jewel1.jpg" alt="Luxury Necklace">
-            <h3>Luxury Necklace Set</h3>
-            <p>OMR 12.000</p>
+        <div class="branch-card main">
+            <h3>HYPERMAX (Main Branch)</h3>
+            <p>10:00 AM – 12:00 AM</p>
         </div>
 
-        <div class="product-card watches">
-            <img src="images/watch1.jpg" alt="Classic Watch">
-            <h3>Classic Men's Watch</h3>
-            <p>OMR 18.000</p>
+        <div class="branch-card">
+            <h3>GRAND MALL SAADA</h3>
         </div>
 
-        <div class="product-card perfumes">
-            <img src="images/perfume1.jpg" alt="Luxury Perfume">
-            <h3>Luxury Perfume</h3>
-            <p>OMR 9.500</p>
+        <div class="branch-card">
+            <h3>LULU ALWADI</h3>
         </div>
 
-        <div class="product-card souvenirs">
-            <img src="images/souvenir1.jpg" alt="Souvenir Gift">
-            <h3>Premium Souvenir Gift</h3>
-            <p>OMR 6.000</p>
+        <div class="branch-card">
+            <h3>NESTO AWQAD</h3>
+        </div>
+
+        <div class="branch-card">
+            <h3>SALALAH GIFT MARKET</h3>
         </div>
 
     </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="section fade-up">
+<section id="contact" class="section dark">
     <h2>Contact Us</h2>
     <p>📍 Salalah, Oman</p>
     <p>📞 +968 77147645</p>
-    <p>
-        📷 <a href="https://www.instagram.com/jewelcorneroman" target="_blank" rel="noopener">
-        @jewelcorneroman
-        </a>
-    </p>
-</section>
-    
-<!-- LOCATION SECTION -->
-<section id="location" class="section dark">
-    <h2>Our Branches</h2>
-    <p class="branch-intro">
-        Visit JEWEL CORNER at any of our premium locations in Salalah.
-    </p>
-
-    <div class="branch-container">
-
-        <div class="branch-card main-branch">
-            <div class="branch-info">
-                <h3>HYPERMAX (Main Branch)</h3>
-                <span class="branch-label">Flagship Location</span>
-                <p>🕒 10:00 AM – 12:00 AM</p>
-
-                <div class="branch-buttons">
-                    <a href="#" class="btn-secondary">Directions</a>
-                    <a href="tel:+96877147645" class="btn-primary">Call</a>
-                </div>
-            </div>
-
-            <iframe src="https://www.google.com/maps?q=JEWEL+CORNER+HYPERMAX+Salalah&output=embed"></iframe>
-        </div>
-
-        <div class="branch-card">
-            <div class="branch-info">
-                <h3>GRAND MALL SAADA</h3>
-                <p>🕒 10:00 AM – 11:30 PM</p>
-            </div>
-            <iframe src="https://www.google.com/maps?q=JEWEL+CORNER+GRAND+MALL+SAADA+Salalah&output=embed"></iframe>
-        </div>
-
-        <div class="branch-card">
-            <div class="branch-info">
-                <h3>LULU ALWADI</h3>
-                <p>🕒 10:00 AM – 11:30 PM</p>
-            </div>
-            <iframe src="https://www.google.com/maps?q=JEWEL+CORNER+LULU+ALWADI+Salalah&output=embed"></iframe>
-        </div>
-
-        <div class="branch-card">
-            <div class="branch-info">
-                <h3>NESTO AWQAD</h3>
-                <p>🕒 10:00 AM – 12:00 AM</p>
-            </div>
-            <iframe src="https://www.google.com/maps?q=JEWEL+CORNER+NESTO+AWQAD+Salalah&output=embed"></iframe>
-        </div>
-
-        <div class="branch-card">
-            <div class="branch-info">
-                <h3>SALALAH GIFT MARKET</h3>
-                <p>🕒 10:00 AM – 12:00 AM</p>
-            </div>
-            <iframe src="https://www.google.com/maps?q=JEWEL+CORNER+SALALAH+GIFT+MARKET+Salalah&output=embed"></iframe>
-        </div>
-
-    </div>
+    <p>📷 Instagram: @jewelcorneroman</p>
 </section>
 
 <!-- FOOTER -->
 <footer>
-    <p>© JEWEL CORNER | OMAN | All Rights Reserved</p>
+    <p>© 2026 JEWEL CORNER | All Rights Reserved</p>
 </footer>
 
-<!-- ANIMATION SCRIPT -->
 <script>
-const faders = document.querySelectorAll('.fade-up');
-
-const appearOnScroll = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('show');
-        observer.unobserve(entry.target);
-    });
-}, { threshold: 0.2 });
-
-faders.forEach(fader => appearOnScroll.observe(fader));
-
-function filterProducts(category) {
-    const products = document.querySelectorAll('.product-card');
-
-    products.forEach(product => {
-        if (category === 'all' || product.classList.contains(category)) {
-            product.style.display = 'block';
-        } else {
-            product.style.display = 'none';
-        }
-    });
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
 }
 </script>
 
