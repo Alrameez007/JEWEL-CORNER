@@ -257,3 +257,8 @@ footer {
         padding: 70px 18px;
     }
 }
+.logo img {
+    height: 60px;
+    width: auto;
+}
+
