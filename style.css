@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     background: #f8f6f2;
@@ -33,6 +38,7 @@ h2 {
     position: fixed;
     width: 100%;
     top: 0;
+    left: 0;
     background: #f8f6f2;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     z-index: 1000;
@@ -52,14 +58,22 @@ h2 {
 }
 
 /* LOGO */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .logo span {
     font-family: 'Playfair Display', serif;
     font-size: 20px;
     letter-spacing: 3px;
     font-weight: 600;
 }
+
 .logo img {
     height: 45px;
+    display: block;
 }
 
 /* NAVIGATION */
@@ -68,11 +82,13 @@ h2 {
     display: flex;
     gap: 28px;
 }
+
 .nav-links li a {
     font-size: 14px;
     letter-spacing: 1px;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
+
 .nav-links li a:hover {
     color: #c6a75e;
 }
@@ -89,16 +105,19 @@ h2 {
     padding-top: 160px;
     padding-bottom: 100px;
 }
+
 .hero h1 {
     font-family: 'Playfair Display', serif;
     font-size: 48px;
     margin-bottom: 20px;
 }
+
 .hero p {
     font-size: 20px;
     color: #555;
     margin-bottom: 30px;
 }
+
 .divider {
     width: 70px;
     height: 2px;
@@ -113,25 +132,32 @@ h2 {
     gap: 18px;
     flex-wrap: wrap;
 }
+
 .btn-primary,
 .btn-secondary {
     padding: 14px 36px;
     border-radius: 40px;
     font-size: 16px;
     font-weight: 500;
-    transition: 0.3s;
+    transition: 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
 }
+
 .btn-primary {
     background: #c6a75e;
     color: white;
 }
+
 .btn-primary:hover {
     background: #b8954f;
 }
+
 .btn-secondary {
     border: 2px solid #c6a75e;
     color: #c6a75e;
 }
+
 .btn-secondary:hover {
     background: #c6a75e;
     color: white;
@@ -144,6 +170,7 @@ h2 {
     gap: 30px;
     margin-top: 40px;
 }
+
 .card {
     background: #fff;
     padding: 28px;
@@ -158,11 +185,13 @@ h2 {
     gap: 20px;
     margin-top: 40px;
 }
+
 .branch-card {
     padding: 22px;
     border-radius: 10px;
     background: #f1ede6;
 }
+
 .branch-card.main {
     background: #c6a75e;
     color: #fff;
@@ -192,29 +221,38 @@ footer {
         padding-left: 25px;
         gap: 22px;
         transition: 0.3s ease;
+        z-index: 1200;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.08);
     }
+
     .nav-links.active {
         right: 0;
     }
+
     .hamburger {
         display: block;
+        z-index: 1300;
     }
 
     .hero h1 {
         font-size: 34px;
     }
+
     .hero p {
         font-size: 16px;
     }
+
     .buttons {
         flex-direction: column;
         gap: 14px;
     }
+
     .btn-primary,
     .btn-secondary {
         width: 100%;
         text-align: center;
     }
+
     section {
         padding: 70px 18px;
     }
