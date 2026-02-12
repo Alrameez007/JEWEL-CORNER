@@ -1,4 +1,5 @@
-/* GLOBAL RESET */
+/* ================= GLOBAL RESET ================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -33,7 +34,16 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* HEADER */
+/* ================= LAYOUT ================= */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* ================= HEADER ================= */
+
 .header {
     position: fixed;
     width: 100%;
@@ -44,12 +54,6 @@ h2 {
     z-index: 1000;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-}
-
 .nav-wrapper {
     display: flex;
     justify-content: space-between;
@@ -57,11 +61,18 @@ h2 {
     padding: 18px 0;
 }
 
-/* LOGO */
+/* ================= LOGO ================= */
+
 .logo {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+    display: block;
 }
 
 .logo span {
@@ -71,12 +82,8 @@ h2 {
     font-weight: 600;
 }
 
-.logo img {
-    height: 45px;
-    display: block;
-}
+/* ================= NAVIGATION ================= */
 
-/* NAVIGATION */
 .nav-links {
     list-style: none;
     display: flex;
@@ -93,14 +100,16 @@ h2 {
     color: #c6a75e;
 }
 
-/* HAMBURGER */
+/* ================= HAMBURGER ================= */
+
 .hamburger {
     display: none;
     font-size: 28px;
     cursor: pointer;
 }
 
-/* HERO */
+/* ================= HERO ================= */
+
 .hero {
     padding-top: 160px;
     padding-bottom: 100px;
@@ -125,7 +134,8 @@ h2 {
     margin: 30px auto 0;
 }
 
-/* BUTTONS */
+/* ================= BUTTONS ================= */
+
 .buttons {
     display: flex;
     justify-content: center;
@@ -146,7 +156,7 @@ h2 {
 
 .btn-primary {
     background: #c6a75e;
-    color: white;
+    color: #fff;
 }
 
 .btn-primary:hover {
@@ -160,10 +170,11 @@ h2 {
 
 .btn-secondary:hover {
     background: #c6a75e;
-    color: white;
+    color: #fff;
 }
 
-/* CARDS */
+/* ================= CARDS ================= */
+
 .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -177,6 +188,7 @@ h2 {
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
+
 .card img {
     width: 100%;
     height: 220px;
@@ -186,7 +198,8 @@ h2 {
     margin-bottom: 15px;
 }
 
-/* BRANCHES */
+/* ================= BRANCHES ================= */
+
 .branch-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -205,7 +218,54 @@ h2 {
     color: #fff;
 }
 
-/* FOOTER */
+/* ================= COLLECTIONS ================= */
+
+.collections {
+    padding: 80px 0;
+    background: #f9f9f9;
+}
+
+.collections h2 {
+    margin-bottom: 50px;
+}
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.collection-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.collection-card:hover {
+    transform: translateY(-10px);
+}
+
+.collection-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.collection-card h3 {
+    margin: 20px 0 10px;
+    font-size: 22px;
+}
+
+.collection-card p {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+/* ================= FOOTER ================= */
+
 footer {
     background: #000;
     color: #aaa;
@@ -214,7 +274,8 @@ footer {
     font-size: 14px;
 }
 
-/* MOBILE */
+/* ================= RESPONSIVE ================= */
+
 @media (max-width: 768px) {
 
     .nav-links {
@@ -225,8 +286,7 @@ footer {
         width: 240px;
         background: #fff;
         flex-direction: column;
-        padding-top: 120px;
-        padding-left: 25px;
+        padding: 120px 25px 0;
         gap: 22px;
         transition: 0.3s ease;
         z-index: 1200;
@@ -264,62 +324,6 @@ footer {
     section {
         padding: 70px 18px;
     }
-}
-.logo img {
-    height: 60px;
-    width: auto;
-}
-/* ================= COLLECTIONS ================= */
-
-.collections {
-    padding: 80px 0;
-    background: #f9f9f9;
-    text-align: center;
-}
-
-.collections h2 {
-    font-size: 36px;
-    margin-bottom: 50px;
-}
-
-.collection-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.collection-card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    transition: 0.3s;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-}
-
-.collection-card:hover {
-    transform: translateY(-10px);
-}
-
-.collection-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.collection-card h3 {
-    margin: 20px 0 10px;
-    font-size: 22px;
-}
-
-.collection-card p {
-    font-size: 15px;
-    margin-bottom: 20px;
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 768px) {
 
     .collection-grid {
         grid-template-columns: 1fr;
@@ -328,6 +332,4 @@ footer {
     .collections h2 {
         font-size: 28px;
     }
-
 }
-
