@@ -219,6 +219,30 @@ h2 {
     0 0 0 1px #d4af37,
     0 30px 80px rgba(212,175,55,0.25);
 }
+.branch-buttons {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.direction-btn {
+    display: inline-block;
+    padding: 14px 35px;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+    background: transparent;
+}
+
+.direction-btn:hover {
+    background: #d4af37;
+    color: #000;
+    box-shadow: 0 0 25px rgba(212,175,55,0.5);
+}
+
 
 /* ===============================
    FOOTER
