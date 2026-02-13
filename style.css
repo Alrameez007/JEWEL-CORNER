@@ -159,3 +159,36 @@ footer {
         margin: 10px 0;
     }
 }
+/* FIX BRANCH SECTION SPACING */
+.branches {
+    padding: 60px 0;
+}
+
+.branch-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 20px;
+}
+
+.branch-card {
+    display: block;
+    padding: 18px;
+    background: #ffffff;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #222;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* FIX FOOTER SPACING */
+footer {
+    margin-top: 60px;
+}
+
+/* FIX SECTION SPACING */
+section {
+    padding: 60px 20px;
+}
+
