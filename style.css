@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap');
 
 * {
@@ -21,11 +20,16 @@ body {
     margin: auto;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 header {
-    background: #000;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
     padding: 20px 0;
     border-bottom: 1px solid rgba(212,175,55,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .header-container {
@@ -45,6 +49,7 @@ header {
 }
 
 .nav-links li a {
+    position: relative;
     text-decoration: none;
     color: #d4af37;
     font-weight: 500;
@@ -52,15 +57,32 @@ header {
     transition: 0.3s ease;
 }
 
+/* Elegant underline animation */
+.nav-links li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 1px;
+    bottom: -5px;
+    left: 0;
+    background-color: #d4af37;
+    transition: 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
 .nav-links li a:hover {
     color: #ffffff;
 }
 
-/* HERO */
+/* ================= HERO ================= */
+
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
+    background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
                 url('hero.jpg') center/cover no-repeat;
-    padding: 120px 20px;
+    padding: 140px 20px;
     text-align: center;
 }
 
@@ -79,9 +101,10 @@ header {
     color: #ccc;
 }
 
-/* SECTIONS */
+/* ================= SECTIONS ================= */
+
 section {
-    padding: 80px 0;
+    padding: 90px 0;
 }
 
 h2 {
@@ -93,7 +116,8 @@ h2 {
     letter-spacing: 1px;
 }
 
-/* ABOUT */
+/* ================= ABOUT ================= */
+
 .about p {
     max-width: 800px;
     margin: auto;
@@ -101,7 +125,8 @@ h2 {
     color: #bbb;
 }
 
-/* COLLECTIONS */
+/* ================= COLLECTIONS ================= */
+
 .collection-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -112,15 +137,15 @@ h2 {
     background: #111;
     padding: 50px 25px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid rgba(212,175,55,0.2);
     transition: 0.4s ease;
 }
 
 .card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
     border-color: #d4af37;
-    box-shadow: 0 0 25px rgba(212,175,55,0.2);
+    box-shadow: 0 12px 35px rgba(212,175,55,0.25);
 }
 
 .card h3 {
@@ -130,9 +155,10 @@ h2 {
     font-size: 22px;
 }
 
+/* BUTTON */
 .btn {
     display: inline-block;
-    padding: 12px 24px;
+    padding: 12px 26px;
     background: transparent;
     border: 1px solid #d4af37;
     color: #d4af37;
@@ -146,7 +172,8 @@ h2 {
     color: #000;
 }
 
-/* BRANCHES */
+/* ================= BRANCHES ================= */
+
 .branch-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -155,23 +182,26 @@ h2 {
 
 .branch-card {
     display: block;
-    padding: 25px;
+    padding: 30px;
     text-align: center;
     background: #111;
     color: #e5e5e5;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid rgba(212,175,55,0.2);
     transition: 0.3s ease;
 }
 
 .branch-card:hover {
+    transform: translateY(-8px);
     border-color: #d4af37;
     background: #1a1a1a;
     color: #d4af37;
+    box-shadow: 0 10px 30px rgba(212,175,55,0.25);
 }
 
-/* CONTACT */
+/* ================= CONTACT ================= */
+
 .contact {
     text-align: center;
 }
@@ -179,20 +209,21 @@ h2 {
 .whatsapp-btn {
     display: inline-block;
     margin-top: 25px;
-    padding: 14px 28px;
+    padding: 14px 30px;
     background: #d4af37;
     color: #000;
     text-decoration: none;
     font-weight: 600;
-    border-radius: 5px;
+    border-radius: 6px;
     transition: 0.3s ease;
 }
 
 .whatsapp-btn:hover {
-    background: #fff;
+    background: #ffffff;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
+
 footer {
     background: #000;
     text-align: center;
@@ -201,7 +232,23 @@ footer {
     border-top: 1px solid rgba(212,175,55,0.3);
 }
 
-/* MOBILE */
+/* ================= FADE ANIMATION ================= */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================= MOBILE ================= */
+
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
@@ -216,18 +263,8 @@ footer {
     .hero h1 {
         font-size: 30px;
     }
-}
-/* FADE IN ANIMATION */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeUp 1s ease forwards;
-}
 
-@keyframes fadeUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    section {
+        padding: 70px 0;
     }
 }
-
