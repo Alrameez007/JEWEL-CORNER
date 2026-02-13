@@ -6,17 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
-<script>
-function toggleMenu() {
-    var menu = document.getElementById("nav-menu");
-    if (menu.style.display === "block") {
-        menu.style.display = "none";
-    } else {
-        menu.style.display = "block";
-    }
-}
-</script>
+
 <body>
+
 <header>
   <div class="nav-container">
     <div class="logo">Jewel Corner</div>
@@ -31,6 +23,7 @@ function toggleMenu() {
         <li><a href="#collections">Collections</a></li>
         <li><a href="#branches">Branches</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><button onclick="toggleLanguage()" class="lang-btn">AR / EN</button></li>
       </ul>
     </nav>
   </div>
@@ -68,47 +61,29 @@ function toggleMenu() {
         <h2 class="shimmer">Our Collections</h2>
 
         <div class="collection-grid">
-
             <div class="card">
-                <div class="card-image">
-                    <img src="jewellery.jpg" alt="Jewellery">
-                </div>
-                <div class="card-content">
-                    <h3>Jewellery</h3>
-                    <a href="#" class="btn">View Collection</a>
-                </div>
+                <img src="jewellery.jpg" alt="Jewellery">
+                <h3>Jewellery</h3>
+                <a href="#" class="btn">View Collection</a>
             </div>
 
             <div class="card">
-                <div class="card-image">
-                    <img src="watches.jpg" alt="Watches">
-                </div>
-                <div class="card-content">
-                    <h3>Watches</h3>
-                    <a href="#" class="btn">View Collection</a>
-                </div>
+                <img src="watches.jpg" alt="Watches">
+                <h3>Watches</h3>
+                <a href="#" class="btn">View Collection</a>
             </div>
 
             <div class="card">
-                <div class="card-image">
-                    <img src="perfume.jpg" alt="Perfumes">
-                </div>
-                <div class="card-content">
-                    <h3>Perfumes</h3>
-                    <a href="#" class="btn">View Collection</a>
-                </div>
+                <img src="perfume.jpg" alt="Perfumes">
+                <h3>Perfumes</h3>
+                <a href="#" class="btn">View Collection</a>
             </div>
 
             <div class="card">
-                <div class="card-image">
-                    <img src="souvenir.jpg" alt="Souvenirs">
-                </div>
-                <div class="card-content">
-                    <h3>Souvenirs</h3>
-                    <a href="#" class="btn">View Collection</a>
-                </div>
+                <img src="souvenir.jpg" alt="Souvenirs">
+                <h3>Souvenirs</h3>
+                <a href="#" class="btn">View Collection</a>
             </div>
-
         </div>
     </div>
 </section>
@@ -121,11 +96,11 @@ function toggleMenu() {
         <h2 class="shimmer">Our Branches</h2>
 
         <div class="branch-grid">
-            <a href="#" class="branch-card">JEWEL CORNER HYPERMAX</a>
-            <a href="#" class="branch-card">JEWEL CORNER LULU ALWADI</a>
-            <a href="#" class="branch-card">JEWEL CORNER NESTO AWQAD</a>
-            <a href="#" class="branch-card">JEWEL CORNER SALALAH GIFT MARKET</a>
-            <a href="#" class="branch-card">JEWEL CORNER GRAND MALL SAADA</a>
+            <div class="branch-card">JEWEL CORNER HYPERMAX</div>
+            <div class="branch-card">JEWEL CORNER LULU ALWADI</div>
+            <div class="branch-card">JEWEL CORNER NESTO AWQAD</div>
+            <div class="branch-card">JEWEL CORNER SALALAH GIFT MARKET</div>
+            <div class="branch-card">JEWEL CORNER GRAND MALL SAADA</div>
         </div>
     </div>
 </section>
@@ -146,6 +121,10 @@ function toggleMenu() {
 </footer>
 
 <script>
+function toggleMenu() {
+    document.getElementById("nav-menu").classList.toggle("show");
+}
+
 window.addEventListener("scroll", function () {
     const reveals = document.querySelectorAll(".reveal");
     reveals.forEach((el) => {
