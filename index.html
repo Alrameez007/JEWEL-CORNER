@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Jewel Corner Oman</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,6 +26,7 @@
     </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
     <div class="container">
         <h1 class="shimmer" id="hero-title">Welcome to Jewel Corner</h1>
@@ -38,6 +38,7 @@
 
 <div class="divider"></div>
 
+<!-- ABOUT -->
 <section class="about reveal">
     <div class="container">
         <h2 class="shimmer" id="about-title">About Us</h2>
@@ -51,40 +52,60 @@
 
 <div class="divider"></div>
 
+<!-- COLLECTIONS -->
 <section class="collections reveal" id="collections">
     <div class="container">
         <h2 class="shimmer">Our Collections</h2>
 
         <div class="collection-grid">
+
             <div class="card">
-                <img src="jewellery.jpg" alt="Jewellery">
-                <h3>Jewellery</h3>
-                <a href="#" class="btn">View Collection</a>
+                <div class="card-image">
+                    <img src="jewellery.jpg" alt="Jewellery">
+                </div>
+                <div class="card-content">
+                    <h3>Jewellery</h3>
+                    <a href="#" class="btn">View Collection</a>
+                </div>
             </div>
 
             <div class="card">
-                <img src="watches.jpg" alt="Watches">
-                <h3>Watches</h3>
-                <a href="#" class="btn">View Collection</a>
+                <div class="card-image">
+                    <img src="watches.jpg" alt="Watches">
+                </div>
+                <div class="card-content">
+                    <h3>Watches</h3>
+                    <a href="#" class="btn">View Collection</a>
+                </div>
             </div>
 
             <div class="card">
-                <img src="perfume.jpg" alt="Perfumes">
-                <h3>Perfumes</h3>
-                <a href="#" class="btn">View Collection</a>
+                <div class="card-image">
+                    <img src="perfume.jpg" alt="Perfumes">
+                </div>
+                <div class="card-content">
+                    <h3>Perfumes</h3>
+                    <a href="#" class="btn">View Collection</a>
+                </div>
             </div>
 
             <div class="card">
-                <img src="souvenir.jpg" alt="Souvenirs">
-                <h3>Souvenirs</h3>
-                <a href="#" class="btn">View Collection</a>
+                <div class="card-image">
+                    <img src="souvenir.jpg" alt="Souvenirs">
+                </div>
+                <div class="card-content">
+                    <h3>Souvenirs</h3>
+                    <a href="#" class="btn">View Collection</a>
+                </div>
             </div>
+
         </div>
     </div>
 </section>
 
 <div class="divider"></div>
 
+<!-- BRANCHES -->
 <section class="branches reveal" id="branches">
     <div class="container">
         <h2 class="shimmer">Our Branches</h2>
@@ -101,6 +122,7 @@
 
 <div class="divider"></div>
 
+<!-- CONTACT -->
 <section class="contact reveal" id="contact">
     <div class="container">
         <h2 class="shimmer">Contact Us</h2>
@@ -114,7 +136,6 @@
 </footer>
 
 <script>
-/* Scroll Reveal */
 window.addEventListener("scroll", function () {
     const reveals = document.querySelectorAll(".reveal");
     reveals.forEach((el) => {
@@ -126,7 +147,6 @@ window.addEventListener("scroll", function () {
     });
 });
 
-/* Language Toggle */
 let isArabic = false;
 
 function toggleLanguage() {
@@ -142,7 +162,6 @@ function toggleLanguage() {
         document.getElementById("about-title").innerText = "معلومات عنا";
         document.getElementById("about-text").innerText =
             "جويل كورنر من أبرز متاجر الإكسسوارات في صلالة، نقدم منتجات عالية الجودة بأسعار مناسبة.";
-
     } else {
         document.documentElement.lang = "en";
         document.body.style.direction = "ltr";
