@@ -1,327 +1,206 @@
-/* ===============================
-   GLOBAL SETTINGS
-================================= */
+/* =================================================
+   ROOT DESIGN SYSTEM
+================================================= */
+
+:root {
+  --gold: #d4af37;
+  --gold-soft: rgba(212,175,55,0.35);
+  --black: #000;
+  --glass: rgba(20,20,20,0.75);
+  --text: #f5f5f5;
+  --transition: all 0.4s ease;
+}
+
+/* =================================================
+   GLOBAL
+================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none;
+}
+
+html { scroll-behavior: smooth; }
 
 body {
-  margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: #000;
-  color: #f5f5f5;
-  line-height: 1.7;
-  letter-spacing: 0.5px;
+  background: var(--black);
+  color: var(--text);
+  overflow-x: hidden;
 }
 
-html[dir="rtl"] body {
-  font-family: 'Cairo', sans-serif;
+/* Disable custom cursor on mobile */
+@media (max-width:768px){
+  * { cursor:auto; }
 }
 
-/* ===============================
+/* =================================================
+   LOADER
+================================================= */
+
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: var(--gold);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { opacity:.4; }
+  50% { opacity:1; }
+  100% { opacity:.4; }
+}
+
+/* =================================================
+   CURSOR
+================================================= */
+
+.cursor {
+  width: 16px;
+  height: 16px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+.cursor-glow {
+  width: 40px;
+  height: 40px;
+  background: rgba(212,175,55,0.2);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+/* =================================================
    HEADER
-================================= */
+================================================= */
 
 header {
-  background: #000;
-  padding: 15px 40px;
   position: sticky;
   top: 0;
+  padding: 20px 60px;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--gold-soft);
   z-index: 1000;
-  border-bottom: 1px solid #d4af37;
-}
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo img {
-  height: 55px;
 }
 
 nav ul {
-  list-style: none;
   display: flex;
-  gap: 30px;
+  gap: 35px;
+  list-style: none;
 }
 
 nav ul li a {
   text-decoration: none;
-  color: #f5f5f5;
-  font-size: 14px;
-  text-transform: uppercase;
+  color: var(--text);
   letter-spacing: 2px;
-  transition: 0.3s;
+  font-size: 13px;
+  position: relative;
+  transition: var(--transition);
 }
 
-nav ul li a:hover {
-  color: #d4af37;
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: var(--gold);
+  transition: .5s;
 }
 
-.lang-btn {
-  background: transparent;
-  border: 1px solid #d4af37;
-  color: #d4af37;
-  padding: 6px 14px;
-  cursor: pointer;
-  letter-spacing: 1px;
-  transition: 0.3s;
-}
+nav ul li a:hover::after { width:100%; }
+nav ul li a:hover { color: var(--gold); }
 
-.lang-btn:hover {
-  background: #d4af37;
-  color: #000;
-}
-
-/* ===============================
-   HERO SECTION
-================================= */
+/* =================================================
+   HERO
+================================================= */
 
 .hero {
-  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
-              url("hero.jpg") center/cover no-repeat;
+  padding: 200px 20px;
   text-align: center;
-  padding: 160px 20px;
+  background:
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
+    url("hero.jpg") center/cover fixed no-repeat;
 }
 
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 60px;
-  color: #d4af37;
-  margin-bottom: 20px;
+  font-size: clamp(40px,6vw,70px);
+  color: var(--gold);
 }
 
-.hero p {
-  font-size: 18px;
-  max-width: 700px;
-  margin: auto;
-  opacity: 0.85;
-}
-
-/* ===============================
-   GENERAL SECTIONS
-================================= */
-
-section {
-  padding: 110px 20px;
-  text-align: center;
-}
-
-h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 42px;
-  color: #d4af37;
-  margin-bottom: 40px;
-  letter-spacing: 2px;
-}
-
-.container {
-  max-width: 1100px;
-  margin: auto;
-}
-
-/* ===============================
-   COLLECTION CARDS
-================================= */
-
-.collection-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-}
-
-.card {
-  background: #111;
-  border: 1px solid #1c1c1c;
-  padding: 20px;
-  transition: 0.4s ease;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  border-color: #d4af37;
-}
-
-.card img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  margin-bottom: 15px;
-}
-
-.card h3 {
-  font-family: 'Playfair Display', serif;
-  color: #d4af37;
-  font-size: 22px;
-}
-
-/* ===============================
-   DIVIDER
-================================= */
-
-.divider {
-  height: 1px;
-  background: linear-gradient(to right, transparent, #d4af37, transparent);
-}
-
-/* ===============================
-   BRANCHES SECTION (Luxury)
-================================= */
-
-.branches-section {
-  background: radial-gradient(circle at center, #0c0c0c 0%, #000 100%);
-  padding: 120px 8%;
-}
-
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 56px;
-  text-align: center;
-  color: #d4af37;
-  margin-bottom: 100px;
-  letter-spacing: 2px;
-}
+/* =================================================
+   CARDS
+================================================= */
 
 .branch-card {
-  margin-bottom: 120px;
-  text-align: center;
+  background: var(--glass);
+  padding: 60px 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: var(--transition);
 }
 
-.branch-card h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 38px;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 30px;
+.branch-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: 0 25px 70px rgba(212,175,55,0.15);
 }
 
-.branch-line {
-  width: 80px;
-  height: 2px;
-  background: linear-gradient(to right, transparent, #d4af37, transparent);
-  margin: 0 auto 50px;
-}
-
-.branch-card iframe {
-  width: 100%;
-  height: 450px;
-  border-radius: 14px;
-  border: none;
-  box-shadow:
-    0 0 0 1px rgba(212,175,55,0.3),
-    0 25px 60px rgba(0,0,0,0.6);
-  transition: 0.4s ease;
-}
-
-.branch-card iframe:hover {
-  transform: scale(1.02);
-  box-shadow:
-    0 0 0 1px #d4af37,
-    0 30px 80px rgba(212,175,55,0.25);
-}
-.branch-buttons {
-    margin-top: 30px;
-    text-align: center;
-}
+/* =================================================
+   BUTTON
+================================================= */
 
 .direction-btn {
-    display: inline-block;
-    padding: 14px 35px;
-    border: 1px solid #d4af37;
-    color: #d4af37;
-    text-decoration: none;
-    letter-spacing: 1.5px;
-    font-size: 14px;
-    text-transform: uppercase;
-    transition: all 0.4s ease;
-    background: transparent;
+  display: inline-block;
+  padding: 14px 35px;
+  margin-top: 30px;
+  border-radius: 40px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 2px;
+  transition: var(--transition);
 }
 
 .direction-btn:hover {
-    background: #d4af37;
-    color: #000;
-    box-shadow: 0 0 25px rgba(212,175,55,0.5);
+  background: var(--gold);
+  color: var(--black);
+  box-shadow: 0 0 30px rgba(212,175,55,0.5);
 }
 
+/* =================================================
+   SCROLL REVEAL
+================================================= */
 
-/* ===============================
-   FOOTER
-================================= */
-
-footer {
-  background: #000;
-  padding: 25px;
-  text-align: center;
-  border-top: 1px solid #d4af37;
-  font-size: 14px;
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: 1s ease;
 }
 
-/* ===============================
-   MOBILE
-================================= */
-
-.menu-toggle {
-  display: none;
-  font-size: 24px;
-  color: white;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-
-  nav {
-    display: none;
-    position: absolute;
-    background: #000;
-    top: 80px;
-    right: 0;
-    width: 100%;
-    text-align: center;
-    padding: 20px 0;
-  }
-
-  nav.show {
-    display: block;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .hero h1 {
-    font-size: 36px;
-  }
-
-  h2 {
-    font-size: 28px;
-  }
-
-  .section-title {
-    font-size: 34px;
-  }
-
-  .branch-card iframe {
-    height: 300px;
-  }
-
-  .branch-card h2 {
-    font-size: 24px;
-  } 
-.branch-image img {
-    width: 100%;
-    max-width: 600px;
-    height: 350px;
-    object-fit: cover;
-    display: block;
-    margin: 30px auto;
-    transition: transform 0.6s ease;
-}
-
-.branch-image img:hover {
-    transform: scale(1.05);
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
