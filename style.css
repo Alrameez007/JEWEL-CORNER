@@ -137,3 +137,25 @@ footer {
     display: block;
   }
 }
+/* --- Premium Font Setup --- */
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #d4af37; /* luxury gold */
+}
+
+body, p, li, a {
+    font-family: 'Lora', serif;
+    font-weight: 400;
+    color: #f5f5f5;
+}
+
+nav ul li a {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 15px;
+}
+
