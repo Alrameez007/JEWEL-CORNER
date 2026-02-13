@@ -21,6 +21,7 @@
                 <li><a href="#collections">Collections</a></li>
                 <li><a href="#branches">Branches</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><button onclick="toggleLanguage()" class="lang-btn">AR</button></li>
             </ul>
         </nav>
     </div>
@@ -28,8 +29,10 @@
 
 <section class="hero">
     <div class="container">
-        <h1>Welcome to Jewel Corner</h1>
-        <p>Your destination for Artificial Jewellery, Watches, Premium Perfumes & Souvenirs in Salalah.</p>
+        <h1 class="shimmer" id="hero-title">Welcome to Jewel Corner</h1>
+        <p id="hero-text">
+            Your destination for Artificial Jewellery, Watches, Premium Perfumes & Souvenirs in Salalah.
+        </p>
     </div>
 </section>
 
@@ -37,8 +40,8 @@
 
 <section class="about reveal">
     <div class="container">
-        <h2>About Us</h2>
-        <p>
+        <h2 class="shimmer" id="about-title">About Us</h2>
+        <p id="about-text">
             Jewel Corner is one of the leading fashion accessory retailers in Salalah.
             We offer high quality artificial jewellery, premium watches, perfumes,
             and beautiful souvenirs at affordable prices.
@@ -50,25 +53,29 @@
 
 <section class="collections reveal" id="collections">
     <div class="container">
-        <h2>Our Collections</h2>
+        <h2 class="shimmer">Our Collections</h2>
 
         <div class="collection-grid">
             <div class="card">
+                <img src="jewellery.jpg" alt="Jewellery">
                 <h3>Jewellery</h3>
                 <a href="jewellery.html" class="btn">View Collection</a>
             </div>
 
             <div class="card">
+                <img src="watches.jpg" alt="Watches">
                 <h3>Watches</h3>
                 <a href="watches.html" class="btn">View Collection</a>
             </div>
 
             <div class="card">
+                <img src="perfume.jpg" alt="Perfumes">
                 <h3>Perfumes</h3>
                 <a href="perfume.html" class="btn">View Collection</a>
             </div>
 
             <div class="card">
+                <img src="souvenirs.jpg" alt="Souvenirs">
                 <h3>Souvenirs</h3>
                 <a href="souvenirs.html" class="btn">View Collection</a>
             </div>
@@ -80,8 +87,69 @@
 
 <section class="branches reveal" id="branches">
     <div class="container">
-        <h2>Our 5 Branches</h2>
+        <h2 class="shimmer">Our 5 Branches</h2>
 
         <div class="branch-grid">
             <a href="https://www.google.com/maps/search/JEWEL+CORNER+HYPERMAX+SALALAH" target="_blank" class="branch-card">
-                1. JEWEL CORNER H
+                1. JEWEL CORNER HYPERMAX
+            </a>
+
+            <a href="https://www.google.com/maps/search/JEWEL+CORNER+LULU+ALWADI+SALALAH" target="_blank" class="branch-card">
+                2. JEWEL CORNER LULU ALWADI
+            </a>
+
+            <a href="https://www.google.com/maps/search/JEWEL+CORNER+NESTO+AWQAD+SALALAH" target="_blank" class="branch-card">
+                3. JEWEL CORNER NESTO AWQAD
+            </a>
+
+            <a href="https://www.google.com/maps/search/JEWEL+CORNER+SALALAH+GIFT+MARKET" target="_blank" class="branch-card">
+                4. JEWEL CORNER SALALAH GIFT MARKET
+            </a>
+
+            <a href="https://www.google.com/maps/search/JEWEL+CORNER+GRAND+MALL+SAADA+SALALAH" target="_blank" class="branch-card">
+                5. JEWEL CORNER GRAND MALL SAADA
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="divider"></section>
+
+<section class="contact reveal" id="contact">
+    <div class="container">
+        <h2 class="shimmer">Contact Us</h2>
+        <p>Phone / WhatsApp: +968 77147645</p>
+        <a href="https://wa.me/96877147645" class="whatsapp-btn">Chat on WhatsApp</a>
+    </div>
+</section>
+
+<footer>
+    © 2026 Jewel Corner Oman | All Rights Reserved
+</footer>
+
+<script>
+// Scroll reveal
+window.addEventListener("scroll", function() {
+    const reveals = document.querySelectorAll(".reveal");
+    reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+            element.classList.add("active");
+        }
+    });
+});
+
+// Language toggle
+let isArabic = false;
+function toggleLanguage() {
+    isArabic = !isArabic;
+
+    if (isArabic) {
+        document.documentElement.lang = "ar";
+        document.body.style.direction = "rtl";
+        document.getElementById("hero-title").innerText = "مرحباً بكم في جويل كورنر";
+        document.getElementById("hero-text").innerText =
+            "وجهتك للمجوهرات والإكسسوارات والعطور والهدايا في صلالة.";
+        document.getElementById("about-title").innerText = "معلومات عنا";
+        document.getE
