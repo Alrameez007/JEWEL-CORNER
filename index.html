@@ -36,7 +36,7 @@
     </div>
 </section>
 
-<section class="divider"></section>
+<div class="divider"></div>
 
 <section class="about reveal">
     <div class="container">
@@ -49,7 +49,7 @@
     </div>
 </section>
 
-<section class="divider"></section>
+<div class="divider"></div>
 
 <section class="collections reveal" id="collections">
     <div class="container">
@@ -59,61 +59,47 @@
             <div class="card">
                 <img src="jewellery.jpg" alt="Jewellery">
                 <h3>Jewellery</h3>
-                <a href="jewellery.html" class="btn">View Collection</a>
+                <a href="#" class="btn">View Collection</a>
             </div>
 
             <div class="card">
                 <img src="watches.jpg" alt="Watches">
                 <h3>Watches</h3>
-                <a href="watches.html" class="btn">View Collection</a>
+                <a href="#" class="btn">View Collection</a>
             </div>
 
             <div class="card">
                 <img src="perfume.jpg" alt="Perfumes">
                 <h3>Perfumes</h3>
-                <a href="perfume.html" class="btn">View Collection</a>
+                <a href="#" class="btn">View Collection</a>
             </div>
 
             <div class="card">
                 <img src="souvenirs.jpg" alt="Souvenirs">
                 <h3>Souvenirs</h3>
-                <a href="souvenirs.html" class="btn">View Collection</a>
+                <a href="#" class="btn">View Collection</a>
             </div>
         </div>
     </div>
 </section>
 
-<section class="divider"></section>
+<div class="divider"></div>
 
 <section class="branches reveal" id="branches">
     <div class="container">
-        <h2 class="shimmer">Our 5 Branches</h2>
+        <h2 class="shimmer">Our Branches</h2>
 
         <div class="branch-grid">
-            <a href="https://www.google.com/maps/search/JEWEL+CORNER+HYPERMAX+SALALAH" target="_blank" class="branch-card">
-                1. JEWEL CORNER HYPERMAX
-            </a>
-
-            <a href="https://www.google.com/maps/search/JEWEL+CORNER+LULU+ALWADI+SALALAH" target="_blank" class="branch-card">
-                2. JEWEL CORNER LULU ALWADI
-            </a>
-
-            <a href="https://www.google.com/maps/search/JEWEL+CORNER+NESTO+AWQAD+SALALAH" target="_blank" class="branch-card">
-                3. JEWEL CORNER NESTO AWQAD
-            </a>
-
-            <a href="https://www.google.com/maps/search/JEWEL+CORNER+SALALAH+GIFT+MARKET" target="_blank" class="branch-card">
-                4. JEWEL CORNER SALALAH GIFT MARKET
-            </a>
-
-            <a href="https://www.google.com/maps/search/JEWEL+CORNER+GRAND+MALL+SAADA+SALALAH" target="_blank" class="branch-card">
-                5. JEWEL CORNER GRAND MALL SAADA
-            </a>
+            <a href="#" class="branch-card">JEWEL CORNER HYPERMAX</a>
+            <a href="#" class="branch-card">JEWEL CORNER LULU ALWADI</a>
+            <a href="#" class="branch-card">JEWEL CORNER NESTO AWQAD</a>
+            <a href="#" class="branch-card">JEWEL CORNER SALALAH GIFT MARKET</a>
+            <a href="#" class="branch-card">JEWEL CORNER GRAND MALL SAADA</a>
         </div>
     </div>
 </section>
 
-<section class="divider"></section>
+<div class="divider"></div>
 
 <section class="contact reveal" id="contact">
     <div class="container">
@@ -128,28 +114,48 @@
 </footer>
 
 <script>
-// Scroll reveal
-window.addEventListener("scroll", function() {
+/* Scroll Reveal */
+window.addEventListener("scroll", function () {
     const reveals = document.querySelectorAll(".reveal");
-    reveals.forEach(element => {
+    reveals.forEach((el) => {
         const windowHeight = window.innerHeight;
-        const elementTop = element.getBoundingClientRect().top;
+        const elementTop = el.getBoundingClientRect().top;
         if (elementTop < windowHeight - 100) {
-            element.classList.add("active");
+            el.classList.add("active");
         }
     });
 });
 
-// Language toggle
+/* Language Toggle */
 let isArabic = false;
+
 function toggleLanguage() {
     isArabic = !isArabic;
 
     if (isArabic) {
         document.documentElement.lang = "ar";
         document.body.style.direction = "rtl";
+
         document.getElementById("hero-title").innerText = "مرحباً بكم في جويل كورنر";
         document.getElementById("hero-text").innerText =
             "وجهتك للمجوهرات والإكسسوارات والعطور والهدايا في صلالة.";
         document.getElementById("about-title").innerText = "معلومات عنا";
-        document.getE
+        document.getElementById("about-text").innerText =
+            "جويل كورنر من أبرز متاجر الإكسسوارات في صلالة، نقدم منتجات عالية الجودة بأسعار مناسبة.";
+
+    } else {
+        document.documentElement.lang = "en";
+        document.body.style.direction = "ltr";
+
+        document.getElementById("hero-title").innerText = "Welcome to Jewel Corner";
+        document.getElementById("hero-text").innerText =
+            "Your destination for Artificial Jewellery, Watches, Premium Perfumes & Souvenirs in Salalah.";
+        document.getElementById("about-title").innerText = "About Us";
+        document.getElementById("about-text").innerText =
+            "Jewel Corner is one of the leading fashion accessory retailers in Salalah. We offer high quality artificial jewellery, premium watches, perfumes, and beautiful souvenirs at affordable prices.";
+    }
+}
+</script>
+
+</body>
+</html>
