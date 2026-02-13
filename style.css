@@ -63,7 +63,7 @@ nav ul li a {
 
 /* SECTIONS */
 section {
-    padding: 50px 0;
+    padding: 60px 0;
 }
 
 h2 {
@@ -97,6 +97,10 @@ h2 {
 }
 
 /* BRANCHES */
+.branches {
+    padding: 60px 0;
+}
+
 .branch-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -113,6 +117,7 @@ h2 {
     border: 1px solid #ddd;
     border-radius: 6px;
     font-weight: bold;
+    transition: 0.3s ease;
 }
 
 .branch-card:hover {
@@ -140,8 +145,8 @@ footer {
     background: #111;
     color: #fff;
     text-align: center;
-    padding: 15px 0;
-    margin-top: 40px;
+    padding: 20px 0;
+    margin-top: 60px;
 }
 
 /* MOBILE */
@@ -158,37 +163,8 @@ footer {
     nav ul li {
         margin: 10px 0;
     }
-}
-/* FIX BRANCH SECTION SPACING */
-.branches {
-    padding: 60px 0;
-}
 
-.branch-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 0 20px;
+    .branch-grid {
+        grid-template-columns: 1fr;
+    }
 }
-
-.branch-card {
-    display: block;
-    padding: 18px;
-    background: #ffffff;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #222;
-    font-weight: 600;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-/* FIX FOOTER SPACING */
-footer {
-    margin-top: 60px;
-}
-
-/* FIX SECTION SPACING */
-section {
-    padding: 60px 20px;
-}
-
