@@ -11,6 +11,7 @@ body {
     background: #0d0d0d;
     color: #e5e5e5;
     line-height: 1.7;
+    overflow-x: hidden;
 }
 
 /* CONTAINER */
@@ -23,7 +24,7 @@ body {
 /* HEADER */
 header {
     background: #000;
-    padding: 20px 0;
+    padding: 15px 0;
     border-bottom: 1px solid rgba(212,175,55,0.3);
     position: sticky;
     top: 0;
@@ -34,28 +35,32 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .logo img {
-    height: 55px;
-    animation: fadeLogo 1.5s ease forwards;
+    height: 50px;
+    max-width: 100%;
 }
 
-@keyframes fadeLogo {
-    from { opacity: 0; transform: translateY(-15px); }
-    to { opacity: 1; transform: translateY(0); }
+/* NAVIGATION */
+nav {
+    width: 100%;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 25px;
-    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 .nav-links a {
     text-decoration: none;
     color: #d4af37;
+    font-size: 15px;
     transition: 0.3s;
 }
 
@@ -67,21 +72,26 @@ header {
     background: transparent;
     border: 1px solid #d4af37;
     color: #d4af37;
-    padding: 5px 10px;
+    padding: 5px 12px;
     cursor: pointer;
 }
 
 /* HERO */
 .hero {
-    padding: 140px 20px;
+    padding: 100px 20px;
     text-align: center;
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9));
 }
 
 .hero h1 {
     font-family: 'Cinzel', serif;
-    font-size: 46px;
+    font-size: 42px;
     margin-bottom: 20px;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: auto;
+    font-size: 18px;
 }
 
 /* SHIMMER TEXT */
@@ -98,7 +108,7 @@ header {
     to { background-position: -200% center; }
 }
 
-/* DIVIDER FIXED */
+/* DIVIDER */
 .divider {
     height: 2px;
     width: 60%;
@@ -108,12 +118,12 @@ header {
 
 /* SECTIONS */
 section {
-    padding: 80px 0;
+    padding: 70px 0;
+    text-align: center;
 }
 
 h2 {
     font-family: 'Cinzel', serif;
-    text-align: center;
     margin-bottom: 40px;
 }
 
@@ -121,40 +131,39 @@ h2 {
 .collection-grid,
 .branch-grid {
     display: grid;
-    gap: 30px;
+    gap: 25px;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .card,
 .branch-card {
     background: #111;
-    padding: 30px;
+    padding: 25px;
     border-radius: 12px;
     border: 1px solid rgba(212,175,55,0.2);
-    text-align: center;
-    transition: 0.3s ease;
     text-decoration: none;
     color: #e5e5e5;
+    transition: 0.3s ease;
 }
 
 .card img {
     width: 100%;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .card:hover,
 .branch-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     border-color: #d4af37;
-    box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+    box-shadow: 0 10px 25px rgba(212,175,55,0.3);
 }
 
 /* BUTTON */
 .btn {
     display: inline-block;
     margin-top: 15px;
-    padding: 10px 22px;
+    padding: 8px 20px;
     border: 1px solid #d4af37;
     color: #d4af37;
     text-decoration: none;
@@ -167,10 +176,6 @@ h2 {
 }
 
 /* CONTACT */
-.contact {
-    text-align: center;
-}
-
 .whatsapp-btn {
     display: inline-block;
     margin-top: 20px;
@@ -187,6 +192,7 @@ footer {
     text-align: center;
     padding: 20px 0;
     border-top: 1px solid rgba(212,175,55,0.3);
+    font-size: 14px;
 }
 
 /* SCROLL REVEAL */
@@ -201,15 +207,32 @@ footer {
     transform: translateY(0);
 }
 
-/* MOBILE */
+/* MOBILE FIX */
 @media (max-width: 768px) {
+
     .header-container {
         flex-direction: column;
+        align-items: center;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .nav-links {
         gap: 15px;
     }
 
     .hero h1 {
-        font-size: 30px;
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .divider {
+        width: 80%;
     }
 
     section {
