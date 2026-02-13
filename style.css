@@ -1,16 +1,32 @@
+/* ===============================
+   GLOBAL SETTINGS
+================================= */
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fff;
-  color: #333;
+  font-family: 'Lora', serif;
+  background: #0d0d0d;
+  color: #f5f5f5;
+  line-height: 1.7;
+  letter-spacing: 0.5px;
 }
+
+/* Arabic mode */
+html[dir="rtl"] body {
+  font-family: 'Cairo', sans-serif;
+}
+
+/* ===============================
+   HEADER
+================================= */
 
 header {
   background: #000;
-  padding: 10px 20px;
+  padding: 15px 40px;
   position: sticky;
   top: 0;
   z-index: 1000;
+  border-bottom: 1px solid #d4af37;
 }
 
 .nav-container {
@@ -20,91 +36,156 @@ header {
 }
 
 .logo img {
-  height: 50px;
-}
-
-.right-controls {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.lang-btn {
-  background: gold;
-  border: none;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.menu-toggle {
-  font-size: 24px;
-  color: white;
-  cursor: pointer;
-  display: none;
+  height: 55px;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 30px;
 }
 
 nav ul li a {
-  color: white;
   text-decoration: none;
+  color: #f5f5f5;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: 0.3s;
 }
 
+nav ul li a:hover {
+  color: #d4af37;
+}
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  padding: 6px 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+.lang-btn:hover {
+  background: #d4af37;
+  color: #000;
+}
+
+/* ===============================
+   HERO SECTION
+================================= */
+
 .hero {
-  background: url("hero.jpg") center/cover no-repeat;
-  color: white;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+              url("hero.jpg") center/cover no-repeat;
   text-align: center;
-  padding: 120px 20px;
+  padding: 160px 20px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 60px;
+  color: #d4af37;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 20px;
+  max-width: 700px;
+  margin: auto;
+  opacity: 0.9;
+}
+
+/* ===============================
+   SECTION STYLING
+================================= */
+
+section {
+  padding: 100px 20px;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  color: #d4af37;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
 }
 
 .container {
-  padding: 60px 20px;
-  text-align: center;
+  max-width: 1100px;
+  margin: auto;
 }
+
+/* ===============================
+   COLLECTION CARDS
+================================= */
 
 .collection-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
 }
 
 .card {
-  background: #f5f5f5;
-  padding: 15px;
-  transition: transform 0.3s;
+  background: #111;
+  border: 1px solid #222;
+  padding: 20px;
+  transition: 0.4s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  border-color: #d4af37;
 }
 
 .card img {
   width: 100%;
-  height: 200px;
+  height: 260px;
   object-fit: cover;
+  margin-bottom: 15px;
 }
+
+.card h3 {
+  font-family: 'Playfair Display', serif;
+  color: #d4af37;
+  font-size: 22px;
+}
+
+/* ===============================
+   DIVIDER
+================================= */
 
 .divider {
   height: 1px;
-  background: #ddd;
+  background: linear-gradient(to right, transparent, #d4af37, transparent);
 }
+
+/* ===============================
+   FOOTER
+================================= */
 
 footer {
   background: #000;
-  color: white;
+  padding: 20px;
   text-align: center;
-  padding: 15px;
+  border-top: 1px solid #d4af37;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
+
+/* ===============================
+   REVEAL ANIMATION
+================================= */
 
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: 0.6s ease;
+  transform: translateY(50px);
+  transition: 0.8s ease;
 }
 
 .reveal.active {
@@ -112,15 +193,28 @@ footer {
   transform: translateY(0);
 }
 
-/* Mobile */
+/* ===============================
+   MOBILE
+================================= */
+
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
+
   nav {
     display: none;
     position: absolute;
     background: #000;
-    top: 70px;
+    top: 80px;
     right: 0;
     width: 100%;
+    text-align: center;
+    padding: 20px 0;
   }
 
   nav.show {
@@ -129,33 +223,18 @@ footer {
 
   nav ul {
     flex-direction: column;
-    text-align: center;
-    padding: 20px 0;
+    gap: 20px;
   }
 
   .menu-toggle {
     display: block;
   }
-}
-/* --- Premium Font Setup --- */
-h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
-    letter-spacing: 1px;
-    color: #d4af37; /* luxury gold */
-}
 
-body, p, li, a {
-    font-family: 'Lora', serif;
-    font-weight: 400;
-    color: #f5f5f5;
-}
+  .hero h1 {
+    font-size: 36px;
+  }
 
-nav ul li a {
-    font-family: 'Lora', serif;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 15px;
+  h2 {
+    font-size: 28px;
+  }
 }
-
