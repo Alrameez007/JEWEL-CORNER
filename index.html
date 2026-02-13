@@ -6,23 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
+<script>
+function toggleMenu() {
+    var menu = document.getElementById("nav-menu");
+    if (menu.style.display === "block") {
+        menu.style.display = "none";
+    } else {
+        menu.style.display = "block";
+    }
+}
+</script>
 <body>
 
 <header>
-    <div class="container header-container">
-        <div class="logo">
-            <img src="logo.png" alt="Jewel Corner Logo">
+    <div class="container nav-container">
+
+        <div class="logo">Jewel Corner</div>
+
+        <!-- Hamburger Icon -->
+        <div class="menu-toggle" onclick="toggleMenu()">
+            ☰
         </div>
 
-        <nav>
-            <ul class="nav-links">
+        <nav id="nav-menu">
+            <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#collections">Collections</a></li>
                 <li><a href="#branches">Branches</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><button onclick="toggleLanguage()" class="lang-btn">AR</button></li>
             </ul>
         </nav>
+
     </div>
 </header>
 
