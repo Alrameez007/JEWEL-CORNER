@@ -155,18 +155,7 @@ h2 {
   color: #d4af37;
   font-size: 22px;
 }
-.branch-grid {
-    display: grid;
-    gap: 15px;
-    margin-top: 20px;
-}
 
-.branch-card {
-    background: #eee;
-    padding: 15px;
-    text-align: center;
-    border-radius: 6px;
-}
 /* ===============================
    DIVIDER
 ================================= */
@@ -185,8 +174,23 @@ footer {
   padding: 20px;
   text-align: center;
   border-top: 1px solid #d4af37;
-  font-size: 14px;
-  letter-spacing: 1px;
+  font-size: 14px.branch {
+  margin-bottom: 60px;
+}
+
+.branch {
+  margin-bottom: 60px;
+}
+
+.branch h3 {
+  font-family: 'Playfair Display', serif;
+  color: #d4af37;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.branch iframe {
+  border: 1px solid #d4af37;
 }
 
 /* ===============================
