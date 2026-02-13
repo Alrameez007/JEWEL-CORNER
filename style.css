@@ -1,13 +1,13 @@
 * {
-    margin: ;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #f5f2ec;
-    color: #222;
+    color: #333;
+    background: #ffffff;
 }
 
 .container {
@@ -16,12 +16,9 @@ body {
     margin: auto;
 }
 
-/* ================= HEADER ================= */
-
 header {
-    background: white;
+    background: #000;
     padding: 15px 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .header-content {
@@ -31,89 +28,66 @@ header {
 }
 
 .logo img {
-    height: 45px;
+    height: 50px;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 20px;
 }
 
-nav ul li a {
+nav a {
+    color: #fff;
     text-decoration: none;
-    color: #333;
     font-weight: 500;
 }
 
-nav ul li a:hover {
-    color: #b8955a;
+nav a:hover {
+    color: #c9a227;
 }
 
-/* ================= HERO ================= */
-
 .hero {
+    background: #111;
+    color: #fff;
     text-align: center;
-    padding: 120px 20px;
+    padding: 100px 20px;
 }
 
 .hero h1 {
     font-family: 'Playfair Display', serif;
     font-size: 48px;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 20px;
-    color: #666;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .hero-btn {
     display: inline-block;
-    padding: 14px 40px;
-    background: #b8955a;
-    color: white;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #c9a227;
+    color: #000;
     text-decoration: none;
-    border-radius: 50px;
-    font-weight: 500;
-    transition: 0.3s;
+    font-weight: 600;
+    border-radius: 5px;
 }
-
-.hero-btn:hover {
-    background: #a27f45;
-}
-
-/* ================= SECTIONS ================= */
 
 .section {
-    padding: 80px 0;
+    padding: 70px 0;
+    text-align: center;
 }
-
-.section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 36px;
-    margin-bottom: 40px;
-}
-
-/* ================= COLLECTION GRID ================= */
 
 .collection-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
+    margin-top: 40px;
 }
 
 .card {
-    background: white;
-    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
 }
 
 .card img {
@@ -126,111 +100,71 @@ nav ul li a:hover {
     padding: 20px;
 }
 
-.card-content h3 {
-    margin-bottom: 15px;
-    font-size: 22px;
-}
-
 .card-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 20px;
+    background: #000;
+    color: #fff;
     text-decoration: none;
-    color: #b8955a;
-    font-weight: 600;
+    border-radius: 4px;
 }
 
 .card-btn:hover {
-    text-decoration: underline;
+    background: #c9a227;
+    color: #000;
 }
-.products {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.products img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-@media (max-width: 768px) {
-    .products {
-        grid-template-columns: 1fr;
-    }
-}
-.product-card img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-}
-.back-link {
-    display: inline-block;
-    margin: 20px 0;
-    color: #b9975b;
-    text-decoration: none;
-    font-weight: 600;
-}
-.back-link:hover {
-    text-decoration: underline;
-}
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-}
-/* ================= BRANCHES ================= */
 
 .branches {
-    background: #fff;
+    background: #f9f9f9;
 }
 
-/* ================= CONTACT ================= */
+.branch-list {
+    display: grid;
+    gap: 15px;
+    max-width: 600px;
+    margin: 30px auto 0;
+}
 
-.contact {
-    text-align: center;
+.branch-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 .whatsapp-btn {
     display: inline-block;
-    margin-top: 20px;
-    padding: 12px 30px;
+    margin-top: 15px;
+    padding: 12px 25px;
     background: #25D366;
-    color: white;
+    color: #fff;
     text-decoration: none;
-    border-radius: 30px;
-    font-weight: 500;
+    border-radius: 5px;
 }
-
-.whatsapp-btn:hover {
-    background: #1ebe5b;
-}
-
-/* ================= FOOTER ================= */
 
 footer {
-    background: #111;
-    color: white;
+    background: #000;
+    color: #fff;
     text-align: center;
     padding: 20px;
     margin-top: 40px;
 }
 
-/* ================= MOBILE ================= */
-
+/* MOBILE */
 @media (max-width: 768px) {
-
     .header-content {
         flex-direction: column;
         gap: 15px;
     }
 
     nav ul {
-        gap: 15px;
+        flex-direction: column;
+        gap: 10px;
     }
 
     .hero h1 {
-        font-size: 34px;
-    }
-
-    .hero p {
-        font-size: 16px;
+        font-size: 32px;
     }
 }
