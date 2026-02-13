@@ -1,115 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Jewel Corner Oman</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jewel Corner Oman</title>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <!-- Link CSS -->
-    <link rel="stylesheet" href="style.css">
+<style>
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:#f5f2ed;
+    color:#222;
+}
+
+/* HEADER */
+header{
+    background:#fff;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.logo{
+    font-family:'Playfair Display', serif;
+    font-size:22px;
+    font-weight:600;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#222;
+    font-size:14px;
+}
+
+/* HERO */
+.hero{
+    text-align:center;
+    padding:80px 20px;
+}
+
+.hero h1{
+    font-family:'Playfair Display', serif;
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    color:#666;
+    margin-bottom:25px;
+}
+
+.hero a{
+    display:inline-block;
+    padding:12px 25px;
+    background:#b9975b;
+    color:#fff;
+    text-decoration:none;
+    border-radius:25px;
+    font-size:14px;
+}
+
+/* SECTION */
+.section{
+    padding:60px 8%;
+}
+
+.section h2{
+    margin-bottom:30px;
+    font-family:'Playfair Display', serif;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.06);
+}
+
+.card img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+    display:block;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.card-content h3{
+    margin-bottom:8px;
+}
+
+.card-content a{
+    text-decoration:none;
+    font-size:13px;
+    color:#b9975b;
+}
+
+/* CENTER SECTIONS */
+.center{
+    text-align:center;
+}
+
+.center p{
+    margin-bottom:8px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 20px;
+    background:#25D366;
+    color:#fff;
+    text-decoration:none;
+    border-radius:20px;
+    font-size:14px;
+}
+
+/* FOOTER */
+footer{
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:18px;
+    margin-top:50px;
+    font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+    .hero h1{
+        font-size:28px;
+    }
+    header{
+        flex-direction:column;
+        gap:10px;
+    }
+}
+
+</style>
 </head>
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
-    <div class="container header-content">
-        <div class="logo">Jewel Corner</div>
-
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#collections">Collections</a></li>
-                <li><a href="#branches">Branches</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
+    <div class="logo">Jewel Corner</div>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#branches">Branches</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 </header>
 
-<!-- ================= HERO ================= -->
 <section class="hero">
-    <div class="container">
-        <h1>Timeless Elegance</h1>
-        <p>
-            Artificial Jewellery • Luxury Watches • 
-            Premium Perfumes • Souvenirs
-        </p>
-        <a href="#collections" class="hero-btn">Explore Collections</a>
-    </div>
+    <h1>Timeless Elegance</h1>
+    <p>Artificial Jewellery • Luxury Watches • Premium Perfumes • Souvenirs</p>
+    <a href="#collections">Explore Collections</a>
 </section>
 
-<!-- ================= COLLECTIONS ================= -->
 <section class="section" id="collections">
-    <div class="container">
-        <h2>Our Collections</h2>
+    <h2>Our Collections</h2>
+    <div class="grid">
 
-        <div class="collection-grid">
-
-            <!-- Jewellery -->
-            <div class="card">
-                <img src="jewellery.jpg" alt="Jewellery">
-                <div class="card-content">
-                    <h3>Jewellery</h3>
-                    <a href="#">View Collection</a>
-                </div>
+        <div class="card">
+            <img src="jewellery.jpg" alt="">
+            <div class="card-content">
+                <h3>Jewellery</h3>
+                <a href="#">View Collection</a>
             </div>
-
-            <!-- Watches -->
-            <div class="card">
-                <img src="watches.jpg" alt="Watches">
-                <div class="card-content">
-                    <h3>Watches</h3>
-                    <a href="#">View Collection</a>
-                </div>
-            </div>
-
-            <!-- Perfumes -->
-            <div class="card">
-                <img src="perfumes.jpg" alt="Perfumes">
-                <div class="card-content">
-                    <h3>Perfumes</h3>
-                    <a href="#">View Collection</a>
-                </div>
-            </div>
-
-            <!-- Souvenirs -->
-            <div class="card">
-                <img src="souvenirs.jpg" alt="Souvenirs">
-                <div class="card-content">
-                    <h3>Souvenirs</h3>
-                    <a href="#">View Collection</a>
-                </div>
-            </div>
-
         </div>
+
+        <div class="card">
+            <img src="watches.jpg" alt="">
+            <div class="card-content">
+                <h3>Watches</h3>
+                <a href="#">View Collection</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="perfumes.jpg" alt="">
+            <div class="card-content">
+                <h3>Perfumes</h3>
+                <a href="#">View Collection</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="souvenirs.jpg" alt="">
+            <div class="card-content">
+                <h3>Souvenirs</h3>
+                <a href="#">View Collection</a>
+            </div>
+        </div>
+
     </div>
 </section>
 
-<!-- ================= BRANCHES ================= -->
-<section class="section branches" id="branches">
-    <div class="container">
-        <h2>Our Branches</h2>
-        <p>Salah Gardens Mall</p>
-        <p>Al Saada</p>
-        <p>Haffa Souq Market</p>
-    </div>
+<section class="section center" id="branches">
+    <h2>Our Branches</h2>
+    <p>Salah Gardens Mall</p>
+    <p>Al Saada</p>
+    <p>Haffa Souq Market</p>
 </section>
 
-<!-- ================= CONTACT ================= -->
-<section class="section contact" id="contact">
-    <div class="container">
-        <h2>Contact Us</h2>
-        <p>WhatsApp: +968 77147645</p>
-        <a href="https://wa.me/96877147645" class="whatsapp-btn">
-            Chat on WhatsApp
-        </a>
-    </div>
+<section class="section center" id="contact">
+    <h2>Contact Us</h2>
+    <p>WhatsApp: +968 77147645</p>
+    <a href="https://wa.me/96877147645" class="whatsapp">Chat on WhatsApp</a>
 </section>
 
-<!-- ================= FOOTER ================= -->
 <footer>
     © 2026 Jewel Corner | All Rights Reserved
 </footer>
