@@ -1,170 +1,153 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    color: #333;
-    background: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  background: #f4f1ea;
+  color: #333;
 }
 
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
 }
 
 header {
-    background: #000;
-    padding: 15px 0;
+  background: #fff;
+  padding: 15px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo img {
-    height: 50px;
+  height: 45px;
 }
 
 nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+  list-style: none;
+  display: flex;
+  gap: 25px;
 }
 
 nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
 }
 
 nav a:hover {
-    color: #c9a227;
+  color: #b88b4a;
 }
 
 .hero {
-    background: #111;
-    color: #fff;
-    text-align: center;
-    padding: 100px 20px;
+  text-align: center;
+  padding: 100px 0;
 }
 
 .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    margin-bottom: 15px;
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  margin-bottom: 25px;
 }
 
 .hero-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 30px;
-    background: #c9a227;
-    color: #000;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 5px;
+  background: #b88b4a;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 25px;
+  text-decoration: none;
 }
 
 .section {
-    padding: 70px 0;
-    text-align: center;
+  padding: 70px 0;
+  text-align: center;
+}
+
+.section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  margin-bottom: 40px;
 }
 
 .collection-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
 }
 
 .card {
-    background: #fff;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    border-radius: 8px;
-    overflow: hidden;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
 }
 
 .card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
 }
 
 .card-content {
-    padding: 20px;
+  padding: 20px;
 }
 
 .card-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 20px;
-    background: #000;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-.card-btn:hover {
-    background: #c9a227;
-    color: #000;
+  display: inline-block;
+  margin-top: 10px;
+  color: #b88b4a;
+  text-decoration: none;
+  font-weight: 500;
 }
 
 .branches {
-    background: #f9f9f9;
+  background: #eee;
 }
 
-.branch-list {
-    display: grid;
-    gap: 15px;
-    max-width: 600px;
-    margin: 30px auto 0;
+.branch-grid {
+  display: grid;
+  gap: 15px;
+  max-width: 600px;
+  margin: auto;
 }
 
 .branch-card {
-    background: #fff;
-    padding: 15px;
-    border-radius: 6px;
-    font-weight: 500;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.contact p {
+  margin-bottom: 20px;
 }
 
 .whatsapp-btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 25px;
-    background: #25D366;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
+  background: #25D366;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
 }
 
 footer {
-    background: #000;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-    .header-content {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .hero h1 {
-        font-size: 32px;
-    }
+  background: #000;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
 }
