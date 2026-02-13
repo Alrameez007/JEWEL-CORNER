@@ -304,3 +304,37 @@ footer {
         padding: 60px 0;
     }
 }
+/* HAMBURGER */
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #b89b5e;
+}
+
+/* Mobile Menu */
+@media (max-width: 768px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        position: absolute;
+        top: 80px;
+        right: 0;
+        background: #000;
+        width: 100%;
+        display: none;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    nav ul li {
+        margin: 15px 0;
+    }
+}
