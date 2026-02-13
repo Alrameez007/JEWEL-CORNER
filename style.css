@@ -140,7 +140,42 @@ nav ul li a:hover {
 .card-btn:hover {
     text-decoration: underline;
 }
+.products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
 
+.products img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+@media (max-width: 768px) {
+    .products {
+        grid-template-columns: 1fr;
+    }
+}
+.product-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+.back-link {
+    display: inline-block;
+    margin: 20px 0;
+    color: #b9975b;
+    text-decoration: none;
+    font-weight: 600;
+}
+.back-link:hover {
+    text-decoration: underline;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
 /* ================= BRANCHES ================= */
 
 .branches {
