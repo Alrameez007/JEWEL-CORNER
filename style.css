@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500&display=swap');
 
 * {
     margin: 0;
@@ -9,21 +9,22 @@
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #0d0d0d;
+    background-image: radial-gradient(rgba(212,175,55,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
     color: #e5e5e5;
     line-height: 1.7;
 }
 
-/* CONTAINER */
 .container {
     width: 90%;
     max-width: 1200px;
     margin: auto;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 header {
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0,0,0,0.85);
     backdrop-filter: blur(8px);
     padding: 20px 0;
     border-bottom: 1px solid rgba(212,175,55,0.3);
@@ -54,10 +55,9 @@ header {
     color: #d4af37;
     font-weight: 500;
     letter-spacing: 1px;
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
-/* Elegant underline animation */
 .nav-links li a::after {
     content: "";
     position: absolute;
@@ -65,8 +65,8 @@ header {
     height: 1px;
     bottom: -5px;
     left: 0;
-    background-color: #d4af37;
-    transition: 0.3s ease;
+    background: #d4af37;
+    transition: 0.3s;
 }
 
 .nav-links li a:hover::after {
@@ -77,21 +77,20 @@ header {
     color: #ffffff;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 
 .hero {
     background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
                 url('hero.jpg') center/cover no-repeat;
-    padding: 140px 20px;
+    padding: 150px 20px;
     text-align: center;
 }
 
 .hero h1 {
     font-family: 'Cinzel', serif;
-    font-size: 48px;
+    font-size: 50px;
     color: #d4af37;
     margin-bottom: 20px;
-    letter-spacing: 2px;
 }
 
 .hero p {
@@ -101,70 +100,70 @@ header {
     color: #ccc;
 }
 
-/* ================= SECTIONS ================= */
+/* DIVIDER */
+
+.divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d4af37, transparent);
+    width: 60%;
+    margin: 0 auto;
+}
+
+/* SECTIONS */
 
 section {
-    padding: 90px 0;
+    padding: 100px 0;
 }
 
 h2 {
     font-family: 'Cinzel', serif;
     text-align: center;
-    font-size: 32px;
+    font-size: 34px;
     color: #d4af37;
     margin-bottom: 50px;
-    letter-spacing: 1px;
 }
 
-/* ================= ABOUT ================= */
+/* CARDS */
 
-.about p {
-    max-width: 800px;
-    margin: auto;
-    text-align: center;
-    color: #bbb;
-}
-
-/* ================= COLLECTIONS ================= */
-
-.collection-grid {
+.collection-grid,
+.branch-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-.card {
+.card,
+.branch-card {
     background: #111;
-    padding: 50px 25px;
+    padding: 50px 30px;
     text-align: center;
-    border-radius: 12px;
+    border-radius: 14px;
     border: 1px solid rgba(212,175,55,0.2);
-    transition: 0.4s ease;
+    transition: 0.4s;
+    text-decoration: none;
+    color: #e5e5e5;
 }
 
-.card:hover {
+.card:hover,
+.branch-card:hover {
     transform: translateY(-10px);
     border-color: #d4af37;
-    box-shadow: 0 12px 35px rgba(212,175,55,0.25);
+    box-shadow: 0 15px 40px rgba(212,175,55,0.25);
 }
 
 .card h3 {
     font-family: 'Cinzel', serif;
     margin-bottom: 25px;
-    color: #fff;
-    font-size: 22px;
 }
 
 /* BUTTON */
+
 .btn {
-    display: inline-block;
     padding: 12px 26px;
-    background: transparent;
     border: 1px solid #d4af37;
     color: #d4af37;
     text-decoration: none;
-    letter-spacing: 1px;
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 .btn:hover {
@@ -172,42 +171,13 @@ h2 {
     color: #000;
 }
 
-/* ================= BRANCHES ================= */
-
-.branch-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-.branch-card {
-    display: block;
-    padding: 30px;
-    text-align: center;
-    background: #111;
-    color: #e5e5e5;
-    text-decoration: none;
-    border-radius: 12px;
-    border: 1px solid rgba(212,175,55,0.2);
-    transition: 0.3s ease;
-}
-
-.branch-card:hover {
-    transform: translateY(-8px);
-    border-color: #d4af37;
-    background: #1a1a1a;
-    color: #d4af37;
-    box-shadow: 0 10px 30px rgba(212,175,55,0.25);
-}
-
-/* ================= CONTACT ================= */
+/* CONTACT */
 
 .contact {
     text-align: center;
 }
 
 .whatsapp-btn {
-    display: inline-block;
     margin-top: 25px;
     padding: 14px 30px;
     background: #d4af37;
@@ -215,14 +185,14 @@ h2 {
     text-decoration: none;
     font-weight: 600;
     border-radius: 6px;
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 .whatsapp-btn:hover {
-    background: #ffffff;
+    background: #fff;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer {
     background: #000;
@@ -232,22 +202,20 @@ footer {
     border-top: 1px solid rgba(212,175,55,0.3);
 }
 
-/* ================= FADE ANIMATION ================= */
+/* SCROLL REVEAL */
 
-.fade-in {
+.reveal {
     opacity: 0;
-    transform: translateY(30px);
-    animation: fadeUp 1s ease forwards;
+    transform: translateY(40px);
+    transition: 1s ease;
 }
 
-@keyframes fadeUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media (max-width: 768px) {
     .header-container {
@@ -261,10 +229,10 @@ footer {
     }
 
     .hero h1 {
-        font-size: 30px;
+        font-size: 32px;
     }
 
     section {
-        padding: 70px 0;
+        padding: 80px 0;
     }
 }
