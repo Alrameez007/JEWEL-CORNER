@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Jewel Corner Oman</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Jewel Corner Oman</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
   <div class="nav-container">
-    <div class="logo">Jewel Corner</div>
 
-    <div class="menu-toggle" onclick="toggleMenu()">
-      ☰
+    <!-- LOGO IMAGE (Put logo.png in same folder) -->
+    <div class="logo">
+      <img src="logo.png" alt="Jewel Corner Logo">
     </div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
     <nav id="nav-menu">
       <ul>
@@ -26,14 +28,14 @@
         <li><button onclick="toggleLanguage()" class="lang-btn">AR / EN</button></li>
       </ul>
     </nav>
+
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
     <div class="container">
-        <h1 class="shimmer" id="hero-title">Welcome to Jewel Corner</h1>
-        <p id="hero-text">
+        <h1 class="shimmer reveal" id="hero-title">Welcome to Jewel Corner</h1>
+        <p class="reveal" id="hero-text">
             Your destination for Artificial Jewellery, Watches, Premium Perfumes & Souvenirs in Salalah.
         </p>
     </div>
@@ -41,7 +43,6 @@
 
 <div class="divider"></div>
 
-<!-- ABOUT -->
 <section class="about reveal">
     <div class="container">
         <h2 class="shimmer" id="about-title">About Us</h2>
@@ -55,7 +56,6 @@
 
 <div class="divider"></div>
 
-<!-- COLLECTIONS -->
 <section class="collections reveal" id="collections">
     <div class="container">
         <h2 class="shimmer">Our Collections</h2>
@@ -90,7 +90,6 @@
 
 <div class="divider"></div>
 
-<!-- BRANCHES -->
 <section class="branches reveal" id="branches">
     <div class="container">
         <h2 class="shimmer">Our Branches</h2>
@@ -107,7 +106,6 @@
 
 <div class="divider"></div>
 
-<!-- CONTACT -->
 <section class="contact reveal" id="contact">
     <div class="container">
         <h2 class="shimmer">Contact Us</h2>
@@ -117,7 +115,7 @@
 </section>
 
 <footer>
-    © 2026 Jewel Corner Oman | All Rights Reserved
+© 2026 Jewel Corner Oman | All Rights Reserved
 </footer>
 
 <script>
