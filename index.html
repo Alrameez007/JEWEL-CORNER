@@ -11,8 +11,6 @@
 
 <header>
   <div class="nav-container">
-
-    <!-- LOGO IMAGE (Put logo.png in same folder) -->
     <div class="logo">
       <img src="logo.png" alt="Jewel Corner Logo">
     </div>
@@ -28,39 +26,45 @@
         <li><button onclick="toggleLanguage()" class="lang-btn">AR / EN</button></li>
       </ul>
     </nav>
-
   </div>
 </header>
 
-<section class="hero">
+<!-- HERO -->
+<section class="reveal">
     <div class="container">
-        <h1 class="shimmer reveal" id="hero-title">Welcome to Jewel Corner</h1>
-        <p class="reveal" id="hero-text">
-            Your destination for Artificial Jewellery, Watches, Premium Perfumes & Souvenirs in Salalah.
+        <h1>Welcome to Jewel Corner</h1>
+        <p>
+            Discover elegance, style, and timeless beauty.
+            Jewel Corner is Salalah’s premium destination for artificial jewellery,
+            luxury watches, premium perfumes, and authentic souvenirs.
         </p>
     </div>
 </section>
 
 <div class="divider"></div>
 
-<section class="about reveal">
+<!-- ABOUT -->
+<section class="reveal">
     <div class="container">
-        <h2 class="shimmer" id="about-title">About Us</h2>
-        <p id="about-text">
-            Jewel Corner is one of the leading fashion accessory retailers in Salalah.
-            We offer high quality artificial jewellery, premium watches, perfumes,
-            and beautiful souvenirs at affordable prices.
+        <h2>About Us</h2>
+        <p>
+            Established with a passion for fashion and elegance,
+            Jewel Corner has become one of the most trusted accessory retailers in Salalah.
+            We combine affordability with premium aesthetics, offering curated collections
+            that enhance your personal style and celebrate modern luxury.
         </p>
     </div>
 </section>
 
 <div class="divider"></div>
 
-<section class="collections reveal" id="collections">
+<!-- COLLECTIONS -->
+<section id="collections" class="reveal">
     <div class="container">
-        <h2 class="shimmer">Our Collections</h2>
+        <h2>Our Collections</h2>
 
         <div class="collection-grid">
+
             <div class="card">
                 <img src="jewellery.jpg" alt="Jewellery">
                 <h3>Jewellery</h3>
@@ -84,33 +88,38 @@
                 <h3>Souvenirs</h3>
                 <a href="#" class="btn">View Collection</a>
             </div>
+
         </div>
     </div>
 </section>
 
 <div class="divider"></div>
 
-<section class="branches reveal" id="branches">
+<!-- BRANCHES -->
+<section id="branches" class="reveal">
     <div class="container">
-        <h2 class="shimmer">Our Branches</h2>
+        <h2>Our Branches</h2>
 
         <div class="branch-grid">
-            <div class="branch-card">JEWEL CORNER HYPERMAX</div>
-            <div class="branch-card">JEWEL CORNER LULU ALWADI</div>
-            <div class="branch-card">JEWEL CORNER NESTO AWQAD</div>
-            <div class="branch-card">JEWEL CORNER SALALAH GIFT MARKET</div>
-            <div class="branch-card">JEWEL CORNER GRAND MALL SAADA</div>
+            <div class="branch-card">Jewel Corner Hypermax</div>
+            <div class="branch-card">Jewel Corner Lulu Alwadi</div>
+            <div class="branch-card">Jewel Corner Nesto Awqad</div>
+            <div class="branch-card">Jewel Corner Salalah Gift Market</div>
+            <div class="branch-card">Jewel Corner Grand Mall Saada</div>
         </div>
     </div>
 </section>
 
 <div class="divider"></div>
 
-<section class="contact reveal" id="contact">
+<!-- CONTACT -->
+<section id="contact" class="reveal">
     <div class="container">
-        <h2 class="shimmer">Contact Us</h2>
+        <h2>Contact Us</h2>
         <p>Phone / WhatsApp: +968 77147645</p>
-        <a href="https://wa.me/96877147645" class="whatsapp-btn">Chat on WhatsApp</a>
+        <a href="https://wa.me/96877147645" class="whatsapp-btn">
+            Chat on WhatsApp
+        </a>
     </div>
 </section>
 
@@ -133,34 +142,6 @@ window.addEventListener("scroll", function () {
         }
     });
 });
-
-let isArabic = false;
-
-function toggleLanguage() {
-    isArabic = !isArabic;
-
-    if (isArabic) {
-        document.documentElement.lang = "ar";
-        document.body.style.direction = "rtl";
-
-        document.getElementById("hero-title").innerText = "مرحباً بكم في جويل كورنر";
-        document.getElementById("hero-text").innerText =
-            "وجهتك للمجوهرات والإكسسوارات والعطور والهدايا في صلالة.";
-        document.getElementById("about-title").innerText = "معلومات عنا";
-        document.getElementById("about-text").innerText =
-            "جويل كورنر من أبرز متاجر الإكسسوارات في صلالة، نقدم منتجات عالية الجودة بأسعار مناسبة.";
-    } else {
-        document.documentElement.lang = "en";
-        document.body.style.direction = "ltr";
-
-        document.getElementById("hero-title").innerText = "Welcome to Jewel Corner";
-        document.getElementById("hero-text").innerText =
-            "Your destination for Artificial Jewellery, Watches, Premium Perfumes & Souvenirs in Salalah.";
-        document.getElementById("about-title").innerText = "About Us";
-        document.getElementById("about-text").innerText =
-            "Jewel Corner is one of the leading fashion accessory retailers in Salalah. We offer high quality artificial jewellery, premium watches, perfumes, and beautiful souvenirs at affordable prices.";
-    }
-}
 </script>
 
 </body>
