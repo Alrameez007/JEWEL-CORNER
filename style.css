@@ -1,35 +1,27 @@
-/* ===============================
-   GLOBAL RESET
-================================= */
 * {
-    margin: 0;
+    margin: ;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f4f1ec;
+    background: #f5f2ec;
     color: #222;
-    line-height: 1.6;
 }
 
-/* ===============================
-   CONTAINER
-================================= */
 .container {
     width: 90%;
     max-width: 1200px;
     margin: auto;
 }
 
-/* ===============================
-   HEADER
-================================= */
+/* ================= HEADER ================= */
+
 header {
-    background: #ffffff;
-    padding: 20px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .header-content {
@@ -38,11 +30,8 @@ header {
     align-items: center;
 }
 
-.logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: #111;
+.logo img {
+    height: 45px;
 }
 
 nav ul {
@@ -53,21 +42,19 @@ nav ul {
 
 nav ul li a {
     text-decoration: none;
-    color: #222;
+    color: #333;
     font-weight: 500;
-    transition: 0.3s;
 }
 
 nav ul li a:hover {
-    color: #b9975b;
+    color: #b8955a;
 }
 
-/* ===============================
-   HERO SECTION
-================================= */
+/* ================= HERO ================= */
+
 .hero {
-    padding: 100px 0;
     text-align: center;
+    padding: 120px 20px;
 }
 
 .hero h1 {
@@ -77,66 +64,62 @@ nav ul li a:hover {
 }
 
 .hero p {
-    font-size: 18px;
-    color: #555;
+    font-size: 20px;
+    color: #666;
     margin-bottom: 30px;
 }
 
 .hero-btn {
     display: inline-block;
-    padding: 14px 30px;
-    background: #b9975b;
-    color: #fff;
+    padding: 14px 40px;
+    background: #b8955a;
+    color: white;
     text-decoration: none;
-    border-radius: 30px;
+    border-radius: 50px;
     font-weight: 500;
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 .hero-btn:hover {
-    background: #a3844f;
+    background: #a27f45;
 }
 
-/* ===============================
-   SECTION GENERAL
-================================= */
+/* ================= SECTIONS ================= */
+
 .section {
     padding: 80px 0;
 }
 
 .section h2 {
-    text-align: center;
     font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    margin-bottom: 50px;
+    font-size: 36px;
+    margin-bottom: 40px;
 }
 
-/* ===============================
-   COLLECTION GRID
-================================= */
+/* ================= COLLECTION GRID ================= */
+
 .collection-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
 }
 
 .card {
-    background: #fff;
-    border-radius: 12px;
+    background: white;
+    border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
 }
 
 .card img {
     width: 100%;
     height: 250px;
     object-fit: cover;
-    display: block;
 }
 
 .card-content {
@@ -144,71 +127,59 @@ nav ul li a:hover {
 }
 
 .card-content h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
+    margin-bottom: 15px;
+    font-size: 22px;
 }
 
-.card-content a {
+.card-btn {
     text-decoration: none;
-    color: #b9975b;
-    font-weight: 500;
-    font-size: 14px;
+    color: #b8955a;
+    font-weight: 600;
 }
 
-/* ===============================
-   BRANCHES
-================================= */
+.card-btn:hover {
+    text-decoration: underline;
+}
+
+/* ================= BRANCHES ================= */
+
 .branches {
-    text-align: center;
+    background: #fff;
 }
 
-.branches p {
-    margin-bottom: 12px;
-    font-size: 16px;
-    color: #444;
-}
+/* ================= CONTACT ================= */
 
-/* ===============================
-   CONTACT
-================================= */
 .contact {
     text-align: center;
 }
 
-.contact p {
-    margin-bottom: 15px;
-}
-
 .whatsapp-btn {
     display: inline-block;
-    padding: 12px 25px;
+    margin-top: 20px;
+    padding: 12px 30px;
     background: #25D366;
-    color: #fff;
+    color: white;
     text-decoration: none;
-    border-radius: 25px;
+    border-radius: 30px;
     font-weight: 500;
-    transition: 0.3s;
 }
 
 .whatsapp-btn:hover {
     background: #1ebe5b;
 }
 
-/* ===============================
-   FOOTER
-================================= */
+/* ================= FOOTER ================= */
+
 footer {
     background: #111;
-    color: #fff;
+    color: white;
     text-align: center;
     padding: 20px;
-    font-size: 14px;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
-/* ===============================
-   RESPONSIVE FIX
-================================= */
+/* ================= MOBILE ================= */
+
 @media (max-width: 768px) {
 
     .header-content {
@@ -218,19 +189,13 @@ footer {
 
     nav ul {
         gap: 15px;
-        font-size: 14px;
-    }
-
-    .hero {
-        padding: 70px 0;
     }
 
     .hero h1 {
-        font-size: 32px;
+        font-size: 34px;
     }
 
-    .section {
-        padding: 60px 0;
+    .hero p {
+        font-size: 16px;
     }
-
 }
