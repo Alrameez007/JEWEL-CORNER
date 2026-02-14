@@ -354,6 +354,12 @@ header.scrolled {
   position: relative;
   z-index: 3;
 }
+#instagram {
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 /* ==============================
    PREMIUM FOOTER FIXED VERSION
 ============================== */
