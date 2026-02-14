@@ -426,3 +426,110 @@ body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+/* ===============================
+   CINEMATIC INTRO
+================================= */
+
+#cinema-intro {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  animation: introFade 3.5s forwards;
+}
+
+.cinema-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 55px;
+  color: #d4af37;
+  letter-spacing: 8px;
+  animation: logoReveal 3s ease forwards;
+}
+
+@keyframes logoReveal {
+  0% { opacity: 0; transform: scale(0.7); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes introFade {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* ===============================
+   HERO AUTO SLIDER
+================================= */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.gold-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 65px;
+  color: #d4af37;
+  text-shadow: 0 0 25px rgba(212,175,55,0.7);
+  animation: glowLogo 3s infinite alternate;
+}
+
+@keyframes glowLogo {
+  from { text-shadow: 0 0 10px #d4af37; }
+  to { text-shadow: 0 0 40px #d4af37; }
+}
+
+/* ===============================
+   PAGE TRANSITION EFFECT
+================================= */
+
+.page-transition {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 999998;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  transition: 0.8s ease;
+}
+
+.page-transition.active {
+  transform: translateY(0);
+}
+
