@@ -288,10 +288,9 @@ header.scrolled {
 }
 /* ===== Fix Instagram Section Spacing ===== */
 #instagram {
-  padding: 80px 20px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
+    padding: 120px 20px 200px 20px;
+    position: relative;
+    z-index: 1;
 }
 
 #instagram .btn-gold {
