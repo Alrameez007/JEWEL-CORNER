@@ -179,5 +179,119 @@ footer{
 .branch-card img{
     height:200px;
 }
+/* ===============================
+   LEVEL 2 – DUBAI LUXURY UPGRADE
+   Pure Black + Champagne Gold
+================================= */
 
+:root {
+  --champagne-gold: linear-gradient(135deg, #f8e7c1, #e0b973, #f8e7c1);
+  --gold-solid: #e0b973;
+  --black-deep: #000000;
 }
+
+/* ===== Smooth Scroll ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== Parallax Hero ===== */
+.hero {
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+/* ===== Gold Gradient Text ===== */
+.gold-text {
+  background: var(--champagne-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== Button Shimmer Effect ===== */
+.btn-gold,
+.btn-outline {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.btn-gold::before,
+.btn-outline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: skewX(-25deg);
+  transition: 0.7s;
+}
+
+.btn-gold:hover::before,
+.btn-outline:hover::before {
+  left: 130%;
+}
+
+.btn-gold:hover {
+  box-shadow: 0 0 20px rgba(224, 185, 115, 0.6);
+}
+
+/* ===== Card Hover Glow ===== */
+.branch-card,
+.category-card {
+  transition: all 0.4s ease;
+}
+
+.branch-card:hover,
+.category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(224, 185, 115, 0.2);
+}
+
+/* ===== Header Glow on Scroll ===== */
+header.scrolled {
+  background: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 0 20px rgba(224, 185, 115, 0.3);
+}
+
+/* ===== Scroll Reveal Animation ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Luxury Loader ===== */
+#luxury-loader {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#luxury-loader h1 {
+  font-size: 28px;
+  letter-spacing: 4px;
+  background: var(--champagne-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
