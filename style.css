@@ -339,6 +339,32 @@ header.scrolled {
   transform: scale(1.1);
   box-shadow: 0 10px 25px rgba(18,140,126,0.6);
 }
+/* ===== FIX INSTAGRAM OVERLAP COMPLETELY ===== */
+
+#instagram {
+  padding: 120px 20px 120px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+#instagram h2,
+#instagram p {
+  margin-bottom: 15px;
+}
+
+#instagram .btn-gold {
+  margin-top: 25px;
+  position: relative;
+  z-index: 3;
+}
+/* Ensure footer stays below */
+footer {
+  position: relative;
+  z-index: 1;
+  padding-top: 60px;
+}
+
 
 
 
