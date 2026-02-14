@@ -1,20 +1,21 @@
 /* =========================================
-   JEWEL CORNER – MASTER SIGNATURE EDITION
-   Ultra Elegant • Cinematic • Precision Luxury
-   No HTML / JS Changes Required
+   JEWEL CORNER – PREMIUM ELEGANT EDITION
+   Clean • Balanced • Luxury Gold Boutique
+   (No HTML or JS changes required)
 ========================================= */
 
-/* ===== PREMIUM TYPOGRAPHY ===== */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&display=swap');
+/* ===== GOOGLE FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
 
+/* ===== ROOT VARIABLES ===== */
 :root{
-  --gold:#D4AF37;
-  --gold-soft:#f5e6b2;
-  --black:#000;
-  --deep:#050505;
-  --soft:#0b0b0b;
-  --text:#eaeaea;
-  --muted:#bdbdbd;
+  --gold-main:#d4af37;
+  --gold-light:#f5d76e;
+  --gold-dark:#b8962e;
+  --gold-glow:rgba(212,175,55,0.35);
+  --black-deep:#000;
+  --black-soft:#0b0b0b;
+  --gray-soft:#cfcfcf;
 }
 
 /* ===== RESET ===== */
@@ -29,300 +30,311 @@ html{
 }
 
 body{
-  font-family:'Inter',sans-serif;
-  background:
-  radial-gradient(circle at 15% 10%, rgba(212,175,55,0.04), transparent 40%),
-  radial-gradient(circle at 85% 90%, rgba(212,175,55,0.04), transparent 40%),
-  var(--black);
-  color:var(--text);
+  font-family:'Poppins',sans-serif;
+  background:#000;
+  color:#fff;
   overflow-x:hidden;
-  line-height:1.9;
-  -webkit-font-smoothing:antialiased;
+  line-height:1.7;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1,h2,h3{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+h1{ font-size:46px; }
+h2{ font-size:34px; }
+h3{ font-size:20px; }
+
+p{
+  color:var(--gray-soft);
+  font-size:15px;
+}
+
+.container{
+  width:90%;
+  max-width:1200px;
+  margin:auto;
 }
 
 /* =========================================
-   HEADER – GLASS LUXURY PRECISION
+   PROMO BAR
 ========================================= */
+.promo-bar{
+  background:linear-gradient(90deg,var(--gold-main),var(--gold-light));
+  color:#000;
+  text-align:center;
+  padding:12px;
+  font-weight:600;
+}
 
+/* =========================================
+   HEADER
+========================================= */
 header{
   position:fixed;
   width:100%;
-  top:0;
+  padding:15px 0;
+  background:rgba(0,0,0,0.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(212,175,55,0.15);
   z-index:1000;
-  background:rgba(0,0,0,0.75);
-  backdrop-filter:blur(16px);
-  transition:all 0.4s ease;
+  transition:0.3s;
 }
 
 header.scrolled{
-  background:rgba(0,0,0,0.95);
-  box-shadow:0 8px 30px rgba(212,175,55,0.12);
+  box-shadow:0 0 20px rgba(212,175,55,0.25);
 }
 
-.header-container{
-  max-width:1200px;
-  margin:auto;
-  padding:20px 28px;
+.nav-container{
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 
 .logo img{
-  height:60px;
+  height:55px;
 }
 
 .nav{
   display:flex;
-  gap:42px;
+  align-items:center;
 }
 
 .nav a{
+  margin-left:25px;
   text-decoration:none;
-  color:var(--text);
-  font-size:12px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  position:relative;
-  transition:0.3s ease;
-}
-
-.nav a::after{
-  content:"";
-  position:absolute;
-  bottom:-6px;
-  left:0;
-  width:0;
-  height:1px;
-  background:var(--gold);
-  transition:0.3s ease;
+  color:#fff;
+  font-weight:500;
+  transition:0.3s;
 }
 
 .nav a:hover{
-  color:var(--gold);
-}
-
-.nav a:hover::after{
-  width:100%;
-}
-
-.menu-toggle{
-  display:none;
-  font-size:26px;
-  cursor:pointer;
+  color:var(--gold-main);
 }
 
 /* =========================================
-   HERO – CINEMATIC FLAGSHIP
+   HERO
 ========================================= */
-
 .hero{
-  min-height:90vh;
+  min-height:75vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:180px 20px 120px;
-  position:relative;
+  padding:130px 20px 80px;
   background:
-  radial-gradient(circle at center, rgba(212,175,55,0.2), transparent 55%),
-  linear-gradient(to bottom, #000 0%, #0a0a0a 100%);
-  background-attachment:fixed;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  width:650px;
-  height:650px;
-  background:radial-gradient(circle, rgba(212,175,55,0.08), transparent 60%);
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  animation:floatGlow 12s ease-in-out infinite alternate;
-  pointer-events:none;
-}
-
-@keyframes floatGlow{
-  0%{ transform:translate(-50%,-50%) scale(1);}
-  100%{ transform:translate(-50%,-50%) scale(1.12);}
+  radial-gradient(circle at center, rgba(212,175,55,0.12), transparent 55%),
+  linear-gradient(to bottom, #000 0%, #050505 100%);
 }
 
 .hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:58px;
-  letter-spacing:3px;
-  margin-bottom:24px;
-  background:linear-gradient(90deg,var(--gold),var(--gold-soft));
+  background:linear-gradient(90deg,var(--gold-main),var(--gold-light));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:20px;
+}
+
+.btn-gold,
+.btn-primary{
+  display:inline-block;
+  padding:14px 32px;
+  background:linear-gradient(135deg,var(--gold-main),var(--gold-light));
+  color:#000;
+  font-weight:600;
+  border-radius:30px;
+  text-decoration:none;
+  transition:0.3s;
+  box-shadow:0 0 18px var(--gold-glow);
+}
+
+.btn-gold:hover,
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 30px var(--gold-glow);
+}
+
+/* =========================================
+   SECTIONS
+========================================= */
+section{
+  padding:100px 0;
+  text-align:center;
+}
+
+section h2{
+  margin-bottom:30px;
+  background:linear-gradient(90deg,var(--gold-main),var(--gold-light));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-.hero p{
-  max-width:700px;
-  margin:auto;
-  font-size:18px;
-  color:var(--muted);
-}
-
 /* =========================================
-   SECTIONS – APPLE LEVEL SPACING
+   COLLECTION CARDS
 ========================================= */
-
-section{
-  padding:140px 20px;
-  max-width:1150px;
-  margin:auto;
-  position:relative;
-}
-
-section h2{
-  font-family:'Playfair Display',serif;
-  font-size:42px;
-  text-align:center;
-  margin-bottom:70px;
-  letter-spacing:2px;
-  color:var(--gold);
-}
-
-/* =========================================
-   GRID LAYOUT – PERFECT BALANCE
-========================================= */
-
-.collections-grid,
-.branches-grid,
-.review-grid{
+.card-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:50px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+  margin-top:40px;
 }
 
-/* =========================================
-   PREMIUM CARDS – ULTRA REFINED
-========================================= */
-
-.tilt-card{
-  background:var(--soft);
-  padding:36px;
-  border-radius:22px;
-  border:1px solid rgba(212,175,55,0.07);
-  transition:all 0.6s cubic-bezier(.16,1,.3,1);
-}
-
-.tilt-card:hover{
-  transform:translateY(-14px);
-  box-shadow:0 30px 70px rgba(212,175,55,0.18);
-}
-
-.tilt-card img{
-  width:100%;
-  border-radius:16px;
-}
-
-.tilt-card h3{
-  margin-top:24px;
-  font-family:'Playfair Display',serif;
-  font-size:24px;
-  letter-spacing:1px;
-}
-
-/* =========================================
-   BUTTONS – PRECISION LUXURY
-========================================= */
-
-button,
-.btn{
-  background:transparent;
-  border:1px solid var(--gold);
-  color:var(--gold);
-  padding:14px 34px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  font-size:12px;
-  transition:all 0.4s ease;
-}
-
-button:hover,
-.btn:hover{
-  background:var(--gold);
-  color:#000;
-  box-shadow:0 0 35px rgba(212,175,55,0.6);
-}
-
-/* =========================================
-   FOOTER – CLEAN DEPTH
-========================================= */
-
-footer{
-  background:#050505;
-  padding:90px 20px;
+.card{
+  background:linear-gradient(145deg,#0d0d0d,#111);
+  border-radius:18px;
+  padding:20px;
+  border:1px solid rgba(212,175,55,0.15);
+  box-shadow:0 10px 30px rgba(0,0,0,0.6);
+  transition:0.4s;
   text-align:center;
-  color:#aaa;
-  font-size:14px;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 40px rgba(212,175,55,0.25);
+}
+
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:12px;
+  border:1px solid rgba(212,175,55,0.2);
+  box-shadow:0 0 20px rgba(212,175,55,0.2);
+  margin-bottom:15px;
+}
+
+/* =========================================
+   BRANCH CARDS
+========================================= */
+.branch-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+  margin-top:40px;
+}
+
+.branch-card{
+  background:#0f0f0f;
+  padding:20px;
+  border-radius:18px;
+  border:1px solid rgba(212,175,55,0.15);
+  box-shadow:0 10px 30px rgba(0,0,0,0.6);
+  text-align:center;
+  transition:0.4s;
+}
+
+.branch-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 35px rgba(212,175,55,0.25);
+}
+
+.branch-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:12px;
+  border:1px solid rgba(212,175,55,0.2);
+  margin-bottom:15px;
+}
+
+/* CENTER BUTTON BELOW IMAGE */
+.btn-outline{
+  display:inline-block;
+  margin-top:12px;
+  padding:12px 26px;
+  background:linear-gradient(135deg,var(--gold-main),var(--gold-light));
+  color:#000;
+  border-radius:25px;
+  text-decoration:none;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.btn-outline:hover{
+  box-shadow:0 0 20px var(--gold-glow);
+}
+
+/* =========================================
+   REVIEWS
+========================================= */
+.review-box{
+  max-width:600px;
+  margin:30px auto;
+  padding:25px;
+  background:#111;
+  border-radius:15px;
+  border:1px solid rgba(212,175,55,0.15);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+footer{
+  background:#000;
+  padding:60px 20px 40px;
   border-top:1px solid rgba(212,175,55,0.15);
+  text-align:center;
 }
 
-/* =========================================
-   PARTICLES + GLOW SUPPORT
-========================================= */
-
-#goldParticles{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-2;
-  pointer-events:none;
+.footer-social{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin-bottom:20px;
 }
 
-.mouse-glow{
-  position:fixed;
-  width:300px;
-  height:300px;
-  background:radial-gradient(circle, rgba(212,175,55,0.15), transparent 60%);
+.footer-social a{
+  width:60px;
+  height:60px;
   border-radius:50%;
-  pointer-events:none;
-  transform:translate(-50%, -50%);
-  z-index:-1;
+  background:linear-gradient(135deg,var(--gold-main),var(--gold-light));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#000;
+  font-size:26px;
+  transition:0.3s;
+  box-shadow:0 0 15px rgba(212,175,55,0.4);
+}
+
+.footer-social a:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 25px rgba(212,175,55,0.6);
+}
+
+footer p{
+  font-size:14px;
+  color:#aaa;
 }
 
 /* =========================================
-   MOBILE – REFINED PROPORTIONS
+   MOBILE
 ========================================= */
-
 @media(max-width:768px){
 
-  .nav{
-    position:absolute;
-    top:100%;
-    left:0;
-    width:100%;
-    background:#000;
-    flex-direction:column;
-    align-items:center;
-    gap:28px;
-    padding:35px 0;
-    display:none;
-  }
-
-  .nav.active{
-    display:flex;
-  }
-
-  .menu-toggle{
-    display:block;
-  }
+  h1{font-size:32px;}
+  h2{font-size:26px;}
 
   .hero{
-    min-height:80vh;
-    padding:150px 20px 90px;
-  }
-
-  .hero h1{
-    font-size:36px;
+    min-height:70vh;
+    padding:110px 20px 60px;
   }
 
   section{
-    padding:100px 20px;
+    padding:70px 0;
   }
 
+  .card img,
+  .branch-card img{
+    height:190px;
+  }
+
+  .footer-social a{
+    width:55px;
+    height:55px;
+    font-size:22px;
+  }
 }
