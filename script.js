@@ -52,3 +52,22 @@ links.forEach(link => {
     }, 800);
   });
 });
+// ============================
+// BRANCH FILTER
+// ============================
+
+function filterBranches(city) {
+  let branches = document.querySelectorAll(".branch-card");
+
+  branches.forEach(branch => {
+    if(city === "all") {
+      branch.style.display = "block";
+    } else {
+      if(branch.getAttribute("data-city") === city) {
+        branch.style.display = "block";
+      } else {
+        branch.style.display = "none";
+      }
+    }
+  });
+}
