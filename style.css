@@ -314,3 +314,115 @@ footer {
   color: #aaa;
   font-size: 14px;
 }
+/* ===============================
+   LUXURY PRELOADER
+================================= */
+
+#preloader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.loader-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  color: #d4af37;
+  letter-spacing: 3px;
+  animation: glowPulse 2s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+  0% { opacity: 0.6; text-shadow: 0 0 10px #d4af37; }
+  50% { opacity: 1; text-shadow: 0 0 30px #d4af37; }
+  100% { opacity: 0.6; text-shadow: 0 0 10px #d4af37; }
+}
+
+/* ===============================
+   GOLD PARTICLE BACKGROUND
+================================= */
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background-image: radial-gradient(rgba(212,175,55,0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: moveParticles 40s linear infinite;
+  z-index: -1;
+}
+
+@keyframes moveParticles {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(100px,100px); }
+}
+
+/* ===============================
+   CUSTOM CURSOR
+================================= */
+
+.cursor {
+  width: 10px;
+  height: 10px;
+  background: #d4af37;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+}
+
+.cursor-follower {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #d4af37;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: 0.2s ease;
+}
+
+/* Hide default cursor */
+body {
+  cursor: none;
+}
+
+/* ===============================
+   3D HOVER DEPTH EFFECT
+================================= */
+
+.collection-card,
+.branch-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.collection-card:hover,
+.branch-card:hover {
+  transform: rotateY(5deg) rotateX(5deg) scale(1.03);
+}
+
+/* ===============================
+   LUXURY MOVING GOLD GRADIENT
+================================= */
+
+.hero {
+  background: linear-gradient(120deg,#000,#1a1a1a,#000);
+  background-size: 400% 400%;
+  animation: luxuryBG 15s ease infinite;
+}
+
+@keyframes luxuryBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
