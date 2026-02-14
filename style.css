@@ -363,6 +363,8 @@ footer {
   padding: 70px 20px 50px;
   text-align: center;
   border-top: 1px solid rgba(224,185,115,0.2);
+  position: relative;
+  z-index: 5;
 }
 
 .footer-container {
@@ -410,3 +412,9 @@ footer {
   color: #aaa;
   letter-spacing: 1px;
 }
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll;
+    }
+}
+
