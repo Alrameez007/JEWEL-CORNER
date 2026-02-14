@@ -380,36 +380,31 @@ footer {
 
 /* Social Icons */
 .footer-social {
-  margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 30px;
 }
 
 .footer-social a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  margin: 12px;
-  border-radius: 50%;
-  background: rgba(224,185,115,0.08);
-  font-size: 26px;
-  color: #e0b973 !important;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.footer-social a i {
-  color: #e0b973 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(224,185,115,0.08);
+    color: #d4af37;
+    font-size: 28px;
+    text-decoration: none;
+    transition: 0.3s ease;
 }
 
 .footer-social a:hover {
-  background: #e0b973;
-  color: #000 !important;
-  transform: translateY(-6px);
-}
-
-.footer-social a:hover i {
-  color: #000 !important;
+    background: #d4af37;
+    color: #000;
+    transform: translateY(-6px);
 }
 
 /* Copyright */
