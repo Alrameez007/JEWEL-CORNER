@@ -608,4 +608,28 @@ body {
 .mega-column a:hover {
   color: #d4af37;
 }
+/* ===============================
+   WHATSAPP FLOAT
+================================= */
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #000;
+  padding: 12px;
+  border-radius: 50%;
+  border: 2px solid #d4af37;
+  box-shadow: 0 0 15px rgba(212,175,55,0.6);
+  z-index: 9999;
+  transition: 0.3s;
+}
+
+.whatsapp-float img {
+  width: 30px;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
 
