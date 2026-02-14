@@ -1,503 +1,200 @@
-/* =========================================
-   JEWEL CORNER – ROYAL LUXURY THEME
-   Clean • Smooth • Responsive • Premium
-========================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap');
-
-/* =========================================
-   RESET
-========================================= */
-
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+body{
+    background:#000;
+    color:#fff;
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #0b0b0b;
-  color: #f5f5f5;
-  line-height: 1.7;
-  overflow-x: hidden;
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
 }
 
-/* Prevent content hiding under fixed header */
-main {
-  padding-top: 90px;
+h1,h2,h3{
+    font-family:'Cinzel',serif;
+    background:linear-gradient(45deg,#d4af37,#f5e6a8);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
 }
 
-/* =========================================
-   NAVBAR
-========================================= */
+/* HEADER */
 
-header {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.85);
-  padding: 18px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+.header{
+    position:fixed;
+    width:100%;
+    background:rgba(0,0,0,0.95);
+    padding:15px 0;
+    z-index:1000;
 }
 
-.logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px;
-  color: #d4af37;
-  letter-spacing: 2px;
-  font-weight: 700;
+.nav-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-  font-size: 16px;
+.logo img{
+    height:60px;
 }
 
-nav ul li a {
-  text-decoration: none;
-  color: #fff;
-  transition: 0.3s;
-  position: relative;
+.nav a{
+    color:#fff;
+    margin-left:30px;
+    text-decoration:none;
+    transition:0.3s;
 }
 
-nav ul li a:hover {
-  color: #d4af37;
+.nav a:hover{
+    color:#d4af37;
 }
 
-/* =========================================
-   HERO SECTION
-========================================= */
-
-.hero {
-  position: relative; /* IMPORTANT */
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #000; /* fallback background if needed */
+.menu-toggle{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
 }
 
-@keyframes luxuryBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* HERO */
+
+.hero{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding-top:80px;
 }
 
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 55px;
-  color: #d4af37;
-  margin-bottom: 20px;
-  text-align: center;
+.hero h1{
+    font-size:48px;
 }
 
-.hero p {
-  color: #ccc;
-  margin-bottom: 30px;
-  font-size: 18px;
-  text-align: center;
+.hero p{
+    margin:20px 0;
+    color:#ccc;
 }
 
-.btn {
-  display: inline-block;
-  padding: 14px 35px;
-  border-radius: 30px;
-  background: linear-gradient(45deg, #d4af37, #f8e7a1);
-  color: #000;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s ease;
+.btn-gold{
+    padding:12px 30px;
+    background:linear-gradient(45deg,#d4af37,#f5e6a8);
+    color:#000;
+    text-decoration:none;
+    border-radius:30px;
+    font-weight:600;
+    transition:0.4s;
 }
 
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+.btn-gold:hover{
+    transform:scale(1.05);
 }
 
-/* =========================================
-   GLOBAL SECTION STYLE
-========================================= */
+/* SECTIONS */
 
-.section {
-  padding: 100px 10%;
-  text-align: center;
-  background-color: transparent; /* default, can override if needed */
+section{
+    padding:100px 0;
+    text-align:center;
 }
 
-.section h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 40px;
-  color: #d4af37;
-  margin-bottom: 50px;
+.card-grid,
+.branch-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    margin-top:50px;
 }
 
-/* =========================================
-   COLLECTION GRID
-========================================= */
-
-.collection-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+.card,
+.branch-card{
+    background:#111;
+    padding:20px;
+    border-radius:20px;
+    transition:0.4s;
+    border:1px solid #222;
 }
 
-.card {
-  flex: 1 1 calc(25% - 20px);
-  max-width: calc(25% - 20px);
-  background: #111;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  transition: 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  text-align: center;
+.card:hover,
+.branch-card:hover{
+    transform:translateY(-10px);
+    border-color:#d4af37;
 }
 
-.card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
+.card img,
+.branch-card img{
+    width:100%;
+    border-radius:15px;
+    margin-bottom:15px;
 }
 
-.card h3 {
-  margin-top: 15px;
-  color: #d4af37;
-  font-size: 20px;
+.btn-outline{
+    display:inline-block;
+    margin-top:15px;
+    padding:8px 20px;
+    border:1px solid #d4af37;
+    color:#d4af37;
+    text-decoration:none;
+    border-radius:25px;
+    transition:0.3s;
 }
 
-/* Responsive adjustments for collection grid */
-@media(max-width: 1024px) {
-  .card {
-    flex: 1 1 calc(33.33% - 20px);
-  }
+.btn-outline:hover{
+    background:#d4af37;
+    color:#000;
 }
 
-@media(max-width: 768px) {
-  .card {
-    flex: 1 1 calc(50% - 20px);
-  }
+.map{
+    padding:0;
 }
 
-/* =========================================
-   BRANCH GRID
-========================================= */
-
-.branch-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  margin-top: 50px;
+footer{
+    background:#111;
+    padding:20px;
+    text-align:center;
+    font-size:14px;
 }
 
-.branch-card {
-  background: #111;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  transition: 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px;
-  text-align: center;
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:linear-gradient(45deg,#d4af37,#f5e6a8);
+    color:#000;
+    padding:15px;
+    border-radius:50%;
+    text-decoration:none;
+    font-size:20px;
 }
 
-.branch-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 15px;
+/* MOBILE */
+
+@media(max-width:768px){
+
+.nav{
+    display:none;
+    flex-direction:column;
+    background:#000;
+    position:absolute;
+    top:80px;
+    right:20px;
+    padding:20px;
 }
 
-.branch-card h3 {
-  color: #d4af37;
-  margin-bottom: 10px;
-  font-size: 22px;
+.nav.active{
+    display:flex;
 }
 
-.direction-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 20px;
-  border-radius: 25px;
-  border: 1px solid #d4af37;
-  color: #d4af37;
-  text-decoration: none;
-  transition: 0.3s ease;
-  font-size: 14px;
+.menu-toggle{
+    display:block;
 }
 
-.direction-btn:hover {
-  background: #d4af37;
-  color: #000;
+.hero h1{
+    font-size:32px;
 }
 
-/* =========================================
-   ABOUT & CONTACT
-========================================= */
-
-.about,
-.contact {
-  padding: 100px 15%;
-  text-align: center;
-  background: #111;
 }
-
-.about p,
-.contact p {
-  color: #ccc;
-  font-size: 16px;
-  line-height: 1.8;
-}
-
-/* =========================================
-   FOOTER
-========================================= */
-
-footer {
-  background: #000;
-  text-align: center;
-  padding: 25px;
-  border-top: 1px solid rgba(212, 175, 55, 0.2);
-  color: #aaa;
-  font-size: 14px;
-}
-
-/* =========================================
-   WHATSAPP FLOAT
-========================================= */
-
-.whatsapp-float {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: #000;
-  padding: 12px;
-  border-radius: 50%;
-  border: 2px solid #d4af37;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-  transition: 0.3s ease;
-  z-index: 999;
-}
-
-.whatsapp-float img {
-  width: 28px;
-  display: block;
-}
-
-/* Hover effect for WhatsApp icon */
-.whatsapp-float:hover {
-  transform: scale(1.1);
-}
-
-/* =========================================
-   MOBILE OPTIMIZATION
-========================================= */
-
-@media(max-width: 768px) {
-  .hero {
-    min-height: 70vh;
-  }
-
-  .collection-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card {
-    flex: 1 1 80%;
-    max-width: 80%;
-  }
-
-  nav ul {
-    gap: 15px;
-    font-size: 14px;
-  }
-
-  .hero h1 {
-    font-size: 38px;
-  }
-
-  .hero p {
-    font-size: 16px;
-  }
-
-  section {
-    padding: 60px 20px;
-  }
-
-  .about,
-  .contact {
-    padding: 80px 8%;
-  }
-}
-
-/* Additional global styles */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-/* Import luxurious fonts */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat&display=swap');
-
-/* Basic Reset & Body */
-body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #000; /* Dark background for luxury */
-  color: #fff;
-  margin: 0;
-  padding: 0;
-}
-
-/* Header & Navigation */
-header {
-  background: transparent;
-  padding: 20px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2em;
-  position: relative;
-  z-index: 10;
-}
-header.scrolled {
-  background: rgba(0,0,0,0.7);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-/* Logo & Logo Style */
-.logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8em;
-  color: #FFD700; /* Gold */
-  letter-spacing: 2px;
-}
-
-/* Navigation Links */
-nav a {
-  color: #fff;
-  margin-left: 20px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s;
-}
-nav a:hover {
-  color: #FFD700; /* Gold on hover */
-}
-
-/* Hero Slider */
-.slide {
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-}
-.slide.active {
-  opacity: 1;
-  position: relative;
-}
-
-/* Section Titles */
-h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2em;
-  color: #FFD700; /* Gold */
-  margin: 40px 0 20px 0;
-  text-align: center;
-  letter-spacing: 2px;
-}
-h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5em;
-  color: #FFD700;
-  margin-top: 30px;
-}
-
-/* Cards (Collections, Branches, etc.) */
-.collection-card, .branch-card {
-  background-color: rgba(0,0,0,0.8);
-  border: 1px solid #222;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  border-radius: 15px;
-  padding: 15px;
-  margin: 15px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.collection-card:hover, .branch-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.7);
-}
-
-/* Buttons & Links */
-a.btn, button {
-  background-color: #FFD700;
-  color: #000;
-  padding: 12px 30px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.2s;
-}
-a.btn:hover, button:hover {
-  background-color: #e6b800;
-  transform: scale(1.05);
-}
-
-/* Footer */
-footer {
-  background: #111;
-  color: #ccc;
-  padding: 30px 20px;
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.9em;
-}
-footer a {
-  color: #FFD700;
-  text-decoration: none;
-}
-footer a:hover {
-  text-decoration: underline;
-}
-
-/* Enhance overlays, icons and buttons for luxury feel */
-.page-transition {
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(5px);
-}
-.page-transition.active {
-  /* transition style if needed */
-}
-
-/* Additional hover effects, shadows, or borders can be added as needed for more luxury feel */
