@@ -355,7 +355,7 @@ header.scrolled {
   z-index: 3;
 }
 #instagram {
-    min-height: 500px;
+    min-height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
