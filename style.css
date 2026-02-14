@@ -511,5 +511,17 @@ footer {
   text-align: center;
   margin-bottom: 30px;
 }
+h1.luxury-heading,
+h2.luxury-heading {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+
+  background: linear-gradient(90deg, #d4af37, #f5d76e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
 
