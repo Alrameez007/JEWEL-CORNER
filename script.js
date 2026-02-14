@@ -1,114 +1,72 @@
-const toggle = document.querySelector(".menu-toggle");
-const nav = document.querySelector(".nav");
+document.addEventListener("DOMContentLoaded", function () {
 
-toggle.addEventListener("click", () => {
-    nav.classList.toggle("active");
-});
-const sections = document.querySelectorAll("section");
+  /* ===============================
+     MOBILE MENU TOGGLE
+  =============================== */
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".nav");
 
-window.addEventListener("scroll", () => {
-  sections.forEach(section => {
-    const top = section.getBoundingClientRect().top;
-    if(top < window.innerHeight - 100){
-      section.style.opacity = 1;
-      section.style.transform = "translateY(0)";
-    }
-  });
-});
-
-sections.forEach(section=>{
-  section.style.opacity = 0;
-  section.style.transform = "translateY(50px)";
-  section.style.transition = "all 0.8s ease";
-});
-/* ===== Header Glow on Scroll ===== */
-window.addEventListener("scroll", function() {
-  const header = document.querySelector("header");
-  header.classList.toggle("scrolled", window.scrollY > 50);
-});
-
-/* ===== Scroll Reveal ===== */
-function reveal() {
-  const reveals = document.querySelectorAll(".reveal");
-
-  for (let i = 0; i < reveals.length; i++) {
-    let windowHeight = window.innerHeight;
-    let elementTop = reveals[i].getBoundingClientRect().top;
-    let elementVisible = 100;
-
-    if (elementTop < windowHeight - elementVisible) {
-      reveals[i].classList.add("active");
-    }
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+    });
   }
-}
 
-window.addEventListener("scroll", reveal);
+  /* ===============================
+     HEADER GLOW ON SCROLL
+  =============================== */
+  const header = document.querySelector("header");
 
-/* ===== Luxury Loader Fade Out ===== */
-window.addEventListener("load", function() {
-  const loader = document.getElementById("luxury-loader");
-  setTimeout(() => {
-    loader.style.opacity = "0";
-    loader.style.transition = "opacity 1s ease";
-    setTimeout(() => {
-      loader.style.display = "none";
-    }, 1000);
-  }, 1500);
+  window.addEventListener("scroll", function () {
+    if (header) {
+      header.classList.toggle("scrolled", window.scrollY > 50);
+    }
+  });
+
+  /* ===============================
+     SMOOTH SECTION REVEAL
+  =============================== */
+  const sections = document.querySelectorAll("section");
+
+  sections.forEach(section => {
+    section.style.opacity = "0";
+    section.style.transform = "translateY(40px)";
+    section.style.transition = "all 0.8s ease";
+  });
+
+  function revealSections() {
+    sections.forEach(section => {
+      const top = section.getBoundingClientRect().top;
+      if (top < window.innerHeight - 100) {
+        section.style.opacity = "1";
+        section.style.transform = "translateY(0)";
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealSections);
+  revealSections(); // Trigger on load
+
+  /* ===============================
+     PREMIUM CARD TILT EFFECT
+  =============================== */
+  const cards = document.querySelectorAll(".product-card");
+
+  cards.forEach(card => {
+    card.addEventListener("mousemove", e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const rotateY = (x / rect.width - 0.5) * 15;
+      const rotateX = (y / rect.height - 0.5) * -15;
+
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "rotateX(0) rotateY(0)";
+    });
+  });
+
 });
-const canvas = document.getElementById("goldParticles");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-
-for (let i = 0; i < 80; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    radius: Math.random() * 2,
-    speed: Math.random() * 0.5 + 0.2
-  });
-}
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  ctx.fillStyle = "rgba(212,175,55,0.8)";
-  particles.forEach(p => {
-    p.y -= p.speed;
-    if (p.y < 0) p.y = canvas.height;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-    ctx.fill();
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
-const glow = document.querySelector(".mouse-glow");
-
-document.addEventListener("mousemove", e => {
-  glow.style.left = e.clientX + "px";
-  glow.style.top = e.clientY + "px";
-});
-
-document.querySelectorAll(".tilt-card").forEach(card => {
-  card.addEventListener("mousemove", e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const rotateY = (x / rect.width - 0.5) * 20;
-    const rotateX = (y / rect.height - 0.5) * -20;
-
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  });
-
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = "rotateX(0) rotateY(0)";
-  });
-});
-
