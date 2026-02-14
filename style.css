@@ -311,5 +311,11 @@ header.scrolled {
 #contact {
   padding-top: 80px;
 }
+@media (max-width: 768px) {
+  #instagram {
+    padding-bottom: 100px;
+  }
+}
+
 
 
