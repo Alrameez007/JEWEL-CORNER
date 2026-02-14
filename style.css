@@ -1,37 +1,50 @@
+/* ===============================
+   JEWEL CORNER – DUBAI EDITION
+   Ultra Luxury Boutique Theme
+================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+    scroll-behavior:smooth;
 }
 
 body{
-    background:#000;
+    background:radial-gradient(circle at top,#0d0d0d,#000);
     color:#fff;
     font-family:'Poppins',sans-serif;
     overflow-x:hidden;
 }
 
+/* GOLD TEXT EFFECT */
+h1,h2,h3{
+    font-family:'Cinzel',serif;
+    background:linear-gradient(135deg,#d4af37,#f8e7a0,#b8860b);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    letter-spacing:1px;
+}
+
+/* CONTAINER */
 .container{
     width:90%;
-    max-width:1200px;
+    max-width:1300px;
     margin:auto;
 }
 
-h1,h2,h3{
-    font-family:'Cinzel',serif;
-    background:linear-gradient(45deg,#d4af37,#f5e6a8);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-/* HEADER */
+/* ================= HEADER ================= */
 
 .header{
     position:fixed;
     width:100%;
-    background:rgba(0,0,0,0.95);
-    padding:15px 0;
+    backdrop-filter:blur(10px);
+    background:rgba(0,0,0,0.6);
+    border-bottom:1px solid rgba(212,175,55,0.2);
     z-index:1000;
+    padding:18px 0;
 }
 
 .nav-container{
@@ -41,18 +54,31 @@ h1,h2,h3{
 }
 
 .logo img{
-    height:60px;
+    height:65px;
 }
 
 .nav a{
     color:#fff;
-    margin-left:30px;
+    margin-left:35px;
     text-decoration:none;
-    transition:0.3s;
+    font-weight:500;
+    position:relative;
+    transition:0.4s;
 }
 
-.nav a:hover{
-    color:#d4af37;
+.nav a::after{
+    content:"";
+    position:absolute;
+    bottom:-6px;
+    left:0;
+    width:0;
+    height:2px;
+    background:#d4af37;
+    transition:0.4s;
+}
+
+.nav a:hover::after{
+    width:100%;
 }
 
 .menu-toggle{
@@ -61,128 +87,164 @@ h1,h2,h3{
     cursor:pointer;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 
 .hero{
     height:100vh;
+    background:url('images/jewellery.jpg') center/cover no-repeat;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
-    padding-top:80px;
+    position:relative;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.75);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:700px;
 }
 
 .hero h1{
-    font-size:48px;
+    font-size:60px;
 }
 
 .hero p{
-    margin:20px 0;
-    color:#ccc;
+    margin:25px 0;
+    color:#ddd;
+    font-size:18px;
 }
 
+/* GOLD BUTTON */
+
 .btn-gold{
-    padding:12px 30px;
-    background:linear-gradient(45deg,#d4af37,#f5e6a8);
+    padding:14px 35px;
+    background:linear-gradient(135deg,#d4af37,#f8e7a0,#b8860b);
     color:#000;
-    text-decoration:none;
-    border-radius:30px;
+    border-radius:50px;
     font-weight:600;
+    text-decoration:none;
     transition:0.4s;
+    box-shadow:0 0 20px rgba(212,175,55,0.4);
 }
 
 .btn-gold:hover{
-    transform:scale(1.05);
+    transform:translateY(-3px);
+    box-shadow:0 0 35px rgba(212,175,55,0.8);
 }
 
-/* SECTIONS */
+/* ================= SECTIONS ================= */
 
 section{
-    padding:100px 0;
+    padding:120px 0;
     text-align:center;
 }
+
+/* GLASS CARD STYLE */
 
 .card-grid,
 .branch-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-    margin-top:50px;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:35px;
+    margin-top:60px;
 }
 
 .card,
 .branch-card{
-    background:#111;
-    padding:20px;
-    border-radius:20px;
-    transition:0.4s;
-    border:1px solid #222;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(212,175,55,0.15);
+    border-radius:25px;
+    padding:25px;
+    transition:0.5s;
 }
 
 .card:hover,
 .branch-card:hover{
     transform:translateY(-10px);
-    border-color:#d4af37;
+    border:1px solid rgba(212,175,55,0.6);
+    box-shadow:0 0 40px rgba(212,175,55,0.2);
 }
 
 .card img,
 .branch-card img{
     width:100%;
-    border-radius:15px;
-    margin-bottom:15px;
+    border-radius:20px;
+    margin-bottom:20px;
 }
+
+/* OUTLINE BUTTON */
 
 .btn-outline{
     display:inline-block;
     margin-top:15px;
-    padding:8px 20px;
+    padding:10px 25px;
     border:1px solid #d4af37;
     color:#d4af37;
     text-decoration:none;
-    border-radius:25px;
-    transition:0.3s;
+    border-radius:30px;
+    transition:0.4s;
 }
 
 .btn-outline:hover{
-    background:#d4af37;
+    background:linear-gradient(135deg,#d4af37,#f8e7a0,#b8860b);
     color:#000;
 }
 
-.map{
-    padding:0;
+/* MAP */
+
+.map iframe{
+    filter:grayscale(100%) contrast(110%);
 }
 
+/* FOOTER */
+
 footer{
-    background:#111;
-    padding:20px;
-    text-align:center;
-    font-size:14px;
+    background:#0a0a0a;
+    padding:25px;
+    border-top:1px solid rgba(212,175,55,0.2);
 }
+
+/* WHATSAPP */
 
 .whatsapp{
     position:fixed;
-    bottom:20px;
-    right:20px;
-    background:linear-gradient(45deg,#d4af37,#f5e6a8);
+    bottom:25px;
+    right:25px;
+    background:linear-gradient(135deg,#d4af37,#f8e7a0,#b8860b);
     color:#000;
-    padding:15px;
+    padding:18px;
     border-radius:50%;
-    text-decoration:none;
     font-size:20px;
+    box-shadow:0 0 25px rgba(212,175,55,0.6);
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media(max-width:768px){
+
+.hero h1{
+    font-size:36px;
+}
 
 .nav{
     display:none;
     flex-direction:column;
     background:#000;
     position:absolute;
-    top:80px;
+    top:90px;
     right:20px;
     padding:20px;
+    border:1px solid rgba(212,175,55,0.3);
 }
 
 .nav.active{
@@ -191,10 +253,6 @@ footer{
 
 .menu-toggle{
     display:block;
-}
-
-.hero h1{
-    font-size:32px;
 }
 
 }
