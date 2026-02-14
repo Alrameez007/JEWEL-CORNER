@@ -1,164 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jewel Corner Oman</title>
 
-<title>Jewel Corner Oman | Jewellery in Salalah</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<meta name="description" content="Jewel Corner Oman - Premium jewellery, watches, perfumes & souvenirs in Salalah. Visit our branches today." />
-<meta name="keywords" content="Jewellery Salalah, Watches Oman, Perfumes Salalah, Souvenirs Oman" />
-<meta name="author" content="Jewel Corner Oman" />
-
-<link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<!-- Luxury Preloader -->
-<div id="preloader">
-  <div class="loader-logo">JEWEL CORNER</div>
-</div>
+<!-- ================= HEADER ================= -->
 
-<!-- Cinematic Intro Overlay -->
-<div id="cinema-intro">
-  <div class="cinema-text">JEWEL CORNER</div>
-</div>
+<header class="header">
+    <div class="container nav-container">
+        <div class="logo">
+            <img src="logo.png" alt="Jewel Corner Logo">
+        </div>
 
-<!-- Page Transition -->
-<div class="page-transition"></div>
+        <nav class="nav">
+            <a href="#about">About</a>
+            <a href="#collections">Collections</a>
+            <a href="#branches">Branches</a>
+            <a href="#contact">Contact</a>
+        </nav>
 
-<header>
-  <div class="nav-container">
-    <div class="logo">
-      <img src="logo.png" alt="Jewel Corner Logo" />
+        <div class="menu-toggle">&#9776;</div>
     </div>
-
-    <nav>
-      <ul class="nav-menu">
-        <li><a href="#about">About</a></li>
-        <li><a href="#collections">Collections</a></li>
-        <li><a href="#branches">Branches</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  </div>
 </header>
 
-<!-- HERO -->
-<section class="hero" style="background-image: url('luxury-background.jpg'); height:100vh; display:flex; align-items:center; justify-content:center;">
-  <div style="color:#fff; text-align:center;">
-    <h1 style="font-family:'Playfair Display', serif; font-size:3em; letter-spacing:2px;">Welcome to Jewel Corner</h1>
-    <p style="font-size:1.2em;">Luxury Jewelry & Accessories</p>
-  </div>
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Luxury Redefined</h1>
+        <p>Experience Premium Lifestyle & Elegance</p>
+        <a href="#collections" class="btn-gold">Explore Collection</a>
+    </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="section fade-in">
-  <h2>About Us</h2>
-  <p>
-    Jewel Corner is a premium boutique in Salalah offering elegant artificial jewellery,
-    luxury watches, perfumes, and souvenirs with affordable luxury.
-  </p>
+<!-- ================= WELCOME ================= -->
+
+<section class="welcome">
+    <div class="container">
+        <h2>Welcome to Jewel Corner</h2>
+        <p>Luxury Jewelry & Accessories</p>
+    </div>
 </section>
 
-<!-- COLLECTIONS -->
-<section id="collections" class="section fade-in">
-  <h2>Our Collections</h2>
-  <div class="collection-grid">
-    <div class="card">
-      <img src="images/jewellery.jpg" alt="Jewellery Collection" />
-      <h3>Jewellery</h3>
+<!-- ================= ABOUT ================= -->
+
+<section class="about" id="about">
+    <div class="container">
+        <h2>About Us</h2>
+        <p>
+            Jewel Corner is a premium boutique in Salalah offering elegant artificial jewellery,
+            luxury watches, perfumes, and souvenirs with affordable luxury.
+        </p>
     </div>
-    <div class="card">
-      <img src="images/watches.jpg" alt="Watches Collection" />
-      <h3>Watches</h3>
-    </div>
-    <div class="card">
-      <img src="images/perfume.jpg" alt="Perfumes Collection" />
-      <h3>Perfumes</h3>
-    </div>
-    <div class="card">
-      <img src="images/souvenir.jpg" alt="Souvenirs Collection" />
-      <h3>Souvenirs</h3>
-    </div>
-  </div>
 </section>
 
-<!-- BRANCHES -->
-<section id="branches" class="section fade-in">
-  <h2>Our Branches (Salalah)</h2>
+<!-- ================= COLLECTIONS ================= -->
 
-  <div class="branch-grid">
-    <div class="branch-card">
-      <img src="images/hypermax-branch.jpg" alt="Hypermax Mall Branch" />
-      <h3>Hypermax Mall</h3>
-      <a href="https://www.google.com/maps/search/?api=1&query=Hypermax+Salalah" target="_blank" class="direction-btn">Get Directions</a>
+<section class="collections" id="collections">
+    <div class="container">
+        <h2>Our Collections</h2>
+
+        <div class="card-grid">
+
+            <div class="card">
+                <img src="images/jewellery.jpg">
+                <h3>Jewellery</h3>
+            </div>
+
+            <div class="card">
+                <img src="images/watches.jpg">
+                <h3>Watches</h3>
+            </div>
+
+            <div class="card">
+                <img src="images/perfume.jpg">
+                <h3>Perfumes</h3>
+            </div>
+
+            <div class="card">
+                <img src="images/souvenir.jpg">
+                <h3>Souvenirs</h3>
+            </div>
+
+        </div>
     </div>
-
-    <div class="branch-card">
-      <img src="images/lulu-branch.jpg" alt="Lulu Alwadi Branch" />
-      <h3>Lulu Alwadi</h3>
-      <a href="https://www.google.com/maps/search/?api=1&query=Lulu+Alwadi+Salalah" target="_blank" class="direction-btn">Get Directions</a>
-    </div>
-
-    <div class="branch-card">
-      <img src="images/nesto-branch.jpg" alt="Nesto Awqad Branch" />
-      <h3>Nesto Awqad</h3>
-      <a href="https://www.google.com/maps/search/?api=1&query=Nesto+Awqad+Salalah" target="_blank" class="direction-btn">Get Directions</a>
-    </div>
-
-    <div class="branch-card">
-      <img src="images/giftmarket-branch.jpg" alt="Salalah Gift Market Branch" />
-      <h3>Salalah Gift Market</h3>
-      <a href="https://www.google.com/maps/search/?api=1&query=Salalah+Gift+Market" target="_blank" class="direction-btn">Get Directions</a>
-    </div>
-
-    <div class="branch-card">
-      <img src="images/grandmall-branch.jpg" alt="Grand Mall Saada Branch" />
-      <h3>Grand Mall Saada</h3>
-      <a href="https://www.google.com/maps/search/?api=1&query=Grand+Mall+Salalah" target="_blank" class="direction-btn">Get Directions</a>
-    </div>
-  </div>
-
-  <!-- GOOGLE MAP EMBED -->
-  <div class="map-container">
-    <iframe
-      src="https://www.google.com/maps?q=Salalah,Oman&output=embed"
-      width="100%" height="350" style="border:0;" allowfullscreen loading="lazy">
-    </iframe>
-  </div>
 </section>
 
-<!-- INSTAGRAM -->
-<section id="instagram" class="section fade-in">
-  <h2>Follow Us on Instagram</h2>
-  <p>See our latest collections and offers.</p>
-  <a href="https://instagram.com/" target="_blank" class="insta-btn">Visit Instagram</a>
+<!-- ================= BRANCHES ================= -->
+
+<section class="branches" id="branches">
+    <div class="container">
+        <h2>Our Branches (Salalah)</h2>
+
+        <div class="branch-grid">
+
+            <div class="branch-card">
+                <img src="images/hypermax-branch.jpg">
+                <h3>Hypermax Mall</h3>
+                <a href="#" class="btn-outline">Get Directions</a>
+            </div>
+
+            <div class="branch-card">
+                <img src="images/lulu-branch.jpg">
+                <h3>Lulu Alwadi</h3>
+                <a href="#" class="btn-outline">Get Directions</a>
+            </div>
+
+            <div class="branch-card">
+                <img src="images/nesto-branch.jpg">
+                <h3>Nesto Awqad</h3>
+                <a href="#" class="btn-outline">Get Directions</a>
+            </div>
+
+            <div class="branch-card">
+                <img src="images/gift-market-branch.jpg">
+                <h3>Salalah Gift Market</h3>
+                <a href="#" class="btn-outline">Get Directions</a>
+            </div>
+
+            <div class="branch-card">
+                <img src="images/grand-mall-branch.jpg">
+                <h3>Grand Mall Saada</h3>
+                <a href="#" class="btn-outline">Get Directions</a>
+            </div>
+
+        </div>
+    </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="section fade-in">
-  <h2>Contact Us</h2>
-  <p>WhatsApp: +968 77147645</p>
+<!-- ================= MAP ================= -->
+
+<section class="map">
+<iframe src="YOUR_EMBED_LINK"
+width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 </section>
+
+<!-- ================= INSTAGRAM ================= -->
+
+<section class="instagram">
+    <div class="container">
+        <h2>Follow Us on Instagram</h2>
+        <p>See our latest collections and offers.</p>
+        <a href="https://instagram.com" target="_blank" class="btn-gold">Visit Instagram</a>
+    </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+
+<section class="contact" id="contact">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p>WhatsApp: +968 77147645</p>
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
 
 <footer>
-  © 2026 Jewel Corner Oman | All Rights Reserved
+    <p>© 2026 Jewel Corner Oman | All Rights Reserved</p>
 </footer>
 
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/96877147645" class="whatsapp-float" target="_blank">
-  <img src="whatsapp.png" alt="WhatsApp" />
-</a>
-
-<!-- Custom Cursor -->
-<div class="cursor"></div>
-<div class="cursor-follower"></div>
+<a href="https://wa.me/96877147645" class="whatsapp" target="_blank">💬</a>
 
 <script src="script.js"></script>
-
 </body>
 </html>
