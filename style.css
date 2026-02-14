@@ -563,4 +563,49 @@ body {
   font-family: 'Playfair Display', serif;
   letter-spacing: 3px;
 }
+/* ===============================
+   MEGA MENU
+================================= */
+
+.mega-parent {
+  position: relative;
+}
+
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #111;
+  display: flex;
+  padding: 30px;
+  gap: 50px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: 0.4s ease;
+  border-top: 2px solid #d4af37;
+}
+
+.mega-parent:hover .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mega-column h4 {
+  color: #d4af37;
+  margin-bottom: 10px;
+}
+
+.mega-column a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: 0.3s;
+}
+
+.mega-column a:hover {
+  color: #d4af37;
+}
 
