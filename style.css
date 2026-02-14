@@ -361,3 +361,143 @@ img {
   height: auto;
   display: block;
 }
+/* Import luxurious fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat&display=swap');
+
+/* Basic Reset & Body */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #000; /* Dark background for luxury */
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header & Navigation */
+header {
+  background: transparent;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2em;
+  position: relative;
+  z-index: 10;
+}
+header.scrolled {
+  background: rgba(0,0,0,0.7);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Logo & Logo Style */
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8em;
+  color: #FFD700; /* Gold */
+  letter-spacing: 2px;
+}
+
+/* Navigation Links */
+nav a {
+  color: #fff;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+nav a:hover {
+  color: #FFD700; /* Gold on hover */
+}
+
+/* Hero Slider */
+.slide {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.slide.active {
+  opacity: 1;
+  position: relative;
+}
+
+/* Section Titles */
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2em;
+  color: #FFD700; /* Gold */
+  margin: 40px 0 20px 0;
+  text-align: center;
+  letter-spacing: 2px;
+}
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5em;
+  color: #FFD700;
+  margin-top: 30px;
+}
+
+/* Cards (Collections, Branches, etc.) */
+.collection-card, .branch-card {
+  background-color: rgba(0,0,0,0.8);
+  border: 1px solid #222;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  border-radius: 15px;
+  padding: 15px;
+  margin: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.collection-card:hover, .branch-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+}
+
+/* Buttons & Links */
+a.btn, button {
+  background-color: #FFD700;
+  color: #000;
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+a.btn:hover, button:hover {
+  background-color: #e6b800;
+  transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+  background: #111;
+  color: #ccc;
+  padding: 30px 20px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9em;
+}
+footer a {
+  color: #FFD700;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Enhance overlays, icons and buttons for luxury feel */
+.page-transition {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+.page-transition.active {
+  /* transition style if needed */
+}
+
+/* Additional hover effects, shadows, or borders can be added as needed for more luxury feel */
