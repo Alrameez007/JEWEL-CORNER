@@ -1,157 +1,155 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jewel Corner | Premium Boutique in Salalah</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-logo">Jewel Corner</div>
-</div>
-
-<div id="progressBar"></div>
-
+<!-- HEADER -->
 <header>
-  <div class="nav-container">
-    <div class="logo">
-      <img src="logo.png" alt="Jewel Corner Logo">
+    <div class="container nav">
+        <div class="logo">
+            <img src="logo.png" alt="Jewel Corner Logo">
+        </div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#collections">Collections</a>
+            <a href="#branches">Branches</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </div>
-
-    <div class="right-controls">
-      <button class="lang-btn" onclick="toggleLanguage()">العربية</button>
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    </div>
-
-    <nav id="nav-menu">
-      <ul>
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#collections">Collections</a></li>
-        <li><a href="#branches">Branches</a></li>
-        <li><a href="#instagram">Instagram</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
 </header>
 
 <!-- HERO -->
-<section id="hero" class="hero">
-  <div class="hero-overlay"></div>
-  <div class="hero-content fade-in">
-    <h1>Luxury. Elegance. Timeless Beauty.</h1>
-    <p>Salalah’s premium destination for jewellery, watches, perfumes and souvenirs.</p>
-
-    <div class="hero-buttons">
-      <a href="#branches" class="primary-btn">Visit Our Branches</a>
-      <a href="https://wa.me/96877147645" target="_blank" class="secondary-btn">
-        Chat on WhatsApp
-      </a>
+<section class="hero">
+    <div class="hero-content">
+        <h1>Luxury. Elegance. Timeless Beauty.</h1>
+        <p>Premium jewellery, watches, perfumes & souvenirs in Salalah.</p>
+        <a href="#branches" class="btn">Visit Our Branches</a>
     </div>
-  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+    <div class="container">
+        <h2>About Us</h2>
+        <p>
+            Jewel Corner is a premium boutique in Salalah offering elegant artificial jewellery,
+            luxury watches, perfumes, and unique souvenirs. With multiple branches across the city,
+            we bring timeless beauty and affordable luxury to our customers.
+        </p>
+    </div>
 </section>
 
 <!-- COLLECTIONS -->
-<section id="collections" class="section reveal">
-  <h2>Our Collections</h2>
-  <div class="collection-grid">
-    <div class="card"><img src="images/jewellery.jpg"><h3>Jewellery</h3></div>
-    <div class="card"><img src="images/watches.jpg"><h3>Watches</h3></div>
-    <div class="card"><img src="images/perfume.jpg"><h3>Perfumes</h3></div>
-    <div class="card"><img src="images/souvenir.jpg"><h3>Souvenirs</h3></div>
-  </div>
+<section id="collections" class="section light">
+    <div class="container">
+        <h2>Our Collections</h2>
+        <div class="grid">
+
+            <div class="card">
+                <img src="images/jewellery.jpg">
+                <h3>Jewellery</h3>
+            </div>
+
+            <div class="card">
+                <img src="images/watches.jpg">
+                <h3>Watches</h3>
+            </div>
+
+            <div class="card">
+                <img src="images/perfume.jpg">
+                <h3>Perfumes</h3>
+            </div>
+
+            <div class="card">
+                <img src="images/souvenir.jpg">
+                <h3>Souvenirs</h3>
+            </div>
+
+        </div>
+    </div>
 </section>
 
 <!-- BRANCHES -->
-<section id="branches" class="section reveal">
-  <h2>Our Exclusive Boutiques</h2>
+<section id="branches" class="section">
+    <div class="container">
+        <h2>Our Branches</h2>
 
-  <div class="branch-grid">
+        <div class="grid">
 
-    <div class="branch-card">
-      <img src="images/hypermax-branch.jpg">
-      <h3>JEWEL CORNER HYPERMAX</h3>
-      <button class="direction-btn"
-        onclick="openMap('https://www.google.com/maps?q=Hypermax+Salalah&output=embed')">
-        View Location
-      </button>
+            <div class="card branch-card">
+                <img src="images/hypermax-branch.jpg">
+                <h3>Hypermax Branch</h3>
+                <p>Located inside Hypermax Mall.</p>
+                <button onclick="openMap('https://www.google.com/maps?q=Hypermax+Salalah&output=embed')">View Location</button>
+            </div>
+
+            <div class="card branch-card">
+                <img src="images/lulu-branch.jpg">
+                <h3>Lulu Alwadi</h3>
+                <p>Inside Lulu Hypermarket.</p>
+                <button onclick="openMap('https://www.google.com/maps?q=LuLu+Hypermarket+Salalah&output=embed')">View Location</button>
+            </div>
+
+            <div class="card branch-card">
+                <img src="images/nesto-branch.jpg">
+                <h3>Nesto Awqad</h3>
+                <p>Awqad district branch.</p>
+                <button onclick="openMap('https://www.google.com/maps?q=Nesto+Awqad&output=embed')">View Location</button>
+            </div>
+
+            <div class="card branch-card">
+                <img src="images/giftmarket-branch.jpg">
+                <h3>Salalah Gift Market</h3>
+                <p>Traditional shopping hub.</p>
+                <button onclick="openMap('https://www.google.com/maps?q=Salalah+Gift+Market&output=embed')">View Location</button>
+            </div>
+
+            <div class="card branch-card">
+                <img src="images/grandmall-branch.jpg">
+                <h3>Grand Mall Saada</h3>
+                <p>Premium shopping destination.</p>
+                <button onclick="openMap('https://www.google.com/maps?q=Grand+Mall+Saada&output=embed')">View Location</button>
+            </div>
+
+        </div>
     </div>
-
-    <div class="branch-card">
-      <img src="images/lulu-branch.jpg">
-      <h3>JEWEL CORNER LULU ALWADI</h3>
-      <button class="direction-btn"
-        onclick="openMap('https://www.google.com/maps?q=LuLu+Hypermarket+Salalah&output=embed')">
-        View Location
-      </button>
-    </div>
-
-    <div class="branch-card">
-      <img src="images/nesto-branch.jpg">
-      <h3>JEWEL CORNER NESTO AWQAD</h3>
-      <button class="direction-btn"
-        onclick="openMap('https://www.google.com/maps?q=Nesto+Awqad&output=embed')">
-        View Location
-      </button>
-    </div>
-    
-    <div class="branch-card">
-      <img src="images/giftmarket-branch.jpg">
-      <h3>JEWEL CORNER SALALAH GIFT MARKET</h3>
-      <button class="direction-btn"
-        onclick="openMap('https://www.google.com/maps/search/?api=1&query=Salalah+Gift+Market')">
-        View Location
-      </button>
-    </div>
-
-    <div class="branch-card">
-      <img src="images/grandmall-branch.jpg">
-      <h3>JEWEL CORNER GRAND MALL SAADA</h3>
-      <button class="direction-btn"
-        onclick="openMap('https://www.google.com/maps?q=Grand+Mall+Saada&output=embed')">
-        View Location
-      </button>
-    </div>
-
-  </div>
-</section>
-
-<!-- INSTAGRAM -->
-<section id="instagram" class="section reveal">
-  <h2>Follow Us on Instagram</h2>
-  <div class="insta-grid">
-    <img src="images/jewellery.jpg">
-    <img src="images/watches.jpg">
-    <img src="images/perfume.jpg">
-    <img src="images/souvenir.jpg">
-  </div>
-  <a href="https://instagram.com" target="_blank" class="primary-btn">
-    Visit Instagram
-  </a>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="section reveal">
-  <h2>Contact Us</h2>
-  <p>Phone / WhatsApp: +968 77147645</p>
+<section id="contact" class="section light">
+    <div class="container">
+        <h2>Contact Us</h2>
+
+        <p><strong>Phone / WhatsApp:</strong> +968 77147645</p>
+
+        <form id="contactForm">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </div>
 </section>
 
-<footer>© 2026 Jewel Corner Oman</footer>
-
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/96877147645" class="whatsapp-float" target="_blank">💬</a>
+<footer>
+    © 2026 Jewel Corner Oman
+</footer>
 
 <!-- MAP MODAL -->
 <div id="mapModal">
-  <div class="map-content">
-    <span class="close-modal" onclick="closeMap()">×</span>
-    <iframe id="mapFrame" frameborder="0"></iframe>
-  </div>
+    <div class="map-box">
+        <span onclick="closeMap()">×</span>
+        <iframe id="mapFrame"></iframe>
+    </div>
 </div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/96877147645" class="whatsapp" target="_blank">💬</a>
 
 <script src="script.js"></script>
 </body>
