@@ -445,4 +445,54 @@ footer {
   50% { opacity: 1; }
   100% { opacity: 0.5; }
 }
+    .welcome {
+  text-align: center;
+  padding: 80px 20px;
+}
+.welcome h2 {
+  color: gold;
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+.welcome p {
+  max-width: 600px;
+  margin: auto;
+  color: #ccc;
+  line-height: 1.8;
+}
+.about {
+  background: #111;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.about h2 {
+  color: gold;
+  margin-bottom: 20px;
+}
+
+.about p {
+  max-width: 700px;
+  margin: auto;
+  color: #aaa;
+  line-height: 1.8;
+}
+.reviews {
+  background: #0d0d0d;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.review-box {
+  margin: 30px auto;
+  max-width: 500px;
+  color: #ccc;
+}
+
+.review-box span {
+  display: block;
+  margin-top: 10px;
+  color: gold;
+}
 
