@@ -418,6 +418,9 @@ footer {
   color: #aaa;
   letter-spacing: 1px;
 }
+#instagram {
+    padding-bottom: 180px !important;
+}
 @media (max-width: 768px) {
     .hero {
         background-attachment: scroll;
