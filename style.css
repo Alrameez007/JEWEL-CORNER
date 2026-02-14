@@ -1,12 +1,12 @@
 /* =========================================
-   JEWEL CORNER – ULTRA LUXURY CLEAN VERSION
-   Stable • Aligned • Responsive • Premium
+   JEWEL CORNER – FINAL STABLE LUXURY CSS
+   Based EXACTLY on your HTML
 ========================================= */
 
-/* ===== Google Elegant Fonts ===== */
+/* ===== FONTS ===== */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap');
 
-/* ===== Reset ===== */
+/* ===== RESET ===== */
 * {
     margin: 0;
     padding: 0;
@@ -22,70 +22,188 @@ body {
     color: #d4af37;
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
+    line-height: 1.7;
 }
 
-/* ===== Remove Top Offer Banner ===== */
-.top-banner,
-.offer-banner,
-.marquee,
-.marquee-container {
+/* ===== REMOVE PROMO BAR ===== */
+.promo-bar {
     display: none !important;
 }
 
-/* ===== Global Container ===== */
+/* ===== CONTAINER ===== */
 .container {
     width: 90%;
     max-width: 1200px;
     margin: auto;
 }
 
-/* ===== Headings ===== */
+/* ===== HEADINGS ===== */
 h1, h2, h3 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 600;
     letter-spacing: 1px;
-    color: #d4af37;
     text-align: center;
+}
+
+h1 {
+    font-size: 52px;
+    margin-bottom: 20px;
 }
 
 h2 {
-    font-size: 42px;
+    font-size: 40px;
     margin-bottom: 50px;
 }
 
-/* =========================================
-   COLLECTION SECTION
-========================================= */
-
-.collections {
-    padding: 100px 0;
-    text-align: center;
+h3 {
+    font-size: 22px;
+    margin-top: 18px;
 }
 
-.collection-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+/* =========================================
+   HEADER
+========================================= */
+
+header {
+    background: #000;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+}
+
+.logo img {
+    height: 55px;
+}
+
+.nav {
+    display: flex;
     gap: 30px;
 }
 
-/* ===== Collection Card ===== */
-.collection-card {
-    background: #0d0d0d;
-    border: 1px solid rgba(212,175,55,0.3);
-    border-radius: 18px;
-    padding: 20px;
-    transition: 0.4s ease;
-    overflow: hidden;
+.nav a {
+    text-decoration: none;
+    color: #d4af37;
+    font-size: 15px;
+    transition: 0.3s;
 }
 
-.collection-card:hover {
+.nav a:hover {
+    color: #fff;
+}
+
+.cta-nav {
+    border: 1px solid #d4af37;
+    padding: 6px 16px;
+    border-radius: 25px;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 26px;
+    color: #d4af37;
+    cursor: pointer;
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    padding: 120px 0;
+    text-align: center;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+/* ===== BUTTONS ===== */
+
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 8px;
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    background: #d4af37;
+    color: #000;
+}
+
+.btn-primary:hover {
+    background: #fff;
+}
+
+.btn-secondary {
+    border: 1px solid #d4af37;
+    color: #d4af37;
+}
+
+.btn-secondary:hover {
+    background: #d4af37;
+    color: #000;
+}
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+section {
+    padding: 100px 0;
+}
+
+section p {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
+/* =========================================
+   PRODUCT GRID (Collections + Branches)
+========================================= */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+    margin-top: 40px;
+}
+
+/* ===== CARD ===== */
+
+.product-card {
+    background: #0d0d0d;
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    transition: 0.4s ease;
+}
+
+.product-card:hover {
     transform: translateY(-8px);
     border-color: #d4af37;
     box-shadow: 0 10px 30px rgba(212,175,55,0.15);
 }
 
-/* Image Fix */
-.collection-card img {
+/* FIX IMAGE SIZE (VERY IMPORTANT) */
+
+.product-card img {
     width: 100%;
     height: 260px;
     object-fit: cover;
@@ -93,168 +211,99 @@ h2 {
     display: block;
 }
 
-/* Title */
-.collection-card h3 {
-    margin-top: 18px;
-    font-size: 20px;
-    font-family: 'Cormorant Garamond', serif;
-}
-
 /* =========================================
-   BRANCH SECTION
+   TESTIMONIAL
 ========================================= */
 
-.branches {
-    padding: 100px 0;
-}
-
-.branch-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 50px;
-}
-
-/* ===== Branch Card ===== */
-.branch-card {
+.testimonial {
     background: #0d0d0d;
-    border: 1px solid rgba(212,175,55,0.3);
-    border-radius: 20px;
+    border: 1px solid rgba(212,175,55,0.25);
     padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 25px;
     text-align: center;
-    transition: 0.4s ease;
-}
-
-.branch-card:hover {
-    transform: translateY(-8px);
-    border-color: #d4af37;
-    box-shadow: 0 10px 30px rgba(212,175,55,0.15);
-}
-
-/* Branch Image - SAME SIZE FIX */
-.branch-card img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    border-radius: 16px;
-    margin-bottom: 20px;
-}
-
-/* Branch Title */
-.branch-card h3 {
-    font-size: 22px;
-    margin-bottom: 20px;
-}
-
-/* ===== Gold Button ===== */
-.branch-card a,
-.collection-card a,
-button {
-    display: inline-block;
-    padding: 10px 24px;
-    border-radius: 30px;
-    border: 1px solid #d4af37;
-    color: #d4af37;
-    background: transparent;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s ease;
-    cursor: pointer;
-}
-
-.branch-card a:hover,
-.collection-card a:hover,
-button:hover {
-    background: #d4af37;
-    color: #000;
 }
 
 /* =========================================
-   HEADER FIX
+   FOOTER
 ========================================= */
 
-header {
+footer {
     background: #000;
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(212,175,55,0.2);
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid rgba(212,175,55,0.2);
 }
 
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.footer-social {
+    margin-bottom: 20px;
+}
+
+.footer-social a {
+    color: #d4af37;
+    margin: 0 12px;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.footer-social a:hover {
+    color: #fff;
 }
 
 /* =========================================
-   RESPONSIVE FIXES
+   MAP FIX
+========================================= */
+
+iframe {
+    display: block;
+}
+
+/* =========================================
+   RESPONSIVE
 ========================================= */
 
 @media (max-width: 1024px) {
 
-    .collection-grid {
+    .product-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
-
-    .branch-grid {
-        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 768px) {
 
+    h1 {
+        font-size: 36px;
+    }
+
     h2 {
-        font-size: 30px;
-        margin-bottom: 35px;
+        font-size: 28px;
     }
 
-    .collections,
-    .branches {
-        padding: 70px 0;
+    .nav {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: #000;
+        flex-direction: column;
+        width: 220px;
+        padding: 20px;
+        display: none;
+        border-left: 1px solid rgba(212,175,55,0.2);
     }
 
-    .collection-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
+    .nav.active {
+        display: flex;
     }
 
-    .collection-card img {
-        height: 200px;
+    .menu-toggle {
+        display: block;
     }
 
-    .branch-card img {
-        height: 200px;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .collection-grid {
+    .product-grid {
         grid-template-columns: 1fr;
     }
 
-    .collection-card img {
-        height: 240px;
-    }
-
-    .branch-card img {
+    .product-card img {
         height: 220px;
     }
-
-    h2 {
-        font-size: 26px;
-    }
-}
-
-/* =========================================
-   EXTRA STABILITY FIX
-========================================= */
-
-/* Prevent zoom layout break */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Prevent horizontal scroll */
-body {
-    overflow-x: hidden;
 }
