@@ -2,29 +2,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth;
   font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  background: #f9f9f9;
+  background: #f4f4f4;
   color: #222;
-}
-
-/* Progress Bar */
-#progressBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 4px;
-  background: gold;
-  width: 0%;
-  z-index: 9999;
 }
 
 /* HEADER */
 header {
-  background: #111;
+  background: #000;
   padding: 15px 0;
   position: sticky;
   top: 0;
@@ -33,7 +21,6 @@ header {
 
 .nav-container {
   width: 90%;
-  max-width: 1200px;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -41,43 +28,18 @@ header {
 }
 
 .logo img {
-  height: 55px;
+  height: 50px;
 }
 
-.right-controls {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.lang-btn {
-  background: gold;
-  border: none;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.menu-toggle {
-  font-size: 26px;
-  color: white;
-  cursor: pointer;
-  display: none;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-}
-
-nav ul li a {
-  color: white;
+nav a {
+  color: #fff;
   text-decoration: none;
+  margin-left: 20px;
   font-weight: 500;
+  transition: 0.3s;
 }
 
-nav ul li a:hover {
+nav a:hover {
   color: gold;
 }
 
@@ -93,88 +55,70 @@ nav ul li a:hover {
   padding: 20px;
 }
 
-.hero-content h1 {
-  font-size: 48px;
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.hero p {
   margin-bottom: 20px;
-}
-
-.hero-content p {
-  margin-bottom: 30px;
-  font-size: 18px;
-}
-
-.primary-btn,
-.secondary-btn {
-  padding: 12px 25px;
-  text-decoration: none;
-  margin: 10px;
-  display: inline-block;
-  font-weight: bold;
 }
 
 .primary-btn {
   background: gold;
   color: black;
+  padding: 12px 25px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
 }
 
-.secondary-btn {
-  background: white;
-  color: black;
-}
-
-/* SECTIONS */
+/* SECTION */
 .section {
-  padding: 80px 10%;
+  padding: 70px 10%;
   text-align: center;
 }
 
 .section h2 {
-  font-size: 32px;
   margin-bottom: 40px;
+  font-size: 30px;
 }
 
 /* COLLECTIONS */
 .collection-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  grid-template-columns: 1fr;
+  gap: 25px;
 }
 
 .card {
   background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-8px);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .card img {
   width: 100%;
-  border-radius: 10px;
-  margin-bottom: 15px;
+  height: auto;
+}
+
+.card h3 {
+  padding: 15px;
 }
 
 /* BRANCHES */
 .branch-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
 }
 
 .branch-card {
   background: white;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  transition: 0.3s;
-}
-
-.branch-card:hover {
-  transform: translateY(-8px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  padding-bottom: 20px;
 }
 
 .branch-card img {
@@ -184,35 +128,61 @@ nav ul li a:hover {
 }
 
 .branch-card h3 {
-  padding: 15px;
-  font-size: 18px;
+  margin-top: 20px;
+  font-size: 22px;
 }
 
+.branch-card p {
+  margin: 10px 0 15px;
+}
+
+/* PREMIUM BUTTON */
 .direction-btn {
   display: inline-block;
-  margin: 15px;
-  padding: 10px 20px;
+  padding: 10px 25px;
   background: gold;
   color: black;
   text-decoration: none;
   font-weight: bold;
   border-radius: 5px;
+  transition: 0.3s;
+}
+
+.direction-btn:hover {
+  background: black;
+  color: gold;
 }
 
 /* CONTACT */
 #contact p {
   font-size: 18px;
+  margin-bottom: 20px;
+}
+
+form input,
+form textarea {
+  padding: 8px;
+  margin: 5px;
+  width: 200px;
+}
+
+form button {
+  padding: 8px 15px;
+  background: gold;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /* FOOTER */
 footer {
-  background: #111;
+  background: #000;
   color: white;
   padding: 20px;
   text-align: center;
 }
 
-/* WhatsApp Floating */
+/* WhatsApp */
 .whatsapp {
   position: fixed;
   bottom: 20px;
@@ -222,33 +192,5 @@ footer {
   padding: 15px;
   border-radius: 50%;
   text-decoration: none;
-  font-size: 22px;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-
-  nav ul {
-    flex-direction: column;
-    background: #111;
-    position: absolute;
-    top: 70px;
-    right: 0;
-    width: 200px;
-    display: none;
-    padding: 20px;
-  }
-
-  nav ul.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .hero-content h1 {
-    font-size: 32px;
-  }
-
+  font-size: 20px;
 }
