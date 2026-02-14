@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Jewel Corner | Premium Boutique in Salalah</title>
-
-<meta name="description"
-content="Jewel Corner Salalah - Premium artificial jewellery, luxury watches, perfumes and elegant souvenirs in Oman.">
 
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">Jewel Corner</div>
+</div>
+
 <div id="progressBar"></div>
 
 <header>
   <div class="nav-container">
-    
     <div class="logo">
       <img src="logo.png" alt="Jewel Corner Logo">
     </div>
@@ -36,22 +36,20 @@ content="Jewel Corner Salalah - Premium artificial jewellery, luxury watches, pe
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-
   </div>
 </header>
 
 <!-- HERO -->
 <section id="hero" class="hero">
-  <div class="hero-content">
+  <div class="hero-overlay"></div>
+  <div class="hero-content fade-in">
     <h1>Luxury. Elegance. Timeless Beauty.</h1>
     <p>Salalah’s premium destination for jewellery, watches, perfumes and souvenirs.</p>
 
     <div class="hero-buttons">
       <a href="#branches" class="primary-btn">Visit Our Branches</a>
-      <a href="https://wa.me/96877147645"
-         target="_blank"
-         class="secondary-btn">
-         Chat on WhatsApp
+      <a href="https://wa.me/96877147645" target="_blank" class="secondary-btn">
+        Chat on WhatsApp
       </a>
     </div>
   </div>
@@ -60,29 +58,11 @@ content="Jewel Corner Salalah - Premium artificial jewellery, luxury watches, pe
 <!-- COLLECTIONS -->
 <section id="collections" class="section reveal">
   <h2>Our Collections</h2>
-
   <div class="collection-grid">
-
-    <div class="card">
-      <img src="images/jewellery.jpg" alt="Jewellery">
-      <h3>Jewellery</h3>
-    </div>
-
-    <div class="card">
-      <img src="images/watches.jpg" alt="Watches">
-      <h3>Watches</h3>
-    </div>
-
-    <div class="card">
-      <img src="images/perfume.jpg" alt="Perfumes">
-      <h3>Perfumes</h3>
-    </div>
-
-    <div class="card">
-      <img src="images/souvenir.jpg" alt="Souvenirs">
-      <h3>Souvenirs</h3>
-    </div>
-
+    <div class="card"><img src="images/jewellery.jpg"><h3>Jewellery</h3></div>
+    <div class="card"><img src="images/watches.jpg"><h3>Watches</h3></div>
+    <div class="card"><img src="images/perfume.jpg"><h3>Perfumes</h3></div>
+    <div class="card"><img src="images/souvenir.jpg"><h3>Souvenirs</h3></div>
   </div>
 </section>
 
@@ -92,75 +72,75 @@ content="Jewel Corner Salalah - Premium artificial jewellery, luxury watches, pe
 
   <div class="branch-grid">
 
-    <!-- Hypermax -->
+    <!-- HYPERMAX -->
     <div class="branch-card">
       <img src="images/hypermax-branch.jpg" alt="Hypermax Branch">
       <h3>JEWEL CORNER HYPERMAX</h3>
-      <a href="https://maps.app.goo.gl/csUGcAt9XWELgaGRA"
-         target="_blank"
-         class="direction-btn">
-         Get Directions
-      </a>
+      <button class="direction-btn"
+        onclick="openMap('https://maps.app.goo.gl/csUGcAt9XWELgaGRA')">
+        View Location
+      </button>
     </div>
 
-    <!-- Lulu -->
+    <!-- LULU -->
     <div class="branch-card">
-      <img src="images/lulu-branch.jpg" alt="Lulu Branch">
+      <img src="images/lulu-branch.jpg" alt="Lulu Alwadi Branch">
       <h3>JEWEL CORNER LULU ALWADI</h3>
-      <a href="https://www.google.com/maps/search/?api=1&query=LuLu+Hypermarket+Salalah"
-         target="_blank"
-         class="direction-btn">
-         Get Directions
-      </a>
+      <button class="direction-btn"
+        onclick="openMap('https://www.google.com/maps/search/?api=1&query=LuLu+Hypermarket+Salalah')">
+        View Location
+      </button>
     </div>
 
-    <!-- Nesto -->
+    <!-- NESTO -->
     <div class="branch-card">
-      <img src="images/nesto-branch.jpg" alt="Nesto Branch">
+      <img src="images/nesto-branch.jpg" alt="Nesto Awqad Branch">
       <h3>JEWEL CORNER NESTO AWQAD</h3>
-      <a href="https://www.google.com/maps/search/?api=1&query=Nesto+Hypermarket+Awqad"
-         target="_blank"
-         class="direction-btn">
-         Get Directions
-      </a>
+      <button class="direction-btn"
+        onclick="openMap('https://www.google.com/maps/search/?api=1&query=Nesto+Hypermarket+Awqad')">
+        View Location
+      </button>
     </div>
 
-    <!-- Gift Market -->
+    <!-- GIFT MARKET -->
     <div class="branch-card">
       <img src="images/giftmarket-branch.jpg" alt="Salalah Gift Market Branch">
       <h3>JEWEL CORNER SALALAH GIFT MARKET</h3>
-      <a href="https://www.google.com/maps/search/?api=1&query=Salalah+Gift+Market"
-         target="_blank"
-         class="direction-btn">
-         Get Directions
-      </a>
+      <button class="direction-btn"
+        onclick="openMap('https://www.google.com/maps/search/?api=1&query=Salalah+Gift+Market')">
+        View Location
+      </button>
     </div>
 
-    <!-- Grand Mall -->
+    <!-- GRAND MALL SAADA -->
     <div class="branch-card">
       <img src="images/grandmall-branch.jpg" alt="Grand Mall Saada Branch">
       <h3>JEWEL CORNER GRAND MALL SAADA</h3>
-      <a href="https://www.google.com/maps/search/?api=1&query=Grand+Mall+Saada"
-         target="_blank"
-         class="direction-btn">
-         Get Directions
-      </a>
+      <button class="direction-btn"
+        onclick="openMap('https://www.google.com/maps/search/?api=1&query=Grand+Mall+Saada')">
+        View Location
+      </button>
     </div>
 
   </div>
 </section>
 
-<!-- CONTACT -->
+
 <section id="contact" class="section reveal">
   <h2>Contact Us</h2>
   <p>Phone / WhatsApp: +968 77147645</p>
 </section>
 
-<footer>
-© 2026 Jewel Corner Oman
-</footer>
+<footer>© 2026 Jewel Corner Oman</footer>
+
+<!-- MAP MODAL -->
+<div id="mapModal">
+  <div class="map-content">
+    <span class="close-modal" onclick="closeMap()">×</span>
+    <iframe id="mapFrame" frameborder="0"></iframe>
+  </div>
+</div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
