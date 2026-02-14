@@ -82,17 +82,13 @@ nav ul li a:hover {
 ========================================= */
 
 .hero {
-  min-height: 100vh;
-  padding-top: 90px; /* offset for navbar */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding-left: 20px;
-  padding-right: 20px;
-  background: linear-gradient(120deg,#000,#1a1a1a,#000);
-  background-size: 400% 400%;
-  animation: luxuryBG 15s ease infinite;
+    position: relative;   /* IMPORTANT */
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 @keyframes luxuryBG {
