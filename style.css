@@ -1,22 +1,11 @@
 /* =========================================
-   JEWEL CORNER – PREMIUM ELEGANT EDITION
-   Clean • Balanced • Luxury Gold Boutique
-   (No HTML or JS changes required)
+   JEWEL CORNER – FINAL STABLE LUXURY CSS
+   Perfect Alignment • Equal Cards • No Collapse
+   (HTML & JS untouched)
 ========================================= */
 
-/* ===== GOOGLE FONTS ===== */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
-
-/* ===== ROOT VARIABLES ===== */
-:root{
-  --gold-main:#d4af37;
-  --gold-light:#f5d76e;
-  --gold-dark:#b8962e;
-  --gold-glow:rgba(212,175,55,0.35);
-  --black-deep:#000;
-  --black-soft:#0b0b0b;
-  --gray-soft:#cfcfcf;
-}
+/* ===== GOOGLE FONT ===== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
 
 /* ===== RESET ===== */
 *{
@@ -30,44 +19,50 @@ html{
 }
 
 body{
-  font-family:'Poppins',sans-serif;
+  font-family:'Montserrat',sans-serif;
   background:#000;
   color:#fff;
+  line-height:1.6;
   overflow-x:hidden;
-  line-height:1.7;
 }
 
-/* ===== TYPOGRAPHY ===== */
-h1,h2,h3{
-  font-family:'Cormorant Garamond',serif;
-  font-weight:600;
-  letter-spacing:1px;
+/* REMOVE TOP PROMO BAR */
+.promo-bar{
+  display:none !important;
 }
 
-h1{ font-size:46px; }
-h2{ font-size:34px; }
-h3{ font-size:20px; }
-
-p{
-  color:var(--gray-soft);
-  font-size:15px;
-}
-
+/* ===== CONTAINER ===== */
 .container{
   width:90%;
   max-width:1200px;
   margin:auto;
 }
 
-/* =========================================
-   PROMO BAR
-========================================= */
-.promo-bar{
-  background:linear-gradient(90deg,var(--gold-main),var(--gold-light));
-  color:#000;
+/* ===== HEADINGS ===== */
+h1,h2,h3{
+  font-family:'Playfair Display',serif;
+  letter-spacing:1px;
   text-align:center;
-  padding:12px;
-  font-weight:600;
+}
+
+h1{
+  font-size:42px;
+}
+
+h2{
+  font-size:32px;
+  margin-bottom:25px;
+  color:#d4af37;
+}
+
+h3{
+  font-size:20px;
+  margin-bottom:10px;
+}
+
+p{
+  color:#d0d0d0;
+  font-size:15px;
 }
 
 /* =========================================
@@ -75,17 +70,12 @@ p{
 ========================================= */
 header{
   position:fixed;
+  top:0;
   width:100%;
+  background:#000;
   padding:15px 0;
-  background:rgba(0,0,0,0.92);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(212,175,55,0.15);
   z-index:1000;
-  transition:0.3s;
-}
-
-header.scrolled{
-  box-shadow:0 0 20px rgba(212,175,55,0.25);
+  border-bottom:1px solid rgba(212,175,55,0.2);
 }
 
 .nav-container{
@@ -112,103 +102,53 @@ header.scrolled{
 }
 
 .nav a:hover{
-  color:var(--gold-main);
+  color:#d4af37;
 }
 
 /* =========================================
    HERO
 ========================================= */
 .hero{
-  min-height:75vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  padding:140px 20px 80px;
   text-align:center;
-  padding:130px 20px 80px;
-  background:
-  radial-gradient(circle at center, rgba(212,175,55,0.12), transparent 55%),
-  linear-gradient(to bottom, #000 0%, #050505 100%);
+  background:linear-gradient(to bottom,#000,#0b0b0b);
 }
 
 .hero h1{
-  background:linear-gradient(90deg,var(--gold-main),var(--gold-light));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
   margin-bottom:20px;
+  color:#d4af37;
 }
 
 .btn-gold,
 .btn-primary{
   display:inline-block;
-  padding:14px 32px;
-  background:linear-gradient(135deg,var(--gold-main),var(--gold-light));
+  margin-top:20px;
+  padding:14px 30px;
+  background:#d4af37;
   color:#000;
-  font-weight:600;
   border-radius:30px;
+  font-weight:600;
   text-decoration:none;
   transition:0.3s;
-  box-shadow:0 0 18px var(--gold-glow);
 }
 
 .btn-gold:hover,
 .btn-primary:hover{
-  transform:translateY(-3px);
-  box-shadow:0 0 30px var(--gold-glow);
+  background:#f1c84b;
 }
 
 /* =========================================
    SECTIONS
 ========================================= */
 section{
-  padding:100px 0;
+  padding:90px 0;
   text-align:center;
 }
 
-section h2{
-  margin-bottom:30px;
-  background:linear-gradient(90deg,var(--gold-main),var(--gold-light));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
 /* =========================================
-   COLLECTION CARDS
+   GRID SYSTEM (FIXES ALL CARD MISALIGNMENT)
 ========================================= */
-.card-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
-  margin-top:40px;
-}
-
-.card{
-  background:linear-gradient(145deg,#0d0d0d,#111);
-  border-radius:18px;
-  padding:20px;
-  border:1px solid rgba(212,175,55,0.15);
-  box-shadow:0 10px 30px rgba(0,0,0,0.6);
-  transition:0.4s;
-  text-align:center;
-}
-
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 15px 40px rgba(212,175,55,0.25);
-}
-
-.card img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:12px;
-  border:1px solid rgba(212,175,55,0.2);
-  box-shadow:0 0 20px rgba(212,175,55,0.2);
-  margin-bottom:15px;
-}
-
-/* =========================================
-   BRANCH CARDS
-========================================= */
+.card-grid,
 .branch-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -216,36 +156,45 @@ section h2{
   margin-top:40px;
 }
 
+/* =========================================
+   CARD STYLE (EQUAL HEIGHT + FIXED IMAGE)
+========================================= */
+.card,
 .branch-card{
-  background:#0f0f0f;
+  background:#111;
   padding:20px;
-  border-radius:18px;
+  border-radius:15px;
   border:1px solid rgba(212,175,55,0.15);
-  box-shadow:0 10px 30px rgba(0,0,0,0.6);
-  text-align:center;
-  transition:0.4s;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  height:100%;
+  transition:0.3s;
 }
 
+.card:hover,
 .branch-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 15px 35px rgba(212,175,55,0.25);
+  transform:translateY(-5px);
+  border-color:#d4af37;
 }
 
+/* FORCE ALL IMAGES SAME SIZE */
+.card img,
 .branch-card img{
   width:100%;
-  height:220px;
+  height:230px;
   object-fit:cover;
-  border-radius:12px;
-  border:1px solid rgba(212,175,55,0.2);
+  border-radius:10px;
   margin-bottom:15px;
 }
 
-/* CENTER BUTTON BELOW IMAGE */
-.btn-outline{
+/* FIX BUTTON ALIGNMENT */
+.card a,
+.branch-card a{
+  margin-top:auto;
   display:inline-block;
-  margin-top:12px;
-  padding:12px 26px;
-  background:linear-gradient(135deg,var(--gold-main),var(--gold-light));
+  padding:10px 22px;
+  background:#d4af37;
   color:#000;
   border-radius:25px;
   text-decoration:none;
@@ -253,8 +202,9 @@ section h2{
   transition:0.3s;
 }
 
-.btn-outline:hover{
-  box-shadow:0 0 20px var(--gold-glow);
+.card a:hover,
+.branch-card a:hover{
+  background:#f1c84b;
 }
 
 /* =========================================
@@ -262,10 +212,10 @@ section h2{
 ========================================= */
 .review-box{
   max-width:600px;
-  margin:30px auto;
-  padding:25px;
+  margin:25px auto;
+  padding:20px;
   background:#111;
-  border-radius:15px;
+  border-radius:12px;
   border:1px solid rgba(212,175,55,0.15);
 }
 
@@ -274,53 +224,50 @@ section h2{
 ========================================= */
 footer{
   background:#000;
-  padding:60px 20px 40px;
-  border-top:1px solid rgba(212,175,55,0.15);
+  padding:60px 20px;
+  border-top:1px solid rgba(212,175,55,0.2);
   text-align:center;
 }
 
 .footer-social{
   display:flex;
   justify-content:center;
-  gap:30px;
+  gap:25px;
   margin-bottom:20px;
 }
 
 .footer-social a{
-  width:60px;
-  height:60px;
+  width:55px;
+  height:55px;
   border-radius:50%;
-  background:linear-gradient(135deg,var(--gold-main),var(--gold-light));
+  background:#d4af37;
   display:flex;
   align-items:center;
   justify-content:center;
   color:#000;
-  font-size:26px;
+  font-size:22px;
   transition:0.3s;
-  box-shadow:0 0 15px rgba(212,175,55,0.4);
 }
 
 .footer-social a:hover{
-  transform:translateY(-5px);
-  box-shadow:0 0 25px rgba(212,175,55,0.6);
+  background:#f1c84b;
 }
 
 footer p{
-  font-size:14px;
   color:#aaa;
+  font-size:14px;
 }
 
 /* =========================================
-   MOBILE
+   MOBILE FIX
 ========================================= */
 @media(max-width:768px){
 
-  h1{font-size:32px;}
-  h2{font-size:26px;}
+  h1{font-size:30px;}
+  h2{font-size:24px;}
 
   .hero{
-    min-height:70vh;
-    padding:110px 20px 60px;
+    padding:120px 20px 60px;
   }
 
   section{
@@ -332,9 +279,11 @@ footer p{
     height:190px;
   }
 
-  .footer-social a{
-    width:55px;
-    height:55px;
-    font-size:22px;
+  .nav{
+    flex-wrap:wrap;
+  }
+
+  .nav a{
+    margin:10px;
   }
 }
