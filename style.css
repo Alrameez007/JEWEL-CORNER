@@ -1,5 +1,5 @@
 /* =========================================
-   JEWEL CORNER – FINAL STABLE LUXURY CSS
+   JEWEL CORNER – REFINED LUXURY VERSION
    Based EXACTLY on your HTML
 ========================================= */
 
@@ -19,7 +19,7 @@ html {
 
 body {
     background: #000;
-    color: #d4af37;
+    color: #ffffff; /* Content text white */
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
     line-height: 1.7;
@@ -37,12 +37,13 @@ body {
     margin: auto;
 }
 
-/* ===== HEADINGS ===== */
+/* ===== HEADINGS (ONLY GOLD) ===== */
 h1, h2, h3 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 600;
     letter-spacing: 1px;
     text-align: center;
+    color: #d4af37; /* Gold only for headings */
 }
 
 h1 {
@@ -58,6 +59,11 @@ h2 {
 h3 {
     font-size: 22px;
     margin-top: 18px;
+}
+
+/* ===== NORMAL TEXT WHITE ===== */
+p, span {
+    color: #ffffff;
 }
 
 /* =========================================
@@ -90,13 +96,13 @@ header {
 
 .nav a {
     text-decoration: none;
-    color: #d4af37;
+    color: #ffffff;
     font-size: 15px;
     transition: 0.3s;
 }
 
 .nav a:hover {
-    color: #fff;
+    color: #d4af37;
 }
 
 .cta-nav {
@@ -125,6 +131,7 @@ header {
     max-width: 700px;
     margin: auto;
     margin-bottom: 30px;
+    color: #ffffff;
 }
 
 /* ===== BUTTONS ===== */
@@ -136,7 +143,7 @@ header {
     border-radius: 30px;
     text-decoration: none;
     font-size: 14px;
-    margin: 8px;
+    margin: 8px auto;
     transition: 0.3s ease;
 }
 
@@ -146,7 +153,7 @@ header {
 }
 
 .btn-primary:hover {
-    background: #fff;
+    background: #ffffff;
 }
 
 .btn-secondary {
@@ -157,6 +164,15 @@ header {
 .btn-secondary:hover {
     background: #d4af37;
     color: #000;
+}
+
+/* ===== CENTER INSTAGRAM SECTION BUTTON ===== */
+section a.btn-primary {
+    display: inline-block;
+}
+
+section .container {
+    text-align: center;
 }
 
 /* =========================================
@@ -171,6 +187,7 @@ section p {
     max-width: 900px;
     margin: auto;
     text-align: center;
+    color: #ffffff;
 }
 
 /* =========================================
@@ -183,8 +200,6 @@ section p {
     gap: 35px;
     margin-top: 40px;
 }
-
-/* ===== CARD ===== */
 
 .product-card {
     background: #0d0d0d;
@@ -200,8 +215,6 @@ section p {
     border-color: #d4af37;
     box-shadow: 0 10px 30px rgba(212,175,55,0.15);
 }
-
-/* FIX IMAGE SIZE (VERY IMPORTANT) */
 
 .product-card img {
     width: 100%;
@@ -224,6 +237,10 @@ section p {
     text-align: center;
 }
 
+.testimonial p {
+    color: #ffffff;
+}
+
 /* =========================================
    FOOTER
 ========================================= */
@@ -233,6 +250,10 @@ footer {
     padding: 40px 0;
     text-align: center;
     border-top: 1px solid rgba(212,175,55,0.2);
+}
+
+footer p {
+    color: #ffffff;
 }
 
 .footer-social {
@@ -247,7 +268,7 @@ footer {
 }
 
 .footer-social a:hover {
-    color: #fff;
+    color: #ffffff;
 }
 
 /* =========================================
@@ -263,7 +284,6 @@ iframe {
 ========================================= */
 
 @media (max-width: 1024px) {
-
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
     }
