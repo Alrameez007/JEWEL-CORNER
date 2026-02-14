@@ -1,21 +1,28 @@
-// =======================
-// PRELOADER
-// =======================
-window.addEventListener("load", function() {
-  document.getElementById("preloader").style.display = "none";
-});
+// ============================
+// HERO AUTO SLIDER
+// ============================
+let slides = document.querySelectorAll(".slide");
+let index = 0;
 
-// =======================
-// NAVBAR SCROLL
-// =======================
+function nextSlide() {
+  slides[index].classList.remove("active");
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}
+
+setInterval(nextSlide, 4000);
+
+// ============================
+// NAVBAR SCROLL EFFECT
+// ============================
 window.addEventListener("scroll", function() {
   const header = document.querySelector("header");
   header.classList.toggle("scrolled", window.scrollY > 50);
 });
 
-// =======================
+// ============================
 // SCROLL REVEAL
-// =======================
+// ============================
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
@@ -28,16 +35,20 @@ document.querySelectorAll(".collection-card, .branch-card").forEach(el => {
   observer.observe(el);
 });
 
-// =======================
-// CUSTOM CURSOR
-// =======================
-const cursor = document.querySelector(".cursor");
-const follower = document.querySelector(".cursor-follower");
+// ============================
+// PAGE TRANSITION (for links)
+// ============================
+const links = document.querySelectorAll("a");
 
-document.addEventListener("mousemove", e => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
+links.forEach(link => {
+  link.addEventListener("click", function(e) {
+    if(this.getAttribute("href").startsWith("#")) return;
 
-  follower.style.left = e.clientX - 15 + "px";
-  follower.style.top = e.clientY - 15 + "px";
+    e.preventDefault();
+    document.querySelector(".page-transition").classList.add("active");
+
+    setTimeout(() => {
+      window.location = this.href;
+    }, 800);
+  });
 });
