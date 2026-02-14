@@ -412,3 +412,37 @@ footer {
   z-index: -1;
   background: #0b0b0f;
 }
+.mouse-glow {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+.tilt-card {
+  transition: transform 0.2s ease;
+  transform-style: preserve-3d;
+}
+.gold-border {
+  position: relative;
+  display: inline-block;
+}
+
+.gold-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg, gold, #d4af37) 1;
+  animation: borderGlow 3s linear infinite;
+}
+
+@keyframes borderGlow {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
