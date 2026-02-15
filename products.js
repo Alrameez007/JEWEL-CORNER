@@ -1,29 +1,6 @@
 /* =====================================
    JEWEL CORNER – COMPLETE PRODUCT SYSTEM
 ===================================== */
-
-// Example product data (EDIT THIS ONLY to control products)
-const products = [
-    {
-        name: "Gold Plated Ring",
-        price: "25 OMR",
-        image: "images/rings.jpg",
-        category: "rings"
-    },
-    {
-        name: "Luxury Bracelet",
-        price: "30 OMR",
-        image: "images/bracelet.jpg",
-        category: "bracelets"
-    },
-    {
-        name: "Elegant Earrings",
-        price: "18 OMR",
-        image: "images/earrings.jpg",
-        category: "earrings"
-    }
-];
-
 const container = document.getElementById("productsContainer");
 const pageTitle = document.querySelector(".section-title");
 const filterButtons = document.querySelector(".filter-buttons");
