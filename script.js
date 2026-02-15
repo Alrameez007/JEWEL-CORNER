@@ -178,3 +178,52 @@ window.addEventListener("scroll", function () {
 
     lastScrollTop = scrollTop;
 });
+/* ===============================
+   FILTER BY CATEGORY + DATE
+================================ */
+
+const categoryFilter = document.getElementById("categoryFilter");
+const dateSort = document.getElementById("dateSort");
+const productContainer = document.querySelector(".products-container"); // change if needed
+const products = document.querySelectorAll(".product-card");
+
+function filterAndSortProducts() {
+  const selectedCategory = categoryFilter.value;
+  const selectedSort = dateSort.value;
+
+  let productArray = Array.from(products);
+
+  // Filter by category
+  productArray.forEach(product => {
+    const category = product.getAttribute("data-category");
+
+    if (selectedCategory === "all" || category === selectedCategory) {
+      product.style.display = "block";
+    } else {
+      product.style.display = "none";
+    }
+  });
+
+  // Sort by date
+  productArray.sort((a, b) => {
+    const dateA = new Date(a.getAttribute("data-date"));
+    const dateB = new Date(b.getAttribute("data-date"));
+
+    if (selectedSort === "newest") {
+      return dateB - dateA;
+    } else {
+      return dateA - dateB;
+    }
+  });
+
+  // Re-append in sorted order
+  productArray.forEach(product => {
+    productContainer.appendChild(product);
+  });
+}
+
+if (categoryFilter && dateSort) {
+  categoryFilter.addEventListener("change", filterAndSortProducts);
+  dateSort.addEventListener("change", filterAndSortProducts);
+}
+
