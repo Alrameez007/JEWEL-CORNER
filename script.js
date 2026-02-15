@@ -151,5 +151,31 @@ document.addEventListener("DOMContentLoaded", function () {
       productContainer.appendChild(card);
     });
   }
+  /* ===== Hide Header On Scroll ===== */
+let lastScrollTop = 0;
+const header = document.querySelector("header");
+
+window.addEventListener("scroll", function () {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Add background effect when scrolling
+    if (scrollTop > 50) {
+        header.classList.add("scrolled");
+    } else {
+        header.classList.remove("scrolled");
+    }
+
+    // Hide on scroll down
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+        header.classList.add("hide-header");
+    } 
+    // Show on scroll up
+    else {
+        header.classList.remove("hide-header");
+    }
+
+    lastScrollTop = scrollTop;
+});
+
 
 });
