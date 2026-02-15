@@ -151,7 +151,9 @@ document.addEventListener("DOMContentLoaded", function () {
       productContainer.appendChild(card);
     });
   }
-  /* ===== Hide Header On Scroll ===== */
+});
+
+/* ===== Hide Header On Scroll ===== */
 let lastScrollTop = 0;
 const header = document.querySelector("header");
 
@@ -175,7 +177,4 @@ window.addEventListener("scroll", function () {
     }
 
     lastScrollTop = scrollTop;
-});
-
-
 });
