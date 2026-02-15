@@ -23,6 +23,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+    /* ===============================
+     SMART HEADER HIDE ON SCROLL
+  =============================== */
+
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener("scroll", function () {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling Down
+      header.classList.add("hide-header");
+    } else {
+      // Scrolling Up
+      header.classList.remove("hide-header");
+    }
+
+    lastScrollY = currentScrollY;
+  });
+
   /* ===============================
      SMOOTH SECTION REVEAL
   =============================== */
