@@ -1,3 +1,212 @@
+/* =====================================
+   JEWEL CORNER – COMPLETE PRODUCT SYSTEM
+===================================== */
+
+// Example product data (EDIT THIS ONLY to control products)
+const products = [
+    {
+        name: "Gold Plated Ring",
+        price: "25 OMR",
+        image: "images/rings.jpg",
+        category: "rings"
+    },
+    {
+        name: "Luxury Bracelet",
+        price: "30 OMR",
+        image: "images/bracelet.jpg",
+        category: "bracelets"
+    },
+    {
+        name: "Elegant Earrings",
+        price: "18 OMR",
+        image: "images/earrings.jpg",
+        category: "earrings"
+    }
+];
+
+const container = document.getElementById("productsContainer");
+const pageTitle = document.querySelector(".section-title");
+const filterButtons = document.querySelector(".filter-buttons");
+const productsSection = document.querySelector(".products-section");
+
+/* ================================
+   BREADCRUMB
+================================ */
+
+let breadcrumb = document.createElement("div");
+breadcrumb.style.color = "white";
+breadcrumb.style.marginBottom = "15px";
+breadcrumb.style.fontSize = "14px";
+
+productsSection.querySelector(".container").prepend(breadcrumb);
+
+/* ================================
+   FADE ANIMATION
+================================ */
+
+function fadeContent(callback) {
+    container.style.opacity = 0;
+    setTimeout(() => {
+        callback();
+        container.style.opacity = 1;
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 200);
+}
+
+/* ================================
+   DISPLAY PRODUCTS
+================================ */
+
+function displayProducts(items) {
+
+    fadeContent(() => {
+
+        // Shimmer loading
+        container.innerHTML = "";
+        for (let i = 0; i < 6; i++) {
+            const shimmer = document.createElement("div");
+            shimmer.className = "product-card";
+            shimmer.style.height = "250px";
+            shimmer.style.background =
+                "linear-gradient(90deg,#111 25%,#1a1a1a 50%,#111 75%)";
+            shimmer.style.backgroundSize = "200% 100%";
+            shimmer.style.animation = "shimmer 1.2s infinite";
+            shimmer.style.borderRadius = "10px";
+            container.appendChild(shimmer);
+        }
+
+        setTimeout(() => {
+
+            container.innerHTML = "";
+
+            if (items.length === 0) {
+                container.innerHTML =
+                    "<p style='color:white;'>No products found.</p>";
+                return;
+            }
+
+            items.forEach(product => {
+
+                const card = document.createElement("div");
+                card.className = "product-card";
+                card.style.cursor = "pointer";
+                card.style.transition =
+                    "transform 0.3s ease, box-shadow 0.3s ease";
+                card.style.position = "relative";
+
+                card.innerHTML = `
+                    <div class="wishlist-heart" style="
+                        position:absolute;
+                        top:10px;
+                        right:10px;
+                        font-size:20px;
+                        cursor:pointer;
+                        color:white;
+                        transition:0.3s;
+                    ">♡</div>
+
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.price}</p>
+                `;
+
+                // Hover glow
+                card.addEventListener("mouseenter", () => {
+                    card.style.transform = "translateY(-8px)";
+                    card.style.boxShadow =
+                        "0 20px 40px rgba(255,215,0,0.2)";
+                });
+
+                card.addEventListener("mouseleave", () => {
+                    card.style.transform = "translateY(0)";
+                    card.style.boxShadow = "none";
+                });
+
+                // Wishlist toggle
+                const heart = card.querySelector(".wishlist-heart");
+                heart.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    if (heart.textContent === "♡") {
+                        heart.textContent = "♥";
+                        heart.style.color = "gold";
+                    } else {
+                        heart.textContent = "♡";
+                        heart.style.color = "white";
+                    }
+                });
+
+                // Open modal
+                card.addEventListener("click", () => openModal(product));
+
+                container.appendChild(card);
+            });
+
+        }, 500);
+    });
+}
+
+/* Shimmer animation */
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}`;
+document.head.appendChild(style);
+
+/* ================================
+   FILTER PRODUCTS
+================================ */
+
+function filterProducts(category) {
+
+    if (filterButtons) filterButtons.style.display = "flex";
+
+    if (category === "all") {
+        displayProducts(products);
+        pageTitle.textContent = "Our Collection";
+        breadcrumb.innerHTML = "Home / All Products";
+    } else {
+        const filtered =
+            products.filter(p => p.category === category);
+
+        displayProducts(filtered);
+
+        const formatted =
+            category.charAt(0).toUpperCase() +
+            category.slice(1);
+
+        pageTitle.textContent = formatted;
+        breadcrumb.innerHTML = "Home / " + formatted;
+    }
+}
+
+/* ================================
+   CATEGORY FROM URL
+================================ */
+
+function getCategoryFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("category");
+}
+
+/* ================================
+   AUTO LOAD
+================================ */
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    container.style.transition = "opacity 0.2s ease";
+
+    const categoryFromURL = getCategoryFromURL();
+
+    if (categoryFromURL) {
+        filterProducts(categoryFromURL);
+    } else {
+        filterProducts("all");
+    }
+});
+
 /* ================================
    LUXURY PRODUCT MODAL SYSTEM
 ================================ */
@@ -52,7 +261,6 @@ function openModal(product) {
     document.getElementById("modalPrice").textContent = product.price;
 
     modal.style.display = "flex";
-
     setTimeout(() => {
         modal.style.opacity = "1";
         document.getElementById("modalContent").style.transform = "scale(1)";
@@ -71,4 +279,17 @@ modal.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();
 });
 
-document.getElementById("closeModal").addEventListener("click", closeModal);
+document.getElementById("closeModal")
+    .addEventListener("click", closeModal);
+
+// Swipe to close
+let startY = 0;
+
+modal.addEventListener("touchstart", (e) => {
+    startY = e.touches[0].clientY;
+});
+
+modal.addEventListener("touchmove", (e) => {
+    const moveY = e.touches[0].clientY;
+    if (moveY - startY > 100) closeModal();
+});
