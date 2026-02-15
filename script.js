@@ -226,4 +226,74 @@ if (categoryFilter && dateSort) {
   categoryFilter.addEventListener("change", filterAndSortProducts);
   dateSort.addEventListener("change", filterAndSortProducts);
 }
+/* ===============================
+   PREMIUM FILTER + SORT SYSTEM
+================================ */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const sortButtons = document.querySelectorAll(".sort-btn");
+    const products = document.querySelectorAll(".product-card");
+    const productContainer = document.querySelector(".product-grid");
+
+    let currentCategory = "all";
+    let currentSort = "newest";
+
+    function updateProducts() {
+
+        let productArray = Array.from(products);
+
+        // FILTER
+        productArray.forEach(product => {
+            const category = product.getAttribute("data-category");
+
+            if (currentCategory === "all" || category === currentCategory) {
+                product.classList.remove("hide");
+            } else {
+                product.classList.add("hide");
+            }
+        });
+
+        // SORT
+        productArray.sort((a, b) => {
+            const dateA = new Date(a.getAttribute("data-date"));
+            const dateB = new Date(b.getAttribute("data-date"));
+
+            return currentSort === "newest"
+                ? dateB - dateA
+                : dateA - dateB;
+        });
+
+        // Re-append sorted
+        productArray.forEach(product => {
+            productContainer.appendChild(product);
+        });
+    }
+
+    // Category click
+    filterButtons.forEach(btn => {
+        btn.addEventListener("click", function () {
+
+            filterButtons.forEach(b => b.classList.remove("active"));
+            this.classList.add("active");
+
+            currentCategory = this.getAttribute("data-category");
+            updateProducts();
+        });
+    });
+
+    // Sort click
+    sortButtons.forEach(btn => {
+        btn.addEventListener("click", function () {
+
+            sortButtons.forEach(b => b.classList.remove("active"));
+            this.classList.add("active");
+
+            currentSort = this.getAttribute("data-sort");
+            updateProducts();
+        });
+    });
+
+});
 
