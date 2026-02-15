@@ -177,4 +177,26 @@ window.addEventListener("scroll", function () {
     }
 
     lastScrollTop = scrollTop;
+  /* =========================================
+   LUXURY PRODUCT SEARCH
+========================================= */
+
+const searchInput = document.getElementById("luxurySearchInput");
+
+if (searchInput) {
+    searchInput.addEventListener("keyup", function () {
+        const searchValue = this.value.toLowerCase();
+        const products = document.querySelectorAll(".product-card");
+
+        products.forEach(product => {
+            const text = product.innerText.toLowerCase();
+
+            if (text.includes(searchValue)) {
+                product.style.display = "block";
+            } else {
+                product.style.display = "none";
+            }
+        });
+    });
+}
 });
