@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Collection | Jewel Corner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Use your existing CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <img src="logo.png" alt="Jewel Corner">
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Collections</a>
+        </nav>
+    </div>
+</header>
+
+<section class="products-section">
+    <div class="container">
+        <h2 class="section-title">Our Collection</h2>
+
+        <!-- Category Filter -->
+        <div class="filter-buttons">
+            <button onclick="filterProducts('all')">All</button>
+            <button onclick="filterProducts('rings')">Rings</button>
+            <button onclick="filterProducts('watches')">Watches</button>
+            <button onclick="filterProducts('perfumes')">Perfumes</button>
+            <button onclick="filterProducts('souvenirs')">Souvenirs</button>
+        </div>
+
+        <!-- Products Will Load Here -->
+        <div class="products-grid" id="productsContainer"></div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© 2026 Jewel Corner. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="products-data.js"></script>
+<script src="products.js"></script>
+
+</body>
+</html>
+
