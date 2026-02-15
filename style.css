@@ -358,10 +358,15 @@ header.scrolled {
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
 }
-/* Two columns only on products page */
 body.products-page .products-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 20px;
+}
+
+@media (min-width: 992px) {
+    body.products-page .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
