@@ -27,6 +27,32 @@ function displayProducts(items) {
     });
 }
 
+// 🔥 NEW: Show Jewellery Sub Categories
+function showJewellerySubCategories() {
+    container.innerHTML = `
+        <div class="product-card">
+            <a href="products.html?category=rings" style="text-decoration:none;color:inherit;">
+                <img src="images/jewellery.jpg" alt="Rings">
+                <h3>Rings</h3>
+            </a>
+        </div>
+
+        <div class="product-card">
+            <a href="products.html?category=bracelets" style="text-decoration:none;color:inherit;">
+                <img src="images/jewellery.jpg" alt="Bracelets">
+                <h3>Bracelets</h3>
+            </a>
+        </div>
+
+        <div class="product-card">
+            <a href="products.html?category=earrings" style="text-decoration:none;color:inherit;">
+                <img src="images/jewellery.jpg" alt="Earrings">
+                <h3>Earrings</h3>
+            </a>
+        </div>
+    `;
+}
+
 // Filter function (manual button click)
 function filterProducts(category) {
     if (category === "all") {
@@ -41,6 +67,12 @@ function filterProducts(category) {
 window.addEventListener("DOMContentLoaded", () => {
     const categoryFromURL = getCategoryFromURL();
 
+    // 👑 SPECIAL CASE FOR JEWELLERY
+    if (categoryFromURL === "jewellery") {
+        showJewellerySubCategories();
+        return;
+    }
+
     if (categoryFromURL) {
         const filtered = products.filter(p => p.category === categoryFromURL);
         displayProducts(filtered);
@@ -48,4 +80,3 @@ window.addEventListener("DOMContentLoaded", () => {
         displayProducts(products);
     }
 });
-
