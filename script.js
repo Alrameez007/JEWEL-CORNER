@@ -68,5 +68,68 @@ document.addEventListener("DOMContentLoaded", function () {
       card.style.transform = "rotateX(0) rotateY(0)";
     });
   });
+  /* ===============================
+     DYNAMIC COLLECTION PRODUCTS
+  =============================== */
+
+  const productContainer = document.getElementById("product-container");
+  const categoryTitle = document.getElementById("category-title");
+
+  if (productContainer) {
+
+    const products = [
+      {
+        name: "Royal Gold Necklace",
+        category: "jewellery",
+        image: "images/jewellery.jpg"
+      },
+      {
+        name: "Luxury Ladies Watch",
+        category: "watches",
+        image: "images/watches.jpg"
+      },
+      {
+        name: "Premium Oud Perfume",
+        category: "perfumes",
+        image: "images/perfume.jpg"
+      },
+      {
+        name: "Elegant Gift Souvenir",
+        category: "souvenirs",
+        image: "images/souvenir.jpg"
+      }
+    ];
+
+    function getCategoryFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("category");
+    }
+
+    const selectedCategory = getCategoryFromURL();
+
+    if (selectedCategory && categoryTitle) {
+      categoryTitle.textContent = selectedCategory.toUpperCase();
+    }
+
+    const filteredProducts = selectedCategory
+      ? products.filter(p => p.category === selectedCategory)
+      : products;
+
+    filteredProducts.forEach(product => {
+
+      const card = document.createElement("div");
+      card.classList.add("product-card");
+
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <a href="https://wa.me/96877147645" target="_blank" class="btn-secondary">
+          Enquire on WhatsApp
+        </a>
+      `;
+
+      productContainer.appendChild(card);
+    });
+  }
 
 });
