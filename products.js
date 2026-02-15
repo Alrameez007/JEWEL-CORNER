@@ -165,6 +165,23 @@ function filterProducts(category) {
         pageTitle.textContent = formatted;
         breadcrumb.innerHTML = "Home / " + formatted;
     }
+   function filterSubcategory(category, subcategory) {
+    const filtered = getActiveProducts().filter(p =>
+        p.category === category &&
+        p.subcategory === subcategory
+    );
+
+    displayProducts(filtered);
+
+    const formatted =
+        subcategory.charAt(0).toUpperCase() +
+        subcategory.slice(1);
+
+    pageTitle.textContent = formatted;
+    breadcrumb.innerHTML =
+        "Home / " + category + " / " + formatted;
+}
+
 }
 
 /* ================================
@@ -175,12 +192,64 @@ function getCategoryFromURL() {
     const params = new URLSearchParams(window.location.search);
     return params.get("category");
 }
+function buildCategorySidebar() {
+    const sidebar = document.getElementById("categorySidebar");
+    if (!sidebar) return;
+
+    const categories = {};
+
+    getActiveProducts().forEach(product => {
+        if (!categories[product.category]) {
+            categories[product.category] = new Set();
+        }
+        categories[product.category].add(product.subcategory);
+    });
+
+    sidebar.innerHTML = "";
+
+    for (let category in categories) {
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "category-block";
+
+        const title = document.createElement("h3");
+        title.textContent =
+            category.charAt(0).toUpperCase() +
+            category.slice(1);
+
+        title.addEventListener("click", () => {
+            wrapper.classList.toggle("category-active");
+        });
+
+        const subList = document.createElement("ul");
+        subList.className = "subcategory-list";
+
+        categories[category].forEach(sub => {
+            const li = document.createElement("li");
+            li.textContent =
+                sub.charAt(0).toUpperCase() +
+                sub.slice(1);
+
+            li.addEventListener("click", () => {
+                filterSubcategory(category, sub);
+            });
+
+            subList.appendChild(li);
+        });
+
+        wrapper.appendChild(title);
+        wrapper.appendChild(subList);
+        sidebar.appendChild(wrapper);
+    }
+}
 
 /* ================================
    AUTO LOAD
 ================================ */
 
 window.addEventListener("DOMContentLoaded", () => {
+   
+   buildCategorySidebar();
 
     container.style.transition = "opacity 0.2s ease";
 
