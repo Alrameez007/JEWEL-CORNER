@@ -48,3 +48,14 @@ window.addEventListener("DOMContentLoaded", () => {
         displayProducts(products);
     }
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get("category");
+
+    if (category) {
+        filterProducts(category);
+    } else {
+        filterProducts("all");
+    }
+});
+
