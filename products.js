@@ -1,82 +1,74 @@
-const container = document.getElementById("productsContainer");
+/* ================================
+   LUXURY PRODUCT MODAL SYSTEM
+================================ */
 
-// Get category from URL
-function getCategoryFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("category");
+const modal = document.createElement("div");
+modal.style.position = "fixed";
+modal.style.top = "0";
+modal.style.left = "0";
+modal.style.width = "100%";
+modal.style.height = "100%";
+modal.style.background = "rgba(0,0,0,0.8)";
+modal.style.display = "none";
+modal.style.justifyContent = "center";
+modal.style.alignItems = "center";
+modal.style.zIndex = "9999";
+modal.style.opacity = "0";
+modal.style.transition = "opacity 0.3s ease";
+
+modal.innerHTML = `
+    <div id="modalContent" style="
+        background:#111;
+        padding:30px;
+        border-radius:12px;
+        max-width:400px;
+        width:90%;
+        text-align:center;
+        color:white;
+        position:relative;
+        transform:scale(0.8);
+        transition:transform 0.3s ease;
+    ">
+        <span id="closeModal" style="
+            position:absolute;
+            top:10px;
+            right:15px;
+            cursor:pointer;
+            font-size:20px;
+            color:gold;
+        ">✕</span>
+
+        <img id="modalImage" src="" style="width:100%;border-radius:8px;margin-bottom:15px;">
+        <h3 id="modalTitle"></h3>
+        <p id="modalPrice" style="color:gold;margin-top:10px;"></p>
+    </div>
+`;
+
+document.body.appendChild(modal);
+
+function openModal(product) {
+    document.getElementById("modalImage").src = product.image;
+    document.getElementById("modalTitle").textContent = product.name;
+    document.getElementById("modalPrice").textContent = product.price;
+
+    modal.style.display = "flex";
+
+    setTimeout(() => {
+        modal.style.opacity = "1";
+        document.getElementById("modalContent").style.transform = "scale(1)";
+    }, 10);
 }
 
-// Display products
-function displayProducts(items) {
-    container.innerHTML = "";
-
-    if (items.length === 0) {
-        container.innerHTML = "<p style='color:white;'>No products found.</p>";
-        return;
-    }
-
-    items.forEach(product => {
-        const productCard = `
-            <div class="product-card">
-                <img src="${product.image}" alt="${product.name}">
-                <h3>${product.name}</h3>
-                <p>${product.price}</p>
-            </div>
-        `;
-        container.innerHTML += productCard;
-    });
+function closeModal() {
+    modal.style.opacity = "0";
+    document.getElementById("modalContent").style.transform = "scale(0.8)";
+    setTimeout(() => {
+        modal.style.display = "none";
+    }, 300);
 }
 
-// 🔥 NEW: Show Jewellery Sub Categories
-function showJewellerySubCategories() {
-    container.innerHTML = `
-        <div class="product-card">
-            <a href="products.html?category=rings" style="text-decoration:none;color:inherit;">
-                <img src="images/jewellery.jpg" alt="Rings">
-                <h3>Rings</h3>
-            </a>
-        </div>
-
-        <div class="product-card">
-            <a href="products.html?category=bracelets" style="text-decoration:none;color:inherit;">
-                <img src="images/jewellery.jpg" alt="Bracelets">
-                <h3>Bracelets</h3>
-            </a>
-        </div>
-
-        <div class="product-card">
-            <a href="products.html?category=earrings" style="text-decoration:none;color:inherit;">
-                <img src="images/jewellery.jpg" alt="Earrings">
-                <h3>Earrings</h3>
-            </a>
-        </div>
-    `;
-}
-
-// Filter function (manual button click)
-function filterProducts(category) {
-    if (category === "all") {
-        displayProducts(products);
-    } else {
-        const filtered = products.filter(p => p.category === category);
-        displayProducts(filtered);
-    }
-}
-
-// Auto-load correct category on page open
-window.addEventListener("DOMContentLoaded", () => {
-    const categoryFromURL = getCategoryFromURL();
-
-    // 👑 SPECIAL CASE FOR JEWELLERY
-    if (categoryFromURL === "jewellery") {
-        showJewellerySubCategories();
-        return;
-    }
-
-    if (categoryFromURL) {
-        const filtered = products.filter(p => p.category === categoryFromURL);
-        displayProducts(filtered);
-    } else {
-        displayProducts(products);
-    }
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
 });
+
+document.getElementById("closeModal").addEventListener("click", closeModal);
