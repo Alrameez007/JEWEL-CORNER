@@ -1,3 +1,9 @@
+// =========================
+// DATA SOURCE CONTROLLER
+// =========================
+
+let productSource = products;
+
 /* =====================================
    JEWEL CORNER – COMPLETE PRODUCT SYSTEM
 ===================================== */
@@ -130,6 +136,9 @@ style.innerHTML = `
     100% { background-position: 200% 0; }
 }`;
 document.head.appendChild(style);
+function getActiveProducts() {
+    return productSource.filter(product => product.status === "active");
+}
 
 /* ================================
    FILTER PRODUCTS
@@ -140,12 +149,12 @@ function filterProducts(category) {
     if (filterButtons) filterButtons.style.display = "flex";
 
     if (category === "all") {
-        displayProducts(products);
+        displayProducts(productSource);
         pageTitle.textContent = "Our Collection";
         breadcrumb.innerHTML = "Home / All Products";
     } else {
         const filtered =
-            products.filter(p => p.category === category);
+            getActiveProducts().filter(p => p.category === category);
 
         displayProducts(filtered);
 
@@ -193,9 +202,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
             const searchValue = this.value.toLowerCase();
 
-            const filtered = products.filter(product =>
-                product.name.toLowerCase().includes(searchValue)
-            );
+            const filtered = getActiveProducts().filter(product =>
+                product.name.toLowerCase().includes(searchValue));
 
             displayProducts(filtered);
         });
