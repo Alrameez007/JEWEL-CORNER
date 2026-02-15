@@ -182,6 +182,25 @@ window.addEventListener("DOMContentLoaded", () => {
     } else {
         filterProducts("all");
     }
+
+    // =========================
+    // SEARCH FUNCTIONALITY
+    // =========================
+    const searchInput = document.getElementById("searchInput");
+
+    if (searchInput) {
+        searchInput.addEventListener("input", function () {
+
+            const searchValue = this.value.toLowerCase();
+
+            const filtered = products.filter(product =>
+                product.name.toLowerCase().includes(searchValue)
+            );
+
+            displayProducts(filtered);
+        });
+    }
+
 });
 
 /* ================================
