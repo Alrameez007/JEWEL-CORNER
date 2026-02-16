@@ -327,3 +327,13 @@ iframe {
         height: 220px;
     }
 }
+a {
+    text-decoration: none !important;
+}
+h1 a,
+h2 a,
+h3 a {
+    text-decoration: none !important;
+    color: inherit;
+}
+
