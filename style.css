@@ -19,7 +19,7 @@ html {
 
 body {
     background: #F4F0E4;
-    color: #ffffff; /* Content text white */
+    color: #000; /* Content text white */
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
     line-height: 1.7;
@@ -63,7 +63,7 @@ h3 {
 
 /* ===== NORMAL TEXT WHITE ===== */
 p, span {
-    color: #ffffff;
+    color: #000;
 }
 
 /* =========================================
@@ -131,7 +131,7 @@ header {
     max-width: 700px;
     margin: auto;
     margin-bottom: 30px;
-    color: #ffffff;
+    color: #000;
 }
 
 /* ===== BUTTONS ===== */
@@ -202,7 +202,7 @@ section p {
 }
 
 .product-card {
-    background: #0d0d0d;
+    background: #ffffff;
     border: 1px solid rgba(212,175,55,0.25);
     border-radius: 18px;
     padding: 20px;
@@ -229,7 +229,7 @@ section p {
 ========================================= */
 
 .testimonial {
-    background: #0d0d0d;
+    background: #ffffff;
     border: 1px solid rgba(212,175,55,0.25);
     padding: 25px;
     border-radius: 15px;
@@ -238,7 +238,7 @@ section p {
 }
 
 .testimonial p {
-    color: #ffffff;
+    color: #000;
 }
 
 /* =========================================
@@ -253,7 +253,7 @@ footer {
 }
 
 footer p {
-    color: #ffffff;
+    color: #000;
 }
 
 .footer-social {
@@ -268,7 +268,7 @@ footer p {
 }
 
 .footer-social a:hover {
-    color: #ffffff;
+    color: #000;
 }
 
 /* =========================================
