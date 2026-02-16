@@ -18,8 +18,8 @@ html {
 }
 
 body {
-    background: #000;
-    color: #ffffff; /* Content text white */
+    background: #F4F0E4; /* Main base color */
+    color: #2b2b2b; /* Elegant dark text */
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
     line-height: 1.7;
@@ -37,13 +37,13 @@ body {
     margin: auto;
 }
 
-/* ===== HEADINGS (ONLY GOLD) ===== */
+/* ===== HEADINGS (GOLD PREMIUM) ===== */
 h1, h2, h3 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 600;
     letter-spacing: 1px;
     text-align: center;
-    color: #d4af37; /* Gold only for headings */
+    color: #C6A14A; /* Premium gold */
 }
 
 h1 {
@@ -61,37 +61,21 @@ h3 {
     margin-top: 18px;
 }
 
-/* ===== NORMAL TEXT WHITE ===== */
+/* ===== NORMAL TEXT ===== */
 p, span {
-    color: #ffffff;
+    color: #2b2b2b;
 }
 
-/* =========================================
-   HEADER
-========================================= */
-
+/* ================= HEADER ================= */
 header {
-    background: #000;
-    border-bottom: 1px solid rgba(212,175,55,0.2);
-    position: sticky;
+    background: rgba(0, 0, 0, 0.85);
+    border-bottom: 1px solid rgba(198,161,74,0.4);
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
+    transition: transform 0.4s ease, background 0.3s ease;
     z-index: 1000;
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 0;
-}
-
-.logo img {
-    height: 55px;
-}
-
-.nav {
-    display: flex;
-    gap: 30px;
 }
 
 .nav a {
@@ -102,40 +86,23 @@ header {
 }
 
 .nav a:hover {
-    color: #d4af37;
+    color: #C6A14A;
 }
 
 .cta-nav {
-    border: 1px solid #d4af37;
-    padding: 6px 16px;
-    border-radius: 25px;
+    border: 1px solid #C6A14A;
 }
 
 .menu-toggle {
-    display: none;
-    font-size: 26px;
-    color: #d4af37;
-    cursor: pointer;
+    color: #C6A14A;
 }
 
-/* =========================================
-   HERO
-========================================= */
-
-.hero {
-    padding: 120px 0;
-    text-align: center;
-}
-
+/* ================= HERO ================= */
 .hero p {
-    max-width: 700px;
-    margin: auto;
-    margin-bottom: 30px;
-    color: #ffffff;
+    color: #3a3a3a;
 }
 
-/* ===== BUTTONS ===== */
-
+/* ================= BUTTONS ================= */
 .btn-primary,
 .btn-secondary {
     display: inline-block;
@@ -148,37 +115,25 @@ header {
 }
 
 .btn-primary {
-    background: #d4af37;
+    background: #C6A14A;
     color: #000;
 }
 
 .btn-primary:hover {
-    background: #ffffff;
+    background: #b89135;
 }
 
 .btn-secondary {
-    border: 1px solid #d4af37;
-    color: #d4af37;
+    border: 1px solid #C6A14A;
+    color: #C6A14A;
 }
 
 .btn-secondary:hover {
-    background: #d4af37;
+    background: #C6A14A;
     color: #000;
 }
 
-/* ===== CENTER INSTAGRAM SECTION BUTTON ===== */
-section a.btn-primary {
-    display: inline-block;
-}
-
-section .container {
-    text-align: center;
-}
-
-/* =========================================
-   SECTIONS
-========================================= */
-
+/* ================= SECTIONS ================= */
 section {
     padding: 100px 0;
 }
@@ -187,13 +142,9 @@ section p {
     max-width: 900px;
     margin: auto;
     text-align: center;
-    color: #ffffff;
 }
 
-/* =========================================
-   PRODUCT GRID (Collections + Branches)
-========================================= */
-
+/* ================= PRODUCT GRID ================= */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -202,8 +153,8 @@ section p {
 }
 
 .product-card {
-    background: #0d0d0d;
-    border: 1px solid rgba(212,175,55,0.25);
+    background: #ffffff;
+    border: 1px solid rgba(198,161,74,0.3);
     border-radius: 18px;
     padding: 20px;
     text-align: center;
@@ -212,8 +163,8 @@ section p {
 
 .product-card:hover {
     transform: translateY(-8px);
-    border-color: #d4af37;
-    box-shadow: 0 10px 30px rgba(212,175,55,0.15);
+    border-color: #C6A14A;
+    box-shadow: 0 10px 30px rgba(198,161,74,0.2);
 }
 
 .product-card img {
@@ -221,47 +172,32 @@ section p {
     height: 260px;
     object-fit: cover;
     border-radius: 14px;
-    display: block;
 }
 
-/* =========================================
-   TESTIMONIAL
-========================================= */
-
+/* ================= TESTIMONIAL ================= */
 .testimonial {
-    background: #0d0d0d;
-    border: 1px solid rgba(212,175,55,0.25);
+    background: #ffffff;
+    border: 1px solid rgba(198,161,74,0.3);
     padding: 25px;
     border-radius: 15px;
     margin-bottom: 25px;
     text-align: center;
 }
 
-.testimonial p {
-    color: #ffffff;
-}
-
-/* =========================================
-   FOOTER
-========================================= */
-
+/* ================= FOOTER ================= */
 footer {
     background: #000;
     padding: 40px 0;
     text-align: center;
-    border-top: 1px solid rgba(212,175,55,0.2);
+    border-top: 1px solid rgba(198,161,74,0.4);
 }
 
 footer p {
     color: #ffffff;
 }
 
-.footer-social {
-    margin-bottom: 20px;
-}
-
 .footer-social a {
-    color: #d4af37;
+    color: #C6A14A;
     margin: 0 12px;
     font-size: 22px;
     transition: 0.3s;
@@ -271,18 +207,37 @@ footer p {
     color: #ffffff;
 }
 
-/* =========================================
-   MAP FIX
-========================================= */
-
-iframe {
-    display: block;
+/* ================= SEARCH BAR ================= */
+.search-box input {
+    border: 1px solid #C6A14A;
+    background: #ffffff;
+    color: #2b2b2b;
 }
 
-/* =========================================
-   RESPONSIVE
-========================================= */
+.search-box input:focus {
+    border-color: #b89135;
+    box-shadow: 0 0 15px rgba(198,161,74,0.3);
+}
 
+/* ================= CATEGORY SIDEBAR ================= */
+.category-sidebar {
+    background: #ffffff;
+    border: 1px solid rgba(198,161,74,0.3);
+}
+
+.category-sidebar h3 {
+    color: #C6A14A;
+}
+
+.subcategory-list li {
+    color: #2b2b2b;
+}
+
+.subcategory-list li:hover {
+    color: #C6A14A;
+}
+
+/* ================= RESPONSIVE ================= */
 @media (max-width: 1024px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -290,187 +245,118 @@ iframe {
 }
 
 @media (max-width: 768px) {
-
-    h1 {
-        font-size: 36px;
-    }
-
-    h2 {
-        font-size: 28px;
-    }
-
-    .nav {
-        position: absolute;
-        top: 70px;
-        right: 0;
-        background: #000;
-        flex-direction: column;
-        width: 220px;
-        padding: 20px;
-        display: none;
-        border-left: 1px solid rgba(212,175,55,0.2);
-    }
-
-    .nav.active {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
+    h1 { font-size: 36px; }
     .product-grid {
         grid-template-columns: 1fr;
     }
+}
+/* =====================================================
+   JEWEL CORNER – ULTRA LUXURY ENHANCEMENT LAYER
+   (ADD BELOW YOUR EXISTING CSS – DO NOT REMOVE ANYTHING)
+===================================================== */
 
-    .product-card img {
-        height: 220px;
-    }
+/* ===== GOLD GRADIENT TEXT EFFECT ===== */
+h1, h2, h3 {
+    background: linear-gradient(135deg, #f7e7b5, #C6A14A, #b89135);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
-a {
-  text-decoration: none;
-  color: inherit;
+
+/* ===== PREMIUM BUTTON UPGRADE ===== */
+.btn-primary {
+    background: linear-gradient(135deg, #f7e7b5, #C6A14A, #b89135);
+    box-shadow: 0 6px 20px rgba(198,161,74,0.35);
 }
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(198,161,74,0.45);
+}
+
+.btn-secondary {
+    border: 1px solid #C6A14A;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #f7e7b5, #C6A14A, #b89135);
+    color: #000;
+}
+
+/* ===== HEADER GLASS LUXURY EFFECT ===== */
 header {
-  transition: transform 0.4s ease, background 0.3s ease;
-}
-
-header.hide-header {
-  transform: translateY(-100%);
-}
-/* ===== Auto Hide Header On Scroll ===== */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    transition: transform 0.4s ease, background 0.3s ease;
-    z-index: 1000;
-}
-
-/* Hidden state */
-header.hide-header {
-    transform: translateY(-100%);
-}
-
-/* Optional: Add slight background when scrolling */
-header.scrolled {
-    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
-}
-body.products-page .products-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    background: rgba(0, 0, 0, 0.75);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-@media (min-width: 992px) {
-    body.products-page .products-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-/* =========================================
-   LUXURY SEARCH BAR
-========================================= */
-
-.luxury-search-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 40px 0 20px 0;
+/* ===== PRODUCT CARD PREMIUM ELEVATION ===== */
+.product-card {
+    transition: all 0.4s ease;
 }
 
-#luxurySearchInput {
-    width: 320px;
-    max-width: 90%;
-    padding: 14px 20px;
-    border-radius: 40px;
-    border: 1px solid rgba(212,175,55,0.4);
-    background: rgba(0,0,0,0.6);
-    color: #fff;
-    font-size: 15px;
+.product-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(198,161,74,0.25);
+}
+
+/* ===== IMAGE SMOOTH ZOOM EFFECT ===== */
+.product-card img {
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+/* ===== SECTION DIVIDER GLOW ===== */
+section {
+    position: relative;
+}
+
+section::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 2px;
+    margin: 40px auto 0;
+    background: linear-gradient(to right, transparent, #C6A14A, transparent);
+}
+
+/* ===== CATEGORY SIDEBAR ELEGANCE ===== */
+.category-sidebar {
+    box-shadow: 0 10px 30px rgba(198,161,74,0.15);
+    border-radius: 18px;
+}
+
+.category-sidebar h3 {
     letter-spacing: 1px;
-    outline: none;
-    transition: 0.4s ease;
-    backdrop-filter: blur(10px);
 }
 
-#luxurySearchInput::placeholder {
-    color: rgba(255,255,255,0.6);
-}
-
-#luxurySearchInput:focus {
-    border-color: #d4af37;
-    box-shadow: 0 0 15px rgba(212,175,55,0.4);
-}
-/* =========================
-   PRODUCTS SEARCH BAR
-========================= */
-
-.search-box {
-    margin: 20px 0;
-    text-align: center;
-}
-
+/* ===== SEARCH BOX PREMIUM LOOK ===== */
 .search-box input {
-    width: 100%;
-    max-width: 400px;
-    padding: 12px 18px;
     border-radius: 30px;
-    border: 1px solid gold;
-    background: #111;
-    color: white;
-    outline: none;
-    font-size: 14px;
+    padding: 12px 18px;
     transition: 0.3s;
 }
 
 .search-box input:focus {
-    border-color: #d4af37;
-    box-shadow: 0 0 15px rgba(212,175,55,0.3);
-}
-.products-layout {
-    display: flex;
-    gap: 40px;
+    transform: scale(1.02);
 }
 
-.category-sidebar {
-    width: 250px;
-    background: rgba(0,0,0,0.6);
-    padding: 20px;
-    border-radius: 12px;
+/* ===== FOOTER GOLD LINE ANIMATION ===== */
+footer {
+    position: relative;
 }
 
-.category-sidebar h3 {
-    color: gold;
-    margin-bottom: 15px;
-    font-size: 18px;
-    cursor: pointer;
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #C6A14A, transparent);
 }
-
-.subcategory-list {
-    list-style: none;
-    padding-left: 15px;
-    display: none;
-}
-
-.subcategory-list li {
-    color: white;
-    margin: 8px 0;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.subcategory-list li:hover {
-    color: gold;
-}
-
-.category-active .subcategory-list {
-    display: block;
-}
-
-.products-content {
-    flex: 1;
-}
-
-
