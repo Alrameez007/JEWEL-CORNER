@@ -71,7 +71,7 @@ p, span {
 ========================================= */
 
 header {
-    background: #000;
+    background: #F4F0E4;
     border-bottom: 1px solid rgba(212,175,55,0.2);
     position: sticky;
     top: 0;
@@ -246,7 +246,7 @@ section p {
 ========================================= */
 
 footer {
-    background: #000;
+    background: #F4F0E4;
     padding: 40px 0;
     text-align: center;
     border-top: 1px solid rgba(212,175,55,0.2);
@@ -303,7 +303,7 @@ iframe {
         position: absolute;
         top: 70px;
         right: 0;
-        background: #000;
+        background: #F4F0E4;
         flex-direction: column;
         width: 220px;
         padding: 20px;
