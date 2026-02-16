@@ -18,8 +18,8 @@ html {
 }
 
 body {
-    background: #000;
-    color: #ffffff; /* Content text white */
+    background: #F4F0E4;
+    color: #000000;
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
     line-height: 1.7;
@@ -63,7 +63,7 @@ h3 {
 
 /* ===== NORMAL TEXT WHITE ===== */
 p, span {
-    color: #ffffff;
+    color: #000000;
 }
 
 /* =========================================
@@ -71,7 +71,7 @@ p, span {
 ========================================= */
 
 header {
-    background: #000;
+    background: #F4F0E4;
     border-bottom: 1px solid rgba(212,175,55,0.2);
     position: sticky;
     top: 0;
@@ -202,7 +202,7 @@ section p {
 }
 
 .product-card {
-    background: #0d0d0d;
+    background: #ffffff;
     border: 1px solid rgba(212,175,55,0.25);
     border-radius: 18px;
     padding: 20px;
@@ -246,7 +246,7 @@ section p {
 ========================================= */
 
 footer {
-    background: #000;
+    background: #F4F0E4;
     padding: 40px 0;
     text-align: center;
     border-top: 1px solid rgba(212,175,55,0.2);
@@ -303,7 +303,7 @@ iframe {
         position: absolute;
         top: 70px;
         right: 0;
-        background: #000;
+        background: #F4F0E4;
         flex-direction: column;
         width: 220px;
         padding: 20px;
