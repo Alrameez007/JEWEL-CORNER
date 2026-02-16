@@ -96,7 +96,7 @@ header {
 
 .nav a {
     text-decoration: none;
-    color: #ffffff;
+    color: #000000;
     font-size: 15px;
     transition: 0.3s;
 }
@@ -131,7 +131,7 @@ header {
     max-width: 700px;
     margin: auto;
     margin-bottom: 30px;
-    color: #ffffff;
+    color: #000000;
 }
 
 /* ===== BUTTONS ===== */
@@ -187,7 +187,7 @@ section p {
     max-width: 900px;
     margin: auto;
     text-align: center;
-    color: #ffffff;
+    color: #000000;
 }
 
 /* =========================================
@@ -238,7 +238,7 @@ section p {
 }
 
 .testimonial p {
-    color: #ffffff;
+    color: #000000;
 }
 
 /* =========================================
