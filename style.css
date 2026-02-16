@@ -218,7 +218,7 @@ section p {
 
 .product-card img {
     width: 100%;
-    height: 100px;
+    height: 260px;
     object-fit: cover;
     border-radius: 14px;
     display: block;
