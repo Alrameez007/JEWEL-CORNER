@@ -1,31 +1,34 @@
-// =========================
+// ==============================
 // DATA SOURCE CONTROLLER
-// =========================
+// ==============================
 
-let productSource = products;
+let productSource = products; // Make sure products-data.js has: const products = [...]
 
-/* =====================================
-   JEWEL CORNER – COMPLETE PRODUCT SYSTEM
-===================================== */
+// ==============================
+// JEWEL CORNER - COMPLETE PRODUCT SYSTEM
+// ==============================
+
 const container = document.getElementById("productsContainer");
 const pageTitle = document.querySelector(".section-title");
 const filterButtons = document.querySelector(".filter-buttons");
 const productsSection = document.querySelector(".products-section");
+const sidebar = document.getElementById("categorySidebar");
 
-/* ================================
-   BREADCRUMB
-================================ */
+// ==============================
+// BREADCRUMB (FIXED)
+// ==============================
 
 let breadcrumb = document.createElement("div");
 breadcrumb.style.color = "white";
 breadcrumb.style.marginBottom = "15px";
 breadcrumb.style.fontSize = "14px";
 
-productsSection.querySelector(".container").prepend(breadcrumb);
+// FIXED: removed .container reference
+productsSection.prepend(breadcrumb);
 
-/* ================================
-   FADE ANIMATION
-================================ */
+// ==============================
+// FADE ANIMATION
+// ==============================
 
 function fadeContent(callback) {
     container.style.opacity = 0;
@@ -36,16 +39,16 @@ function fadeContent(callback) {
     }, 200);
 }
 
-/* ================================
-   DISPLAY PRODUCTS
-================================ */
+// ==============================
+// DISPLAY PRODUCTS
+// ==============================
 
 function displayProducts(items) {
 
     fadeContent(() => {
 
-        // Shimmer loading
         container.innerHTML = "";
+
         for (let i = 0; i < 6; i++) {
             const shimmer = document.createElement("div");
             shimmer.className = "product-card";
@@ -85,15 +88,15 @@ function displayProducts(items) {
                         font-size:20px;
                         cursor:pointer;
                         color:white;
-                        transition:0.3s;
-                    ">♡</div>
+                        transition:0.3s;">
+                        ♡
+                    </div>
 
                     <img src="${product.image}" alt="${product.name}">
                     <h3>${product.name}</h3>
                     <p>${product.price}</p>
                 `;
 
-                // Hover glow
                 card.addEventListener("mouseenter", () => {
                     card.style.transform = "translateY(-8px)";
                     card.style.boxShadow =
@@ -105,12 +108,12 @@ function displayProducts(items) {
                     card.style.boxShadow = "none";
                 });
 
-                // Wishlist toggle
                 const heart = card.querySelector(".wishlist-heart");
+
                 heart.addEventListener("click", (e) => {
                     e.stopPropagation();
                     if (heart.textContent === "♡") {
-                        heart.textContent = "♥";
+                        heart.textContent = "❤";
                         heart.style.color = "gold";
                     } else {
                         heart.textContent = "♡";
@@ -118,94 +121,89 @@ function displayProducts(items) {
                     }
                 });
 
-                // Open modal
                 card.addEventListener("click", () => openModal(product));
 
                 container.appendChild(card);
+
             });
 
         }, 500);
+
     });
 }
 
-/* Shimmer animation */
-const style = document.createElement("style");
-style.innerHTML = `
-@keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-}`;
-document.head.appendChild(style);
+// ==============================
+// GET ACTIVE PRODUCTS
+// ==============================
+
 function getActiveProducts() {
     return productSource.filter(product => product.status === "active");
 }
 
-/* ================================
-   FILTER PRODUCTS
-================================ */
+// ==============================
+// FILTER PRODUCTS
+// ==============================
 
 function filterProducts(category) {
 
-    if (filterButtons) filterButtons.style.display = "flex";
-
     if (category === "all") {
-        displayProducts(productSource);
-        pageTitle.textContent = "Our Collection";
+        displayProducts(getActiveProducts());
         breadcrumb.innerHTML = "Home / All Products";
-    } else {
-        const filtered =
-            getActiveProducts().filter(p => p.category === category);
-
-        displayProducts(filtered);
-
-        const formatted =
-            category.charAt(0).toUpperCase() +
-            category.slice(1);
-
-        pageTitle.textContent = formatted;
-        breadcrumb.innerHTML = "Home / " + formatted;
+        return;
     }
-   function filterSubcategory(category, subcategory) {
-    const filtered = getActiveProducts().filter(p =>
-        p.category === category &&
-        p.subcategory === subcategory
-    );
+
+    const filtered = getActiveProducts()
+        .filter(p => p.category === category);
 
     displayProducts(filtered);
 
     const formatted =
-        subcategory.charAt(0).toUpperCase() +
-        subcategory.slice(1);
+        category.charAt(0).toUpperCase() + category.slice(1);
 
-    pageTitle.textContent = formatted;
+    breadcrumb.innerHTML = "Home / " + formatted;
+}
+
+function filterSubcategory(category, subcategory) {
+
+    const filtered = getActiveProducts()
+        .filter(p =>
+            p.category === category &&
+            p.subcategory === subcategory
+        );
+
+    displayProducts(filtered);
+
+    const formatted =
+        subcategory.charAt(0).toUpperCase() + subcategory.slice(1);
+
     breadcrumb.innerHTML =
-        "Home / " + category + " / " + formatted;
+        "Home / " +
+        category.charAt(0).toUpperCase() +
+        category.slice(1) +
+        " / " +
+        formatted;
 }
 
-}
+// ==============================
+// BUILD CATEGORY SIDEBAR
+// ==============================
 
-/* ================================
-   CATEGORY FROM URL
-================================ */
-
-function getCategoryFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("category");
-}
 function buildCategorySidebar() {
-    const sidebar = document.getElementById("categorySidebar");
-    if (!sidebar) return;
+
+    sidebar.innerHTML = "";
 
     const categories = {};
 
     getActiveProducts().forEach(product => {
         if (!categories[product.category]) {
-            categories[product.category] = new Set();
+            categories[product.category] = [];
         }
-        categories[product.category].add(product.subcategory);
+        if (!categories[product.category]
+            .includes(product.subcategory)) {
+            categories[product.category]
+                .push(product.subcategory);
+        }
     });
-
-    sidebar.innerHTML = "";
 
     for (let category in categories) {
 
@@ -218,13 +216,13 @@ function buildCategorySidebar() {
             category.slice(1);
 
         title.addEventListener("click", () => {
-            wrapper.classList.toggle("category-active");
+            filterProducts(category);
         });
 
         const subList = document.createElement("ul");
-        subList.className = "subcategory-list";
 
         categories[category].forEach(sub => {
+
             const li = document.createElement("li");
             li.textContent =
                 sub.charAt(0).toUpperCase() +
@@ -235,6 +233,7 @@ function buildCategorySidebar() {
             });
 
             subList.appendChild(li);
+
         });
 
         wrapper.appendChild(title);
@@ -243,46 +242,9 @@ function buildCategorySidebar() {
     }
 }
 
-/* ================================
-   AUTO LOAD
-================================ */
-
-window.addEventListener("DOMContentLoaded", () => {
-   
-   buildCategorySidebar();
-
-    container.style.transition = "opacity 0.2s ease";
-
-    const categoryFromURL = getCategoryFromURL();
-
-    if (categoryFromURL) {
-        filterProducts(categoryFromURL);
-    } else {
-        filterProducts("all");
-    }
-
-    // =========================
-    // SEARCH FUNCTIONALITY
-    // =========================
-    const searchInput = document.getElementById("searchInput");
-
-    if (searchInput) {
-        searchInput.addEventListener("input", function () {
-
-            const searchValue = this.value.toLowerCase();
-
-            const filtered = getActiveProducts().filter(product =>
-                product.name.toLowerCase().includes(searchValue));
-
-            displayProducts(filtered);
-        });
-    }
-
-});
-
-/* ================================
-   LUXURY PRODUCT MODAL SYSTEM
-================================ */
+// ==============================
+// MODAL (ONLY ONE - FIXED)
+// ==============================
 
 const modal = document.createElement("div");
 modal.style.position = "fixed";
@@ -295,8 +257,6 @@ modal.style.display = "none";
 modal.style.justifyContent = "center";
 modal.style.alignItems = "center";
 modal.style.zIndex = "9999";
-modal.style.opacity = "0";
-modal.style.transition = "opacity 0.3s ease";
 
 modal.innerHTML = `
     <div id="modalContent" style="
@@ -309,60 +269,66 @@ modal.innerHTML = `
         color:white;
         position:relative;
         transform:scale(0.8);
-        transition:transform 0.3s ease;
-    ">
-        <span id="closeModal" style="
-            position:absolute;
-            top:10px;
-            right:15px;
-            cursor:pointer;
-            font-size:20px;
-            color:gold;
-        ">✕</span>
+        transition:0.3s;">
+        
+        <span id="closeModal"
+            style="position:absolute;
+                   top:10px;
+                   right:15px;
+                   cursor:pointer;
+                   font-size:22px;
+                   color:gold;">
+            ✕
+        </span>
 
-        <img id="modalImage" src="" style="width:100%;border-radius:8px;margin-bottom:15px;">
+        <img id="modalImage"
+             style="width:100%;
+                    border-radius:8px;
+                    margin-bottom:15px;">
+
         <h3 id="modalTitle"></h3>
-        <p id="modalPrice" style="color:gold;margin-top:10px;"></p>
+        <p id="modalPrice"
+           style="color:gold;margin-top:10px;"></p>
     </div>
 `;
 
 document.body.appendChild(modal);
 
 function openModal(product) {
-    document.getElementById("modalImage").src = product.image;
-    document.getElementById("modalTitle").textContent = product.name;
-    document.getElementById("modalPrice").textContent = product.price;
+
+    document.getElementById("modalImage").src =
+        product.image;
+    document.getElementById("modalTitle").textContent =
+        product.name;
+    document.getElementById("modalPrice").textContent =
+        product.price;
 
     modal.style.display = "flex";
+
     setTimeout(() => {
-        modal.style.opacity = "1";
-        document.getElementById("modalContent").style.transform = "scale(1)";
-    }, 10);
+        document.getElementById("modalContent")
+            .style.transform = "scale(1)";
+    }, 50);
 }
 
 function closeModal() {
-    modal.style.opacity = "0";
-    document.getElementById("modalContent").style.transform = "scale(0.8)";
-    setTimeout(() => {
-        modal.style.display = "none";
-    }, 300);
+    modal.style.display = "none";
+    document.getElementById("modalContent")
+        .style.transform = "scale(0.8)";
 }
+
+document.getElementById("closeModal")
+    .addEventListener("click", closeModal);
 
 modal.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();
 });
 
-document.getElementById("closeModal")
-    .addEventListener("click", closeModal);
+// ==============================
+// AUTO LOAD
+// ==============================
 
-// Swipe to close
-let startY = 0;
-
-modal.addEventListener("touchstart", (e) => {
-    startY = e.touches[0].clientY;
-});
-
-modal.addEventListener("touchmove", (e) => {
-    const moveY = e.touches[0].clientY;
-    if (moveY - startY > 100) closeModal();
+window.addEventListener("DOMContentLoaded", () => {
+    buildCategorySidebar();
+    filterProducts("all");
 });
