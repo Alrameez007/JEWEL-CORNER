@@ -68,6 +68,12 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+/* FIX LOGO SIZE */
+.logo img {
+    height: 55px;
+    width: auto;
+    display: block;
+}
 
 /* ===== NAVIGATION ===== */
 .nav {
