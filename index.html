@@ -231,6 +231,18 @@ document.querySelector(".menu-toggle").addEventListener("click", function() {
     document.querySelector(".nav").classList.toggle("active");
 });
 </script>
+<script>
+function setLanguage(lang) {
+    if (lang === 'ar') {
+        document.documentElement.dir = "rtl";
+        document.body.style.fontFamily = "'Cairo', sans-serif";
+    } else {
+        document.documentElement.dir = "ltr";
+        document.body.style.fontFamily = "'Montserrat', sans-serif";
+    }
+}
+</script>
+
 
 
 </body>
