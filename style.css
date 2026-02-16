@@ -212,3 +212,18 @@ footer p {
         padding: 60px 0;
     }
 }
+/* FIX HERO LOGO OVERFLOW */
+.hero-logo,
+.hero img {
+    max-width: 300px;
+    width: 80%;
+    height: auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* PREVENT IMAGE FROM COVERING SCREEN */
+.hero {
+    overflow: hidden;
+}
+
