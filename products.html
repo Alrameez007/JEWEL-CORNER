@@ -1,48 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <title>Our Collection | Jewel Corner</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Use your existing CSS -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Collection | Jewel Corner Oman</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="products-page">
-
 <header>
-    <div class="container header-container">
-        <div class="logo">
-            <img src="logo.png" alt="Jewel Corner">
-        </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="products.html">Collections</a>
-        </nav>
+  <div class="container nav-container">
+    <div class="logo"><a href="index.html"><img src="logo.png" alt="Jewel Corner Logo"></a></div>
+    <nav class="nav">
+      <a href="index.html" data-i18n="nav_home">HOME</a>
+      <a href="index.html#collections" data-i18n="nav_collections">COLLECTIONS</a>
+      <a href="index.html#contact" data-i18n="nav_contact">CONTACT</a>
+    </nav>
+    <div class="language-switch">
+      <button type="button" data-lang="en" onclick="setLanguage('en')">EN</button>
+      <button type="button" data-lang="ar" onclick="setLanguage('ar')">AR</button>
     </div>
+    <div class="menu-toggle">&#9776;</div>
+  </div>
 </header>
 
-<section class="products-section">
-    <div class="products-layout">
-
-        <aside class="category-sidebar" id="categorySidebar"></aside>
-
-        <div class="products-content">
-            <div id="productsContainer" class="products-grid"></div>
-        </div>
-
+<main>
+  <section class="products-hero">
+    <div class="container">
+      <h1 id="categoryTitle" data-i18n="products_title">OUR COLLECTION</h1>
+      <p data-i18n="products_intro">Explore Jewel Corner products and enquire directly on WhatsApp.</p>
     </div>
-</section>
+  </section>
+
+  <div class="breadcrumb-wrap" id="breadcrumb"></div>
+
+  <div class="products-toolbar">
+    <div class="search-box">
+      <input id="productSearch" type="search" placeholder="Search products..." autocomplete="off">
+    </div>
+    <div class="product-count" id="productCount"></div>
+  </div>
+
+  <section style="padding-top:0;">
+    <div class="products-layout">
+      <aside class="category-sidebar" id="categorySidebar"></aside>
+      <div id="productsContainer" class="catalog-grid"></div>
+    </div>
+  </section>
+</main>
 
 <footer>
-    <div class="container">
-        <p>© 2026 Jewel Corner. All rights reserved.</p>
-    </div>
+  <div class="footer-social">
+    <a href="https://wa.me/96877147645" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://instagram.com/jewelcorneroman" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.snapchat.com/add/jewelcorneroman" target="_blank"><i class="fab fa-snapchat"></i></a>
+  </div>
+  <p>© 2018 Jewel Corner Oman | All Rights Reserved</p>
 </footer>
 
-<script src="products-data.js"></script>
-<script src="products.js"></script>
+<div class="product-modal" id="productModal" aria-hidden="true">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <img class="modal-image" id="modalImage" alt="">
+    <div class="modal-content">
+      <h2 id="modalTitle"></h2>
+      <div class="modal-meta" id="modalCode"></div>
+      <div class="modal-meta" id="modalBrand"></div>
+      <p class="modal-description" id="modalDescription"></p>
+      <div id="modalPrice"></div>
+      <div style="margin-top:18px;" id="modalActions"></div>
+    </div>
+  </div>
+</div>
 
+<script src="products-data.js"></script>
+<script src="script.js"></script>
+<script src="products.js"></script>
 </body>
 </html>
-
