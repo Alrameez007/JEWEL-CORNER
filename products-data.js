@@ -9,7 +9,7 @@ const PRODUCTS = [
     brand: "JEWEL CORNER",
     sku: "",
     price: 3,
-    showPrice: false,
+    showPrice: true,
     image: "images/products/bracelet-0001.jpg",
     additionalImages: [],
     description: {
@@ -30,7 +30,7 @@ const PRODUCTS = [
     brand: "JEWEL CORNER",
     sku: "",
     price: 3,
-    showPrice: false,
+    showPrice: true,
     image: "images/products/bracelet-0002.jpg",
     additionalImages: [],
     description: {
