@@ -222,24 +222,23 @@
   }
 
   function createWhatsAppUrl(product) {
-    const language = getLanguage();
+  const language = getLanguage();
 
-    const productName =
-      product.name?.[language] ||
-      product.name?.en ||
-      product.id;
+  const productName =
+    product.name?.[language] ||
+    product.name?.en ||
+    product.id;
 
-    const message =
-      language === "ar"
-        ? `مرحباً جويل كورنر، أود الاستفسار عن ${productName} (${product.id}).`
-        : `Hello Jewel Corner, I would like to enquire about ${productName} (${product.id}).`;
+  const message =
+    language === "ar"
+      ? `مرحباً جويل كورنر، أود الاستفسار عن المنتج ${product.id} - ${productName}`
+      : `Hello Jewel Corner, I would like to enquire about ${product.id} - ${productName}`;
 
-    return (
-      "https://wa.me/96877147645?text=" +
-      encodeURIComponent(message)
-    );
-  }
+  const phone = "96877147645";
 
+  return `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+}
+  
   function openModal(product) {
     if (!modal) return;
 
