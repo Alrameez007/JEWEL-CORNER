@@ -1,334 +1,174 @@
-// ==============================
-// DATA SOURCE CONTROLLER
-// ==============================
+(() => {
+  const PHONE = "96877147645";
+  const categoryLabels = {
+    jewellery: { en: "Jewellery", ar: "المجوهرات" },
+    watches: { en: "Watches", ar: "الساعات" },
+    perfume: { en: "Perfumes", ar: "العطور" },
+    souvenir: { en: "Souvenirs", ar: "الهدايا التذكارية" }
+  };
+  const subcategoryLabels = {
+    bracelets: { en: "Bracelets", ar: "الأساور" },
+    rings: { en: "Rings", ar: "الخواتم" },
+    necklaces: { en: "Necklaces", ar: "العقود" },
+    earrings: { en: "Earrings", ar: "الأقراط" },
+    bangles: { en: "Bangles", ar: "البناجر" },
+    chains: { en: "Chains", ar: "السلاسل" }
+  };
+  const ui = {
+    en: { all:"All Products", categories:"Categories", search:"Search products...", products:"products", noProducts:"No products found.", details:"View Details", enquire:"Enquire on WhatsApp", priceOnEnquiry:"Price on enquiry", productCode:"Product ID", brand:"Brand", home:"Home", newArrival:"New Arrival" },
+    ar: { all:"جميع المنتجات", categories:"الفئات", search:"ابحث عن المنتجات...", products:"منتج", noProducts:"لم يتم العثور على منتجات.", details:"عرض التفاصيل", enquire:"استفسر عبر واتساب", priceOnEnquiry:"السعر عند الاستفسار", productCode:"رقم المنتج", brand:"العلامة التجارية", home:"الرئيسية", newArrival:"وصل حديثاً" }
+  };
 
-let productSource = products; // Make sure products-data.js has: const products = [...]
+  const container = document.getElementById("productsContainer");
+  if (!container || typeof PRODUCTS === "undefined") return;
 
-// ==============================
-// JEWEL CORNER - COMPLETE PRODUCT SYSTEM
-// ==============================
+  const sidebar = document.getElementById("categorySidebar");
+  const search = document.getElementById("productSearch");
+  const count = document.getElementById("productCount");
+  const breadcrumb = document.getElementById("breadcrumb");
+  const categoryTitle = document.getElementById("categoryTitle");
+  const modal = document.getElementById("productModal");
+  const modalClose = document.getElementById("modalClose");
 
-const container = document.getElementById("productsContainer");
-const pageTitle = document.querySelector(".section-title");
-const filterButtons = document.querySelector(".filter-buttons");
-const productsSection = document.querySelector(".products-section");
-const sidebar = document.getElementById("categorySidebar");
+  const normalizeCategory = value => ({ perfumes:"perfume", souvenirs:"souvenir" }[value] || value);
+  const params = new URLSearchParams(location.search);
+  let selectedCategory = normalizeCategory(params.get("category")) || "all";
+  let selectedSubcategory = "all";
+  let query = "";
+  let activeModalProduct = null;
 
-// ==============================
-// BREADCRUMB (FIXED)
-// ==============================
+  const lang = () => window.getCurrentLanguage ? window.getCurrentLanguage() : "en";
+  const label = (map, key) => map[key]?.[lang()] || key;
+  const activeProducts = () => PRODUCTS.filter(p => p.status === "active");
 
-let breadcrumb = document.createElement("div");
-breadcrumb.style.color = "white";
-breadcrumb.style.marginBottom = "15px";
-breadcrumb.style.fontSize = "14px";
-
-// FIXED: removed .container reference
-productsSection.prepend(breadcrumb);
-
-// ==============================
-// FADE ANIMATION
-// ==============================
-
-function fadeContent(callback) {
-    container.style.opacity = 0;
-    setTimeout(() => {
-        callback();
-        container.style.opacity = 1;
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 200);
-}
-
-// ==============================
-// DISPLAY PRODUCTS
-// ==============================
-
-function displayProducts(items) {
-
-    fadeContent(() => {
-
-        container.innerHTML = "";
-
-        for (let i = 0; i < 6; i++) {
-            const shimmer = document.createElement("div");
-            shimmer.className = "product-card";
-            shimmer.style.height = "250px";
-            shimmer.style.background =
-                "linear-gradient(90deg,#111 25%,#1a1a1a 50%,#111 75%)";
-            shimmer.style.backgroundSize = "200% 100%";
-            shimmer.style.animation = "shimmer 1.2s infinite";
-            shimmer.style.borderRadius = "10px";
-            container.appendChild(shimmer);
-        }
-
-        setTimeout(() => {
-
-            container.innerHTML = "";
-
-            if (items.length === 0) {
-                container.innerHTML =
-                    "<p style='color:white;'>No products found.</p>";
-                return;
-            }
-
-            items.forEach(product => {
-
-                const card = document.createElement("div");
-                card.className = "product-card";
-                card.style.cursor = "pointer";
-                card.style.transition =
-                    "transform 0.3s ease, box-shadow 0.3s ease";
-                card.style.position = "relative";
-
-                card.innerHTML = `
-                    <div class="wishlist-heart" style="
-                        position:absolute;
-                        top:10px;
-                        right:10px;
-                        font-size:20px;
-                        cursor:pointer;
-                        color:white;
-                        transition:0.3s;">
-                        ♡
-                    </div>
-
-                    <img src="${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p>${product.price}</p>
-                `;
-
-                card.addEventListener("mouseenter", () => {
-                    card.style.transform = "translateY(-8px)";
-                    card.style.boxShadow =
-                        "0 20px 40px rgba(255,215,0,0.2)";
-                });
-
-                card.addEventListener("mouseleave", () => {
-                    card.style.transform = "translateY(0)";
-                    card.style.boxShadow = "none";
-                });
-
-                const heart = card.querySelector(".wishlist-heart");
-
-                heart.addEventListener("click", (e) => {
-                    e.stopPropagation();
-                    if (heart.textContent === "♡") {
-                        heart.textContent = "❤";
-                        heart.style.color = "gold";
-                    } else {
-                        heart.textContent = "♡";
-                        heart.style.color = "white";
-                    }
-                });
-
-                card.addEventListener("click", () => openModal(product));
-
-                container.appendChild(card);
-
-            });
-
-        }, 500);
-
+  function filteredProducts() {
+    return activeProducts().filter(p => {
+      if (selectedCategory !== "all" && p.category !== selectedCategory) return false;
+      if (selectedSubcategory !== "all" && p.subcategory !== selectedSubcategory) return false;
+      if (query) {
+        const hay = [p.id, p.name?.en, p.name?.ar, p.brand, p.sku, p.category, p.subcategory, ...(p.tags || [])].join(" ").toLowerCase();
+        if (!hay.includes(query.toLowerCase())) return false;
+      }
+      return true;
     });
-}
+  }
 
-// ==============================
-// GET ACTIVE PRODUCTS
-// ==============================
+  function whatsappLink(product) {
+    const L = lang();
+    const message = L === "ar"
+      ? `مرحباً جويل كورنر، أود الاستفسار عن المنتج ${product.id} - ${product.name.ar || product.name.en}`
+      : `Hello Jewel Corner, I would like to enquire about ${product.id} - ${product.name.en}`;
+    return `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
+  }
 
-function getActiveProducts() {
-    return productSource.filter(product => product.status === "active");
-}
+  function renderSidebar() {
+    const L = lang();
+    const products = activeProducts();
+    const categories = [...new Set(products.map(p => p.category))];
+    sidebar.innerHTML = `<h3>${ui[L].categories}</h3><ul class="category-list"></ul>`;
+    const list = sidebar.querySelector(".category-list");
 
-// ==============================
-// FILTER PRODUCTS
-// ==============================
+    const allLi = document.createElement("li");
+    allLi.innerHTML = `<button class="category-button ${selectedCategory === "all" ? "active" : ""}" data-category="all">${ui[L].all}</button>`;
+    list.appendChild(allLi);
 
-function filterProducts(category) {
-
-    if (category === "all") {
-        displayProducts(getActiveProducts());
-        breadcrumb.innerHTML = "Home / All Products";
-        return;
-    }
-
-    const filtered = getActiveProducts()
-        .filter(p => p.category === category);
-
-    displayProducts(filtered);
-
-    const formatted =
-        category.charAt(0).toUpperCase() + category.slice(1);
-
-    breadcrumb.innerHTML = "Home / " + formatted;
-}
-
-function filterSubcategory(category, subcategory) {
-
-    const filtered = getActiveProducts()
-        .filter(p =>
-            p.category === category &&
-            p.subcategory === subcategory
-        );
-
-    displayProducts(filtered);
-
-    const formatted =
-        subcategory.charAt(0).toUpperCase() + subcategory.slice(1);
-
-    breadcrumb.innerHTML =
-        "Home / " +
-        category.charAt(0).toUpperCase() +
-        category.slice(1) +
-        " / " +
-        formatted;
-}
-
-// ==============================
-// BUILD CATEGORY SIDEBAR
-// ==============================
-
-function buildCategorySidebar() {
-
-    sidebar.innerHTML = "";
-
-    const categories = {};
-
-    getActiveProducts().forEach(product => {
-        if (!categories[product.category]) {
-            categories[product.category] = [];
-        }
-        if (!categories[product.category]
-            .includes(product.subcategory)) {
-            categories[product.category]
-                .push(product.subcategory);
-        }
+    categories.forEach(cat => {
+      const li = document.createElement("li");
+      const subs = [...new Set(products.filter(p => p.category === cat).map(p => p.subcategory).filter(Boolean))];
+      li.innerHTML = `<button class="category-button ${selectedCategory === cat && selectedSubcategory === "all" ? "active" : ""}" data-category="${cat}">${label(categoryLabels, cat)}</button>`;
+      if (subs.length) {
+        const ul = document.createElement("ul"); ul.className = "subcategory-list";
+        subs.forEach(sub => {
+          const s = document.createElement("li");
+          s.innerHTML = `<button class="subcategory-button ${selectedSubcategory === sub ? "active" : ""}" data-category="${cat}" data-subcategory="${sub}">${label(subcategoryLabels, sub)}</button>`;
+          ul.appendChild(s);
+        });
+        li.appendChild(ul);
+      }
+      list.appendChild(li);
     });
 
-    for (let category in categories) {
+    sidebar.querySelectorAll("[data-category]").forEach(btn => btn.addEventListener("click", () => {
+      selectedCategory = btn.dataset.category;
+      selectedSubcategory = btn.dataset.subcategory || "all";
+      const url = new URL(location.href);
+      if (selectedCategory === "all") url.searchParams.delete("category"); else url.searchParams.set("category", selectedCategory);
+      history.replaceState({}, "", url);
+      renderAll();
+    }));
+  }
 
-        const wrapper = document.createElement("div");
-        wrapper.className = "category-block";
-
-        const title = document.createElement("h3");
-        title.textContent =
-            category.charAt(0).toUpperCase() +
-            category.slice(1);
-
-        title.addEventListener("click", () => {
-            filterProducts(category);
-        });
-
-        const subList = document.createElement("ul");
-
-        categories[category].forEach(sub => {
-
-            const li = document.createElement("li");
-            li.textContent =
-                sub.charAt(0).toUpperCase() +
-                sub.slice(1);
-
-            li.addEventListener("click", () => {
-                filterSubcategory(category, sub);
-            });
-
-            subList.appendChild(li);
-
-        });
-
-        wrapper.appendChild(title);
-        wrapper.appendChild(subList);
-        sidebar.appendChild(wrapper);
+  function renderCards() {
+    const L = lang();
+    const items = filteredProducts();
+    count.textContent = `${items.length} ${ui[L].products}`;
+    container.innerHTML = "";
+    if (!items.length) {
+      container.innerHTML = `<div class="empty-state">${ui[L].noProducts}</div>`;
+      return;
     }
-}
+    items.forEach(product => {
+      const card = document.createElement("article"); card.className = "catalog-card";
+      const productName = product.name?.[L] || product.name?.en || product.id;
+      const price = product.showPrice && product.price !== null && product.price !== undefined
+        ? `<div class="price">OMR ${Number(product.price).toFixed(3)}</div>`
+        : `<div class="price-hidden">${ui[L].priceOnEnquiry}</div>`;
+      card.innerHTML = `
+        <div class="catalog-image-wrap">
+          <img src="${product.image}" alt="${productName}">
+          ${product.newArrival ? `<span class="product-badge">${ui[L].newArrival}</span>` : ""}
+        </div>
+        <h3>${productName}</h3>
+        <p class="product-code">${ui[L].productCode}: ${product.id}</p>
+        ${price}
+        <div class="catalog-actions">
+          <button type="button" class="details-btn">${ui[L].details}</button>
+          ${product.whatsappEnquiry ? `<a class="whatsapp-btn" target="_blank" rel="noopener" href="${whatsappLink(product)}">${ui[L].enquire}</a>` : ""}
+        </div>`;
+      card.querySelector(".details-btn").addEventListener("click", () => openModal(product));
+      container.appendChild(card);
+    });
+  }
 
-// ==============================
-// MODAL (ONLY ONE - FIXED)
-// ==============================
+  function renderBreadcrumb() {
+    const L = lang();
+    const parts = [`<a href="index.html">${ui[L].home}</a>`, `<span>${ui[L].all}</span>`];
+    if (selectedCategory !== "all") parts[1] = `<span>${label(categoryLabels, selectedCategory)}</span>`;
+    if (selectedSubcategory !== "all") parts.push(`<span>${label(subcategoryLabels, selectedSubcategory)}</span>`);
+    breadcrumb.innerHTML = parts.join(" &nbsp;/&nbsp; ");
+    if (selectedCategory !== "all") categoryTitle.textContent = label(categoryLabels, selectedCategory).toUpperCase();
+    else categoryTitle.textContent = SITE_TRANSLATIONS[L].products_title;
+  }
 
-const modal = document.createElement("div");
-modal.style.position = "fixed";
-modal.style.top = "0";
-modal.style.left = "0";
-modal.style.width = "100%";
-modal.style.height = "100%";
-modal.style.background = "rgba(0,0,0,0.8)";
-modal.style.display = "none";
-modal.style.justifyContent = "center";
-modal.style.alignItems = "center";
-modal.style.zIndex = "9999";
+  function openModal(product) {
+    const L = lang(); activeModalProduct = product;
+    document.getElementById("modalImage").src = product.image;
+    document.getElementById("modalImage").alt = product.name?.[L] || product.name.en;
+    document.getElementById("modalTitle").textContent = product.name?.[L] || product.name.en;
+    document.getElementById("modalCode").textContent = `${ui[L].productCode}: ${product.id}`;
+    document.getElementById("modalBrand").textContent = product.brand ? `${ui[L].brand}: ${product.brand}` : "";
+    document.getElementById("modalDescription").textContent = product.description?.[L] || product.description?.en || "";
+    document.getElementById("modalPrice").innerHTML = product.showPrice && product.price !== null && product.price !== undefined
+      ? `<strong>OMR ${Number(product.price).toFixed(3)}</strong>` : `<span>${ui[L].priceOnEnquiry}</span>`;
+    document.getElementById("modalActions").innerHTML = product.whatsappEnquiry
+      ? `<a class="whatsapp-btn" target="_blank" rel="noopener" href="${whatsappLink(product)}">${ui[L].enquire}</a>` : "";
+    modal.classList.add("open"); modal.setAttribute("aria-hidden", "false");
+  }
 
-modal.innerHTML = `
-    <div id="modalContent" style="
-        background:#111;
-        padding:30px;
-        border-radius:12px;
-        max-width:400px;
-        width:90%;
-        text-align:center;
-        color:white;
-        position:relative;
-        transform:scale(0.8);
-        transition:0.3s;">
-        
-        <span id="closeModal"
-            style="position:absolute;
-                   top:10px;
-                   right:15px;
-                   cursor:pointer;
-                   font-size:22px;
-                   color:gold;">
-            ✕
-        </span>
+  function closeModal() { modal.classList.remove("open"); modal.setAttribute("aria-hidden", "true"); activeModalProduct = null; }
+  modalClose.addEventListener("click", closeModal);
+  modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
 
-        <img id="modalImage"
-             style="width:100%;
-                    border-radius:8px;
-                    margin-bottom:15px;">
+  search.addEventListener("input", e => { query = e.target.value.trim(); renderCards(); });
 
-        <h3 id="modalTitle"></h3>
-        <p id="modalPrice"
-           style="color:gold;margin-top:10px;"></p>
-    </div>
-`;
+  function renderAll() {
+    const L = lang();
+    search.placeholder = ui[L].search;
+    renderSidebar(); renderBreadcrumb(); renderCards();
+    if (activeModalProduct) openModal(activeModalProduct);
+  }
 
-document.body.appendChild(modal);
-
-function openModal(product) {
-
-    document.getElementById("modalImage").src =
-        product.image;
-    document.getElementById("modalTitle").textContent =
-        product.name;
-    document.getElementById("modalPrice").textContent =
-        product.price;
-
-    modal.style.display = "flex";
-
-    setTimeout(() => {
-        document.getElementById("modalContent")
-            .style.transform = "scale(1)";
-    }, 50);
-}
-
-function closeModal() {
-    modal.style.display = "none";
-    document.getElementById("modalContent")
-        .style.transform = "scale(0.8)";
-}
-
-document.getElementById("closeModal")
-    .addEventListener("click", closeModal);
-
-modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
-});
-
-// ==============================
-// AUTO LOAD
-// ==============================
-
-window.addEventListener("DOMContentLoaded", () => {
-    buildCategorySidebar();
-    filterProducts("all");
-});
+  document.addEventListener("jcLanguageChanged", renderAll);
+  renderAll();
+})();
