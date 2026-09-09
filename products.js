@@ -29,7 +29,7 @@
 
   let selectedCategory = params.get("category") || "all";
   let selectedSubcategory = params.get("subcategory") || "all";
-  let searchTerm = "";
+  let searchTerm = params.get("search") || "";
 
   const LABELS = {
     en: {
@@ -643,17 +643,22 @@
   }
 
   if (searchInput) {
-    searchInput.addEventListener(
-      "input",
-      event => {
-        searchTerm =
-          event.target.value
-            .trim();
 
-        renderProducts();
-      }
-    );
-  }
+  searchInput.value = searchTerm;
+
+  searchInput.addEventListener(
+    "input",
+    event => {
+
+      searchTerm =
+        event.target.value
+          .trim();
+
+      renderProducts();
+
+    }
+  );
+}
 
   if (modalClose) {
     modalClose.addEventListener(
