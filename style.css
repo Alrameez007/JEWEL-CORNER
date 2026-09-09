@@ -1108,6 +1108,37 @@ h3 a {
         font-size: 17px;
     }
 }
+/* =========================================================
+   FIX — HOMEPAGE SEARCH RESULTS MUST PUSH CONTENT DOWN
+   ========================================================= */
+
+.home-product-search .collection-search-suggestions {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+
+    width: 100%;
+    margin-top: 10px;
+
+    max-height: 430px;
+    overflow-y: auto;
+
+    z-index: 1;
+}
+
+.home-product-search .collection-search-suggestions.active {
+    display: block;
+}
+
+.home-product-search .collection-search-wrapper {
+    position: relative;
+    overflow: visible;
+}
+
+.home-product-search {
+    position: relative;
+    z-index: 1;
+}
 
 /* =========================================================
    HOMEPAGE SEARCH — PREVENT OVERLAP WITH ABOUT SECTION
