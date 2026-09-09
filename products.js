@@ -26,6 +26,8 @@
   const modalActions = document.getElementById("modalActions");
 
   const params = new URLSearchParams(window.location.search);
+  
+  const productToOpen = params.get("product");
 
   let selectedCategory = params.get("category") || "all";
   let selectedSubcategory = params.get("subcategory") || "all";
@@ -643,10 +645,9 @@
   }
 
   if (searchInput) {
-
-  searchInput.value = searchTerm;
-
-  searchInput.addEventListener(
+    searchInput.value = searchTerm;
+    
+    searchInput.addEventListener(
     "input",
     event => {
 
@@ -698,6 +699,20 @@
     );
   }
 
-  refreshLanguage();
+ refreshLanguage();
+
+if (productToOpen) {
+  const matchedProduct = productSource.find(
+    product =>
+      product.id === productToOpen &&
+      product.status === "active"
+  );
+
+  if (matchedProduct) {
+    setTimeout(() => {
+      openModal(matchedProduct);
+    }, 100);
+  }
+}
 
 })();
