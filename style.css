@@ -1139,26 +1139,3 @@ h3 a {
     position: relative;
     z-index: 1;
 }
-
-/* =========================================================
-   HOMEPAGE SEARCH — PREVENT OVERLAP WITH ABOUT SECTION
-   ========================================================= */
-
-.home-product-search .collection-search-suggestions {
-    position: static;
-    margin-top: 10px;
-    width: 100%;
-}
-
-.home-product-search .collection-search-suggestions.active {
-    display: block;
-}
-
-.home-product-search .collection-search-wrapper {
-    overflow: visible;
-}
-
-.home-product-search {
-    position: relative;
-    z-index: 20;
-}
