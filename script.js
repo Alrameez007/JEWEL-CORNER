@@ -76,5 +76,190 @@ function initSiteInteractions() {
 
   setLanguage(getCurrentLanguage());
 }
+/* =========================================================
+   JEWEL CORNER — HOMEPAGE LIVE PRODUCT SEARCH
+   ========================================================= */
 
-document.addEventListener("DOMContentLoaded", initSiteInteractions);
+function initHomeProductSearch() {
+  const searchInput = document.getElementById("collectionSearch");
+  const searchButton = document.getElementById("collectionSearchButton");
+  const suggestionsBox = document.getElementById("collectionSearchSuggestions");
+
+  if (
+    !searchInput ||
+    !searchButton ||
+    !suggestionsBox ||
+    typeof PRODUCTS === "undefined"
+  ) {
+    return;
+  }
+
+  function currentLanguage() {
+    return typeof getCurrentLanguage === "function"
+      ? getCurrentLanguage()
+      : "en";
+  }
+
+  function activeProducts() {
+    return PRODUCTS.filter(product => product.status === "active");
+  }
+
+  function searchableText(product) {
+    return [
+      product.id,
+      product.sku,
+      product.brand,
+      product.category,
+      product.subcategory,
+      product.name?.en,
+      product.name?.ar,
+      product.description?.en,
+      product.description?.ar,
+      ...(Array.isArray(product.tags) ? product.tags : [])
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+  }
+
+  function findProducts(query) {
+    const term = query.trim().toLowerCase();
+
+    if (!term) return [];
+
+    return activeProducts()
+      .filter(product => searchableText(product).includes(term))
+      .slice(0, 8);
+  }
+
+  function closeSuggestions() {
+    suggestionsBox.innerHTML = "";
+    suggestionsBox.classList.remove("active");
+  }
+
+  function productUrl(product) {
+    return `products.html?category=${encodeURIComponent(product.category)}&search=${encodeURIComponent(product.id)}`;
+  }
+
+  function renderSuggestions(query) {
+    const language = currentLanguage();
+    const results = findProducts(query);
+
+    suggestionsBox.innerHTML = "";
+
+    if (!query.trim()) {
+      closeSuggestions();
+      return;
+    }
+
+    if (!results.length) {
+      suggestionsBox.innerHTML = `
+        <div class="collection-search-empty">
+          ${language === "ar"
+            ? "لم يتم العثور على منتجات."
+            : "No products found."}
+        </div>
+      `;
+
+      suggestionsBox.classList.add("active");
+      return;
+    }
+
+    results.forEach(product => {
+      const productName =
+        product.name?.[language] ||
+        product.name?.en ||
+        product.id;
+
+      const result = document.createElement("a");
+
+      result.className = "collection-search-result";
+      result.href = productUrl(product);
+
+      result.innerHTML = `
+        <img
+          src="${product.image}"
+          alt="${productName}"
+          loading="lazy"
+        >
+
+        <span class="collection-search-result-info">
+          <span class="collection-search-result-name">
+            ${productName}
+          </span>
+
+          <span class="collection-search-result-code">
+            ${product.id}
+          </span>
+        </span>
+      `;
+
+      suggestionsBox.appendChild(result);
+    });
+
+    suggestionsBox.classList.add("active");
+  }
+
+  function submitSearch() {
+    const query = searchInput.value.trim();
+
+    if (!query) {
+      searchInput.focus();
+      return;
+    }
+
+    const results = findProducts(query);
+
+    if (results.length === 1) {
+      window.location.href = productUrl(results[0]);
+      return;
+    }
+
+    if (results.length > 1) {
+      const category = results[0].category || "all";
+
+      window.location.href =
+        `products.html?category=${encodeURIComponent(category)}&search=${encodeURIComponent(query)}`;
+
+      return;
+    }
+
+    renderSuggestions(query);
+  }
+
+  searchInput.addEventListener("input", () => {
+    renderSuggestions(searchInput.value);
+  });
+
+  searchInput.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      submitSearch();
+    }
+
+    if (event.key === "Escape") {
+      closeSuggestions();
+    }
+  });
+
+  searchButton.addEventListener("click", submitSearch);
+
+  document.addEventListener("click", event => {
+    const wrapper = searchInput.closest(".collection-search-wrapper");
+
+    if (wrapper && !wrapper.contains(event.target)) {
+      closeSuggestions();
+    }
+  });
+
+  document.addEventListener("jcLanguageChanged", () => {
+    if (searchInput.value.trim()) {
+      renderSuggestions(searchInput.value);
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initSiteInteractions();
+  initHomeProductSearch();
+});
