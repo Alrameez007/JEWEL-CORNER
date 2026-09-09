@@ -137,9 +137,9 @@ function initHomeProductSearch() {
     suggestionsBox.classList.remove("active");
   }
 
-  function productUrl(product) {
-    return `products.html?category=${encodeURIComponent(product.category)}&search=${encodeURIComponent(product.id)}`;
-  }
+ function productUrl(product) {
+  return `products.html?category=${encodeURIComponent(product.category)}&search=${encodeURIComponent(product.id)}&product=${encodeURIComponent(product.id)}`;
+}
 
   function renderSuggestions(query) {
     const language = currentLanguage();
