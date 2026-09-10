@@ -1392,3 +1392,78 @@ h3 a {
         right: 8px;
     }
 }
+/* =========================================================
+   FEATURED SLIDER — ALIGNMENT FIX
+   ========================================================= */
+
+/* Center complete heading area */
+.featured-slider-heading {
+    width: 100%;
+    text-align: center !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.featured-slider-heading h2,
+.featured-slider-heading p {
+    width: 100%;
+    text-align: center !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.featured-slider-heading p {
+    display: block;
+}
+
+/* Better balance between image and product information */
+.featured-slide {
+    grid-template-columns: 46% 54%;
+    gap: 0;
+}
+
+.featured-slide-image {
+    width: 100%;
+    max-width: 420px;
+}
+
+.featured-slide-content {
+    width: 100%;
+    padding: 25px 55px;
+    box-sizing: border-box;
+}
+
+/* Keep slider arrows at matching outer edges */
+.featured-prev {
+    left: 12px !important;
+}
+
+.featured-next {
+    right: 12px !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .featured-slide {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-slide-image {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .featured-slide-content {
+        padding: 20px 15px;
+        text-align: center;
+    }
+
+    .featured-prev {
+        left: 8px !important;
+    }
+
+    .featured-next {
+        right: 8px !important;
+    }
+}
