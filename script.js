@@ -46,6 +46,24 @@ window.setLanguage = setLanguage;
 window.getCurrentLanguage = getCurrentLanguage;
 
 function initSiteInteractions() {
+
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".nav");
+
+  if (toggle && nav) {
+
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+    });
+
+    nav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("active");
+      });
+    });
+
+  }
+
   const header = document.querySelector("header");
   let lastScrollY = window.scrollY;
   if (header) {
