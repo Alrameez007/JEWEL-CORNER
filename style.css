@@ -1139,3 +1139,256 @@ h3 a {
     position: relative;
     z-index: 1;
 }
+/* =========================================================
+   JEWEL CORNER — FEATURED PRODUCT SLIDER
+   ========================================================= */
+
+.featured-slider-section {
+    padding: 70px 0 60px;
+    background: #F4F0E4;
+}
+
+.featured-slider-heading {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.featured-slider-heading h2 {
+    margin-bottom: 8px;
+}
+
+.featured-slider-heading p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.featured-slider {
+    position: relative;
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 24px;
+}
+
+.featured-slider-track {
+    position: relative;
+    min-height: 470px;
+}
+
+.featured-slide {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(212,175,55,.25);
+    border-radius: 24px;
+
+    padding: 35px;
+
+    box-shadow: 0 12px 35px rgba(0,0,0,.06);
+
+    animation: featuredFade .6s ease;
+}
+
+.featured-slide.active {
+    display: grid;
+}
+
+@keyframes featuredFade {
+    from {
+        opacity: 0;
+        transform: translateX(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.featured-slide-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    border-radius: 18px;
+    overflow: hidden;
+
+    background: #f7f4ec;
+}
+
+.featured-slide-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.featured-slide-content {
+    text-align: left;
+}
+
+.featured-slide-content h3 {
+    font-size: 34px;
+    line-height: 1.15;
+
+    margin-bottom: 10px;
+}
+
+.featured-slide-code {
+    font-size: 12px;
+    color: #777;
+
+    margin-bottom: 15px;
+
+    letter-spacing: .5px;
+}
+
+.featured-slide-description {
+    font-size: 14px;
+    line-height: 1.8;
+
+    color: #333;
+
+    margin-bottom: 22px;
+}
+
+.featured-slide-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 24px;
+
+    border-radius: 28px;
+
+    background: #d4af37;
+    color: #000;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: .3s ease;
+}
+
+.featured-slide-button:hover {
+    background: #c6a12c;
+    transform: translateY(-1px);
+}
+
+.featured-slider-arrow {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.92);
+    color: #b8962e;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,.12);
+}
+
+.featured-prev {
+    left: 15px;
+}
+
+.featured-next {
+    right: 15px;
+}
+
+.featured-slider-dots {
+    display: flex;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 18px;
+}
+
+.featured-slider-dot {
+    width: 9px;
+    height: 9px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #cfcfcf;
+
+    cursor: pointer;
+
+    padding: 0;
+}
+
+.featured-slider-dot.active {
+    background: #d4af37;
+}
+
+[dir="rtl"] .featured-slide-content {
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+
+    .featured-slider-section {
+        padding: 50px 0 45px;
+    }
+
+    .featured-slide {
+        grid-template-columns: 1fr;
+
+        gap: 24px;
+
+        padding: 22px;
+    }
+
+    .featured-slider-track {
+        min-height: 0;
+    }
+
+    .featured-slide-content {
+        text-align: center;
+    }
+
+    [dir="rtl"] .featured-slide-content {
+        text-align: center;
+    }
+
+    .featured-slide-content h3 {
+        font-size: 27px;
+    }
+
+    .featured-slider-arrow {
+        width: 36px;
+        height: 36px;
+
+        font-size: 18px;
+    }
+
+    .featured-prev {
+        left: 8px;
+    }
+
+    .featured-next {
+        right: 8px;
+    }
+}
