@@ -462,7 +462,7 @@ function initFeaturedProductSlider() {
 
     sliderTimer = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 2000);
   }
 
   function stopTimer() {
