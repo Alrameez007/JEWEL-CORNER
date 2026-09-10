@@ -18,7 +18,7 @@ const PRODUCTS = [
       "en": "A contemporary expression of golden elegance, featuring uniquely layered links, refined textures, and a graceful flowing silhouette designed to capture light and attention.",
       "ar": "تعبير عصري عن الأناقة الذهبية، يتميز بحلقات متراكبة بأسلوب فريد، وملمس متقن الصنع، وتصميم انسيابي رشيق صُمم ليخطف الأضواء ويأسر الأنظار."
     },
-    "featured": false,
+    "featured": true,
     "newArrival": false,
     "status": "active",
     "tags": [],
@@ -90,7 +90,7 @@ const PRODUCTS = [
       "en": "Beautifully crafted gold-plated bracelet with a radiant finish for a stylish and luxurious look.",
       "ar": "سوار مطلي بالذهب مصنوع بعناية مع لمسة نهائية مشرقة لإطلالة أنيقة وفاخرة."
     },
-    "featured": false,
+    "featured": true,
     "newArrival": false,
     "status": "active",
     "tags": [],
@@ -162,7 +162,7 @@ const PRODUCTS = [
       "en": "Delicate gold-plated bracelet inspired by floral beauty, bringing a graceful touch to your look.",
       "ar": "سوار رقيق مطلي بالذهب مستوحى من جمال الزهور، يضفي لمسة ناعمة وأنيقة على إطلالتك."
     },
-    "featured": false,
+    "featured": true,
     "newArrival": false,
     "status": "active",
     "tags": [],
@@ -378,7 +378,7 @@ const PRODUCTS = [
       "en": "Charming gold-plated bracelet with a lovely heart-inspired design, perfect for elegant styling.",
       "ar": "سوار ساحر مطلي بالذهب بتصميم جميل مستوحى من القلب، مثالي لإطلالة أنيقة."
     },
-    "featured": false,
+    "featured": true,
     "newArrival": false,
     "status": "active",
     "tags": [],
@@ -906,7 +906,7 @@ const PRODUCTS = [
       "en": "Beautiful women's watch with a refined finish that adds a graceful touch to any outfit.",
       "ar": "ساعة نسائية جميلة بلمسة نهائية راقية تضيف لمسة ناعمة وأنيقة إلى أي إطلالة."
     },
-    "featured": false,
+    "featured": true,
     "newArrival": true,
     "status": "active",
     "tags": [],
@@ -1098,7 +1098,7 @@ const PRODUCTS = [
       "en": "Elegant women's watch with a timeless appearance suitable for work, outings and special occasions.",
       "ar": "ساعة نسائية أنيقة بمظهر خالد يناسب العمل والخروجات والمناسبات الخاصة."
     },
-    "featured": false,
+    "featured": true,
     "newArrival": true,
     "status": "active",
     "tags": [],
@@ -1362,7 +1362,7 @@ const PRODUCTS = [
       "en": "Graceful ladies fashion watch with a stylish finish, ideal for daily wear and special moments.",
       "ar": "ساعة نسائية ناعمة بلمسة أنيقة، مثالية للارتداء اليومي واللحظات الخاصة."
     },
-    "featured": false,
+    "featured": true,
     "newArrival": true,
     "status": "active",
     "tags": [],
