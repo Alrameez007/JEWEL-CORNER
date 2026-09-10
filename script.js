@@ -276,8 +276,276 @@ function initHomeProductSearch() {
     }
   });
 }
+/* =========================================================
+   JEWEL CORNER — FEATURED PRODUCT SLIDER
+   ========================================================= */
+
+function initFeaturedProductSlider() {
+
+  const sliderTrack = document.getElementById("featuredSliderTrack");
+  const dotsContainer = document.getElementById("featuredSliderDots");
+  const prevButton = document.getElementById("featuredPrev");
+  const nextButton = document.getElementById("featuredNext");
+
+  if (
+    !sliderTrack ||
+    !dotsContainer ||
+    !prevButton ||
+    !nextButton ||
+    typeof PRODUCTS === "undefined"
+  ) {
+    return;
+  }
+
+  const featuredProducts = PRODUCTS.filter(product =>
+    product.status === "active" &&
+    product.featured === true
+  );
+
+  if (!featuredProducts.length) {
+    document
+      .getElementById("featured-products")
+      ?.remove();
+
+    return;
+  }
+
+  let currentSlide = 0;
+  let sliderTimer = null;
+
+  function getLanguage() {
+    return typeof getCurrentLanguage === "function"
+      ? getCurrentLanguage()
+      : "en";
+  }
+
+  function productUrl(product) {
+    return (
+      `products.html?category=${encodeURIComponent(product.category)}` +
+      `&search=${encodeURIComponent(product.id)}` +
+      `&product=${encodeURIComponent(product.id)}`
+    );
+  }
+
+  function renderSlider() {
+
+    const language = getLanguage();
+
+    sliderTrack.innerHTML = "";
+    dotsContainer.innerHTML = "";
+
+    featuredProducts.forEach((product, index) => {
+
+      const productName =
+        product.name?.[language] ||
+        product.name?.en ||
+        product.id;
+
+      const description =
+        product.description?.[language] ||
+        product.description?.en ||
+        "";
+
+      const slide = document.createElement("div");
+
+      slide.className =
+        `featured-slide${index === currentSlide ? " active" : ""}`;
+
+      slide.innerHTML = `
+        <div class="featured-slide-image">
+
+          <a href="${productUrl(product)}">
+            <img
+              src="${product.image}"
+              alt="${productName}"
+              loading="${index === 0 ? "eager" : "lazy"}"
+            >
+          </a>
+
+        </div>
+
+        <div class="featured-slide-content">
+
+          <h3>${productName}</h3>
+
+          <div class="featured-slide-code">
+            ${product.id}
+          </div>
+
+          <p class="featured-slide-description">
+            ${description}
+          </p>
+
+          <a
+            href="${productUrl(product)}"
+            class="featured-slide-button"
+          >
+            ${language === "ar"
+              ? "عرض التفاصيل"
+              : "View Details"}
+          </a>
+
+        </div>
+      `;
+
+      sliderTrack.appendChild(slide);
+
+      const dot = document.createElement("button");
+
+      dot.type = "button";
+      dot.className =
+        `featured-slider-dot${index === currentSlide ? " active" : ""}`;
+
+      dot.setAttribute(
+        "aria-label",
+        `Go to product ${index + 1}`
+      );
+
+      dot.addEventListener("click", () => {
+        currentSlide = index;
+        updateSlider();
+        restartTimer();
+      });
+
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  function updateSlider() {
+
+    const slides =
+      sliderTrack.querySelectorAll(".featured-slide");
+
+    const dots =
+      dotsContainer.querySelectorAll(".featured-slider-dot");
+
+    slides.forEach((slide, index) => {
+      slide.classList.toggle(
+        "active",
+        index === currentSlide
+      );
+    });
+
+    dots.forEach((dot, index) => {
+      dot.classList.toggle(
+        "active",
+        index === currentSlide
+      );
+    });
+  }
+
+  function nextSlide() {
+
+    currentSlide =
+      (currentSlide + 1) %
+      featuredProducts.length;
+
+    updateSlider();
+  }
+
+  function previousSlide() {
+
+    currentSlide =
+      (currentSlide - 1 + featuredProducts.length) %
+      featuredProducts.length;
+
+    updateSlider();
+  }
+
+  function startTimer() {
+
+    stopTimer();
+
+    if (featuredProducts.length <= 1) {
+      return;
+    }
+
+    sliderTimer = setInterval(() => {
+      nextSlide();
+    }, 5000);
+  }
+
+  function stopTimer() {
+
+    if (sliderTimer) {
+      clearInterval(sliderTimer);
+      sliderTimer = null;
+    }
+  }
+
+  function restartTimer() {
+    startTimer();
+  }
+
+  nextButton.addEventListener("click", () => {
+    nextSlide();
+    restartTimer();
+  });
+
+  prevButton.addEventListener("click", () => {
+    previousSlide();
+    restartTimer();
+  });
+
+  /* Pause while mouse is over slider */
+
+  sliderTrack.addEventListener("mouseenter", stopTimer);
+  sliderTrack.addEventListener("mouseleave", startTimer);
+
+  /* Mobile swipe support */
+
+  let touchStartX = 0;
+
+  sliderTrack.addEventListener(
+    "touchstart",
+    event => {
+      touchStartX =
+        event.changedTouches[0].screenX;
+    },
+    { passive: true }
+  );
+
+  sliderTrack.addEventListener(
+    "touchend",
+    event => {
+
+      const touchEndX =
+        event.changedTouches[0].screenX;
+
+      const difference =
+        touchStartX - touchEndX;
+
+      if (Math.abs(difference) < 50) {
+        return;
+      }
+
+      if (difference > 0) {
+        nextSlide();
+      } else {
+        previousSlide();
+      }
+
+      restartTimer();
+    },
+    { passive: true }
+  );
+
+  /* Update EN / AR content */
+
+  document.addEventListener(
+    "jcLanguageChanged",
+    () => {
+      renderSlider();
+      updateSlider();
+    }
+  );
+
+  renderSlider();
+  startTimer();
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   initSiteInteractions();
   initHomeProductSearch();
+  initFeaturedProductSlider();
 });
