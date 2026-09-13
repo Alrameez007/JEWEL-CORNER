@@ -178,10 +178,6 @@ onAuthStateChanged(
   auth,
   user => {
 
-    onAuthStateChanged(
-  auth,
-  user => {
-
     if (user) {
 
       loginPage.classList.add("hidden");
