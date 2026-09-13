@@ -71,6 +71,14 @@ const loginMessage =
 const logoutButton =
   document.getElementById("logoutButton");
 
+/* =========================================================
+   APPROVED ADMIN USERS
+   ========================================================= */
+
+const APPROVED_ADMIN_UIDS = [
+  "u5sLYUqgcGh5fRkVk6P8GADLgiz1",
+  "y6R1ZQxKzKZaGoDULlg4zSqNocN2"
+];
 
 /* =========================================================
    LOGIN
