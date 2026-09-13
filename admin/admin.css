@@ -1352,3 +1352,66 @@ body {
     position: relative;
     z-index: 5;
 }
+
+.login-card {
+    border: 2px solid rgba(255, 255, 255, 0.72);
+
+    box-shadow:
+        0 25px 60px rgba(0, 15, 40, 0.30),
+
+        /* bright crystal rim */
+        inset 3px 3px 5px rgba(255,255,255,.42),
+        inset -3px -3px 5px rgba(92,195,255,.18),
+
+        /* thin external refraction */
+        0 0 0 1px rgba(116,210,255,.16),
+        0 0 18px rgba(255,255,255,.10);
+}
+
+.login-card::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+
+    border-radius: 17px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.34);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.55) 0%,
+            rgba(121,218,255,.22) 3%,
+            transparent 9%
+        ),
+
+        linear-gradient(
+            225deg,
+            rgba(255,255,255,.50) 0%,
+            rgba(115,205,255,.20) 3%,
+            transparent 9%
+        ),
+
+        linear-gradient(
+            45deg,
+            rgba(255,222,150,.30) 0%,
+            rgba(255,255,255,.14) 3%,
+            transparent 9%
+        ),
+
+        linear-gradient(
+            315deg,
+            rgba(255,255,255,.45) 0%,
+            rgba(100,205,255,.18) 3%,
+            transparent 9%
+        );
+
+    box-shadow:
+        inset 2px 2px 3px rgba(255,255,255,.18),
+        inset -2px -2px 3px rgba(92,195,255,.10);
+
+    pointer-events: none;
+    z-index: 1;
+}
