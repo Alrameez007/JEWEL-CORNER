@@ -51,31 +51,191 @@ body {
     background-attachment: fixed;
 }
     
+/* =========================================================
+   JEWEL CORNER — CRYSTAL DIAMOND LOGIN CARD
+   ========================================================= */
+
 .login-card {
     width: 100%;
     max-width: 430px;
-    padding: 34px 30px;
+    padding: 34px 30px 38px;
 
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    /*
+       REAL TRANSPARENT CRYSTAL GLASS
+    */
     background:
         linear-gradient(
             135deg,
-            rgba(255, 255, 255, 0.22),
-            rgba(255, 255, 255, 0.10)
+            rgba(255, 255, 255, 0.18),
+            rgba(255, 255, 255, 0.055) 42%,
+            rgba(89, 192, 255, 0.08) 72%,
+            rgba(255, 215, 140, 0.08)
         );
 
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.78);
 
-    backdrop-filter: blur(18px) saturate(140%);
-    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter:
+        blur(17px)
+        saturate(145%)
+        brightness(1.05);
+
+    -webkit-backdrop-filter:
+        blur(17px)
+        saturate(145%)
+        brightness(1.05);
 
     box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.20),
-        inset 0 1px 0 rgba(255, 255, 255, 0.55),
-        inset 0 -1px 0 rgba(255, 255, 255, 0.12);
+        0 30px 70px rgba(0, 16, 38, 0.36),
 
+        inset 0 1px 1px
+        rgba(255, 255, 255, 0.90),
+
+        inset 1px 0 1px
+        rgba(125, 218, 255, 0.40),
+
+        inset -1px 0 1px
+        rgba(255, 220, 155, 0.36),
+
+        inset 0 -1px 1px
+        rgba(255, 255, 255, 0.40);
+}
+
+
+/* =========================================================
+   DIAMOND CUT / PRISM FRAME
+   ========================================================= */
+
+.login-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    border-radius: inherit;
+
+    background:
+
+        /* TOP LEFT DIAMOND */
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.95) 0%,
+            rgba(122,218,255,.46) 5%,
+            transparent 14%
+        ),
+
+        /* TOP RIGHT */
+        linear-gradient(
+            225deg,
+            rgba(255,255,255,.92) 0%,
+            rgba(255,210,115,.38) 5%,
+            transparent 14%
+        ),
+
+        /* BOTTOM LEFT */
+        linear-gradient(
+            45deg,
+            rgba(255,255,255,.72) 0%,
+            rgba(112,208,255,.32) 6%,
+            transparent 15%
+        ),
+
+        /* BOTTOM RIGHT */
+        linear-gradient(
+            315deg,
+            rgba(255,255,255,.88) 0%,
+            rgba(255,215,130,.34) 6%,
+            transparent 15%
+        ),
+
+        /* DIAGONAL CRYSTAL REFRACTIONS */
+        linear-gradient(
+            115deg,
+            transparent 20%,
+            rgba(110,209,255,.08) 32%,
+            transparent 44%
+        ),
+
+        linear-gradient(
+            65deg,
+            transparent 47%,
+            rgba(255,223,147,.09) 56%,
+            transparent 67%
+        );
+}
+
+
+/* =========================================================
+   FULL CARD DIAMOND GLASS REFLECTIONS
+   ========================================================= */
+
+.login-card::after {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    z-index: 1;
+    pointer-events: none;
+
+    border-radius: 19px;
+
+    background:
+
+        radial-gradient(
+            circle at 7% 6%,
+            rgba(255,255,255,.62),
+            transparent 7%
+        ),
+
+        radial-gradient(
+            circle at 94% 7%,
+            rgba(125,220,255,.35),
+            transparent 8%
+        ),
+
+        radial-gradient(
+            circle at 6% 94%,
+            rgba(255,219,145,.24),
+            transparent 8%
+        ),
+
+        radial-gradient(
+            circle at 94% 94%,
+            rgba(255,255,255,.38),
+            transparent 8%
+        ),
+
+        linear-gradient(
+            125deg,
+            transparent 0%,
+            rgba(255,255,255,.08) 25%,
+            transparent 46%
+        ),
+
+        linear-gradient(
+            55deg,
+            transparent 45%,
+            rgba(100,205,255,.075) 58%,
+            transparent 72%
+        );
+
+    opacity: .95;
+}
+
+
+/*
+   KEEP ALL REAL LOGIN CONTENT
+   ABOVE THE CRYSTAL EFFECT
+*/
+
+.login-card > * {
     position: relative;
-    overflow: hidden;
+    z-index: 5;
 }
 
 .admin-brand {
@@ -628,47 +788,78 @@ body {
    LUXURY LOGIN FORM CONTROLS
    ========================================================= */
 
-.login-card .form-group {
-    margin-bottom: 20px;
-}
-
 .login-card label {
     display: block;
     margin-bottom: 8px;
 
-    font-size: 13px;
+    color: #ffffff;
+
+    font-size: 14px;
     font-weight: 600;
-    color: #08264d;
+
+    text-shadow:
+        0 1px 4px rgba(0, 20, 45, 0.55);
+}
+
+.login-card .form-group {
+    margin-bottom: 20px;
 }
 
 .login-card input[type="email"],
 .login-card input[type="password"] {
     width: 100%;
-    height: 50px;
-    padding: 0 16px;
+    height: 54px;
 
-    background: #ffffff;
-    color: #08264d;
+    padding: 0 18px;
 
-    border: 1px solid rgba(8, 38, 77, 0.16);
-    border-radius: 12px;
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.20),
+            rgba(255,255,255,.08)
+        );
+
+    border: 1px solid rgba(255,255,255,.72);
+
+    color: #ffffff;
+
+    font-size: 15px;
 
     outline: none;
 
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.45),
+        0 7px 20px rgba(0,20,50,.12);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
     transition:
-        border-color 0.25s ease,
-        box-shadow 0.25s ease,
-        background 0.25s ease;
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
 }
 
-.login-card input[type="email"]:focus,
-.login-card input[type="password"]:focus {
-    border-color: #2597d3;
+.login-card input::placeholder {
+    color: rgba(255,255,255,.76);
+}
+
+.login-card input:focus {
+    border-color: rgba(118,220,255,.95);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.25),
+            rgba(120,210,255,.11)
+        );
 
     box-shadow:
-        0 0 0 4px rgba(37, 151, 211, 0.10);
-
-    background: #ffffff;
+        0 0 0 3px rgba(46,174,232,.16),
+        inset 0 1px 0 rgba(255,255,255,.55),
+        0 8px 26px rgba(0,91,160,.20);
 }
 
 .login-card button[type="submit"] {
@@ -720,108 +911,111 @@ body {
 
 #loginButton {
     width: 100%;
-    min-height: 50px;
-    margin-top: 4px;
+    min-height: 54px;
 
-    border: none;
-    border-radius: 12px;
+    margin-top: 5px;
 
-    background: linear-gradient(
-        135deg,
-        #087fc1 0%,
-        #2597d3 50%,
-        #087fc1 100%
-    );
+    border-radius: 14px;
+
+    border:
+        1px solid
+        rgba(139,225,255,.82);
+
+    background:
+        linear-gradient(
+            135deg,
+            #057ac4 0%,
+            #139fe2 48%,
+            #067dc5 100%
+        );
 
     color: #ffffff;
 
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
+    font-size: 16px;
+    font-weight: 700;
 
     cursor: pointer;
 
     box-shadow:
-        0 8px 22px rgba(8, 127, 193, 0.25);
+        inset 0 1px 0 rgba(255,255,255,.45),
+        0 9px 25px rgba(0,112,190,.35),
+        0 0 22px rgba(40,180,240,.12);
 
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        filter 0.2s ease;
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease;
 }
 
 #loginButton:hover {
     transform: translateY(-2px);
+
+    filter: brightness(1.08);
+
     box-shadow:
-        0 12px 28px rgba(8, 127, 193, 0.32);
-    filter: brightness(1.04);
+        inset 0 1px 0 rgba(255,255,255,.55),
+        0 13px 30px rgba(0,112,190,.42),
+        0 0 28px rgba(57,193,250,.18);
 }
 
 #loginButton:active {
     transform: translateY(0);
 }
 
-/* =========================================================
-   DIAMOND / PRISM GLASS EDGE
-   ========================================================= */
-
-.login-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    padding: 2px;
-    border-radius: 22px;
-
-    background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.95) 0%,
-        rgba(126, 218, 255, 0.75) 18%,
-        rgba(255, 226, 145, 0.65) 38%,
-        rgba(255, 255, 255, 0.90) 52%,
-        rgba(101, 190, 255, 0.70) 72%,
-        rgba(255, 220, 135, 0.65) 88%,
-        rgba(255, 255, 255, 0.95) 100%
-    );
-
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-
-    pointer-events: none;
-    z-index: 2;
+.password-field {
+    position: relative;
 }
 
-.login-card::after {
-    content: "";
+.password-field input {
+    padding-right: 56px !important;
+}
+
+.password-toggle {
     position: absolute;
-    inset: 0;
-    border-radius: 22px;
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.55) 0%,
-            transparent 10%
-        ),
-        linear-gradient(
-            225deg,
-            rgba(104, 205, 255, 0.28) 0%,
-            transparent 10%
-        ),
-        linear-gradient(
-            45deg,
-            rgba(255, 215, 125, 0.22) 0%,
-            transparent 11%
-        ),
-        linear-gradient(
-            315deg,
-            rgba(255, 255, 255, 0.40) 0%,
-            transparent 10%
+    right: 15px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    padding: 0;
+
+    background: transparent;
+
+    color: rgba(255,255,255,.94);
+
+    cursor: pointer;
+
+    border-radius: 50%;
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+}
+
+.password-toggle:hover {
+    background: rgba(255,255,255,.12);
+
+    transform:
+        translateY(-50%)
+        scale(1.06);
+}
+
+.password-toggle svg {
+    width: 23px;
+    height: 23px;
+
+    filter:
+        drop-shadow(
+            0 1px 3px
+            rgba(0,20,50,.35)
         );
-
-    pointer-events: none;
-    z-index: 1;
 }
