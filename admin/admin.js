@@ -130,7 +130,65 @@ logoutButton.addEventListener(
     }
   }
 );
+/* =========================================================
+   AUTO LOGOUT AFTER 10 MINUTES OF INACTIVITY
+   ========================================================= */
 
+const INACTIVITY_LIMIT = 10 * 60 * 1000;
+
+let inactivityTimer;
+
+function resetInactivityTimer() {
+
+  clearTimeout(inactivityTimer);
+
+  if (!auth.currentUser) {
+    return;
+  }
+
+  inactivityTimer = setTimeout(
+    async () => {
+
+      try {
+
+        await signOut(auth);
+
+        console.log(
+          "Logged out automatically due to inactivity."
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Automatic logout failed:",
+          error
+        );
+      }
+
+    },
+    INACTIVITY_LIMIT
+  );
+}
+
+
+/* Reset timer whenever the admin is active */
+
+[
+  "mousemove",
+  "mousedown",
+  "keydown",
+  "click",
+  "scroll",
+  "touchstart"
+].forEach(eventName => {
+
+  document.addEventListener(
+    eventName,
+    resetInactivityTimer,
+    { passive: true }
+  );
+
+});
 
 /* =========================================================
    AUTH STATE
