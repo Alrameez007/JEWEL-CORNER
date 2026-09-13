@@ -711,3 +711,50 @@ body {
 .login-card button[type="submit"]:active {
     transform: translateY(0);
 }
+
+/* =========================================================
+   JEWEL CORNER LOGIN BUTTON
+   ========================================================= */
+
+#loginButton {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 4px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #087fc1 0%,
+        #2597d3 50%,
+        #087fc1 100%
+    );
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 22px rgba(8, 127, 193, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+#loginButton:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 12px 28px rgba(8, 127, 193, 0.32);
+    filter: brightness(1.04);
+}
+
+#loginButton:active {
+    transform: translateY(0);
+}
