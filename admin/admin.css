@@ -53,8 +53,8 @@ body {
     
 .login-card {
     width: 100%;
-    max-width: 430px;
-    padding: 34px 30px;
+    max-width: 500px;
+    padding: 36px 36px 42px;
 
     background: rgba(255, 255, 255, 0.92);
 
