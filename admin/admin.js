@@ -908,3 +908,36 @@ function formatFileSize(bytes) {
         (1024 * 1024)
     ).toFixed(2) + " MB";
 }
+const additionalImagesInput = document.getElementById("additionalImages");
+const additionalImagesPreview = document.getElementById("additionalImagesPreview");
+
+additionalImagesInput.addEventListener("change", () => {
+    additionalImagesPreview.innerHTML = "";
+
+    const files = Array.from(additionalImagesInput.files);
+
+    files.forEach((file) => {
+        if (!file.type.startsWith("image/")) return;
+
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+            const img = document.createElement("img");
+
+            img.src = event.target.result;
+            img.alt = "Additional product image preview";
+
+            img.style.width = "100px";
+            img.style.height = "100px";
+            img.style.objectFit = "contain";
+            img.style.borderRadius = "8px";
+            img.style.border = "1px solid #ddd";
+            img.style.background = "#F4F0E4";
+            img.style.padding = "4px";
+
+            additionalImagesPreview.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+    });
+});
