@@ -9,7 +9,7 @@ import {
 
 import {
   getFirestore,
-  collection,
+  collection,a
   addDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
@@ -316,6 +316,8 @@ productForm.addEventListener(
             .getElementById("productMainImage")
             .value
             .trim(),
+
+        additionalImages: additionalImageUrls,
 
         descriptionEn:
           document
