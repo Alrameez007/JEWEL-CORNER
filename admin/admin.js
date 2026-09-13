@@ -1013,36 +1013,132 @@ function formatFileSize(bytes) {
         (1024 * 1024)
     ).toFixed(2) + " MB";
 }
-const additionalImagesInput = document.getElementById("additionalImages");
-const additionalImagesPreview = document.getElementById("additionalImagesPreview");
+const additionalImagesInput =
+    document.getElementById("additionalImages");
 
-additionalImagesInput.addEventListener("change", () => {
-    additionalImagesPreview.innerHTML = "";
+const additionalImagesPreview =
+    document.getElementById("additionalImagesPreview");
 
-    const files = Array.from(additionalImagesInput.files);
+let additionalImageUrls = [];
 
-    files.forEach((file) => {
-        if (!file.type.startsWith("image/")) return;
 
-        const reader = new FileReader();
+additionalImagesInput.addEventListener(
+    "change",
+    async () => {
 
-        reader.onload = (event) => {
-            const img = document.createElement("img");
+        additionalImagesPreview.innerHTML = "";
 
-            img.src = event.target.result;
-            img.alt = "Additional product image preview";
+        additionalImageUrls = [];
 
-            img.style.width = "100px";
-            img.style.height = "100px";
-            img.style.objectFit = "contain";
-            img.style.borderRadius = "8px";
-            img.style.border = "1px solid #ddd";
-            img.style.background = "#F4F0E4";
-            img.style.padding = "4px";
+        const files =
+            Array.from(additionalImagesInput.files);
+
+
+        for (const file of files) {
+
+            if (!file.type.startsWith("image/")) {
+                continue;
+            }
+
+
+            /* -----------------------------------------
+               Show temporary preview
+            ----------------------------------------- */
+
+            const previewUrl =
+                URL.createObjectURL(file);
+
+            const img =
+                document.createElement("img");
+
+            img.src =
+                previewUrl;
+
+            img.alt =
+                "Additional product image";
+
+            img.style.width =
+                "100px";
+
+            img.style.height =
+                "100px";
+
+            img.style.objectFit =
+                "contain";
+
+            img.style.borderRadius =
+                "8px";
+
+            img.style.border =
+                "1px solid #ddd";
+
+            img.style.background =
+                "#F4F0E4";
+
+            img.style.padding =
+                "4px";
 
             additionalImagesPreview.appendChild(img);
-        };
 
-        reader.readAsDataURL(file);
-    });
-});
+
+            try {
+
+                /* =====================================
+                   OPTIMIZE + UPLOAD
+                ===================================== */
+
+                const uploadedUrl =
+                    await uploadAdditionalImageToImageKit(
+                        file
+                    );
+
+
+                /* =====================================
+                   SAVE URL IN ARRAY
+                ===================================== */
+
+                additionalImageUrls.push(
+                    uploadedUrl
+                );
+
+
+                /* -----------------------------------------
+                   Replace preview with ImageKit URL
+                ----------------------------------------- */
+
+                URL.revokeObjectURL(
+                    previewUrl
+                );
+
+                img.src =
+                    uploadedUrl;
+
+
+                console.log(
+                    "Additional image uploaded:",
+                    uploadedUrl
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Additional image upload failed:",
+                    error
+                );
+
+                img.style.opacity =
+                    "0.4";
+
+                img.title =
+                    error.message ||
+                    "Upload failed";
+            }
+        }
+
+
+        console.log(
+            "Additional image URLs:",
+            additionalImageUrls
+        );
+    }
+);
