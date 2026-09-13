@@ -123,7 +123,7 @@ logoutButton.addEventListener(
    AUTO LOGOUT AFTER 10 MINUTES OF INACTIVITY
    ========================================================= */
 
-const INACTIVITY_LIMIT = 30 * 1000;
+const INACTIVITY_LIMIT = 10 * 60 * 1000;
 
 let inactivityTimer;
 function resetInactivityTimer() {
