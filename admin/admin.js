@@ -79,32 +79,22 @@ const logoutButton =
 loginForm.addEventListener(
   "submit",
   async event => {
-
     event.preventDefault();
-
     loginMessage.textContent = "";
     loginButton.disabled = true;
     loginButton.textContent = "Logging in...";
-
     try {
-
       await signInWithEmailAndPassword(
         auth,
         adminEmail.value.trim(),
         adminPassword.value
       );
-
       loginMessage.textContent = "";
-
     } catch (error) {
-
       console.error(error);
-
       loginMessage.textContent =
         "Invalid email or password.";
-
     } finally {
-
       loginButton.disabled = false;
       loginButton.textContent = "Login";
     }
@@ -119,17 +109,16 @@ loginForm.addEventListener(
 logoutButton.addEventListener(
   "click",
   async () => {
-
     try {
-
       await signOut(auth);
-
-    } catch (error) {
+    } 
+    catch (error) {
 
       console.error(error);
     }
   }
 );
+
 /* =========================================================
    AUTO LOGOUT AFTER 10 MINUTES OF INACTIVITY
    ========================================================= */
@@ -137,35 +126,26 @@ logoutButton.addEventListener(
 const INACTIVITY_LIMIT = 30 * 1000;
 
 let inactivityTimer;
-
 function resetInactivityTimer() {
-
   clearTimeout(inactivityTimer);
-
   if (!auth.currentUser) {
     return;
   }
-
   inactivityTimer = setTimeout(
     async () => {
-
       try {
-
         await signOut(auth);
-
         console.log(
           "Logged out automatically due to inactivity."
         );
-
       } catch (error) {
-
         console.error(
           "Automatic logout failed:",
           error
         );
       }
-
     },
+    
     INACTIVITY_LIMIT
   );
 }
