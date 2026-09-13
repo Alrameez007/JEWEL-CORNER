@@ -760,3 +760,36 @@ body {
 #loginButton:active {
     transform: translateY(0);
 }
+
+/* =========================================================
+   DIAMOND / PRISM GLASS EDGE
+   ========================================================= */
+
+.login-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: 22px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(126, 218, 255, 0.75) 18%,
+        rgba(255, 226, 145, 0.65) 38%,
+        rgba(255, 255, 255, 0.90) 52%,
+        rgba(101, 190, 255, 0.70) 72%,
+        rgba(255, 220, 135, 0.65) 88%,
+        rgba(255, 255, 255, 0.95) 100%
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+    z-index: 2;
+}
