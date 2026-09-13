@@ -621,3 +621,93 @@ body {
 .hidden {
     display: none !important;
 }
+
+/* =========================================================
+   LUXURY LOGIN FORM CONTROLS
+   ========================================================= */
+
+.login-card .form-group {
+    margin-bottom: 20px;
+}
+
+.login-card label {
+    display: block;
+    margin-bottom: 8px;
+
+    font-size: 13px;
+    font-weight: 600;
+    color: #08264d;
+}
+
+.login-card input[type="email"],
+.login-card input[type="password"] {
+    width: 100%;
+    height: 50px;
+    padding: 0 16px;
+
+    background: #ffffff;
+    color: #08264d;
+
+    border: 1px solid rgba(8, 38, 77, 0.16);
+    border-radius: 12px;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.login-card input[type="email"]:focus,
+.login-card input[type="password"]:focus {
+    border-color: #2597d3;
+
+    box-shadow:
+        0 0 0 4px rgba(37, 151, 211, 0.10);
+
+    background: #ffffff;
+}
+
+.login-card button[type="submit"] {
+    width: 100%;
+    min-height: 50px;
+
+    margin-top: 4px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #087fc1 0%,
+        #2597d3 50%,
+        #087fc1 100%
+    );
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(8, 127, 193, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.login-card button[type="submit"]:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 26px rgba(8, 127, 193, 0.30);
+}
+
+.login-card button[type="submit"]:active {
+    transform: translateY(0);
+}
