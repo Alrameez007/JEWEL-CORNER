@@ -820,6 +820,111 @@ async function optimizeProductImage(file) {
     );
 }
 
+async function uploadAdditionalImageToImageKit(originalFile) {
+
+    if (!originalFile.type.startsWith("image/")) {
+        throw new Error("Please select a valid image file.");
+    }
+
+    // Reuse your EXISTING optimization system
+    const optimizedFile =
+        await optimizeProductImage(originalFile);
+
+    if (!auth.currentUser) {
+        throw new Error("You are not logged in.");
+    }
+
+    const firebaseToken =
+        await auth.currentUser.getIdToken();
+
+    const authResponse =
+        await fetch(
+            IMAGEKIT_AUTH_ENDPOINT,
+            {
+                method: "GET",
+
+                headers: {
+                    Authorization:
+                        `Bearer ${firebaseToken}`
+                }
+            }
+        );
+
+    if (!authResponse.ok) {
+        throw new Error(
+            "Unable to authorize image upload."
+        );
+    }
+
+    const imageKitAuth =
+        await authResponse.json();
+
+    const formData =
+        new FormData();
+
+    formData.append(
+        "file",
+        optimizedFile
+    );
+
+    formData.append(
+        "fileName",
+        createSafeFileName()
+    );
+
+    formData.append(
+        "publicKey",
+        IMAGEKIT_PUBLIC_KEY
+    );
+
+    formData.append(
+        "signature",
+        imageKitAuth.signature
+    );
+
+    formData.append(
+        "expire",
+        imageKitAuth.expire
+    );
+
+    formData.append(
+        "token",
+        imageKitAuth.token
+    );
+
+    formData.append(
+        "folder",
+        "/jewel-corner/products"
+    );
+
+    const uploadResponse =
+        await fetch(
+            "https://upload.imagekit.io/api/v1/files/upload",
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+    const uploadResult =
+        await uploadResponse.json();
+
+    if (!uploadResponse.ok) {
+
+        console.error(
+            "Additional ImageKit error:",
+            uploadResult
+        );
+
+        throw new Error(
+            uploadResult.message ||
+            "Additional image upload failed."
+        );
+    }
+
+    return uploadResult.url;
+}
+
 
 /* =========================================================
    LOAD IMAGE
