@@ -542,3 +542,41 @@ body {
         align-items: flex-start;
     }
 }
+/* ================================
+   PRODUCT IMAGE UPLOAD
+================================ */
+
+.image-preview-box {
+    width: 100%;
+    max-width: 320px;
+    margin-top: 15px;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #d4af37;
+    border-radius: 14px;
+}
+
+.image-preview-box img {
+    display: block;
+    width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.image-upload-message {
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.image-upload-message.success {
+    color: #16833b;
+}
+
+.image-upload-message.error {
+    color: #b3261e;
+}
+
+.hidden {
+    display: none !important;
+}
