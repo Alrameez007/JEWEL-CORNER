@@ -184,9 +184,25 @@ function resetInactivityTimer() {
 
 onAuthStateChanged(
   auth,
-  user => {
+  async user => {
 
     if (user) {
+
+      const isApprovedAdmin =
+        APPROVED_ADMIN_UIDS.includes(user.uid);
+
+      if (!isApprovedAdmin) {
+
+        await signOut(auth);
+
+        loginMessage.textContent =
+          "This account is not authorized for admin access.";
+
+        loginMessage.className =
+          "login-message error";
+
+        return;
+      }
 
       loginPage.classList.add("hidden");
       dashboardPage.classList.remove("hidden");
