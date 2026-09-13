@@ -245,6 +245,15 @@ productForm.addEventListener(
           .map(tag => tag.trim())
           .filter(Boolean);
 
+      if (!productMainImage.value.trim()) {
+    productFormMessage.textContent =
+        "Please upload the product image first.";
+
+    productFormMessage.className =
+        "form-message error";
+
+    return;
+}
 
       const productData = {
 
