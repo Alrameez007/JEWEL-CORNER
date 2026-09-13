@@ -427,37 +427,125 @@ const imageUploadMessage =
     document.getElementById("imageUploadMessage");
 
 
+/* =========================================================
+   IMAGE OPTIMIZATION + IMAGEKIT UPLOAD
+========================================================= */
+
 productImageFile?.addEventListener("change", async () => {
 
-    const file = productImageFile.files[0];
+    const originalFile = productImageFile.files[0];
 
-    if (!file) return;
+    if (!originalFile) return;
+
+
+    /* -----------------------------------------
+       Make sure selected file is an image
+    ----------------------------------------- */
+
+    if (!originalFile.type.startsWith("image/")) {
+
+        imageUploadMessage.textContent =
+            "Please select a valid image file.";
+
+        imageUploadMessage.className =
+            "image-upload-message error";
+
+        return;
+    }
+
+
+    /* -----------------------------------------
+       Show temporary original preview
+    ----------------------------------------- */
+
+    const temporaryPreview =
+        URL.createObjectURL(originalFile);
 
     productImagePreview.src =
-        URL.createObjectURL(file);
+        temporaryPreview;
 
     productImagePreviewBox.classList.remove("hidden");
 
     imageUploadMessage.textContent =
-        "Uploading image...";
+        "Optimizing image...";
 
     imageUploadMessage.className =
         "image-upload-message";
 
+
     try {
 
+        /* =====================================
+           OPTIMIZE IMAGE BEFORE UPLOAD
+        ===================================== */
+
+        const optimizedFile =
+            await optimizeProductImage(originalFile);
+
+
+        const originalSize =
+            formatFileSize(originalFile.size);
+
+        const optimizedSize =
+            formatFileSize(optimizedFile.size);
+
+        const savedPercent =
+            Math.max(
+                0,
+                Math.round(
+                    (1 -
+                        optimizedFile.size /
+                        originalFile.size) *
+                        100
+                )
+            );
+
+
+        /* -----------------------------------------
+           Show optimized preview
+        ----------------------------------------- */
+
+        URL.revokeObjectURL(temporaryPreview);
+
+        const optimizedPreview =
+            URL.createObjectURL(optimizedFile);
+
+        productImagePreview.src =
+            optimizedPreview;
+
+
+        imageUploadMessage.textContent =
+            `Original: ${originalSize} | ` +
+            `Optimized: ${optimizedSize} | ` +
+            `Saved: ${savedPercent}% | Uploading...`;
+
+
+        /* =====================================
+           FIREBASE LOGIN CHECK
+        ===================================== */
+
         if (!auth.currentUser) {
-            throw new Error("You are not logged in.");
+
+            throw new Error(
+                "You are not logged in."
+            );
         }
+
 
         const firebaseToken =
             await auth.currentUser.getIdToken();
+
+
+        /* =====================================
+           GET IMAGEKIT AUTHORIZATION
+        ===================================== */
 
         const authResponse =
             await fetch(
                 IMAGEKIT_AUTH_ENDPOINT,
                 {
                     method: "GET",
+
                     headers: {
                         Authorization:
                             `Bearer ${firebaseToken}`
@@ -465,49 +553,68 @@ productImageFile?.addEventListener("change", async () => {
                 }
             );
 
+
         if (!authResponse.ok) {
+
             throw new Error(
                 "Unable to authorize image upload."
             );
         }
 
+
         const imageKitAuth =
             await authResponse.json();
+
+
+        /* =====================================
+           UPLOAD OPTIMIZED IMAGE
+        ===================================== */
 
         const formData =
             new FormData();
 
-        formData.append("file", file);
+
+        formData.append(
+            "file",
+            optimizedFile
+        );
+
 
         formData.append(
             "fileName",
-            createSafeFileName(file.name)
+            createSafeFileName()
         );
+
 
         formData.append(
             "publicKey",
             IMAGEKIT_PUBLIC_KEY
         );
 
+
         formData.append(
             "signature",
             imageKitAuth.signature
         );
+
 
         formData.append(
             "expire",
             imageKitAuth.expire
         );
 
+
         formData.append(
             "token",
             imageKitAuth.token
         );
 
+
         formData.append(
             "folder",
             "/jewel-corner/products"
         );
+
 
         const uploadResponse =
             await fetch(
@@ -518,10 +625,13 @@ productImageFile?.addEventListener("change", async () => {
                 }
             );
 
+
         const uploadResult =
             await uploadResponse.json();
 
+
         if (!uploadResponse.ok) {
+
             console.error(
                 "ImageKit error:",
                 uploadResult
@@ -533,22 +643,35 @@ productImageFile?.addEventListener("change", async () => {
             );
         }
 
+
+        /* =====================================
+           SAVE IMAGEKIT URL
+        ===================================== */
+
         productMainImage.value =
             uploadResult.url;
+
 
         productImagePreview.src =
             uploadResult.url;
 
+
         imageUploadMessage.textContent =
-            "Image uploaded successfully.";
+            `Image uploaded successfully. ` +
+            `Original: ${originalSize} | ` +
+            `Optimized: ${optimizedSize} | ` +
+            `Saved: ${savedPercent}%`;
+
 
         imageUploadMessage.className =
             "image-upload-message success";
 
+
         console.log(
-            "Image uploaded:",
+            "Optimized image uploaded:",
             uploadResult.url
         );
+
 
     } catch (error) {
 
@@ -556,26 +679,232 @@ productImageFile?.addEventListener("change", async () => {
 
         productMainImage.value = "";
 
+
         imageUploadMessage.textContent =
             error.message ||
-            "Image upload failed.";
+            "Image optimization or upload failed.";
+
 
         imageUploadMessage.className =
             "image-upload-message error";
     }
+
 });
 
 
-function createSafeFileName(fileName) {
+/* =========================================================
+   OPTIMIZE PRODUCT IMAGE
+   1200 × 1200
+   1:1 ASPECT RATIO
+   WEBP
+========================================================= */
 
-    const extension =
-        fileName.includes(".")
-            ? "." + fileName.split(".").pop()
-            : ".jpg";
+async function optimizeProductImage(file) {
+
+    const TARGET_SIZE = 1200;
+
+    const WEBP_QUALITY = 0.82;
+
+
+    const image =
+        await loadImageForOptimization(file);
+
+
+    const canvas =
+        document.createElement("canvas");
+
+
+    canvas.width =
+        TARGET_SIZE;
+
+    canvas.height =
+        TARGET_SIZE;
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    /* -----------------------------------------
+       Ivory background matching Jewel Corner
+    ----------------------------------------- */
+
+    ctx.fillStyle =
+        "#F4F0E4";
+
+    ctx.fillRect(
+        0,
+        0,
+        TARGET_SIZE,
+        TARGET_SIZE
+    );
+
+
+    /* -----------------------------------------
+       Calculate "contain" dimensions
+
+       Entire product remains visible.
+       No automatic cropping.
+    ----------------------------------------- */
+
+    const scale =
+        Math.min(
+            TARGET_SIZE / image.width,
+            TARGET_SIZE / image.height
+        );
+
+
+    const drawWidth =
+        image.width * scale;
+
+    const drawHeight =
+        image.height * scale;
+
+
+    const x =
+        (TARGET_SIZE - drawWidth) / 2;
+
+    const y =
+        (TARGET_SIZE - drawHeight) / 2;
+
+
+    ctx.drawImage(
+        image,
+        x,
+        y,
+        drawWidth,
+        drawHeight
+    );
+
+
+    /* -----------------------------------------
+       Convert canvas to compressed WebP
+    ----------------------------------------- */
+
+    const blob =
+        await new Promise(
+            (resolve, reject) => {
+
+                canvas.toBlob(
+                    result => {
+
+                        if (result) {
+
+                            resolve(result);
+
+                        } else {
+
+                            reject(
+                                new Error(
+                                    "Unable to optimize image."
+                                )
+                            );
+                        }
+
+                    },
+
+                    "image/webp",
+
+                    WEBP_QUALITY
+                );
+            }
+        );
+
+
+    return new File(
+        [blob],
+        `product-${Date.now()}.webp`,
+        {
+            type: "image/webp"
+        }
+    );
+}
+
+
+/* =========================================================
+   LOAD IMAGE
+========================================================= */
+
+function loadImageForOptimization(file) {
+
+    return new Promise(
+        (resolve, reject) => {
+
+            const img =
+                new Image();
+
+
+            const objectUrl =
+                URL.createObjectURL(file);
+
+
+            img.onload = () => {
+
+                URL.revokeObjectURL(
+                    objectUrl
+                );
+
+                resolve(img);
+            };
+
+
+            img.onerror = () => {
+
+                URL.revokeObjectURL(
+                    objectUrl
+                );
+
+                reject(
+                    new Error(
+                        "Unable to read this image."
+                    )
+                );
+            };
+
+
+            img.src =
+                objectUrl;
+        }
+    );
+}
+
+
+/* =========================================================
+   IMAGEKIT FILE NAME
+========================================================= */
+
+function createSafeFileName() {
 
     return (
         "product-" +
         Date.now() +
-        extension.toLowerCase()
+        ".webp"
     );
+}
+
+
+/* =========================================================
+   FORMAT FILE SIZE
+========================================================= */
+
+function formatFileSize(bytes) {
+
+    if (bytes < 1024) {
+
+        return `${bytes} B`;
+    }
+
+
+    if (bytes < 1024 * 1024) {
+
+        return (
+            bytes / 1024
+        ).toFixed(1) + " KB";
+    }
+
+
+    return (
+        bytes /
+        (1024 * 1024)
+    ).toFixed(2) + " MB";
 }
