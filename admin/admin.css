@@ -77,6 +77,24 @@ body {
     margin: 0;
 }
 
+/* =========================================================
+   ADMIN LOGIN LOGO
+   ========================================================= */
+
+.admin-login-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.admin-login-logo img {
+    width: 220px;
+    max-width: 80%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
 
 /* ================================
    FORMS
