@@ -1,1 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Jewel Corner Admin</title>
+
+    <meta name="theme-color" content="#d4af37">
+
+    <link rel="stylesheet" href="admin.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+    <!-- =========================
+         LOGIN SCREEN
+    ========================== -->
+
+    <main class="admin-login-page" id="loginPage">
+
+        <div class="login-card">
+
+            <div class="admin-brand">
+                <h1>JEWEL CORNER</h1>
+                <p>Product Management</p>
+            </div>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="adminEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="adminPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="loginButton"
+                >
+                    Login
+                </button>
+
+                <p
+                    class="login-message"
+                    id="loginMessage"
+                ></p>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         ADMIN DASHBOARD
+    ========================== -->
+
+    <main
+        class="admin-dashboard hidden"
+        id="dashboardPage"
+    >
+
+        <header class="admin-header">
+
+            <div>
+                <h1>JEWEL CORNER</h1>
+                <span>Admin</span>
+            </div>
+
+            <button
+                type="button"
+                class="logout-button"
+                id="logoutButton"
+            >
+                Logout
+            </button>
+
+        </header>
+
+
+        <section class="dashboard-content">
+
+            <div class="welcome-area">
+
+                <h2>Product Management</h2>
+
+                <p>
+                    Add and manage Jewel Corner products.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-actions">
+
+                <button
+                    type="button"
+                    class="dashboard-card"
+                    id="addProductButton"
+                >
+                    <span class="dashboard-icon">
+                        +
+                    </span>
+
+                    <strong>
+                        Add Product
+                    </strong>
+
+                    <small>
+                        Create a new catalogue item
+                    </small>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="dashboard-card"
+                    id="manageProductsButton"
+                >
+                    <span class="dashboard-icon">
+                        ☰
+                    </span>
+
+                    <strong>
+                        Manage Products
+                    </strong>
+
+                    <small>
+                        View, edit or disable products
+                    </small>
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script type="module" src="admin.js"></script>
+
+</body>
+</html>
