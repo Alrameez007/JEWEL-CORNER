@@ -793,3 +793,35 @@ body {
     pointer-events: none;
     z-index: 2;
 }
+
+.login-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.55) 0%,
+            transparent 10%
+        ),
+        linear-gradient(
+            225deg,
+            rgba(104, 205, 255, 0.28) 0%,
+            transparent 10%
+        ),
+        linear-gradient(
+            45deg,
+            rgba(255, 215, 125, 0.22) 0%,
+            transparent 11%
+        ),
+        linear-gradient(
+            315deg,
+            rgba(255, 255, 255, 0.40) 0%,
+            transparent 10%
+        );
+
+    pointer-events: none;
+    z-index: 1;
+}
