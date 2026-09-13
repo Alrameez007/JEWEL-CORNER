@@ -37,10 +37,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const IMAGEKIT_PUBLIC_KEY = "PASTE_YOUR_IMAGEKIT_PUBLIC_KEY_HERE";
+const IMAGEKIT_PUBLIC_KEY = "public_IP8REy3fRyTC90DJn9RFhDpalck=";
 
 const IMAGEKIT_AUTH_ENDPOINT =
-    "PASTE_YOUR_CLOUDFLARE_WORKER_URL_HERE";
+    "https://jewel-corner-image-auth.sideekalrameez.workers.dev/";
 
 
 /* =========================================================
