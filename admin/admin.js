@@ -1211,3 +1211,32 @@ additionalImagesInput.addEventListener(
         );
     }
 );
+
+/* =========================================================
+   PASSWORD VISIBILITY TOGGLE
+   ========================================================= */
+
+const passwordToggle =
+    document.getElementById("passwordToggle");
+
+const adminPasswordInput =
+    document.getElementById("adminPassword");
+
+passwordToggle?.addEventListener(
+    "click",
+    () => {
+
+        const isHidden =
+            adminPasswordInput.type === "password";
+
+        adminPasswordInput.type =
+            isHidden ? "text" : "password";
+
+        passwordToggle.setAttribute(
+            "aria-label",
+            isHidden
+                ? "Hide password"
+                : "Show password"
+        );
+    }
+);
