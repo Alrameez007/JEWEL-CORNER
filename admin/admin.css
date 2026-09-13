@@ -351,3 +351,194 @@ body {
         min-height: 145px;
     }
 }
+/* ================================
+   PRODUCT FORM
+================================ */
+
+.product-form-section {
+    margin-top: 35px;
+
+    background: #fff;
+
+    border:
+        1px solid rgba(212,175,55,.28);
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.05);
+}
+
+.form-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 28px;
+}
+
+.form-section-header h2 {
+    margin: 0 0 5px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    color: #d4af37;
+
+    font-size: 30px;
+}
+
+.form-section-header p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    border:
+        1px solid #ddd;
+
+    border-radius: 10px;
+
+    padding: 12px 14px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    background: #fff;
+}
+
+.form-group select {
+    min-height: 48px;
+}
+
+.form-group textarea {
+    resize: vertical;
+
+    min-height: 110px;
+}
+
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #d4af37;
+
+    box-shadow:
+        0 0 0 3px rgba(212,175,55,.12);
+}
+
+.toggle-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin: 25px 0;
+}
+
+.toggle-option {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    background: #faf8f1;
+
+    border-radius: 10px;
+
+    padding: 13px 14px;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.toggle-option input {
+    width: 18px;
+    height: 18px;
+
+    accent-color: #d4af37;
+}
+
+.secondary-button {
+    border:
+        1px solid #d4af37;
+
+    background: transparent;
+
+    color: #000;
+
+    border-radius: 20px;
+
+    padding: 8px 16px;
+
+    cursor: pointer;
+}
+
+.product-form-message {
+    min-height: 20px;
+
+    margin-top: 14px;
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+.product-form-message.success {
+    color: #1a7f37;
+}
+
+.product-form-message.error {
+    color: #b00020;
+}
+
+@media (max-width: 650px) {
+
+    .product-form-section {
+        padding: 20px 16px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .toggle-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-section-header {
+        align-items: flex-start;
+    }
+}
