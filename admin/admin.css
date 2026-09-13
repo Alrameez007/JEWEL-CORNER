@@ -38,25 +38,34 @@ body {
     align-items: center;
     justify-content: center;
     padding: 40px 20px;
-
+    
     background:
-        linear-gradient(
-            rgba(255, 255, 255, 0.78),
-            rgba(255, 255, 255, 0.78)
-        ),
-        radial-gradient(
-            circle at top left,
-            rgba(37, 151, 211, 0.18),
-            transparent 40%
-        ),
-        radial-gradient(
-            circle at bottom right,
-            rgba(8, 38, 77, 0.14),
-            transparent 45%
-        ),
-        #f6f2e8;
-}
-
+    linear-gradient(
+        rgba(255, 255, 255, 0.70),
+        rgba(255, 255, 255, 0.74)
+    ),
+    radial-gradient(
+        circle at 12% 18%,
+        rgba(212, 175, 55, 0.12),
+        transparent 24%
+    ),
+    radial-gradient(
+        circle at 88% 18%,
+        rgba(37, 151, 211, 0.16),
+        transparent 28%
+    ),
+    radial-gradient(
+        circle at 20% 85%,
+        rgba(8, 38, 77, 0.10),
+        transparent 26%
+    ),
+    linear-gradient(
+        135deg,
+        #fbf8f2 0%,
+        #f4f7fb 50%,
+        #f7f2e8 100%
+    );
+    
 .login-card {
     width: 100%;
     max-width: 430px;
