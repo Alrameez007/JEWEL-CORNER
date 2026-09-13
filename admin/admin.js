@@ -7,6 +7,13 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
 
 /* =========================================================
    FIREBASE CONFIG
@@ -28,6 +35,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 
 /* =========================================================
@@ -138,6 +146,250 @@ onAuthStateChanged(
       loginPage.classList.remove("hidden");
 
       adminPassword.value = "";
+    }
+  }
+);
+/* =========================================================
+   ADD PRODUCT FORM
+   ========================================================= */
+
+const dashboardActions =
+  document.querySelector(".dashboard-actions");
+
+const welcomeArea =
+  document.querySelector(".welcome-area");
+
+const addProductButton =
+  document.getElementById("addProductButton");
+
+const productFormSection =
+  document.getElementById("productFormSection");
+
+const backToDashboardButton =
+  document.getElementById("backToDashboardButton");
+
+const productForm =
+  document.getElementById("productForm");
+
+const productFormMessage =
+  document.getElementById("productFormMessage");
+
+const saveProductButton =
+  document.getElementById("saveProductButton");
+
+
+addProductButton.addEventListener(
+  "click",
+  () => {
+
+    dashboardActions.classList.add("hidden");
+    welcomeArea.classList.add("hidden");
+
+    productFormSection.classList.remove("hidden");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+);
+
+
+backToDashboardButton.addEventListener(
+  "click",
+  () => {
+
+    productFormSection.classList.add("hidden");
+
+    dashboardActions.classList.remove("hidden");
+    welcomeArea.classList.remove("hidden");
+  }
+);
+
+
+productForm.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+    productFormMessage.textContent = "";
+    productFormMessage.className =
+      "product-form-message";
+
+    saveProductButton.disabled = true;
+    saveProductButton.textContent =
+      "Saving...";
+
+    try {
+
+      const user = auth.currentUser;
+
+      if (!user) {
+        throw new Error(
+          "You are not logged in."
+        );
+      }
+
+
+      const tags =
+        document
+          .getElementById("productTags")
+          .value
+          .split(",")
+          .map(tag => tag.trim())
+          .filter(Boolean);
+
+
+      const productData = {
+
+        productId:
+          document
+            .getElementById("productId")
+            .value
+            .trim(),
+
+        sku:
+          document
+            .getElementById("productSku")
+            .value
+            .trim(),
+
+        nameEn:
+          document
+            .getElementById("productNameEn")
+            .value
+            .trim(),
+
+        nameAr:
+          document
+            .getElementById("productNameAr")
+            .value
+            .trim(),
+
+        category:
+          document
+            .getElementById("productCategory")
+            .value,
+
+        subcategory:
+          document
+            .getElementById("productSubcategory")
+            .value
+            .trim()
+            .toLowerCase(),
+
+        brand:
+          document
+            .getElementById("productBrand")
+            .value
+            .trim(),
+
+        price:
+          Number(
+            document
+              .getElementById("productPrice")
+              .value || 0
+          ),
+
+        showPrice:
+          document
+            .getElementById("showPrice")
+            .checked,
+
+        mainImage:
+          document
+            .getElementById("productMainImage")
+            .value
+            .trim(),
+
+        descriptionEn:
+          document
+            .getElementById("productDescriptionEn")
+            .value
+            .trim(),
+
+        descriptionAr:
+          document
+            .getElementById("productDescriptionAr")
+            .value
+            .trim(),
+
+        tags,
+
+        featured:
+          document
+            .getElementById("featured")
+            .checked,
+
+        newArrival:
+          document
+            .getElementById("newArrival")
+            .checked,
+
+        whatsappEnquiry:
+          document
+            .getElementById("whatsappEnquiry")
+            .checked,
+
+        status:
+          document
+            .getElementById("productStatus")
+            .value,
+
+        createdAt:
+          serverTimestamp(),
+
+        updatedAt:
+          serverTimestamp(),
+
+        createdBy:
+          user.uid
+      };
+
+
+      await addDoc(
+        collection(db, "products"),
+        productData
+      );
+
+
+      productForm.reset();
+
+      document
+        .getElementById("whatsappEnquiry")
+        .checked = true;
+
+      document
+        .getElementById("productStatus")
+        .value = "active";
+
+
+      productFormMessage.textContent =
+        "Product saved successfully.";
+
+      productFormMessage.classList.add(
+        "success"
+      );
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      productFormMessage.textContent =
+        "Could not save product.";
+
+      productFormMessage.classList.add(
+        "error"
+      );
+
+    } finally {
+
+      saveProductButton.disabled = false;
+
+      saveProductButton.textContent =
+        "Save Product";
     }
   }
 );
