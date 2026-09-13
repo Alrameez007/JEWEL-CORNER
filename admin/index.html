@@ -337,19 +337,44 @@
             </div>
 
 
-            <!-- MAIN IMAGE -->
+         <!-- MAIN IMAGE -->
 
-            <div class="form-group full-width">
-                <label for="productMainImage">
-                    Main Image URL
-                </label>
+<div class="form-group full-width">
 
-                <input
-                    type="text"
-                    id="productMainImage"
-                    placeholder="images/example.jpg"
-                >
-            </div>
+    <label for="productImageFile">
+        Main Product Image
+    </label>
+
+    <input
+        type="file"
+        id="productImageFile"
+        accept="image/*"
+    >
+
+    <!-- IMAGE PREVIEW -->
+    <div
+        id="productImagePreviewBox"
+        class="image-preview-box hidden"
+    >
+        <img
+            id="productImagePreview"
+            alt="Product Image Preview"
+        >
+    </div>
+
+    <!-- UPLOAD STATUS -->
+    <p
+        id="imageUploadMessage"
+        class="image-upload-message"
+    ></p>
+
+    <!-- IMAGEKIT URL SAVED HERE -->
+    <input
+        type="hidden"
+        id="productMainImage"
+    >
+
+</div>
 
 
             <!-- DESCRIPTION EN -->
