@@ -198,12 +198,20 @@ onAuthStateChanged(
   auth,
   user => {
 
+    onAuthStateChanged(
+  auth,
+  user => {
+
     if (user) {
 
       loginPage.classList.add("hidden");
       dashboardPage.classList.remove("hidden");
 
+      resetInactivityTimer();
+
     } else {
+
+      clearTimeout(inactivityTimer);
 
       dashboardPage.classList.add("hidden");
       loginPage.classList.remove("hidden");
@@ -212,6 +220,7 @@ onAuthStateChanged(
     }
   }
 );
+  }
 /* =========================================================
    ADD PRODUCT FORM
    ========================================================= */
