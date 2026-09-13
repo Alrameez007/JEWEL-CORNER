@@ -398,3 +398,175 @@ productForm.addEventListener(
     }
   }
 );
+/* =========================================================
+   IMAGEKIT PRODUCT IMAGE UPLOAD
+========================================================= */
+
+const productImageFile =
+    document.getElementById("productImageFile");
+
+const productImagePreviewBox =
+    document.getElementById("productImagePreviewBox");
+
+const productImagePreview =
+    document.getElementById("productImagePreview");
+
+const productMainImage =
+    document.getElementById("productMainImage");
+
+const imageUploadMessage =
+    document.getElementById("imageUploadMessage");
+
+
+productImageFile?.addEventListener("change", async () => {
+
+    const file = productImageFile.files[0];
+
+    if (!file) return;
+
+    productImagePreview.src =
+        URL.createObjectURL(file);
+
+    productImagePreviewBox.classList.remove("hidden");
+
+    imageUploadMessage.textContent =
+        "Uploading image...";
+
+    imageUploadMessage.className =
+        "image-upload-message";
+
+    try {
+
+        if (!auth.currentUser) {
+            throw new Error("You are not logged in.");
+        }
+
+        const firebaseToken =
+            await auth.currentUser.getIdToken();
+
+        const authResponse =
+            await fetch(
+                IMAGEKIT_AUTH_ENDPOINT,
+                {
+                    method: "GET",
+                    headers: {
+                        Authorization:
+                            `Bearer ${firebaseToken}`
+                    }
+                }
+            );
+
+        if (!authResponse.ok) {
+            throw new Error(
+                "Unable to authorize image upload."
+            );
+        }
+
+        const imageKitAuth =
+            await authResponse.json();
+
+        const formData =
+            new FormData();
+
+        formData.append("file", file);
+
+        formData.append(
+            "fileName",
+            createSafeFileName(file.name)
+        );
+
+        formData.append(
+            "publicKey",
+            IMAGEKIT_PUBLIC_KEY
+        );
+
+        formData.append(
+            "signature",
+            imageKitAuth.signature
+        );
+
+        formData.append(
+            "expire",
+            imageKitAuth.expire
+        );
+
+        formData.append(
+            "token",
+            imageKitAuth.token
+        );
+
+        formData.append(
+            "folder",
+            "/jewel-corner/products"
+        );
+
+        const uploadResponse =
+            await fetch(
+                "https://upload.imagekit.io/api/v1/files/upload",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+        const uploadResult =
+            await uploadResponse.json();
+
+        if (!uploadResponse.ok) {
+            console.error(
+                "ImageKit error:",
+                uploadResult
+            );
+
+            throw new Error(
+                uploadResult.message ||
+                "Image upload failed."
+            );
+        }
+
+        productMainImage.value =
+            uploadResult.url;
+
+        productImagePreview.src =
+            uploadResult.url;
+
+        imageUploadMessage.textContent =
+            "Image uploaded successfully.";
+
+        imageUploadMessage.className =
+            "image-upload-message success";
+
+        console.log(
+            "Image uploaded:",
+            uploadResult.url
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        productMainImage.value = "";
+
+        imageUploadMessage.textContent =
+            error.message ||
+            "Image upload failed.";
+
+        imageUploadMessage.className =
+            "image-upload-message error";
+    }
+});
+
+
+function createSafeFileName(fileName) {
+
+    const extension =
+        fileName.includes(".")
+            ? "." + fileName.split(".").pop()
+            : ".jpg";
+
+    return (
+        "product-" +
+        Date.now() +
+        extension.toLowerCase()
+    );
+}
