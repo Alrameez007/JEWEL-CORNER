@@ -475,6 +475,40 @@ productForm.addEventListener(
         "Save Product";
     }
   }
+  
+  /* =========================================================
+   MANAGE PRODUCTS NAVIGATION
+   ========================================================= */
+
+const manageProductsButton =
+    document.getElementById("manageProductsButton");
+
+const manageProductsSection =
+    document.getElementById("manageProductsSection");
+
+const backFromManageProductsButton =
+    document.getElementById("backFromManageProductsButton");
+
+manageProductsButton?.addEventListener(
+    "click",
+    () => {
+
+        dashboardContent?.classList.add("hidden");
+        productFormSection?.classList.add("hidden");
+
+        manageProductsSection?.classList.remove("hidden");
+    }
+);
+
+backFromManageProductsButton?.addEventListener(
+    "click",
+    () => {
+
+        manageProductsSection?.classList.add("hidden");
+
+        dashboardContent?.classList.remove("hidden");
+    }
+);
 );
 /* =========================================================
    IMAGEKIT PRODUCT IMAGE UPLOAD
