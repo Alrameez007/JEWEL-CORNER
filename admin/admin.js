@@ -477,7 +477,7 @@ productForm.addEventListener(
   }
   );
 
-  /* =========================================================
+ /* =========================================================
    MANAGE PRODUCTS NAVIGATION
    ========================================================= */
 
@@ -490,16 +490,25 @@ const manageProductsSection =
 const backFromManageProductsButton =
     document.getElementById("backFromManageProductsButton");
 
+const dashboardContentSection =
+    document.querySelector(".dashboard-content");
+
+const addProductFormSection =
+    document.getElementById("productFormSection");
+
+
 manageProductsButton?.addEventListener(
     "click",
     () => {
 
-        dashboardContent?.classList.add("hidden");
-        productFormSection?.classList.add("hidden");
+        dashboardContentSection?.classList.add("hidden");
+
+        addProductFormSection?.classList.add("hidden");
 
         manageProductsSection?.classList.remove("hidden");
     }
 );
+
 
 backFromManageProductsButton?.addEventListener(
     "click",
@@ -507,7 +516,9 @@ backFromManageProductsButton?.addEventListener(
 
         manageProductsSection?.classList.add("hidden");
 
-        dashboardContent?.classList.remove("hidden");
+        addProductFormSection?.classList.add("hidden");
+
+        dashboardContentSection?.classList.remove("hidden");
     }
 );
 
