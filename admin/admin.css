@@ -1415,3 +1415,116 @@ body {
     pointer-events: none;
     z-index: 1;
 }
+
+/* =========================================================
+   JEWEL CORNER — LUXURY DASHBOARD HEADER
+   ========================================================= */
+
+.admin-header {
+    min-height: 92px;
+    padding: 12px 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.96),
+            rgba(240, 248, 252, 0.94)
+        );
+
+    border-bottom: 1px solid rgba(37, 151, 211, 0.22);
+
+    box-shadow:
+        0 5px 22px rgba(8, 38, 77, 0.08);
+}
+
+
+/* REAL JEWEL CORNER LOGO */
+
+.dashboard-brand {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-logo {
+    display: block;
+
+    width: 135px;
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* LOGOUT BUTTON */
+
+.admin-header .logout-button {
+    min-width: 92px;
+    min-height: 42px;
+
+    padding: 0 20px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(37, 151, 211, 0.65);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.88),
+            rgba(225,244,252,.72)
+        );
+
+    color: #087fc1;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(8, 127, 193, 0.10);
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+
+.admin-header .logout-button:hover {
+    transform: translateY(-1px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 20px rgba(8, 127, 193, 0.22);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .admin-header {
+        min-height: 78px;
+        padding: 10px 16px;
+    }
+
+    .dashboard-logo {
+        width: 105px;
+    }
+
+    .admin-header .logout-button {
+        min-width: 78px;
+        min-height: 38px;
+        padding: 0 15px;
+    }
+}
