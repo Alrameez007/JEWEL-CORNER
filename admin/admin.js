@@ -1754,7 +1754,7 @@ manageProductsList?.addEventListener(
 
         const statusMessage =
             manageProductsList.querySelector(
-                `[data-main-upload-status="${firestoreId}"]`
+                '[data-main-upload-status="' + firestoreId + '"]'
             );
 
 
@@ -1897,7 +1897,7 @@ manageProductsList?.addEventListener(
 
         const statusMessage =
             manageProductsList.querySelector(
-                `[data-main-upload-status="${firestoreId}"]`
+                '[data-main-upload-status="' + firestoreId + '"]'
             );
 
 
