@@ -376,6 +376,14 @@ productForm.addEventListener(
               .value || 0
           ),
 
+        stockQuantity:
+          Number.parseInt(
+            document
+              .getElementById("stockQuantity")
+              .value,
+              10
+          ) || 0,
+
         showPrice:
           document
             .getElementById("showPrice")
@@ -432,8 +440,15 @@ productForm.addEventListener(
         createdBy:
           user.uid
       };
+      
+if (productData.stockQuantity < 0) {
 
+    alert(
+        "Stock quantity cannot be negative."
+    );
 
+    return;
+}
       await addDoc(
         collection(db, "products"),
         productData
