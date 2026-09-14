@@ -2909,3 +2909,333 @@ body {
     }
 
 }
+/* =========================================================
+   MANAGE PRODUCTS — IMAGE MANAGEMENT
+   ========================================================= */
+
+.manage-current-images {
+
+    margin-top: 24px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid
+        rgba(37,151,211,.16);
+}
+
+
+.manage-current-images > h4 {
+
+    margin:
+        0 0 16px;
+
+    color: #08264d;
+
+    font-size: 15px;
+}
+
+
+/* IMAGE MANAGEMENT BOX */
+
+.manage-image-management-section {
+
+    margin-bottom: 18px;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,.65);
+
+    border:
+        1px solid
+        rgba(37,151,211,.15);
+}
+
+
+.manage-image-section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content:
+        space-between;
+
+    gap: 15px;
+
+    margin-bottom: 14px;
+}
+
+
+.manage-image-section-header strong {
+
+    display: block;
+
+    color: #08264d;
+
+    font-size: 13px;
+}
+
+
+.manage-image-section-header small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color:
+        rgba(8,38,77,.52);
+
+    font-size: 10px;
+}
+
+
+/* IMAGE BUTTONS */
+
+.manage-replace-main-image,
+.manage-add-more-images {
+
+    min-height: 38px;
+
+    padding:
+        0 15px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid
+        rgba(37,151,211,.35);
+
+    background:
+        rgba(37,151,211,.08);
+
+    color: #087fc1;
+
+    font-weight: 700;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+
+.manage-replace-main-image:hover,
+.manage-add-more-images:hover {
+
+    background:
+        rgba(37,151,211,.14);
+}
+
+
+/* MAIN IMAGE */
+
+.manage-main-image-preview {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+}
+
+
+.manage-main-image-preview img {
+
+    width: 130px;
+
+    height: 130px;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        rgba(37,151,211,.16);
+}
+
+
+.manage-no-current-image {
+
+    padding:
+        35px 25px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(245,249,251,.90);
+
+    color:
+        rgba(8,38,77,.45);
+
+    font-size: 11px;
+}
+
+
+/* ADDITIONAL IMAGE GRID */
+
+.manage-current-image-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(105px, 1fr)
+        );
+
+    gap: 12px;
+}
+
+
+.manage-additional-image-item {
+
+    position: relative;
+
+    padding: 8px;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        rgba(37,151,211,.14);
+}
+
+
+.manage-additional-image-item img {
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: contain;
+
+    display: block;
+
+    border-radius: 8px;
+}
+
+
+/* REMOVE IMAGE */
+
+.manage-remove-additional-image {
+
+    width: 100%;
+
+    margin-top: 7px;
+
+    min-height: 30px;
+
+    border-radius: 8px;
+
+    border:
+        1px solid
+        rgba(190,53,53,.25);
+
+    background:
+        rgba(190,53,53,.06);
+
+    color: #a52e2e;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.manage-remove-additional-image:hover {
+
+    background:
+        rgba(190,53,53,.12);
+}
+
+
+/* NO ADDITIONAL IMAGES */
+
+.manage-no-additional-images {
+
+    grid-column:
+        1 / -1;
+
+    padding: 25px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    background:
+        rgba(245,249,251,.80);
+
+    color:
+        rgba(8,38,77,.45);
+
+    font-size: 11px;
+}
+
+
+/* UPLOAD STATUS */
+
+.manage-image-upload-status {
+
+    min-height: 16px;
+
+    margin:
+        9px 0 0;
+
+    color: #087fc1;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .manage-image-section-header {
+
+        align-items:
+            stretch;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .manage-replace-main-image,
+    .manage-add-more-images {
+
+        width: 100%;
+
+    }
+
+
+    .manage-main-image-preview img {
+
+        width: 110px;
+
+        height: 110px;
+
+    }
+
+
+    .manage-current-image-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
