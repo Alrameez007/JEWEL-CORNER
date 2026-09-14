@@ -590,7 +590,7 @@
 
         <div>
             <h2>Manage Products</h2>
-            <p>View, edit or disable existing products.</p>
+            <p>View, search and manage existing products.</p>
         </div>
 
         <button
@@ -603,12 +603,45 @@
 
     </div>
 
+
+    <!-- MANAGE PRODUCTS TOOLBAR -->
+
+    <div class="manage-products-toolbar">
+
+        <input
+            type="search"
+            id="manageProductsSearch"
+            placeholder="Search products..."
+            autocomplete="off"
+        >
+
+        <button
+            type="button"
+            id="refreshProductsButton"
+            class="manage-refresh-button"
+        >
+            Refresh
+        </button>
+
+    </div>
+
+
+    <!-- PRODUCT COUNT / STATUS -->
+
+    <div
+        class="manage-products-status"
+        id="manageProductsStatus"
+    >
+        Loading products...
+    </div>
+
+
+    <!-- PRODUCTS -->
+
     <div
         class="manage-products-list"
         id="manageProductsList"
-    >
-        <!-- Products will be loaded here -->
-    </div>
+    ></div>
 
 </section>
 
