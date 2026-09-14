@@ -475,7 +475,8 @@ productForm.addEventListener(
         "Save Product";
     }
   }
-  
+  );
+
   /* =========================================================
    MANAGE PRODUCTS NAVIGATION
    ========================================================= */
@@ -509,7 +510,7 @@ backFromManageProductsButton?.addEventListener(
         dashboardContent?.classList.remove("hidden");
     }
 );
-);
+
 /* =========================================================
    IMAGEKIT PRODUCT IMAGE UPLOAD
 ========================================================= */
