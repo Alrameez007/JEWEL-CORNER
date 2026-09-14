@@ -1971,3 +1971,59 @@ body {
 .product-form-section input[type="checkbox"] {
     accent-color: #1594d0 !important;
 }
+
+/* =========================================================
+   JEWEL CORNER — MANAGE PRODUCTS PANEL
+   ========================================================= */
+
+.manage-products-section {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.88),
+            rgba(235, 247, 252, 0.72)
+        ) !important;
+
+    border:
+        1px solid
+        rgba(37, 151, 211, 0.20) !important;
+
+    border-radius: 22px !important;
+
+    box-shadow:
+        0 18px 45px rgba(8, 38, 77, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.manage-products-section .form-section-header h2 {
+    color: #08264d !important;
+    font-weight: 700;
+}
+
+.manage-products-section .form-section-header p {
+    color: rgba(8, 38, 77, 0.62) !important;
+}
+
+.manage-products-section .secondary-button {
+    color: #087fc1 !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.88),
+            rgba(225,244,252,.72)
+        ) !important;
+
+    border:
+        1px solid
+        rgba(37,151,211,.55) !important;
+
+    border-radius: 12px !important;
+
+    padding: 9px 18px;
+
+    font-weight: 600;
+}
