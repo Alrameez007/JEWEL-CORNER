@@ -2578,3 +2578,334 @@ body {
         0 0 0 3px
         rgba(37,151,211,.10);
 }
+
+/* =========================================================
+   FULL PRODUCT EDITOR
+   ========================================================= */
+
+.manage-product-editor {
+    grid-column: 1 / -1;
+
+    padding: 22px;
+    margin-top: 8px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(240,249,253,.96),
+            rgba(255,255,255,.92)
+        );
+
+    border:
+        1px solid
+        rgba(37,151,211,.18);
+}
+
+
+.manage-product-editor.hidden {
+    display: none;
+}
+
+
+.manage-editor-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+    gap: 15px;
+}
+
+
+.manage-editor-field {
+    margin-bottom: 16px;
+}
+
+
+.manage-editor-field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #08264d;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.manage-editor-field input,
+.manage-editor-field select,
+.manage-editor-field textarea {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid
+        rgba(37,151,211,.22);
+
+    background:
+        rgba(255,255,255,.92);
+
+    color: #08264d;
+
+    font: inherit;
+
+    outline: none;
+}
+
+
+.manage-editor-field input,
+.manage-editor-field select {
+    min-height: 44px;
+}
+
+
+.manage-editor-field textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+
+.manage-editor-field input:focus,
+.manage-editor-field select:focus,
+.manage-editor-field textarea:focus {
+
+    border-color: #2597d3;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37,151,211,.10);
+}
+
+
+/* OPTIONS */
+
+.manage-editor-options {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0,1fr));
+
+    gap: 10px;
+
+    margin:
+        6px 0 22px;
+}
+
+
+.manage-editor-options label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,.74);
+
+    border:
+        1px solid
+        rgba(37,151,211,.14);
+
+    color: #08264d;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.manage-editor-options input {
+
+    accent-color: #087fc1;
+}
+
+
+/* CURRENT IMAGES */
+
+.manage-current-images {
+
+    margin-top: 18px;
+
+    padding-top: 18px;
+
+    border-top:
+        1px solid
+        rgba(37,151,211,.16);
+}
+
+
+.manage-current-images h4 {
+
+    color: #08264d;
+
+    margin:
+        0 0 12px;
+}
+
+
+.manage-current-image-grid {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+
+.manage-current-image-grid div {
+
+    width: 90px;
+}
+
+
+.manage-current-image-grid span {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color:
+        rgba(8,38,77,.58);
+
+    font-size: 10px;
+}
+
+
+.manage-current-image-grid img {
+
+    width: 90px;
+
+    height: 90px;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        rgba(37,151,211,.16);
+}
+
+
+.manage-image-note {
+
+    margin-top: 10px;
+
+    color:
+        rgba(8,38,77,.55);
+
+    font-size: 11px;
+}
+
+
+/* SAVE */
+
+.manage-save-full-product {
+
+    min-height: 44px;
+
+    padding:
+        0 25px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        );
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(8,127,193,.20);
+}
+
+
+.manage-save-full-product:disabled {
+
+    opacity: .65;
+
+    cursor: wait;
+}
+
+
+.manage-editor-actions {
+
+    display: flex;
+
+    justify-content:
+        flex-end;
+
+    margin-top: 20px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .manage-editor-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .manage-editor-options {
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+
+    .manage-save-full-product {
+
+        width: 100%;
+
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .manage-editor-options {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
