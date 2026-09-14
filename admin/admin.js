@@ -1394,31 +1394,29 @@ manageProductsSearch?.addEventListener(
         const filtered =
             adminProducts.filter(product => {
 
-                const searchableText = [
+        const searchableText = [
 
-                    getAdminProductName(product),
+            product.productId,
+            product.sku,
 
-                    product.nameAr,
+            product.nameEn,
+            product.nameAr,
 
-                    product.productNameAr,
+            product.category,
+            product.subcategory,
+            product.brand,
 
-                    product.category,
+            product.descriptionEn,
+            product.descriptionAr,
 
-                    product.subcategory,
+            ...(Array.isArray(product.tags)
+            ? product.tags
+            : [])
 
-                    product.brand,
-
-                    product.sku,
-
-                    product.productSku,
-
-                    product.productId
-
-                ]
-                .filter(Boolean)
-                .join(" ")
-                .toLowerCase();
-
+        ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
 
                 return searchableText.includes(search);
             });
