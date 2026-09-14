@@ -1862,3 +1862,67 @@ body {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
+
+/* =========================================================
+   ADD PRODUCT — HEADER + BACK BUTTON
+   ========================================================= */
+
+.product-form-section .form-section-header h2 {
+    color: #08264d !important;
+    font-weight: 700;
+}
+
+.product-form-section .form-section-header p {
+    color: rgba(8, 38, 77, 0.62) !important;
+}
+
+
+/* BACK BUTTON */
+
+.product-form-section .secondary-button {
+    color: #087fc1 !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.88),
+            rgba(225,244,252,.72)
+        ) !important;
+
+    border:
+        1px solid
+        rgba(37,151,211,.55) !important;
+
+    border-radius: 12px !important;
+
+    padding: 9px 18px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 5px 15px
+        rgba(8,127,193,.10);
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.product-form-section .secondary-button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        ) !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(8,127,193,.20);
+}
