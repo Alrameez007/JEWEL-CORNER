@@ -1590,7 +1590,7 @@ if (addImagesButton) {
 
     const editor =
         manageProductsList.querySelector(
-            `[data-editor-id="' + firestoreId + '"]'
+            '[data-editor-id="' + firestoreId + '"]'
         );
 
     const input =
@@ -2025,7 +2025,7 @@ manageProductsList?.addEventListener(
 
             const editor =
                 manageProductsList.querySelector(
-                    `[data-editor-id="' + firestoreId + '"]'
+                    '[data-editor-id="' + firestoreId + '"]'
                 );
 
 
@@ -2074,7 +2074,7 @@ manageProductsList?.addEventListener(
 
             const editor =
                 manageProductsList.querySelector(
-                    `[data-editor-id="' + firestoreId + '"]'
+                    '[data-editor-id="' + firestoreId + '"]'
                 );
 
 
