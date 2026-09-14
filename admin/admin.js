@@ -480,8 +480,8 @@ productForm.addEventListener(
   }
   );
 
- /* =========================================================
-   MANAGE PRODUCTS NAVIGATION
+/* =========================================================
+   MANAGE PRODUCTS
    ========================================================= */
 
 const manageProductsButton =
@@ -491,7 +491,21 @@ const manageProductsSection =
     document.getElementById("manageProductsSection");
 
 const backFromManageProductsButton =
-    document.getElementById("backFromManageProductsButton");
+    document.getElementById(
+        "backFromManageProductsButton"
+    );
+
+const manageProductsList =
+    document.getElementById("manageProductsList");
+
+const manageProductsSearch =
+    document.getElementById("manageProductsSearch");
+
+const manageProductsStatus =
+    document.getElementById("manageProductsStatus");
+
+const refreshProductsButton =
+    document.getElementById("refreshProductsButton");
 
 const dashboardContentSection =
     document.querySelector(".dashboard-content");
@@ -500,30 +514,495 @@ const addProductFormSection =
     document.getElementById("productFormSection");
 
 
+/* ---------------------------------------------------------
+   LOCAL PRODUCT CACHE
+   --------------------------------------------------------- */
+
+let adminProducts = [];
+
+
+/* ---------------------------------------------------------
+   ESCAPE TEXT BEFORE INSERTING INTO HTML
+   --------------------------------------------------------- */
+
+function escapeAdminHtml(value = "") {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+/* ---------------------------------------------------------
+   GET PRODUCT DISPLAY NAME
+   Supports different possible field names safely.
+   --------------------------------------------------------- */
+
+function getAdminProductName(product) {
+
+    return (
+        product.nameEn ||
+        product.productNameEn ||
+        product.title ||
+        product.name ||
+        "Unnamed Product"
+    );
+}
+
+
+/* ---------------------------------------------------------
+   GET PRODUCT IMAGE
+   --------------------------------------------------------- */
+
+function getAdminProductImage(product) {
+
+    return (
+        product.mainImage ||
+        product.image ||
+        ""
+    );
+}
+
+
+/* ---------------------------------------------------------
+   LOAD PRODUCTS FROM FIRESTORE
+   --------------------------------------------------------- */
+
+async function loadManageProducts() {
+
+    if (!manageProductsList) {
+        return;
+    }
+
+    manageProductsList.innerHTML = "";
+
+    manageProductsStatus.textContent =
+        "Loading products...";
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(db, "products")
+            );
+
+        adminProducts =
+            snapshot.docs.map(productDoc => ({
+                firestoreId: productDoc.id,
+                ...productDoc.data()
+            }));
+
+
+        /* NEWEST FIRST WHEN createdAt EXISTS */
+
+        adminProducts.sort((a, b) => {
+
+            const aTime =
+                a.createdAt?.toMillis?.() || 0;
+
+            const bTime =
+                b.createdAt?.toMillis?.() || 0;
+
+            return bTime - aTime;
+        });
+
+
+        renderManageProducts(adminProducts);
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load products:",
+            error
+        );
+
+        manageProductsStatus.textContent =
+            "Unable to load products.";
+
+        manageProductsList.innerHTML = `
+            <div class="manage-empty-state">
+                Products could not be loaded.
+            </div>
+        `;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   RENDER PRODUCTS
+   --------------------------------------------------------- */
+
+function renderManageProducts(products) {
+
+    manageProductsList.innerHTML = "";
+
+
+    if (!products.length) {
+
+        manageProductsStatus.textContent =
+            "0 products";
+
+        manageProductsList.innerHTML = `
+            <div class="manage-empty-state">
+                No products found.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    manageProductsStatus.textContent =
+        `${products.length} product${
+            products.length === 1 ? "" : "s"
+        }`;
+
+
+    products.forEach(product => {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "manage-product-card";
+
+
+        const productName =
+            getAdminProductName(product);
+
+        const productImage =
+            getAdminProductImage(product);
+
+        const category =
+            product.category || "—";
+
+        const subcategory =
+            product.subcategory || "";
+
+        const sku =
+            product.sku ||
+            product.productSku ||
+            "—";
+
+        const status =
+            product.status || "active";
+
+        const isActive =
+            status !== "disabled";
+
+
+        card.innerHTML = `
+
+            <div class="manage-product-image">
+
+                ${
+                    productImage
+
+                    ? `
+                        <img
+                            src="${escapeAdminHtml(productImage)}"
+                            alt="${escapeAdminHtml(productName)}"
+                            loading="lazy"
+                        >
+                    `
+
+                    : `
+                        <div class="manage-no-image">
+                            No Image
+                        </div>
+                    `
+                }
+
+            </div>
+
+
+            <div class="manage-product-info">
+
+                <h3>
+                    ${escapeAdminHtml(productName)}
+                </h3>
+
+                <div class="manage-product-meta">
+
+                    <span>
+                        ${escapeAdminHtml(category)}
+                        ${
+                            subcategory
+                            ? ` / ${escapeAdminHtml(subcategory)}`
+                            : ""
+                        }
+                    </span>
+
+                    <span>
+                        SKU: ${escapeAdminHtml(sku)}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="manage-product-actions">
+
+                <span
+                    class="
+                        manage-status-badge
+                        ${isActive ? "active" : "disabled"}
+                    "
+                >
+                    ${isActive ? "Active" : "Disabled"}
+                </span>
+
+
+                <button
+                    type="button"
+                    class="
+                        manage-toggle-status
+                        ${isActive ? "disable" : "enable"}
+                    "
+                    data-product-id="${escapeAdminHtml(
+                        product.firestoreId
+                    )}"
+                    data-current-status="${
+                        isActive ? "active" : "disabled"
+                    }"
+                >
+                    ${isActive ? "Disable" : "Enable"}
+                </button>
+
+            </div>
+        `;
+
+
+        manageProductsList.appendChild(card);
+    });
+}
+
+
+/* ---------------------------------------------------------
+   SEARCH PRODUCTS
+   --------------------------------------------------------- */
+
+manageProductsSearch?.addEventListener(
+    "input",
+    () => {
+
+        const search =
+            manageProductsSearch.value
+                .trim()
+                .toLowerCase();
+
+
+        if (!search) {
+
+            renderManageProducts(adminProducts);
+            return;
+        }
+
+
+        const filtered =
+            adminProducts.filter(product => {
+
+                const searchableText = [
+
+                    getAdminProductName(product),
+
+                    product.nameAr,
+
+                    product.productNameAr,
+
+                    product.category,
+
+                    product.subcategory,
+
+                    product.brand,
+
+                    product.sku,
+
+                    product.productSku,
+
+                    product.productId
+
+                ]
+                .filter(Boolean)
+                .join(" ")
+                .toLowerCase();
+
+
+                return searchableText.includes(search);
+            });
+
+
+        renderManageProducts(filtered);
+    }
+);
+
+
+/* ---------------------------------------------------------
+   ENABLE / DISABLE PRODUCT
+   --------------------------------------------------------- */
+
+manageProductsList?.addEventListener(
+    "click",
+    async event => {
+
+        const button =
+            event.target.closest(
+                ".manage-toggle-status"
+            );
+
+
+        if (!button) {
+            return;
+        }
+
+
+        const firestoreId =
+            button.dataset.productId;
+
+        const currentStatus =
+            button.dataset.currentStatus;
+
+
+        const newStatus =
+            currentStatus === "active"
+                ? "disabled"
+                : "active";
+
+
+        button.disabled = true;
+
+        button.textContent =
+            newStatus === "disabled"
+                ? "Disabling..."
+                : "Enabling...";
+
+
+        try {
+
+            await updateDoc(
+                doc(
+                    db,
+                    "products",
+                    firestoreId
+                ),
+                {
+                    status: newStatus
+                }
+            );
+
+
+            const product =
+                adminProducts.find(
+                    item =>
+                        item.firestoreId ===
+                        firestoreId
+                );
+
+
+            if (product) {
+                product.status = newStatus;
+            }
+
+
+            const searchValue =
+                manageProductsSearch
+                    ?.value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (searchValue) {
+
+                manageProductsSearch.dispatchEvent(
+                    new Event("input")
+                );
+
+            } else {
+
+                renderManageProducts(
+                    adminProducts
+                );
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Unable to update product status:",
+                error
+            );
+
+            alert(
+                "Unable to update product status."
+            );
+
+            button.disabled = false;
+        }
+    }
+);
+
+
+/* ---------------------------------------------------------
+   REFRESH PRODUCTS
+   --------------------------------------------------------- */
+
+refreshProductsButton?.addEventListener(
+    "click",
+    () => {
+
+        manageProductsSearch.value = "";
+
+        loadManageProducts();
+    }
+);
+
+
+/* ---------------------------------------------------------
+   OPEN MANAGE PRODUCTS
+   --------------------------------------------------------- */
+
 manageProductsButton?.addEventListener(
     "click",
-    () => {
+    async () => {
 
-        dashboardContentSection?.classList.add("hidden");
+        dashboardContentSection
+            ?.classList.add("hidden");
 
-        addProductFormSection?.classList.add("hidden");
+        addProductFormSection
+            ?.classList.add("hidden");
 
-        manageProductsSection?.classList.remove("hidden");
+        manageProductsSection
+            ?.classList.remove("hidden");
+
+
+        await loadManageProducts();
     }
 );
 
 
-backFromManageProductsButton?.addEventListener(
-    "click",
-    () => {
+/* ---------------------------------------------------------
+   BACK TO DASHBOARD
+   --------------------------------------------------------- */
 
-        manageProductsSection?.classList.add("hidden");
+backFromManageProductsButton
+    ?.addEventListener(
+        "click",
+        () => {
 
-        addProductFormSection?.classList.add("hidden");
+            manageProductsSection
+                ?.classList.add("hidden");
 
-        dashboardContentSection?.classList.remove("hidden");
-    }
-);
+            addProductFormSection
+                ?.classList.add("hidden");
+
+            dashboardContentSection
+                ?.classList.remove("hidden");
+        }
+    );
 
 /* =========================================================
    IMAGEKIT PRODUCT IMAGE UPLOAD
