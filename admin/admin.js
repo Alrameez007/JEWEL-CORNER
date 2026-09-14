@@ -3100,7 +3100,10 @@ async function uploadAdditionalImageToImageKit(originalFile) {
         );
     }
 
-    return uploadResult.url;
+    return {
+    url: uploadResult.url,
+    fileId: uploadResult.fileId
+};
 }
 
 
@@ -3200,7 +3203,7 @@ const additionalImagesPreview =
 let additionalImageUrls = [];
 
 
-additionalImagesInput.addEventListener(
+additionalImagesInput?.addEventListener(
     "change",
     async () => {
 
@@ -3259,45 +3262,45 @@ additionalImagesInput.addEventListener(
             additionalImagesPreview.appendChild(img);
 
 
-            try {
+        try {
 
-                /* =====================================
-                   OPTIMIZE + UPLOAD
-                ===================================== */
+    /* =====================================
+       OPTIMIZE + UPLOAD
+    ===================================== */
 
-                const uploadedUrl =
-                    await uploadAdditionalImageToImageKit(
-                        file
-                    );
-
-
-                /* =====================================
-                   SAVE URL IN ARRAY
-                ===================================== */
-
-                additionalImageUrls.push(
-                    uploadedUrl
-                );
+    const uploadedUrl =
+        await uploadAdditionalImageToImageKit(
+            file
+        );
 
 
-                /* -----------------------------------------
-                   Replace preview with ImageKit URL
-                ----------------------------------------- */
+    /* =====================================
+       SAVE URL IN ARRAY
+    ===================================== */
 
-                URL.revokeObjectURL(
-                    previewUrl
-                );
-
-                img.src =
-                    uploadedUrl;
+    additionalImageUrls.push(
+        uploadedUrl
+    );
 
 
-                console.log(
-                    "Additional image uploaded:",
-                    uploadedUrl
-                );
+    /* -----------------------------------------
+       Replace preview with ImageKit URL
+    ----------------------------------------- */
 
-            } catch (error) {
+    URL.revokeObjectURL(
+        previewUrl
+    );
+
+    img.src =
+        uploadedUrl;
+
+
+    console.log(
+        "Additional image uploaded:",
+        uploadedUrl
+    );
+
+} catch (error) {
 
                 console.error(
                     "Additional image upload failed:",
