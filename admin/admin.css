@@ -1811,3 +1811,28 @@ body {
         font-size: 18px;
     }
 }
+
+/* =========================================================
+   DASHBOARD CARD COLOR OVERRIDE
+   ========================================================= */
+
+.dashboard-actions .dashboard-card .dashboard-icon {
+    background: linear-gradient(
+        135deg,
+        #087fc1,
+        #2597d3
+    ) !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 9px 22px rgba(8, 127, 193, 0.25) !important;
+}
+
+.dashboard-actions .dashboard-card strong {
+    color: #08264d !important;
+}
+
+.dashboard-actions .dashboard-card small {
+    color: rgba(8, 38, 77, 0.64) !important;
+}
