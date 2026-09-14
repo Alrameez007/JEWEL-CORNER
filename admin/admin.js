@@ -961,22 +961,252 @@ manageProductsList?.addEventListener(
     "click",
     async event => {
 
-        const button =
+        /* =========================================
+           OPEN / CLOSE PRODUCT EDITOR
+           ========================================= */
+
+        const editButton =
+            event.target.closest(
+                ".manage-edit-details"
+            );
+
+        if (editButton) {
+
+            const firestoreId =
+                editButton.dataset.productId;
+
+            const editor =
+                manageProductsList.querySelector(
+                    `[data-editor-id="${firestoreId}"]`
+                );
+
+            if (!editor) {
+                return;
+            }
+
+            const willOpen =
+                editor.classList.contains("hidden");
+
+            editor.classList.toggle("hidden");
+
+            editButton.textContent =
+                willOpen
+                    ? "Close Details"
+                    : "Edit Details";
+
+            return;
+        }
+
+
+        /* =========================================
+           SAVE PRICE / STOCK / DESCRIPTIONS
+           ========================================= */
+
+        const saveButton =
+            event.target.closest(
+                ".manage-save-details"
+            );
+
+        if (saveButton) {
+
+            const firestoreId =
+                saveButton.dataset.productId;
+
+            const editor =
+                manageProductsList.querySelector(
+                    `[data-editor-id="${firestoreId}"]`
+                );
+
+            if (!editor) {
+                return;
+            }
+
+
+            const priceInput =
+                editor.querySelector(
+                    ".manage-edit-price"
+                );
+
+            const stockInput =
+                editor.querySelector(
+                    ".manage-edit-stock"
+                );
+
+            const descriptionEnInput =
+                editor.querySelector(
+                    ".manage-edit-description-en"
+                );
+
+            const descriptionArInput =
+                editor.querySelector(
+                    ".manage-edit-description-ar"
+                );
+
+
+            const price =
+                Number.parseFloat(
+                    priceInput.value
+                );
+
+            const stockQuantity =
+                Number.parseInt(
+                    stockInput.value,
+                    10
+                );
+
+
+            if (
+                Number.isNaN(price) ||
+                price < 0
+            ) {
+
+                alert(
+                    "Please enter a valid price."
+                );
+
+                priceInput.focus();
+
+                return;
+            }
+
+
+            if (
+                Number.isNaN(stockQuantity) ||
+                stockQuantity < 0
+            ) {
+
+                alert(
+                    "Please enter a valid stock quantity."
+                );
+
+                stockInput.focus();
+
+                return;
+            }
+
+
+            const descriptionEn =
+                descriptionEnInput
+                    .value
+                    .trim();
+
+            const descriptionAr =
+                descriptionArInput
+                    .value
+                    .trim();
+
+
+            saveButton.disabled = true;
+
+            const originalText =
+                saveButton.textContent;
+
+            saveButton.textContent =
+                "Saving...";
+
+
+            try {
+
+                await updateDoc(
+                    doc(
+                        db,
+                        "products",
+                        firestoreId
+                    ),
+                    {
+                        price,
+                        stockQuantity,
+                        descriptionEn,
+                        descriptionAr
+                    }
+                );
+
+
+                const localProduct =
+                    adminProducts.find(
+                        product =>
+                            product.firestoreId ===
+                            firestoreId
+                    );
+
+
+                if (localProduct) {
+
+                    localProduct.price =
+                        price;
+
+                    localProduct.stockQuantity =
+                        stockQuantity;
+
+                    localProduct.descriptionEn =
+                        descriptionEn;
+
+                    localProduct.descriptionAr =
+                        descriptionAr;
+                }
+
+
+                saveButton.textContent =
+                    "Saved ✓";
+
+
+                setTimeout(
+                    () => {
+
+                        saveButton.textContent =
+                            originalText;
+
+                        saveButton.disabled =
+                            false;
+
+                    },
+                    1200
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Unable to save product details:",
+                    error
+                );
+
+                alert(
+                    "Unable to save product details."
+                );
+
+                saveButton.textContent =
+                    originalText;
+
+                saveButton.disabled =
+                    false;
+            }
+
+
+            return;
+        }
+
+
+        /* =========================================
+           ENABLE / DISABLE PRODUCT
+           ========================================= */
+
+        const statusButton =
             event.target.closest(
                 ".manage-toggle-status"
             );
 
 
-        if (!button) {
+        if (!statusButton) {
             return;
         }
 
 
         const firestoreId =
-            button.dataset.productId;
+            statusButton.dataset.productId;
 
         const currentStatus =
-            button.dataset.currentStatus;
+            statusButton.dataset.currentStatus;
 
 
         const newStatus =
@@ -985,9 +1215,9 @@ manageProductsList?.addEventListener(
                 : "active";
 
 
-        button.disabled = true;
+        statusButton.disabled = true;
 
-        button.textContent =
+        statusButton.textContent =
             newStatus === "disabled"
                 ? "Disabling..."
                 : "Enabling...";
@@ -1016,7 +1246,9 @@ manageProductsList?.addEventListener(
 
 
             if (product) {
-                product.status = newStatus;
+
+                product.status =
+                    newStatus;
             }
 
 
@@ -1029,9 +1261,10 @@ manageProductsList?.addEventListener(
 
             if (searchValue) {
 
-                manageProductsSearch.dispatchEvent(
-                    new Event("input")
-                );
+                manageProductsSearch
+                    .dispatchEvent(
+                        new Event("input")
+                    );
 
             } else {
 
@@ -1052,11 +1285,11 @@ manageProductsList?.addEventListener(
                 "Unable to update product status."
             );
 
-            button.disabled = false;
+            statusButton.disabled =
+                false;
         }
     }
 );
-
 
 /* ---------------------------------------------------------
    REFRESH PRODUCTS
