@@ -686,50 +686,32 @@ function renderManageProducts(products) {
 
 
         const productName =
-            getAdminProductName(product);
+            product.nameEn ||
+            "Unnamed Product";
 
         const productImage =
-            getAdminProductImage(product);
+            product.mainImage || "";
 
-        const category =
-            product.category || "—";
+        const additionalImages =
+            Array.isArray(product.additionalImages)
+                ? product.additionalImages
+                : [];
 
-        const subcategory =
-            product.subcategory || "";
-
-        const sku =
-            product.sku ||
-            product.productSku ||
-            "—";
+        const tags =
+            Array.isArray(product.tags)
+                ? product.tags.join(", ")
+                : product.tags || "";
 
         const status =
             product.status || "active";
 
         const isActive =
-            status !== "disabled";
-
-        const price =
-    product.price ??
-    product.priceOMR ??
-    product.unitPrice ??
-    "";
-
-const stockQuantity =
-    product.stockQuantity ??
-    product.stock ??
-    product.quantity ??
-    0;
-
-const descriptionEn =
-    product.descriptionEn ||
-    product.description ||
-    "";
-
-const descriptionAr =
-    product.descriptionAr || "";
+            status === "active";
 
 
         card.innerHTML = `
+
+            <!-- IMAGE -->
 
             <div class="manage-product-image">
 
@@ -754,6 +736,8 @@ const descriptionAr =
             </div>
 
 
+            <!-- BASIC INFORMATION -->
+
             <div class="manage-product-info">
 
                 <h3>
@@ -763,16 +747,38 @@ const descriptionAr =
                 <div class="manage-product-meta">
 
                     <span>
-                        ${escapeAdminHtml(category)}
+                        ${escapeAdminHtml(
+                            product.category || "—"
+                        )}
+
                         ${
-                            subcategory
-                            ? ` / ${escapeAdminHtml(subcategory)}`
-                            : ""
+                            product.subcategory
+                                ? ` / ${escapeAdminHtml(
+                                    product.subcategory
+                                )}`
+                                : ""
                         }
                     </span>
 
                     <span>
-                        SKU: ${escapeAdminHtml(sku)}
+                        SKU:
+                        ${escapeAdminHtml(
+                            product.sku || "—"
+                        )}
+                    </span>
+
+                    <span>
+                        Stock:
+                        ${Number(
+                            product.stockQuantity || 0
+                        )}
+                    </span>
+
+                    <span>
+                        OMR
+                        ${Number(
+                            product.price || 0
+                        ).toFixed(3)}
                     </span>
 
                 </div>
@@ -780,134 +786,589 @@ const descriptionAr =
             </div>
 
 
-<div class="manage-product-actions">
+            <!-- ACTIONS -->
 
-    <span
-        class="
-            manage-status-badge
-            ${isActive ? "active" : "disabled"}
-        "
-    >
-        ${isActive ? "Active" : "Disabled"}
-    </span>
+            <div class="manage-product-actions">
 
-    <button
-        type="button"
-        class="manage-edit-details"
-        data-product-id="${escapeAdminHtml(product.firestoreId)}"
-    >
-        Edit Details
-    </button>
-
-    <button
-        type="button"
-        class="
-            manage-toggle-status
-            ${isActive ? "disable" : "enable"}
-        "
-        data-product-id="${escapeAdminHtml(product.firestoreId)}"
-        data-current-status="${isActive ? "active" : "disabled"}"
-    >
-        ${isActive ? "Disable" : "Enable"}
-    </button>
-
-</div>
+                <span
+                    class="
+                        manage-status-badge
+                        ${isActive
+                            ? "active"
+                            : "disabled"}
+                    "
+                >
+                    ${isActive
+                        ? "Active"
+                        : "Inactive"}
+                </span>
 
 
-<div
-    class="manage-product-editor hidden"
-    data-editor-id="${escapeAdminHtml(product.firestoreId)}"
->
+                <button
+                    type="button"
+                    class="manage-edit-details"
+                    data-product-id="${
+                        escapeAdminHtml(
+                            product.firestoreId
+                        )
+                    }"
+                >
+                    Edit Product
+                </button>
 
-    <div class="manage-editor-grid">
 
-        <div class="manage-editor-field">
+                <button
+                    type="button"
+                    class="
+                        manage-toggle-status
+                        ${isActive
+                            ? "disable"
+                            : "enable"}
+                    "
+                    data-product-id="${
+                        escapeAdminHtml(
+                            product.firestoreId
+                        )
+                    }"
+                    data-current-status="${
+                        isActive
+                            ? "active"
+                            : "inactive"
+                    }"
+                >
+                    ${isActive
+                        ? "Set Inactive"
+                        : "Set Active"}
+                </button>
 
-            <label>
-                Price per Unit (OMR)
-            </label>
+            </div>
 
-            <input
-                type="number"
-                class="manage-edit-price"
-                min="0"
-                step="0.001"
-                value="${escapeAdminHtml(price)}"
-                placeholder="0.000"
+
+            <!-- FULL PRODUCT EDITOR -->
+
+            <div
+                class="manage-product-editor hidden"
+                data-editor-id="${
+                    escapeAdminHtml(
+                        product.firestoreId
+                    )
+                }"
             >
 
-        </div>
+                <div class="manage-editor-grid">
 
 
-        <div class="manage-editor-field">
+                    <!-- PRODUCT ID -->
 
-            <label>
-                Stock Quantity
-            </label>
+                    <div class="manage-editor-field">
 
-            <input
-                type="number"
-                class="manage-edit-stock"
-                min="0"
-                step="1"
-                value="${escapeAdminHtml(stockQuantity)}"
-                placeholder="0"
-            >
+                        <label>
+                            Product ID
+                        </label>
 
-        </div>
+                        <input
+                            type="text"
+                            class="edit-product-id"
+                            value="${
+                                escapeAdminHtml(
+                                    product.productId || ""
+                                )
+                            }"
+                        >
 
-    </div>
-
-
-    <div class="manage-editor-field">
-
-        <label>
-            Description EN
-        </label>
-
-        <textarea
-            class="manage-edit-description-en"
-            rows="4"
-            placeholder="Product description in English"
-        >${escapeAdminHtml(descriptionEn)}</textarea>
-
-    </div>
+                    </div>
 
 
-    <div class="manage-editor-field">
+                    <!-- SKU -->
 
-        <label>
-            Description AR
-        </label>
+                    <div class="manage-editor-field">
 
-        <textarea
-            class="manage-edit-description-ar"
-            rows="4"
-            dir="rtl"
-            placeholder="وصف المنتج باللغة العربية"
-        >${escapeAdminHtml(descriptionAr)}</textarea>
+                        <label>
+                            SKU
+                        </label>
 
-    </div>
+                        <input
+                            type="text"
+                            class="edit-product-sku"
+                            value="${
+                                escapeAdminHtml(
+                                    product.sku || ""
+                                )
+                            }"
+                        >
+
+                    </div>
 
 
-    <div class="manage-editor-actions">
+                    <!-- NAME EN -->
 
-        <button
-            type="button"
-            class="manage-save-details"
-            data-product-id="${escapeAdminHtml(product.firestoreId)}"
-        >
-            Save Changes
-        </button>
+                    <div class="manage-editor-field">
 
-    </div>
+                        <label>
+                            Product Name EN
+                        </label>
 
-</div>
-`;
+                        <input
+                            type="text"
+                            class="edit-name-en"
+                            value="${
+                                escapeAdminHtml(
+                                    product.nameEn || ""
+                                )
+                            }"
+                        >
+
+                    </div>
+
+
+                    <!-- NAME AR -->
+
+                    <div class="manage-editor-field">
+
+                        <label>
+                            Product Name AR
+                        </label>
+
+                        <input
+                            type="text"
+                            class="edit-name-ar"
+                            dir="rtl"
+                            value="${
+                                escapeAdminHtml(
+                                    product.nameAr || ""
+                                )
+                            }"
+                        >
+
+                    </div>
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="manage-editor-field">
+
+                        <label>
+                            Category
+                        </label>
+
+                        <select class="edit-category">
+
+                            <option
+                                value="jewellery"
+                                ${
+                                    product.category ===
+                                    "jewellery"
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                Jewellery
+                            </option>
+
+                            <option
+                                value="watches"
+                                ${
+                                    product.category ===
+                                    "watches"
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                Watches
+                            </option>
+
+                            <option
+                                value="perfumes"
+                                ${
+                                    product.category ===
+                                    "perfumes"
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                Perfumes
+                            </option>
+
+                            <option
+                                value="souvenirs"
+                                ${
+                                    product.category ===
+                                    "souvenirs"
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                Souvenirs
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- SUBCATEGORY -->
+
+                    <div class="manage-editor-field">
+
+                        <label>
+                            Subcategory
+                        </label>
+
+                        <input
+                            type="text"
+                            class="edit-subcategory"
+                            value="${
+                                escapeAdminHtml(
+                                    product.subcategory || ""
+                                )
+                            }"
+                        >
+
+                    </div>
+
+
+                    <!-- BRAND -->
+
+                    <div class="manage-editor-field">
+
+                        <label>
+                            Brand
+                        </label>
+
+                        <input
+                            type="text"
+                            class="edit-brand"
+                            value="${
+                                escapeAdminHtml(
+                                    product.brand || ""
+                                )
+                            }"
+                        >
+
+                    </div>
+
+
+                    <!-- PRICE -->
+
+                    <div class="manage-editor-field">
+
+                        <label>
+                            Price OMR
+                        </label>
+
+                        <input
+                            type="number"
+                            min="0"
+                            step="0.001"
+                            class="edit-price"
+                            value="${
+                                Number(
+                                    product.price || 0
+                                )
+                            }"
+                        >
+
+                    </div>
+
+
+                    <!-- STOCK -->
+
+                    <div class="manage-editor-field">
+
+                        <label>
+                            Stock Quantity
+                        </label>
+
+                        <input
+                            type="number"
+                            min="0"
+                            step="1"
+                            class="edit-stock"
+                            value="${
+                                Number(
+                                    product.stockQuantity || 0
+                                )
+                            }"
+                        >
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="manage-editor-field">
+
+                        <label>
+                            Status
+                        </label>
+
+                        <select class="edit-status">
+
+                            <option
+                                value="active"
+                                ${
+                                    isActive
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                Active
+                            </option>
+
+                            <option
+                                value="inactive"
+                                ${
+                                    !isActive
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                Inactive
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DESCRIPTION EN -->
+
+                <div class="manage-editor-field">
+
+                    <label>
+                        Description EN
+                    </label>
+
+                    <textarea
+                        class="edit-description-en"
+                        rows="4"
+                    >${
+                        escapeAdminHtml(
+                            product.descriptionEn || ""
+                        )
+                    }</textarea>
+
+                </div>
+
+
+                <!-- DESCRIPTION AR -->
+
+                <div class="manage-editor-field">
+
+                    <label>
+                        Description AR
+                    </label>
+
+                    <textarea
+                        class="edit-description-ar"
+                        rows="4"
+                        dir="rtl"
+                    >${
+                        escapeAdminHtml(
+                            product.descriptionAr || ""
+                        )
+                    }</textarea>
+
+                </div>
+
+
+                <!-- TAGS -->
+
+                <div class="manage-editor-field">
+
+                    <label>
+                        Tags
+                    </label>
+
+                    <input
+                        type="text"
+                        class="edit-tags"
+                        value="${
+                            escapeAdminHtml(tags)
+                        }"
+                        placeholder="bracelet, gold plated, ladies"
+                    >
+
+                </div>
+
+
+                <!-- OPTIONS -->
+
+                <div class="manage-editor-options">
+
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            class="edit-show-price"
+                            ${
+                                product.showPrice
+                                    ? "checked"
+                                    : ""
+                            }
+                        >
+
+                        Show Price
+
+                    </label>
+
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            class="edit-featured"
+                            ${
+                                product.featured
+                                    ? "checked"
+                                    : ""
+                            }
+                        >
+
+                        Featured
+
+                    </label>
+
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            class="edit-new-arrival"
+                            ${
+                                product.newArrival
+                                    ? "checked"
+                                    : ""
+                            }
+                        >
+
+                        New Arrival
+
+                    </label>
+
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            class="edit-whatsapp"
+                            ${
+                                product.whatsappEnquiry
+                                    ? "checked"
+                                    : ""
+                            }
+                        >
+
+                        WhatsApp Enquiry
+
+                    </label>
+
+                </div>
+
+
+                <!-- CURRENT IMAGES -->
+
+                ${
+                    productImage ||
+                    additionalImages.length
+
+                    ? `
+
+                        <div class="manage-current-images">
+
+                            <h4>
+                                Current Product Images
+                            </h4>
+
+
+                            <div class="manage-current-image-grid">
+
+                                ${
+                                    productImage
+                                        ? `
+                                            <div>
+                                                <span>Main</span>
+
+                                                <img
+                                                    src="${
+                                                        escapeAdminHtml(
+                                                            productImage
+                                                        )
+                                                    }"
+                                                    alt=""
+                                                >
+                                            </div>
+                                        `
+                                        : ""
+                                }
+
+
+                                ${
+                                    additionalImages
+                                        .map(
+                                            image => `
+                                                <div>
+                                                    <span>
+                                                        Additional
+                                                    </span>
+
+                                                    <img
+                                                        src="${
+                                                            escapeAdminHtml(
+                                                                image
+                                                            )
+                                                        }"
+                                                        alt=""
+                                                    >
+                                                </div>
+                                            `
+                                        )
+                                        .join("")
+                                }
+
+                            </div>
+
+                            <p class="manage-image-note">
+                                Image replacement will use the existing
+                                ImageKit upload system in the next upgrade.
+                            </p>
+
+                        </div>
+
+                    `
+
+                    : ""
+                }
+
+
+                <!-- SAVE -->
+
+                <div class="manage-editor-actions">
+
+                    <button
+                        type="button"
+                        class="manage-save-full-product"
+                        data-product-id="${
+                            escapeAdminHtml(
+                                product.firestoreId
+                            )
+                        }"
+                    >
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+
         manageProductsList.appendChild(card);
     });
 }
-
 
 /* ---------------------------------------------------------
    SEARCH PRODUCTS
@@ -976,98 +1437,279 @@ manageProductsList?.addEventListener(
     "click",
     async event => {
 
-        /* =========================================
-           OPEN / CLOSE PRODUCT EDITOR
-           ========================================= */
+
+        /* =================================================
+           OPEN / CLOSE EDITOR
+           ================================================= */
 
         const editButton =
             event.target.closest(
                 ".manage-edit-details"
             );
 
+
         if (editButton) {
 
             const firestoreId =
                 editButton.dataset.productId;
+
 
             const editor =
                 manageProductsList.querySelector(
                     `[data-editor-id="${firestoreId}"]`
                 );
 
+
             if (!editor) {
                 return;
             }
 
-            const willOpen =
-                editor.classList.contains("hidden");
 
-            editor.classList.toggle("hidden");
+            const opening =
+                editor.classList.contains(
+                    "hidden"
+                );
+
+
+            editor.classList.toggle(
+                "hidden"
+            );
+
 
             editButton.textContent =
-                willOpen
-                    ? "Close Details"
-                    : "Edit Details";
+                opening
+                    ? "Close Editor"
+                    : "Edit Product";
+
 
             return;
         }
 
 
-        /* =========================================
-           SAVE PRICE / STOCK / DESCRIPTIONS
-           ========================================= */
+
+        /* =================================================
+           SAVE COMPLETE PRODUCT
+           ================================================= */
 
         const saveButton =
             event.target.closest(
-                ".manage-save-details"
+                ".manage-save-full-product"
             );
+
 
         if (saveButton) {
 
             const firestoreId =
                 saveButton.dataset.productId;
 
+
             const editor =
                 manageProductsList.querySelector(
                     `[data-editor-id="${firestoreId}"]`
                 );
+
 
             if (!editor) {
                 return;
             }
 
 
-            const priceInput =
-                editor.querySelector(
-                    ".manage-edit-price"
-                );
+            const productId =
+                editor
+                    .querySelector(
+                        ".edit-product-id"
+                    )
+                    .value
+                    .trim();
 
-            const stockInput =
-                editor.querySelector(
-                    ".manage-edit-stock"
-                );
 
-            const descriptionEnInput =
-                editor.querySelector(
-                    ".manage-edit-description-en"
-                );
+            const sku =
+                editor
+                    .querySelector(
+                        ".edit-product-sku"
+                    )
+                    .value
+                    .trim();
 
-            const descriptionArInput =
-                editor.querySelector(
-                    ".manage-edit-description-ar"
-                );
+
+            const nameEn =
+                editor
+                    .querySelector(
+                        ".edit-name-en"
+                    )
+                    .value
+                    .trim();
+
+
+            const nameAr =
+                editor
+                    .querySelector(
+                        ".edit-name-ar"
+                    )
+                    .value
+                    .trim();
+
+
+            const category =
+                editor
+                    .querySelector(
+                        ".edit-category"
+                    )
+                    .value;
+
+
+            const subcategory =
+                editor
+                    .querySelector(
+                        ".edit-subcategory"
+                    )
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const brand =
+                editor
+                    .querySelector(
+                        ".edit-brand"
+                    )
+                    .value
+                    .trim();
 
 
             const price =
-                Number.parseFloat(
-                    priceInput.value
+                Number(
+                    editor
+                        .querySelector(
+                            ".edit-price"
+                        )
+                        .value || 0
                 );
+
 
             const stockQuantity =
                 Number.parseInt(
-                    stockInput.value,
+                    editor
+                        .querySelector(
+                            ".edit-stock"
+                        )
+                        .value,
                     10
                 );
+
+
+            const status =
+                editor
+                    .querySelector(
+                        ".edit-status"
+                    )
+                    .value;
+
+
+            const descriptionEn =
+                editor
+                    .querySelector(
+                        ".edit-description-en"
+                    )
+                    .value
+                    .trim();
+
+
+            const descriptionAr =
+                editor
+                    .querySelector(
+                        ".edit-description-ar"
+                    )
+                    .value
+                    .trim();
+
+
+            const tags =
+                editor
+                    .querySelector(
+                        ".edit-tags"
+                    )
+                    .value
+                    .split(",")
+                    .map(tag =>
+                        tag.trim()
+                    )
+                    .filter(Boolean);
+
+
+            const showPrice =
+                editor
+                    .querySelector(
+                        ".edit-show-price"
+                    )
+                    .checked;
+
+
+            const featured =
+                editor
+                    .querySelector(
+                        ".edit-featured"
+                    )
+                    .checked;
+
+
+            const newArrival =
+                editor
+                    .querySelector(
+                        ".edit-new-arrival"
+                    )
+                    .checked;
+
+
+            const whatsappEnquiry =
+                editor
+                    .querySelector(
+                        ".edit-whatsapp"
+                    )
+                    .checked;
+
+
+
+            /* VALIDATION */
+
+            if (!productId) {
+
+                alert(
+                    "Product ID is required."
+                );
+
+                return;
+            }
+
+
+            if (!nameEn) {
+
+                alert(
+                    "Product Name EN is required."
+                );
+
+                return;
+            }
+
+
+            if (!category) {
+
+                alert(
+                    "Category is required."
+                );
+
+                return;
+            }
+
+
+            if (!subcategory) {
+
+                alert(
+                    "Subcategory is required."
+                );
+
+                return;
+            }
 
 
             if (
@@ -1078,8 +1720,6 @@ manageProductsList?.addEventListener(
                 alert(
                     "Please enter a valid price."
                 );
-
-                priceInput.focus();
 
                 return;
             }
@@ -1094,27 +1734,13 @@ manageProductsList?.addEventListener(
                     "Please enter a valid stock quantity."
                 );
 
-                stockInput.focus();
-
                 return;
             }
 
 
-            const descriptionEn =
-                descriptionEnInput
-                    .value
-                    .trim();
 
-            const descriptionAr =
-                descriptionArInput
-                    .value
-                    .trim();
-
-
-            saveButton.disabled = true;
-
-            const originalText =
-                saveButton.textContent;
+            saveButton.disabled =
+                true;
 
             saveButton.textContent =
                 "Saving...";
@@ -1122,42 +1748,78 @@ manageProductsList?.addEventListener(
 
             try {
 
+                const updateData = {
+
+                    productId,
+
+                    sku,
+
+                    nameEn,
+
+                    nameAr,
+
+                    category,
+
+                    subcategory,
+
+                    brand,
+
+                    price,
+
+                    stockQuantity,
+
+                    showPrice,
+
+                    descriptionEn,
+
+                    descriptionAr,
+
+                    tags,
+
+                    featured,
+
+                    newArrival,
+
+                    whatsappEnquiry,
+
+                    status,
+
+                    updatedAt:
+                        serverTimestamp()
+
+                };
+
+
                 await updateDoc(
+
                     doc(
                         db,
                         "products",
                         firestoreId
                     ),
-                    {
-                        price,
-                        stockQuantity,
-                        descriptionEn,
-                        descriptionAr
-                    }
+
+                    updateData
                 );
 
 
+
+                /* UPDATE LOCAL CACHE */
+
                 const localProduct =
                     adminProducts.find(
-                        product =>
-                            product.firestoreId ===
+                        item =>
+                            item.firestoreId ===
                             firestoreId
                     );
 
 
                 if (localProduct) {
 
-                    localProduct.price =
-                        price;
+                    Object.assign(
+                        localProduct,
+                        updateData
+                    );
 
-                    localProduct.stockQuantity =
-                        stockQuantity;
-
-                    localProduct.descriptionEn =
-                        descriptionEn;
-
-                    localProduct.descriptionAr =
-                        descriptionAr;
                 }
 
 
@@ -1168,33 +1830,34 @@ manageProductsList?.addEventListener(
                 setTimeout(
                     () => {
 
-                        saveButton.textContent =
-                            originalText;
-
-                        saveButton.disabled =
-                            false;
+                        renderManageProducts(
+                            adminProducts
+                        );
 
                     },
-                    1200
+                    900
                 );
 
 
             } catch (error) {
 
                 console.error(
-                    "Unable to save product details:",
+                    "Unable to update product:",
                     error
                 );
 
+
                 alert(
-                    "Unable to save product details."
+                    "Unable to save product changes."
                 );
 
-                saveButton.textContent =
-                    originalText;
 
                 saveButton.disabled =
                     false;
+
+
+                saveButton.textContent =
+                    "Save Changes";
             }
 
 
@@ -1202,9 +1865,10 @@ manageProductsList?.addEventListener(
         }
 
 
-        /* =========================================
-           ENABLE / DISABLE PRODUCT
-           ========================================= */
+
+        /* =================================================
+           ACTIVE / INACTIVE QUICK BUTTON
+           ================================================= */
 
         const statusButton =
             event.target.closest(
@@ -1220,39 +1884,48 @@ manageProductsList?.addEventListener(
         const firestoreId =
             statusButton.dataset.productId;
 
+
         const currentStatus =
             statusButton.dataset.currentStatus;
 
 
         const newStatus =
             currentStatus === "active"
-                ? "disabled"
+                ? "inactive"
                 : "active";
 
 
-        statusButton.disabled = true;
+        statusButton.disabled =
+            true;
+
 
         statusButton.textContent =
-            newStatus === "disabled"
-                ? "Disabling..."
-                : "Enabling...";
+            newStatus === "inactive"
+                ? "Updating..."
+                : "Updating...";
 
 
         try {
 
             await updateDoc(
+
                 doc(
                     db,
                     "products",
                     firestoreId
                 ),
+
                 {
-                    status: newStatus
+                    status: newStatus,
+
+                    updatedAt:
+                        serverTimestamp()
                 }
+
             );
 
 
-            const product =
+            const localProduct =
                 adminProducts.find(
                     item =>
                         item.firestoreId ===
@@ -1260,49 +1933,36 @@ manageProductsList?.addEventListener(
                 );
 
 
-            if (product) {
+            if (localProduct) {
 
-                product.status =
+                localProduct.status =
                     newStatus;
+
             }
 
 
-            const searchValue =
-                manageProductsSearch
-                    ?.value
-                    .trim()
-                    .toLowerCase();
-
-
-            if (searchValue) {
-
-                manageProductsSearch
-                    .dispatchEvent(
-                        new Event("input")
-                    );
-
-            } else {
-
-                renderManageProducts(
-                    adminProducts
-                );
-            }
+            renderManageProducts(
+                adminProducts
+            );
 
 
         } catch (error) {
 
             console.error(
-                "Unable to update product status:",
+                "Unable to update status:",
                 error
             );
+
 
             alert(
                 "Unable to update product status."
             );
 
+
             statusButton.disabled =
                 false;
         }
+
     }
 );
 
