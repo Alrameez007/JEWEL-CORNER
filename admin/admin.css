@@ -2544,3 +2544,37 @@ body {
         width: 100%;
     }
 }
+
+#stockQuantity {
+    width: 100%;
+    min-height: 44px;
+
+    padding: 0 14px;
+
+    border-radius: 11px;
+
+    border:
+        1px solid
+        rgba(37,151,211,.20);
+
+    background:
+        rgba(255,255,255,.90);
+
+    color: #08264d;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+#stockQuantity:focus {
+    border-color: #2597d3;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37,151,211,.10);
+}
