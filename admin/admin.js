@@ -395,7 +395,11 @@ productForm.addEventListener(
             .value
             .trim(),
 
-        additionalImages: additionalImageUrls,
+        additionalImages:
+          additionalImageUrls,
+
+        additionalImageFileIds:
+          additionalImageFileIds,
 
         descriptionEn:
           document
@@ -2998,22 +3002,49 @@ async function optimizeProductImage(file) {
     );
 }
 
+/* =========================================================
+   ADDITIONAL IMAGE — OPTIMIZE + IMAGEKIT UPLOAD
+========================================================= */
+
 async function uploadAdditionalImageToImageKit(originalFile) {
 
     if (!originalFile.type.startsWith("image/")) {
-        throw new Error("Please select a valid image file.");
+
+        throw new Error(
+            "Please select a valid image file."
+        );
     }
 
-    // Reuse your EXISTING optimization system
+
+    /* -----------------------------------------------------
+       Reuse existing 1200 × 1200 optimization
+    ----------------------------------------------------- */
+
     const optimizedFile =
-        await optimizeProductImage(originalFile);
+        await optimizeProductImage(
+            originalFile
+        );
+
 
     if (!auth.currentUser) {
-        throw new Error("You are not logged in.");
+
+        throw new Error(
+            "You are not logged in."
+        );
     }
+
+
+    /* -----------------------------------------------------
+       Get Firebase authentication token
+    ----------------------------------------------------- */
 
     const firebaseToken =
         await auth.currentUser.getIdToken();
+
+
+    /* -----------------------------------------------------
+       Request ImageKit upload authentication
+    ----------------------------------------------------- */
 
     const authResponse =
         await fetch(
@@ -3028,52 +3059,72 @@ async function uploadAdditionalImageToImageKit(originalFile) {
             }
         );
 
+
     if (!authResponse.ok) {
+
         throw new Error(
             "Unable to authorize image upload."
         );
     }
 
+
     const imageKitAuth =
         await authResponse.json();
 
+
+    /* -----------------------------------------------------
+       Prepare ImageKit upload
+    ----------------------------------------------------- */
+
     const formData =
         new FormData();
+
 
     formData.append(
         "file",
         optimizedFile
     );
 
+
     formData.append(
         "fileName",
         createSafeFileName()
     );
+
 
     formData.append(
         "publicKey",
         IMAGEKIT_PUBLIC_KEY
     );
 
+
     formData.append(
         "signature",
         imageKitAuth.signature
     );
+
 
     formData.append(
         "expire",
         imageKitAuth.expire
     );
 
+
     formData.append(
         "token",
         imageKitAuth.token
     );
 
+
     formData.append(
         "folder",
         "/jewel-corner/products"
     );
+
+
+    /* -----------------------------------------------------
+       Upload optimized image to ImageKit
+    ----------------------------------------------------- */
 
     const uploadResponse =
         await fetch(
@@ -3084,8 +3135,10 @@ async function uploadAdditionalImageToImageKit(originalFile) {
             }
         );
 
+
     const uploadResult =
         await uploadResponse.json();
+
 
     if (!uploadResponse.ok) {
 
@@ -3094,17 +3147,32 @@ async function uploadAdditionalImageToImageKit(originalFile) {
             uploadResult
         );
 
+
         throw new Error(
             uploadResult.message ||
             "Additional image upload failed."
         );
     }
 
+
+    /* -----------------------------------------------------
+       IMPORTANT
+
+       Return BOTH values.
+
+       URL:
+       Used by the website.
+
+       fileId:
+       Used later for permanent ImageKit deletion.
+    ----------------------------------------------------- */
+
     return {
-    url: uploadResult.url,
-    fileId: uploadResult.fileId
-};
+        url: uploadResult.url,
+        fileId: uploadResult.fileId
+    };
 }
+
 
 
 /* =========================================================
@@ -3121,7 +3189,9 @@ function loadImageForOptimization(file) {
 
 
             const objectUrl =
-                URL.createObjectURL(file);
+                URL.createObjectURL(
+                    file
+                );
 
 
             img.onload = () => {
@@ -3130,7 +3200,10 @@ function loadImageForOptimization(file) {
                     objectUrl
                 );
 
-                resolve(img);
+
+                resolve(
+                    img
+                );
             };
 
 
@@ -3139,6 +3212,7 @@ function loadImageForOptimization(file) {
                 URL.revokeObjectURL(
                     objectUrl
                 );
+
 
                 reject(
                     new Error(
@@ -3155,6 +3229,7 @@ function loadImageForOptimization(file) {
 }
 
 
+
 /* =========================================================
    IMAGEKIT FILE NAME
 ========================================================= */
@@ -3164,9 +3239,14 @@ function createSafeFileName() {
     return (
         "product-" +
         Date.now() +
+        "-" +
+        Math.random()
+            .toString(36)
+            .slice(2, 8) +
         ".webp"
     );
 }
+
 
 
 /* =========================================================
@@ -3194,127 +3274,219 @@ function formatFileSize(bytes) {
         (1024 * 1024)
     ).toFixed(2) + " MB";
 }
+
+
+
+/* =========================================================
+   ADD PRODUCT — ADDITIONAL IMAGES
+========================================================= */
+
 const additionalImagesInput =
-    document.getElementById("additionalImages");
+    document.getElementById(
+        "additionalImages"
+    );
+
 
 const additionalImagesPreview =
-    document.getElementById("additionalImagesPreview");
+    document.getElementById(
+        "additionalImagesPreview"
+    );
+
+
+/*
+   These two arrays stay synchronized.
+
+   Example:
+
+   additionalImageUrls[0]
+   belongs to
+   additionalImageFileIds[0]
+*/
 
 let additionalImageUrls = [];
+
 let additionalImageFileIds = [];
+
 
 
 additionalImagesInput?.addEventListener(
     "change",
     async () => {
 
-        additionalImagesPreview.innerHTML = "";
+        if (!additionalImagesPreview) {
+            return;
+        }
 
-        additionalImageUrls = [];
-        additionalImageFileIds = [];
+
+        /* -------------------------------------------------
+           Clear previous selection
+        ------------------------------------------------- */
+
+        additionalImagesPreview.innerHTML =
+            "";
+
+
+        additionalImageUrls =
+            [];
+
+
+        additionalImageFileIds =
+            [];
+
 
         const files =
-            Array.from(additionalImagesInput.files);
+            Array.from(
+                additionalImagesInput.files ||
+                []
+            );
 
+
+        /* -------------------------------------------------
+           Upload each image one by one
+        ------------------------------------------------- */
 
         for (const file of files) {
 
-            if (!file.type.startsWith("image/")) {
+            if (
+                !file.type.startsWith(
+                    "image/"
+                )
+            ) {
+
                 continue;
             }
 
 
-            /* -----------------------------------------
-               Show temporary preview
-            ----------------------------------------- */
+            /* ---------------------------------------------
+               Temporary local preview
+            --------------------------------------------- */
 
             const previewUrl =
-                URL.createObjectURL(file);
+                URL.createObjectURL(
+                    file
+                );
+
 
             const img =
-                document.createElement("img");
+                document.createElement(
+                    "img"
+                );
+
 
             img.src =
                 previewUrl;
 
+
             img.alt =
                 "Additional product image";
+
 
             img.style.width =
                 "100px";
 
+
             img.style.height =
                 "100px";
+
 
             img.style.objectFit =
                 "contain";
 
+
             img.style.borderRadius =
                 "8px";
+
 
             img.style.border =
                 "1px solid #ddd";
 
+
             img.style.background =
                 "#F4F0E4";
+
 
             img.style.padding =
                 "4px";
 
-            additionalImagesPreview.appendChild(img);
+
+            additionalImagesPreview.appendChild(
+                img
+            );
 
 
-        try {
+            try {
 
-    /* =====================================
-       OPTIMIZE + UPLOAD
-    ===================================== */
+                /* =========================================
+                   OPTIMIZE + UPLOAD
+                ========================================= */
 
-const uploadedImage =
-    await uploadAdditionalImageToImageKit(
-        file
-    );
-
-
-additionalImageUrls.push(
-    uploadedImage.url
-);
+                const uploadedImage =
+                    await uploadAdditionalImageToImageKit(
+                        file
+                    );
 
 
-additionalImageFileIds.push(
-    uploadedImage.fileId
-);
+                /* =========================================
+                   SAVE IMAGE URL
+                ========================================= */
+
+                additionalImageUrls.push(
+                    uploadedImage.url
+                );
 
 
-URL.revokeObjectURL(
-    previewUrl
-);
+                /* =========================================
+                   SAVE IMAGEKIT FILE ID
+
+                   Required later for permanent deletion.
+                ========================================= */
+
+                additionalImageFileIds.push(
+                    uploadedImage.fileId
+                );
 
 
-img.src =
-    uploadedImage.url;
+                /* -----------------------------------------
+                   Replace temporary preview with ImageKit
+                ----------------------------------------- */
+
+                URL.revokeObjectURL(
+                    previewUrl
+                );
 
 
-console.log(
-    "Additional image uploaded:",
-    uploadedImage.url
-);
+                img.src =
+                    uploadedImage.url;
 
 
-console.log(
-    "ImageKit file ID:",
-    uploadedImage.fileId
-);
+                console.log(
+                    "Additional image uploaded:",
+                    uploadedImage.url
+                );
 
-} catch (error) {
+
+                console.log(
+                    "ImageKit file ID:",
+                    uploadedImage.fileId
+                );
+
+
+            } catch (error) {
+
+                URL.revokeObjectURL(
+                    previewUrl
+                );
+
 
                 console.error(
                     "Additional image upload failed:",
                     error
                 );
 
+
                 img.style.opacity =
                     "0.4";
+
 
                 img.title =
                     error.message ||
@@ -3323,9 +3495,19 @@ console.log(
         }
 
 
+        /* -------------------------------------------------
+           Final verification in browser Console
+        ------------------------------------------------- */
+
         console.log(
             "Additional image URLs:",
             additionalImageUrls
+        );
+
+
+        console.log(
+            "Additional image file IDs:",
+            additionalImageFileIds
         );
     }
 );
