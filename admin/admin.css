@@ -1603,3 +1603,67 @@ body {
 .welcome-area p {
     color: rgba(8, 38, 77, 0.68);
 }
+
+/* =========================================================
+   JEWEL CORNER — DASHBOARD ACTION CARDS
+   ========================================================= */
+
+.dashboard-card {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.78),
+            rgba(240,248,252,.62)
+        );
+
+    border:
+        1px solid
+        rgba(37,151,211,.20);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 16px 35px rgba(8,38,77,.10),
+        inset 0 1px 0 rgba(255,255,255,.80);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(37,151,211,.38);
+
+    box-shadow:
+        0 22px 45px rgba(8,38,77,.16),
+        inset 0 1px 0 rgba(255,255,255,.88);
+}
+
+.dashboard-card h3 {
+    color: #087fc1;
+}
+
+.dashboard-card p {
+    color: rgba(8,38,77,.66);
+}
+
+.dashboard-card .card-icon {
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 20px rgba(8,127,193,.22);
+}
