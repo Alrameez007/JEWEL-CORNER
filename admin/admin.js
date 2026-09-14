@@ -1559,11 +1559,15 @@ if (replaceMainImageButton) {
         );
 
     const input =
-        editor?.querySelector(
-            ".manage-main-image-input"
-        );
+        editor
+            ? editor.querySelector(
+                ".manage-main-image-input"
+            )
+            : null;
 
-    input?.click();
+    if (input) {
+        input.click();
+    }
 
     return;
 }
