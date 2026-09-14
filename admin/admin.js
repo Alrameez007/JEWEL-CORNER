@@ -395,11 +395,7 @@ productForm.addEventListener(
             .value
             .trim(),
 
-        additionalImages:
-          additionalImageUrls,
-
-        additionalImageFileIds:
-          additionalImageFileIds,
+        additionalImages: additionalImageUrls,
 
         descriptionEn:
           document
@@ -1273,207 +1269,106 @@ function renderManageProducts(products) {
                 </div>
 
 
-/* CURRENT IMAGES + IMAGE MANAGEMENT */
+                <!-- CURRENT IMAGES -->
 
-<div class="manage-current-images">
+                ${
+                    productImage ||
+                    additionalImages.length
 
-    <h4>
-        Product Images
-    </h4>
+                    ? `
 
+                        <div class="manage-current-images">
 
-    <!-- MAIN IMAGE -->
-
-    <div class="manage-image-management-section">
-
-        <div class="manage-image-section-header">
-
-            <div>
-                <strong>Main Image</strong>
-                <small>
-                    Replace the main product image
-                </small>
-            </div>
-
-            <button
-                type="button"
-                class="manage-replace-main-image"
-                data-product-id="${
-                    escapeAdminHtml(
-                        product.firestoreId
-                    )
-                }"
-            >
-                Replace Main Image
-            </button>
-
-        </div>
+                            <h4>
+                                Current Product Images
+                            </h4>
 
 
-        <input
-            type="file"
-            accept="image/*"
-            class="manage-main-image-input"
-            data-product-id="${
-                escapeAdminHtml(
-                    product.firestoreId
-                )
-            }"
-            hidden
-        >
+                            <div class="manage-current-image-grid">
+
+                                ${
+                                    productImage
+                                        ? `
+                                            <div>
+                                                <span>Main</span>
+
+                                                <img
+                                                    src="${
+                                                        escapeAdminHtml(
+                                                            productImage
+                                                        )
+                                                    }"
+                                                    alt=""
+                                                >
+                                            </div>
+                                        `
+                                        : ""
+                                }
 
 
-        <div class="manage-main-image-preview">
+                                ${
+                                    additionalImages
+                                        .map(
+                                            image => `
+                                                <div>
+                                                    <span>
+                                                        Additional
+                                                    </span>
 
-            ${
-                productImage
-
-                ? `
-                    <img
-                        src="${
-                            escapeAdminHtml(
-                                productImage
-                            )
-                        }"
-                        alt="${
-                            escapeAdminHtml(
-                                productName
-                            )
-                        }"
-                    >
-                `
-
-                : `
-                    <div class="manage-no-current-image">
-                        No main image
-                    </div>
-                `
-            }
-
-        </div>
-
-
-        <p
-            class="manage-image-upload-status"
-            data-main-upload-status="${
-                escapeAdminHtml(
-                    product.firestoreId
-                )
-            }"
-        ></p>
-
-    </div>
-
-
-
-    <!-- ADDITIONAL IMAGES -->
-
-    <div class="manage-image-management-section">
-
-        <div class="manage-image-section-header">
-
-            <div>
-                <strong>
-                    Additional Images
-                </strong>
-
-                <small>
-                    Add or remove gallery images
-                </small>
-            </div>
-
-
-            <button
-                type="button"
-                class="manage-add-more-images"
-                data-product-id="${
-                    escapeAdminHtml(
-                        product.firestoreId
-                    )
-                }"
-            >
-                Add Images
-            </button>
-
-        </div>
-
-
-        <input
-            type="file"
-            accept="image/*"
-            multiple
-            class="manage-additional-images-input"
-            data-product-id="${
-                escapeAdminHtml(
-                    product.firestoreId
-                )
-            }"
-            hidden
-        >
-
-
-        <div class="manage-current-image-grid">
-
-            ${
-                additionalImages.length
-
-                ? additionalImages
-                    .map(
-                        (image, index) => `
-
-                            <div class="manage-additional-image-item">
-
-                                <img
-                                    src="${
-                                        escapeAdminHtml(
-                                            image
+                                                    <img
+                                                        src="${
+                                                            escapeAdminHtml(
+                                                                image
+                                                            )
+                                                        }"
+                                                        alt=""
+                                                    >
+                                                </div>
+                                            `
                                         )
-                                    }"
-                                    alt="Additional product image"
-                                    loading="lazy"
-                                >
-
-                                <button
-                                    type="button"
-                                    class="manage-remove-additional-image"
-                                    data-product-id="${
-                                        escapeAdminHtml(
-                                            product.firestoreId
-                                        )
-                                    }"
-                                    data-image-index="${index}"
-                                >
-                                    Remove
-                                </button>
+                                        .join("")
+                                }
 
                             </div>
 
-                        `
-                    )
-                    .join("")
+                            <p class="manage-image-note">
+                                Image replacement will use the existing
+                                ImageKit upload system in the next upgrade.
+                            </p>
 
-                : `
-                    <div class="manage-no-additional-images">
-                        No additional images
-                    </div>
-                `
-            }
+                        </div>
 
-        </div>
+                    `
+
+                    : ""
+                }
 
 
-        <p
-            class="manage-image-upload-status"
-            data-additional-upload-status="${
-                escapeAdminHtml(
-                    product.firestoreId
-                )
-            }"
-        ></p>
+                <!-- SAVE -->
 
-    </div>
+                <div class="manage-editor-actions">
 
-</div>
+                    <button
+                        type="button"
+                        class="manage-save-full-product"
+                        data-product-id="${
+                            escapeAdminHtml(
+                                product.firestoreId
+                            )
+                        }"
+                    >
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+
+        manageProductsList.appendChild(card);
+    });
+}
 
 /* ---------------------------------------------------------
    SEARCH PRODUCTS
@@ -1539,473 +1434,7 @@ manageProductsSearch?.addEventListener(
 manageProductsList?.addEventListener(
     "click",
     async event => {
-    /* =================================================
-   REPLACE MAIN IMAGE BUTTON
-   ================================================= */
 
-const replaceMainImageButton =
-    event.target.closest(
-        ".manage-replace-main-image"
-    );
-
-if (replaceMainImageButton) {
-
-    const firestoreId =
-        replaceMainImageButton.dataset.productId;
-
-   const editor =
-    manageProductsList.querySelector(
-        '[data-editor-id="' + firestoreId + '"]'
-    );
-
-    const input =
-        editor
-            ? editor.querySelector(
-                ".manage-main-image-input"
-            )
-            : null;
-
-    if (input) {
-        input.click();
-    }
-
-    return;
-}
-
-
-
-/* =================================================
-   ADD ADDITIONAL IMAGES BUTTON
-   ================================================= */
-
-const addImagesButton =
-    event.target.closest(
-        ".manage-add-more-images"
-    );
-
-if (addImagesButton) {
-
-    const firestoreId =
-        addImagesButton.dataset.productId;
-
-    const editor =
-        manageProductsList.querySelector(
-            '[data-editor-id="' + firestoreId + '"]'
-        );
-
-    const input =
-        editor?.querySelector(
-            ".manage-additional-images-input"
-        );
-
-    input?.click();
-
-    return;
-}
-
-
-
-/* =================================================
-   REMOVE ADDITIONAL IMAGE
-   ================================================= */
-
-const removeImageButton =
-    event.target.closest(
-        ".manage-remove-additional-image"
-    );
-
-if (removeImageButton) {
-
-    const firestoreId =
-        removeImageButton.dataset.productId;
-
-    const imageIndex =
-        Number.parseInt(
-            removeImageButton.dataset.imageIndex,
-            10
-        );
-
-
-    const product =
-        adminProducts.find(
-            item =>
-                item.firestoreId ===
-                firestoreId
-        );
-
-
-    if (
-        !product ||
-        !Array.isArray(product.additionalImages)
-    ) {
-        return;
-    }
-
-
-    const confirmed =
-        confirm(
-            "Remove this image from the product?"
-        );
-
-
-    if (!confirmed) {
-        return;
-    }
-
-
-    removeImageButton.disabled =
-        true;
-
-    removeImageButton.textContent =
-        "Removing...";
-
-
-    try {
-
-        const updatedImages =
-            product.additionalImages.filter(
-                (_, index) =>
-                    index !== imageIndex
-            );
-
-
-        await updateDoc(
-
-            doc(
-                db,
-                "products",
-                firestoreId
-            ),
-
-            {
-                additionalImages:
-                    updatedImages,
-
-                updatedAt:
-                    serverTimestamp()
-            }
-        );
-
-
-        product.additionalImages =
-            updatedImages;
-
-
-        renderManageProducts(
-            adminProducts
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Unable to remove image:",
-            error
-        );
-
-
-        alert(
-            "Unable to remove the image."
-        );
-
-
-        removeImageButton.disabled =
-            false;
-
-        removeImageButton.textContent =
-            "Remove";
-    }
-
-
-    return;
-}
-
-/* =========================================================
-   MANAGE PRODUCTS — MAIN IMAGE REPLACEMENT
-   ========================================================= */
-
-manageProductsList?.addEventListener(
-    "change",
-    async event => {
-
-        const input =
-            event.target.closest(
-                ".manage-main-image-input"
-            );
-
-
-        if (!input) {
-            return;
-        }
-
-
-        const file =
-            input.files?.[0];
-
-
-        if (!file) {
-            return;
-        }
-
-
-        const firestoreId =
-            input.dataset.productId;
-
-
-        const statusMessage =
-            manageProductsList.querySelector(
-                '[data-main-upload-status="' + firestoreId + '"]'
-            );
-
-
-        try {
-
-            if (statusMessage) {
-
-                statusMessage.textContent =
-                    "Optimizing and uploading image...";
-
-            }
-
-
-            input.disabled =
-                true;
-
-
-            /*
-             * Reuse the EXISTING working ImageKit uploader.
-             * It already calls optimizeProductImage().
-             */
-
-            const newImageUrl =
-                await uploadAdditionalImageToImageKit(
-                    file
-                );
-
-
-            await updateDoc(
-
-                doc(
-                    db,
-                    "products",
-                    firestoreId
-                ),
-
-                {
-                    mainImage:
-                        newImageUrl,
-
-                    updatedAt:
-                        serverTimestamp()
-                }
-            );
-
-
-            const product =
-                adminProducts.find(
-                    item =>
-                        item.firestoreId ===
-                        firestoreId
-                );
-
-
-            if (product) {
-
-                product.mainImage =
-                    newImageUrl;
-
-            }
-
-
-            if (statusMessage) {
-
-                statusMessage.textContent =
-                    "Main image updated successfully.";
-
-            }
-
-
-            setTimeout(
-                () => {
-
-                    renderManageProducts(
-                        adminProducts
-                    );
-
-                },
-                700
-            );
-
-
-        } catch (error) {
-
-            console.error(
-                "Main image replacement failed:",
-                error
-            );
-
-
-            if (statusMessage) {
-
-                statusMessage.textContent =
-                    error.message ||
-                    "Main image upload failed.";
-
-            }
-
-
-            input.disabled =
-                false;
-
-            input.value =
-                "";
-        }
-
-    }
-);
-/* =========================================================
-   MANAGE PRODUCTS — MAIN IMAGE REPLACEMENT
-   ========================================================= */
-
-manageProductsList?.addEventListener(
-    "change",
-    async event => {
-
-        const input =
-            event.target.closest(
-                ".manage-main-image-input"
-            );
-
-
-        if (!input) {
-            return;
-        }
-
-
-        const file =
-            input.files?.[0];
-
-
-        if (!file) {
-            return;
-        }
-
-
-        const firestoreId =
-            input.dataset.productId;
-
-
-        const statusMessage =
-            manageProductsList.querySelector(
-                '[data-main-upload-status="' + firestoreId + '"]'
-            );
-
-
-        try {
-
-            if (statusMessage) {
-
-                statusMessage.textContent =
-                    "Optimizing and uploading image...";
-
-            }
-
-
-            input.disabled =
-                true;
-
-
-            /*
-             * Reuse the EXISTING working ImageKit uploader.
-             * It already calls optimizeProductImage().
-             */
-
-            const newImageUrl =
-                await uploadAdditionalImageToImageKit(
-                    file
-                );
-
-
-            await updateDoc(
-
-                doc(
-                    db,
-                    "products",
-                    firestoreId
-                ),
-
-                {
-                    mainImage:
-                        newImageUrl,
-
-                    updatedAt:
-                        serverTimestamp()
-                }
-            );
-
-
-            const product =
-                adminProducts.find(
-                    item =>
-                        item.firestoreId ===
-                        firestoreId
-                );
-
-
-            if (product) {
-
-                product.mainImage =
-                    newImageUrl;
-
-            }
-
-
-            if (statusMessage) {
-
-                statusMessage.textContent =
-                    "Main image updated successfully.";
-
-            }
-
-
-            setTimeout(
-                () => {
-
-                    renderManageProducts(
-                        adminProducts
-                    );
-
-                },
-                700
-            );
-
-
-        } catch (error) {
-
-            console.error(
-                "Main image replacement failed:",
-                error
-            );
-
-
-            if (statusMessage) {
-
-                statusMessage.textContent =
-                    error.message ||
-                    "Main image upload failed.";
-
-            }
-
-
-            input.disabled =
-                false;
-
-            input.value =
-                "";
-        }
-
-    }
-);
 
         /* =================================================
            OPEN / CLOSE EDITOR
@@ -2025,7 +1454,7 @@ manageProductsList?.addEventListener(
 
             const editor =
                 manageProductsList.querySelector(
-                    '[data-editor-id="' + firestoreId + '"]'
+                    `[data-editor-id="${firestoreId}"]`
                 );
 
 
@@ -2074,7 +1503,7 @@ manageProductsList?.addEventListener(
 
             const editor =
                 manageProductsList.querySelector(
-                    '[data-editor-id="' + firestoreId + '"]'
+                    `[data-editor-id="${firestoreId}"]`
                 );
 
 
@@ -3006,49 +2435,22 @@ async function optimizeProductImage(file) {
     );
 }
 
-/* =========================================================
-   ADDITIONAL IMAGE — OPTIMIZE + IMAGEKIT UPLOAD
-========================================================= */
-
 async function uploadAdditionalImageToImageKit(originalFile) {
 
     if (!originalFile.type.startsWith("image/")) {
-
-        throw new Error(
-            "Please select a valid image file."
-        );
+        throw new Error("Please select a valid image file.");
     }
 
-
-    /* -----------------------------------------------------
-       Reuse existing 1200 × 1200 optimization
-    ----------------------------------------------------- */
-
+    // Reuse your EXISTING optimization system
     const optimizedFile =
-        await optimizeProductImage(
-            originalFile
-        );
-
+        await optimizeProductImage(originalFile);
 
     if (!auth.currentUser) {
-
-        throw new Error(
-            "You are not logged in."
-        );
+        throw new Error("You are not logged in.");
     }
-
-
-    /* -----------------------------------------------------
-       Get Firebase authentication token
-    ----------------------------------------------------- */
 
     const firebaseToken =
         await auth.currentUser.getIdToken();
-
-
-    /* -----------------------------------------------------
-       Request ImageKit upload authentication
-    ----------------------------------------------------- */
 
     const authResponse =
         await fetch(
@@ -3063,72 +2465,52 @@ async function uploadAdditionalImageToImageKit(originalFile) {
             }
         );
 
-
     if (!authResponse.ok) {
-
         throw new Error(
             "Unable to authorize image upload."
         );
     }
 
-
     const imageKitAuth =
         await authResponse.json();
 
-
-    /* -----------------------------------------------------
-       Prepare ImageKit upload
-    ----------------------------------------------------- */
-
     const formData =
         new FormData();
-
 
     formData.append(
         "file",
         optimizedFile
     );
 
-
     formData.append(
         "fileName",
         createSafeFileName()
     );
-
 
     formData.append(
         "publicKey",
         IMAGEKIT_PUBLIC_KEY
     );
 
-
     formData.append(
         "signature",
         imageKitAuth.signature
     );
-
 
     formData.append(
         "expire",
         imageKitAuth.expire
     );
 
-
     formData.append(
         "token",
         imageKitAuth.token
     );
 
-
     formData.append(
         "folder",
         "/jewel-corner/products"
     );
-
-
-    /* -----------------------------------------------------
-       Upload optimized image to ImageKit
-    ----------------------------------------------------- */
 
     const uploadResponse =
         await fetch(
@@ -3139,10 +2521,8 @@ async function uploadAdditionalImageToImageKit(originalFile) {
             }
         );
 
-
     const uploadResult =
         await uploadResponse.json();
-
 
     if (!uploadResponse.ok) {
 
@@ -3151,32 +2531,14 @@ async function uploadAdditionalImageToImageKit(originalFile) {
             uploadResult
         );
 
-
         throw new Error(
             uploadResult.message ||
             "Additional image upload failed."
         );
     }
 
-
-    /* -----------------------------------------------------
-       IMPORTANT
-
-       Return BOTH values.
-
-       URL:
-       Used by the website.
-
-       fileId:
-       Used later for permanent ImageKit deletion.
-    ----------------------------------------------------- */
-
-    return {
-        url: uploadResult.url,
-        fileId: uploadResult.fileId
-    };
+    return uploadResult.url;
 }
-
 
 
 /* =========================================================
@@ -3193,9 +2555,7 @@ function loadImageForOptimization(file) {
 
 
             const objectUrl =
-                URL.createObjectURL(
-                    file
-                );
+                URL.createObjectURL(file);
 
 
             img.onload = () => {
@@ -3204,10 +2564,7 @@ function loadImageForOptimization(file) {
                     objectUrl
                 );
 
-
-                resolve(
-                    img
-                );
+                resolve(img);
             };
 
 
@@ -3216,7 +2573,6 @@ function loadImageForOptimization(file) {
                 URL.revokeObjectURL(
                     objectUrl
                 );
-
 
                 reject(
                     new Error(
@@ -3233,7 +2589,6 @@ function loadImageForOptimization(file) {
 }
 
 
-
 /* =========================================================
    IMAGEKIT FILE NAME
 ========================================================= */
@@ -3243,14 +2598,9 @@ function createSafeFileName() {
     return (
         "product-" +
         Date.now() +
-        "-" +
-        Math.random()
-            .toString(36)
-            .slice(2, 8) +
         ".webp"
     );
 }
-
 
 
 /* =========================================================
@@ -3278,219 +2628,121 @@ function formatFileSize(bytes) {
         (1024 * 1024)
     ).toFixed(2) + " MB";
 }
-
-
-
-/* =========================================================
-   ADD PRODUCT — ADDITIONAL IMAGES
-========================================================= */
-
 const additionalImagesInput =
-    document.getElementById(
-        "additionalImages"
-    );
-
+    document.getElementById("additionalImages");
 
 const additionalImagesPreview =
-    document.getElementById(
-        "additionalImagesPreview"
-    );
-
-
-/*
-   These two arrays stay synchronized.
-
-   Example:
-
-   additionalImageUrls[0]
-   belongs to
-   additionalImageFileIds[0]
-*/
+    document.getElementById("additionalImagesPreview");
 
 let additionalImageUrls = [];
 
-let additionalImageFileIds = [];
 
-
-
-additionalImagesInput?.addEventListener(
+additionalImagesInput.addEventListener(
     "change",
     async () => {
 
-        if (!additionalImagesPreview) {
-            return;
-        }
+        additionalImagesPreview.innerHTML = "";
 
-
-        /* -------------------------------------------------
-           Clear previous selection
-        ------------------------------------------------- */
-
-        additionalImagesPreview.innerHTML =
-            "";
-
-
-        additionalImageUrls =
-            [];
-
-
-        additionalImageFileIds =
-            [];
-
+        additionalImageUrls = [];
 
         const files =
-            Array.from(
-                additionalImagesInput.files ||
-                []
-            );
+            Array.from(additionalImagesInput.files);
 
-
-        /* -------------------------------------------------
-           Upload each image one by one
-        ------------------------------------------------- */
 
         for (const file of files) {
 
-            if (
-                !file.type.startsWith(
-                    "image/"
-                )
-            ) {
-
+            if (!file.type.startsWith("image/")) {
                 continue;
             }
 
 
-            /* ---------------------------------------------
-               Temporary local preview
-            --------------------------------------------- */
+            /* -----------------------------------------
+               Show temporary preview
+            ----------------------------------------- */
 
             const previewUrl =
-                URL.createObjectURL(
-                    file
-                );
-
+                URL.createObjectURL(file);
 
             const img =
-                document.createElement(
-                    "img"
-                );
-
+                document.createElement("img");
 
             img.src =
                 previewUrl;
 
-
             img.alt =
                 "Additional product image";
-
 
             img.style.width =
                 "100px";
 
-
             img.style.height =
                 "100px";
-
 
             img.style.objectFit =
                 "contain";
 
-
             img.style.borderRadius =
                 "8px";
-
 
             img.style.border =
                 "1px solid #ddd";
 
-
             img.style.background =
                 "#F4F0E4";
-
 
             img.style.padding =
                 "4px";
 
-
-            additionalImagesPreview.appendChild(
-                img
-            );
+            additionalImagesPreview.appendChild(img);
 
 
             try {
 
-                /* =========================================
+                /* =====================================
                    OPTIMIZE + UPLOAD
-                ========================================= */
+                ===================================== */
 
-                const uploadedImage =
+                const uploadedUrl =
                     await uploadAdditionalImageToImageKit(
                         file
                     );
 
 
-                /* =========================================
-                   SAVE IMAGE URL
-                ========================================= */
+                /* =====================================
+                   SAVE URL IN ARRAY
+                ===================================== */
 
                 additionalImageUrls.push(
-                    uploadedImage.url
-                );
-
-
-                /* =========================================
-                   SAVE IMAGEKIT FILE ID
-
-                   Required later for permanent deletion.
-                ========================================= */
-
-                additionalImageFileIds.push(
-                    uploadedImage.fileId
+                    uploadedUrl
                 );
 
 
                 /* -----------------------------------------
-                   Replace temporary preview with ImageKit
+                   Replace preview with ImageKit URL
                 ----------------------------------------- */
 
                 URL.revokeObjectURL(
                     previewUrl
                 );
 
-
                 img.src =
-                    uploadedImage.url;
+                    uploadedUrl;
 
 
                 console.log(
                     "Additional image uploaded:",
-                    uploadedImage.url
+                    uploadedUrl
                 );
-
-
-                console.log(
-                    "ImageKit file ID:",
-                    uploadedImage.fileId
-                );
-
 
             } catch (error) {
-
-                URL.revokeObjectURL(
-                    previewUrl
-                );
-
 
                 console.error(
                     "Additional image upload failed:",
                     error
                 );
 
-
                 img.style.opacity =
                     "0.4";
-
 
                 img.title =
                     error.message ||
@@ -3499,19 +2751,9 @@ additionalImagesInput?.addEventListener(
         }
 
 
-        /* -------------------------------------------------
-           Final verification in browser Console
-        ------------------------------------------------- */
-
         console.log(
             "Additional image URLs:",
             additionalImageUrls
-        );
-
-
-        console.log(
-            "Additional image file IDs:",
-            additionalImageFileIds
         );
     }
 );
