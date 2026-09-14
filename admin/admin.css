@@ -2385,3 +2385,162 @@ body {
         padding-top: 8px;
     }
 }
+
+.manage-product-editor {
+    grid-column: 1 / -1;
+
+    margin-top: 6px;
+    padding: 20px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(238,248,252,.90),
+            rgba(255,255,255,.82)
+        );
+
+    border:
+        1px solid
+        rgba(37,151,211,.18);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.85);
+}
+
+.manage-product-editor.hidden {
+    display: none;
+}
+
+.manage-editor-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.manage-editor-field {
+    margin-bottom: 15px;
+}
+
+.manage-editor-field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #08264d;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.manage-editor-field input,
+.manage-editor-field textarea {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border-radius: 11px;
+
+    border:
+        1px solid
+        rgba(37,151,211,.24);
+
+    background:
+        rgba(255,255,255,.90);
+
+    color: #08264d;
+
+    outline: none;
+
+    font: inherit;
+
+    box-sizing: border-box;
+}
+
+.manage-editor-field input {
+    min-height: 44px;
+}
+
+.manage-editor-field textarea {
+    resize: vertical;
+    min-height: 95px;
+}
+
+.manage-editor-field input:focus,
+.manage-editor-field textarea:focus {
+    border-color: #2597d3;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37,151,211,.10);
+}
+
+.manage-edit-details {
+    min-height: 36px;
+
+    padding: 0 14px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid
+        rgba(37,151,211,.32);
+
+    background:
+        rgba(37,151,211,.08);
+
+    color: #087fc1;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.manage-save-details {
+    min-height: 42px;
+
+    padding: 0 22px;
+
+    border: 0;
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        );
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(8,127,193,.22);
+}
+
+.manage-editor-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 700px) {
+
+    .manage-editor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .manage-editor-actions {
+        justify-content: stretch;
+    }
+
+    .manage-save-details {
+        width: 100%;
+    }
+}
