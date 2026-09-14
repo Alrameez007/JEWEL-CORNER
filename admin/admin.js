@@ -693,6 +693,26 @@ function renderManageProducts(products) {
         const isActive =
             status !== "disabled";
 
+        const price =
+    product.price ??
+    product.priceOMR ??
+    product.unitPrice ??
+    "";
+
+const stockQuantity =
+    product.stockQuantity ??
+    product.stock ??
+    product.quantity ??
+    0;
+
+const descriptionEn =
+    product.descriptionEn ||
+    product.description ||
+    "";
+
+const descriptionAr =
+    product.descriptionAr || "";
+
 
         card.innerHTML = `
 
@@ -745,38 +765,130 @@ function renderManageProducts(products) {
             </div>
 
 
-            <div class="manage-product-actions">
+<div class="manage-product-actions">
 
-                <span
-                    class="
-                        manage-status-badge
-                        ${isActive ? "active" : "disabled"}
-                    "
-                >
-                    ${isActive ? "Active" : "Disabled"}
-                </span>
+    <span
+        class="
+            manage-status-badge
+            ${isActive ? "active" : "disabled"}
+        "
+    >
+        ${isActive ? "Active" : "Disabled"}
+    </span>
+
+    <button
+        type="button"
+        class="manage-edit-details"
+        data-product-id="${escapeAdminHtml(product.firestoreId)}"
+    >
+        Edit Details
+    </button>
+
+    <button
+        type="button"
+        class="
+            manage-toggle-status
+            ${isActive ? "disable" : "enable"}
+        "
+        data-product-id="${escapeAdminHtml(product.firestoreId)}"
+        data-current-status="${isActive ? "active" : "disabled"}"
+    >
+        ${isActive ? "Disable" : "Enable"}
+    </button>
+
+</div>
 
 
-                <button
-                    type="button"
-                    class="
-                        manage-toggle-status
-                        ${isActive ? "disable" : "enable"}
-                    "
-                    data-product-id="${escapeAdminHtml(
-                        product.firestoreId
-                    )}"
-                    data-current-status="${
-                        isActive ? "active" : "disabled"
-                    }"
-                >
-                    ${isActive ? "Disable" : "Enable"}
-                </button>
+<div
+    class="manage-product-editor hidden"
+    data-editor-id="${escapeAdminHtml(product.firestoreId)}"
+>
 
-            </div>
-        `;
+    <div class="manage-editor-grid">
+
+        <div class="manage-editor-field">
+
+            <label>
+                Price per Unit (OMR)
+            </label>
+
+            <input
+                type="number"
+                class="manage-edit-price"
+                min="0"
+                step="0.001"
+                value="${escapeAdminHtml(price)}"
+                placeholder="0.000"
+            >
+
+        </div>
 
 
+        <div class="manage-editor-field">
+
+            <label>
+                Stock Quantity
+            </label>
+
+            <input
+                type="number"
+                class="manage-edit-stock"
+                min="0"
+                step="1"
+                value="${escapeAdminHtml(stockQuantity)}"
+                placeholder="0"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="manage-editor-field">
+
+        <label>
+            Description EN
+        </label>
+
+        <textarea
+            class="manage-edit-description-en"
+            rows="4"
+            placeholder="Product description in English"
+        >${escapeAdminHtml(descriptionEn)}</textarea>
+
+    </div>
+
+
+    <div class="manage-editor-field">
+
+        <label>
+            Description AR
+        </label>
+
+        <textarea
+            class="manage-edit-description-ar"
+            rows="4"
+            dir="rtl"
+            placeholder="وصف المنتج باللغة العربية"
+        >${escapeAdminHtml(descriptionAr)}</textarea>
+
+    </div>
+
+
+    <div class="manage-editor-actions">
+
+        <button
+            type="button"
+            class="manage-save-details"
+            data-product-id="${escapeAdminHtml(product.firestoreId)}"
+        >
+            Save Changes
+        </button>
+
+    </div>
+
+</div>
+`;
         manageProductsList.appendChild(card);
     });
 }
