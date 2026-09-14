@@ -1553,10 +1553,10 @@ if (replaceMainImageButton) {
     const firestoreId =
         replaceMainImageButton.dataset.productId;
 
-    const editor =
-        manageProductsList.querySelector(
-            `[data-editor-id="${firestoreId}"]`
-        );
+   const editor =
+    manageProductsList.querySelector(
+        '[data-editor-id="' + firestoreId + '"]'
+    );
 
     const input =
         editor
