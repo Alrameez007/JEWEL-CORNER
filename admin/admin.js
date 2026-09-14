@@ -3201,6 +3201,7 @@ const additionalImagesPreview =
     document.getElementById("additionalImagesPreview");
 
 let additionalImageUrls = [];
+let additionalImageFileIds = [];
 
 
 additionalImagesInput?.addEventListener(
@@ -3210,6 +3211,7 @@ additionalImagesInput?.addEventListener(
         additionalImagesPreview.innerHTML = "";
 
         additionalImageUrls = [];
+        additionalImageFileIds = [];
 
         const files =
             Array.from(additionalImagesInput.files);
@@ -3268,37 +3270,41 @@ additionalImagesInput?.addEventListener(
        OPTIMIZE + UPLOAD
     ===================================== */
 
-    const uploadedUrl =
-        await uploadAdditionalImageToImageKit(
-            file
-        );
-
-
-    /* =====================================
-       SAVE URL IN ARRAY
-    ===================================== */
-
-    additionalImageUrls.push(
-        uploadedUrl
+const uploadedImage =
+    await uploadAdditionalImageToImageKit(
+        file
     );
 
 
-    /* -----------------------------------------
-       Replace preview with ImageKit URL
-    ----------------------------------------- */
-
-    URL.revokeObjectURL(
-        previewUrl
-    );
-
-    img.src =
-        uploadedUrl;
+additionalImageUrls.push(
+    uploadedImage.url
+);
 
 
-    console.log(
-        "Additional image uploaded:",
-        uploadedUrl
-    );
+additionalImageFileIds.push(
+    uploadedImage.fileId
+);
+
+
+URL.revokeObjectURL(
+    previewUrl
+);
+
+
+img.src =
+    uploadedImage.url;
+
+
+console.log(
+    "Additional image uploaded:",
+    uploadedImage.url
+);
+
+
+console.log(
+    "ImageKit file ID:",
+    uploadedImage.fileId
+);
 
 } catch (error) {
 
