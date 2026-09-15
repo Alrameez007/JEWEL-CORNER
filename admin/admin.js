@@ -1876,6 +1876,258 @@ manageProductsList?.addEventListener(
             return;
         }
 
+        /* =================================================
+           ADD MORE ADDITIONAL PRODUCT IMAGES
+           ================================================= */
+
+        const addAdditionalImagesButton =
+            event.target.closest(
+                ".manage-add-additional-images-button"
+            );
+
+
+        if (addAdditionalImagesButton) {
+
+            const editor =
+                addAdditionalImagesButton.closest(
+                    ".manage-product-editor"
+                );
+
+
+            if (!editor) {
+                return;
+            }
+
+
+            const imageInput =
+                editor.querySelector(
+                    ".manage-add-additional-images-input"
+                );
+
+
+            const message =
+                editor.querySelector(
+                    ".manage-additional-images-message"
+                );
+
+
+            const firestoreId =
+                addAdditionalImagesButton.dataset.productId;
+
+
+            if (
+                !imageInput ||
+                !imageInput.files ||
+                !imageInput.files.length
+            ) {
+
+                if (message) {
+                    message.textContent =
+                        "Please choose one or more images first.";
+                }
+
+                return;
+            }
+
+
+            const selectedFiles =
+                Array.from(
+                    imageInput.files
+                );
+
+
+            const invalidFile =
+                selectedFiles.find(
+                    file =>
+                        !file.type.startsWith(
+                            "image/"
+                        )
+                );
+
+
+            if (invalidFile) {
+
+                if (message) {
+                    message.textContent =
+                        "Please select valid image files only.";
+                }
+
+                return;
+            }
+
+
+            const localProduct =
+                adminProducts.find(
+                    item =>
+                        item.firestoreId ===
+                        firestoreId
+                );
+
+
+            if (!localProduct) {
+
+                if (message) {
+                    message.textContent =
+                        "Unable to find this product.";
+                }
+
+                return;
+            }
+
+
+            addAdditionalImagesButton.disabled =
+                true;
+
+
+            addAdditionalImagesButton.textContent =
+                "Uploading...";
+
+
+            if (message) {
+                message.textContent =
+                    "Preparing additional images...";
+            }
+
+
+            try {
+
+                const newImageUrls = [];
+
+
+                for (
+                    let index = 0;
+                    index < selectedFiles.length;
+                    index++
+                ) {
+
+                    const file =
+                        selectedFiles[index];
+
+
+                    if (message) {
+
+                        message.textContent =
+                            "Optimizing and uploading image " +
+                            (index + 1) +
+                            " of " +
+                            selectedFiles.length +
+                            "...";
+                    }
+
+
+                    const uploadedUrl =
+                        await uploadAdditionalImageToImageKit(
+                            file
+                        );
+
+
+                    newImageUrls.push(
+                        uploadedUrl
+                    );
+                }
+
+
+                const existingAdditionalImages =
+                    Array.isArray(
+                        localProduct.additionalImages
+                    )
+                        ? localProduct.additionalImages
+                        : [];
+
+
+                const updatedAdditionalImages = [
+                    ...existingAdditionalImages,
+                    ...newImageUrls
+                ];
+
+
+                if (message) {
+                    message.textContent =
+                        "Saving additional images...";
+                }
+
+
+                await updateDoc(
+
+                    doc(
+                        db,
+                        "products",
+                        firestoreId
+                    ),
+
+                    {
+                        additionalImages:
+                            updatedAdditionalImages,
+
+                        updatedAt:
+                            serverTimestamp()
+                    }
+
+                );
+
+
+                localProduct.additionalImages =
+                    updatedAdditionalImages;
+
+
+                imageInput.value = "";
+
+
+                if (message) {
+
+                    message.textContent =
+                        newImageUrls.length +
+                        (
+                            newImageUrls.length === 1
+                                ? " image added successfully."
+                                : " images added successfully."
+                        );
+                }
+
+
+                addAdditionalImagesButton.textContent =
+                    "Uploaded ✓";
+
+
+                setTimeout(
+                    () => {
+
+                        renderManageProducts(
+                            adminProducts
+                        );
+
+                    },
+                    1200
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Unable to add additional images:",
+                    error
+                );
+
+
+                if (message) {
+
+                    message.textContent =
+                        error.message ||
+                        "Unable to upload additional images.";
+                }
+
+
+                addAdditionalImagesButton.disabled =
+                    false;
+
+
+                addAdditionalImagesButton.textContent =
+                    "Upload Additional Images";
+            }
+
+
+            return;
+        }
 
         /* =================================================
            OPEN / CLOSE EDITOR
