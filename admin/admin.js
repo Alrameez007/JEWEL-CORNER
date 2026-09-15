@@ -1341,43 +1341,89 @@ function renderManageProducts(products) {
                     </div>
 
 
-                    <!-- ADDITIONAL IMAGES -->
+                            <div class="manage-additional-images-editor">
 
-                    ${
-                        additionalImages.length
-                            ? `
-                                <div class="manage-current-image-grid">
+                        <h4>
+                            Additional Images
+                        </h4>
 
-                                    ${
-                                        additionalImages
-                                            .map(
-                                                image => `
-                                                    <div>
-                                                        <span>
-                                                            Additional
-                                                        </span>
 
-                                                        <img
-                                                            src="${
-                                                                escapeAdminHtml(
-                                                                    image
-                                                                )
-                                                            }"
-                                                            alt=""
-                                                            loading="lazy"
-                                                        >
-                                                    </div>
-                                                `
-                                            )
-                                            .join("")
-                                    }
+                        <!-- CURRENT ADDITIONAL IMAGES -->
 
-                                </div>
-                            `
-                            : ""
-                    }
+                        ${
+                            additionalImages.length
+                                ? `
+                                    <div class="manage-current-image-grid">
 
-                </div>
+                                        ${
+                                            additionalImages
+                                                .map(
+                                                    image => `
+                                                        <div>
+                                                            <span>
+                                                                Additional
+                                                            </span>
+
+                                                            <img
+                                                                src="${
+                                                                    escapeAdminHtml(
+                                                                        image
+                                                                    )
+                                                                }"
+                                                                alt=""
+                                                                loading="lazy"
+                                                            >
+                                                        </div>
+                                                    `
+                                                )
+                                                .join("")
+                                        }
+
+                                    </div>
+                                `
+                                : `
+                                    <p class="manage-no-additional-images">
+                                        No additional images.
+                                    </p>
+                                `
+                        }
+
+
+                        <!-- ADD MORE ADDITIONAL IMAGES -->
+
+                        <div class="manage-additional-image-controls">
+
+                            <label>
+                                Add More Images
+                            </label>
+
+                            <input
+                                type="file"
+                                class="manage-add-additional-images-input"
+                                accept="image/*"
+                                multiple
+                            >
+
+                            <button
+                                type="button"
+                                class="manage-add-additional-images-button"
+                                data-product-id="${
+                                    escapeAdminHtml(
+                                        product.firestoreId
+                                    )
+                                }"
+                            >
+                                Upload Additional Images
+                            </button>
+
+                            <div
+                                class="manage-additional-images-message"
+                                aria-live="polite"
+                            ></div>
+
+                        </div>
+
+                    </div>
 
 
                 <!-- SAVE -->
