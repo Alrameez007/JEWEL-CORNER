@@ -397,6 +397,9 @@ productForm.addEventListener(
 
         additionalImages: additionalImageUrls,
 
+        additionalImageFileIds:
+          additionalImageFileIds,
+
         descriptionEn:
           document
             .getElementById("productDescriptionEn")
@@ -2170,6 +2173,7 @@ manageProductsList?.addEventListener(
             try {
 
                 const newImageUrls = [];
+                const newImageFileIds = [];
 
 
                 for (
@@ -2193,14 +2197,17 @@ manageProductsList?.addEventListener(
                     }
 
 
-                    const uploadedUrl =
+                    const uploadedImage =
                         await uploadAdditionalImageToImageKit(
                             file
                         );
 
-
                     newImageUrls.push(
-                        uploadedUrl
+                        uploadedImage.url
+                    );
+
+                    newImageFileIds.push(
+                        uploadedImage.fileId
                     );
                 }
 
@@ -2216,6 +2223,18 @@ manageProductsList?.addEventListener(
                 const updatedAdditionalImages = [
                     ...existingAdditionalImages,
                     ...newImageUrls
+                ];
+
+                const existingAdditionalImageFileIds =
+                    Array.isArray(
+                        localProduct.additionalImageFileIds
+                    )
+                        ? localProduct.additionalImageFileIds
+                        : [];
+
+                const updatedAdditionalImageFileIds = [
+                    ...existingAdditionalImageFileIds,
+                    ...newImageFileIds
                 ];
 
 
@@ -2237,6 +2256,9 @@ manageProductsList?.addEventListener(
                         additionalImages:
                             updatedAdditionalImages,
 
+                        additionalImageFileIds:
+                            updatedAdditionalImageFileIds,
+
                         updatedAt:
                             serverTimestamp()
                     }
@@ -2246,6 +2268,8 @@ manageProductsList?.addEventListener(
 
                 localProduct.additionalImages =
                     updatedAdditionalImages;
+                localProduct.additionalImageFileIds =
+                    updatedAdditionalImageFileIds;
 
 
                 imageInput.value = "";
@@ -3409,7 +3433,10 @@ async function uploadAdditionalImageToImageKit(originalFile) {
         );
     }
 
-    return uploadResult.url;
+        return {
+        url: uploadResult.url,
+        fileId: uploadResult.fileId
+    };
 }
 
 
@@ -3507,6 +3534,7 @@ const additionalImagesPreview =
     document.getElementById("additionalImagesPreview");
 
 let additionalImageUrls = [];
+let additionalImageFileIds = [];
 
 
 additionalImagesInput.addEventListener(
@@ -3516,6 +3544,7 @@ additionalImagesInput.addEventListener(
         additionalImagesPreview.innerHTML = "";
 
         additionalImageUrls = [];
+        additionalImageFileIds = [];
 
         const files =
             Array.from(additionalImagesInput.files);
@@ -3574,18 +3603,17 @@ additionalImagesInput.addEventListener(
                    OPTIMIZE + UPLOAD
                 ===================================== */
 
-                const uploadedUrl =
+                const uploadedImage =
                     await uploadAdditionalImageToImageKit(
                         file
                     );
 
-
-                /* =====================================
-                   SAVE URL IN ARRAY
-                ===================================== */
-
                 additionalImageUrls.push(
-                    uploadedUrl
+                    uploadedImage.url
+                );
+
+                additionalImageFileIds.push(
+                    uploadedImage.fileId
                 );
 
 
@@ -3598,12 +3626,11 @@ additionalImagesInput.addEventListener(
                 );
 
                 img.src =
-                    uploadedUrl;
-
+                    uploadedImage.url;
 
                 console.log(
                     "Additional image uploaded:",
-                    uploadedUrl
+                    uploadedImage.url
                 );
 
             } catch (error) {
