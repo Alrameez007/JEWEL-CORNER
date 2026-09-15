@@ -1268,80 +1268,116 @@ function renderManageProducts(products) {
 
                 </div>
 
-
                 <!-- CURRENT IMAGES -->
 
-                ${
-                    productImage ||
-                    additionalImages.length
+                <div class="manage-current-images">
 
-                    ? `
-
-                        <div class="manage-current-images">
-
-                            <h4>
-                                Current Product Images
-                            </h4>
+                    <h4>
+                        Current Product Images
+                    </h4>
 
 
-                            <div class="manage-current-image-grid">
+                    <!-- MAIN IMAGE -->
 
-                                ${
-                                    productImage
-                                        ? `
-                                            <div>
-                                                <span>Main</span>
+                    <div class="manage-main-image-editor">
 
-                                                <img
-                                                    src="${
-                                                        escapeAdminHtml(
-                                                            productImage
-                                                        )
-                                                    }"
-                                                    alt=""
-                                                >
-                                            </div>
-                                        `
-                                        : ""
-                                }
+                        <div class="manage-main-image-preview">
 
+                            <span>
+                                Main Image
+                            </span>
 
-                                ${
-                                    additionalImages
-                                        .map(
-                                            image => `
-                                                <div>
-                                                    <span>
-                                                        Additional
-                                                    </span>
-
-                                                    <img
-                                                        src="${
-                                                            escapeAdminHtml(
-                                                                image
-                                                            )
-                                                        }"
-                                                        alt=""
-                                                    >
-                                                </div>
-                                            `
-                                        )
-                                        .join("")
-                                }
-
-                            </div>
-
-                            <p class="manage-image-note">
-                                Image replacement will use the existing
-                                ImageKit upload system in the next upgrade.
-                            </p>
+                            ${
+                                productImage
+                                    ? `
+                                        <img
+                                            class="manage-edit-main-image-preview"
+                                            src="${escapeAdminHtml(productImage)}"
+                                            alt="${escapeAdminHtml(productName)}"
+                                            loading="lazy"
+                                        >
+                                    `
+                                    : `
+                                        <div class="manage-no-image">
+                                            No Main Image
+                                        </div>
+                                    `
+                            }
 
                         </div>
 
-                    `
 
-                    : ""
-                }
+                        <div class="manage-main-image-controls">
+
+                            <label>
+                                Replace Main Image
+                            </label>
+
+                            <input
+                                type="file"
+                                class="manage-replace-main-image-input"
+                                accept="image/*"
+                            >
+
+                            <button
+                                type="button"
+                                class="manage-replace-main-image-button"
+                                data-product-id="${
+                                    escapeAdminHtml(
+                                        product.firestoreId
+                                    )
+                                }"
+                            >
+                                Upload New Main Image
+                            </button>
+
+                            <div
+                                class="manage-main-image-message"
+                                aria-live="polite"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ADDITIONAL IMAGES -->
+
+                    ${
+                        additionalImages.length
+                            ? `
+                                <div class="manage-current-image-grid">
+
+                                    ${
+                                        additionalImages
+                                            .map(
+                                                image => `
+                                                    <div>
+                                                        <span>
+                                                            Additional
+                                                        </span>
+
+                                                        <img
+                                                            src="${
+                                                                escapeAdminHtml(
+                                                                    image
+                                                                )
+                                                            }"
+                                                            alt=""
+                                                            loading="lazy"
+                                                        >
+                                                    </div>
+                                                `
+                                            )
+                                            .join("")
+                                    }
+
+                                </div>
+                            `
+                            : ""
+                    }
+
+                </div>
 
 
                 <!-- SAVE -->
