@@ -1536,15 +1536,160 @@ manageProductsList?.addEventListener(
     "click",
     async event => {
       
-              if (
+              /* =================================================
+           REMOVE ADDITIONAL PRODUCT IMAGE
+           ================================================= */
+
+        const removeAdditionalImageButton =
             event.target.closest(
                 ".manage-remove-additional-image-button"
-            )
-        ) {
-            alert(
-                "REMOVE CLICK DETECTED"
             );
-              }
+
+
+        if (removeAdditionalImageButton) {
+
+            const editor =
+                removeAdditionalImageButton.closest(
+                    ".manage-product-editor"
+                );
+
+
+            if (!editor) {
+                return;
+            }
+
+
+            const firestoreId =
+                removeAdditionalImageButton.dataset.productId;
+
+
+            const imageIndex =
+                Number(
+                    removeAdditionalImageButton.dataset.imageIndex
+                );
+
+
+            const localProduct =
+                adminProducts.find(
+                    item =>
+                        item.firestoreId ===
+                        firestoreId
+                );
+
+
+            if (!localProduct) {
+
+                alert(
+                    "Unable to find this product."
+                );
+
+                return;
+            }
+
+
+            const existingAdditionalImages =
+                Array.isArray(
+                    localProduct.additionalImages
+                )
+                    ? localProduct.additionalImages
+                    : [];
+
+
+            if (
+                !Number.isInteger(imageIndex) ||
+                imageIndex < 0 ||
+                imageIndex >= existingAdditionalImages.length
+            ) {
+
+                alert(
+                    "Unable to find this image."
+                );
+
+                return;
+            }
+
+
+            const shouldRemove =
+                window.confirm(
+                    "Remove this additional image from the product?"
+                );
+
+
+            if (!shouldRemove) {
+                return;
+            }
+
+
+            removeAdditionalImageButton.disabled =
+                true;
+
+
+            removeAdditionalImageButton.textContent =
+                "Removing...";
+
+
+            try {
+
+                const updatedAdditionalImages =
+                    existingAdditionalImages.filter(
+                        (image, index) =>
+                            index !== imageIndex
+                    );
+
+
+                await updateDoc(
+
+                    doc(
+                        db,
+                        "products",
+                        firestoreId
+                    ),
+
+                    {
+                        additionalImages:
+                            updatedAdditionalImages,
+
+                        updatedAt:
+                            serverTimestamp()
+                    }
+
+                );
+
+
+                localProduct.additionalImages =
+                    updatedAdditionalImages;
+
+
+                renderManageProducts(
+                    adminProducts
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Unable to remove additional image:",
+                    error
+                );
+
+
+                alert(
+                    error.message ||
+                    "Unable to remove additional image."
+                );
+
+
+                removeAdditionalImageButton.disabled =
+                    false;
+
+
+                removeAdditionalImageButton.textContent =
+                    "Remove";
+            }
+
+
+            return;
+        }
 
         /* =================================================
            REPLACE MAIN PRODUCT IMAGE
@@ -2157,160 +2302,6 @@ manageProductsList?.addEventListener(
             return;
         }
       
-              /* =================================================
-           REMOVE ADDITIONAL PRODUCT IMAGE
-           ================================================= */
-
-        const removeAdditionalImageButton =
-            event.target.closest(
-                ".manage-remove-additional-image-button"
-            );
-
-
-        if (removeAdditionalImageButton) {
-
-            const editor =
-                removeAdditionalImageButton.closest(
-                    ".manage-product-editor"
-                );
-
-
-            if (!editor) {
-                return;
-            }
-
-
-            const firestoreId =
-                removeAdditionalImageButton.dataset.productId;
-
-
-            const imageIndex =
-                Number(
-                    removeAdditionalImageButton.dataset.imageIndex
-                );
-
-
-            const localProduct =
-                adminProducts.find(
-                    item =>
-                        item.firestoreId ===
-                        firestoreId
-                );
-
-
-            if (!localProduct) {
-
-                alert(
-                    "Unable to find this product."
-                );
-
-                return;
-            }
-
-
-            const existingAdditionalImages =
-                Array.isArray(
-                    localProduct.additionalImages
-                )
-                    ? localProduct.additionalImages
-                    : [];
-
-
-            if (
-                !Number.isInteger(imageIndex) ||
-                imageIndex < 0 ||
-                imageIndex >= existingAdditionalImages.length
-            ) {
-
-                alert(
-                    "Unable to find this image."
-                );
-
-                return;
-            }
-
-
-            const shouldRemove =
-                window.confirm(
-                    "Remove this additional image from the product?"
-                );
-
-
-            if (!shouldRemove) {
-                return;
-            }
-
-
-            removeAdditionalImageButton.disabled =
-                true;
-
-
-            removeAdditionalImageButton.textContent =
-                "Removing...";
-
-
-            try {
-
-                const updatedAdditionalImages =
-                    existingAdditionalImages.filter(
-                        (image, index) =>
-                            index !== imageIndex
-                    );
-
-
-                await updateDoc(
-
-                    doc(
-                        db,
-                        "products",
-                        firestoreId
-                    ),
-
-                    {
-                        additionalImages:
-                            updatedAdditionalImages,
-
-                        updatedAt:
-                            serverTimestamp()
-                    }
-
-                );
-
-
-                localProduct.additionalImages =
-                    updatedAdditionalImages;
-
-
-                renderManageProducts(
-                    adminProducts
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "Unable to remove additional image:",
-                    error
-                );
-
-
-                alert(
-                    error.message ||
-                    "Unable to remove additional image."
-                );
-
-
-                removeAdditionalImageButton.disabled =
-                    false;
-
-
-                removeAdditionalImageButton.textContent =
-                    "Remove";
-            }
-
-
-            return;
-        }
 
         /* =================================================
            OPEN / CLOSE EDITOR
