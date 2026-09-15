@@ -1954,14 +1954,16 @@ manageProductsList?.addEventListener(
                         firestoreId
                     ),
 
-                    {
+                   {
                         mainImage:
                             uploadResult.url,
+
+                        mainImageFileId:
+                            uploadResult.fileId,
 
                         updatedAt:
                             serverTimestamp()
                     }
-
                 );
 
 
@@ -1981,6 +1983,9 @@ manageProductsList?.addEventListener(
 
                     localProduct.mainImage =
                         uploadResult.url;
+
+                    localProduct.mainImageFileId =
+                        uploadResult.fileId;
                 }
 
 
