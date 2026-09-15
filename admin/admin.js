@@ -1356,27 +1356,46 @@ function renderManageProducts(products) {
                                     <div class="manage-current-image-grid">
 
                                         ${
-                                            additionalImages
-                                                .map(
-                                                    image => `
-                                                        <div>
-                                                            <span>
-                                                                Additional
-                                                            </span>
+  additionalImages
+    .map(
+        (image, imageIndex) => `
+            <div class="manage-additional-image-item">
 
-                                                            <img
-                                                                src="${
-                                                                    escapeAdminHtml(
-                                                                        image
-                                                                    )
-                                                                }"
-                                                                alt=""
-                                                                loading="lazy"
-                                                            >
-                                                        </div>
-                                                    `
-                                                )
-                                                .join("")
+                <span>
+                    Additional ${
+                        imageIndex + 1
+                    }
+                </span>
+
+                <img
+                    src="${
+                        escapeAdminHtml(
+                            image
+                        )
+                    }"
+                    alt=""
+                    loading="lazy"
+                >
+
+                <button
+                    type="button"
+                    class="manage-remove-additional-image-button"
+                    data-product-id="${
+                        escapeAdminHtml(
+                            product.firestoreId
+                        )
+                    }"
+                    data-image-index="${
+                        imageIndex
+                    }"
+                >
+                    Remove
+                </button>
+
+            </div>
+        `
+    )
+    .join("")
                                         }
 
                                     </div>
