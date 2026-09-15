@@ -1470,6 +1470,365 @@ manageProductsSearch?.addEventListener(
 manageProductsList?.addEventListener(
     "click",
     async event => {
+      
+
+        /* =================================================
+           REPLACE MAIN PRODUCT IMAGE
+           ================================================= */
+
+        const replaceMainImageButton =
+            event.target.closest(
+                ".manage-replace-main-image-button"
+            );
+
+
+        if (replaceMainImageButton) {
+
+            const card =
+                replaceMainImageButton.closest(
+                    ".manage-product-card"
+                );
+
+
+            if (!card) {
+                return;
+            }
+
+
+            const editor =
+                replaceMainImageButton.closest(
+                    ".manage-product-editor"
+                );
+
+
+            if (!editor) {
+                return;
+            }
+
+
+            const imageInput =
+                editor.querySelector(
+                    ".manage-replace-main-image-input"
+                );
+
+
+            const message =
+                editor.querySelector(
+                    ".manage-main-image-message"
+                );
+
+
+            const preview =
+                editor.querySelector(
+                    ".manage-edit-main-image-preview"
+                );
+
+
+            const firestoreId =
+                replaceMainImageButton.dataset.productId;
+
+
+            if (
+                !imageInput ||
+                !imageInput.files ||
+                !imageInput.files.length
+            ) {
+
+                if (message) {
+                    message.textContent =
+                        "Please choose a new main image first.";
+                }
+
+                return;
+            }
+
+
+            const originalFile =
+                imageInput.files[0];
+
+
+            if (
+                !originalFile.type.startsWith(
+                    "image/"
+                )
+            ) {
+
+                if (message) {
+                    message.textContent =
+                        "Please select a valid image file.";
+                }
+
+                return;
+            }
+
+
+            replaceMainImageButton.disabled =
+                true;
+
+            replaceMainImageButton.textContent =
+                "Optimizing...";
+
+
+            if (message) {
+                message.textContent =
+                    "Optimizing new main image...";
+            }
+
+
+            try {
+
+                /* -----------------------------------------
+                   OPTIMIZE USING EXISTING SYSTEM
+                   ----------------------------------------- */
+
+                const optimizedFile =
+                    await optimizeProductImage(
+                        originalFile
+                    );
+
+
+                if (message) {
+                    message.textContent =
+                        "Uploading optimized image...";
+                }
+
+
+                replaceMainImageButton.textContent =
+                    "Uploading...";
+
+
+                /* -----------------------------------------
+                   CHECK FIREBASE LOGIN
+                   ----------------------------------------- */
+
+                if (!auth.currentUser) {
+
+                    throw new Error(
+                        "You are not logged in."
+                    );
+                }
+
+
+                const firebaseToken =
+                    await auth.currentUser.getIdToken();
+
+
+                /* -----------------------------------------
+                   GET IMAGEKIT AUTHORIZATION
+                   ----------------------------------------- */
+
+                const authResponse =
+                    await fetch(
+                        IMAGEKIT_AUTH_ENDPOINT,
+                        {
+                            method: "GET",
+
+                            headers: {
+                                Authorization:
+                                    "Bearer " +
+                                    firebaseToken
+                            }
+                        }
+                    );
+
+
+                if (!authResponse.ok) {
+
+                    throw new Error(
+                        "Unable to authorize image upload."
+                    );
+                }
+
+
+                const imageKitAuth =
+                    await authResponse.json();
+
+
+                /* -----------------------------------------
+                   UPLOAD OPTIMIZED IMAGE TO IMAGEKIT
+                   ----------------------------------------- */
+
+                const formData =
+                    new FormData();
+
+
+                formData.append(
+                    "file",
+                    optimizedFile
+                );
+
+
+                formData.append(
+                    "fileName",
+                    createSafeFileName()
+                );
+
+
+                formData.append(
+                    "publicKey",
+                    IMAGEKIT_PUBLIC_KEY
+                );
+
+
+                formData.append(
+                    "signature",
+                    imageKitAuth.signature
+                );
+
+
+                formData.append(
+                    "expire",
+                    imageKitAuth.expire
+                );
+
+
+                formData.append(
+                    "token",
+                    imageKitAuth.token
+                );
+
+
+                formData.append(
+                    "folder",
+                    "/jewel-corner/products"
+                );
+
+
+                const uploadResponse =
+                    await fetch(
+                        "https://upload.imagekit.io/api/v1/files/upload",
+                        {
+                            method: "POST",
+                            body: formData
+                        }
+                    );
+
+
+                const uploadResult =
+                    await uploadResponse.json();
+
+
+                if (!uploadResponse.ok) {
+
+                    console.error(
+                        "ImageKit replacement error:",
+                        uploadResult
+                    );
+
+
+                    throw new Error(
+                        uploadResult.message ||
+                        "Main image upload failed."
+                    );
+                }
+
+
+                /* -----------------------------------------
+                   UPDATE FIRESTORE
+                   ----------------------------------------- */
+
+                await updateDoc(
+
+                    doc(
+                        db,
+                        "products",
+                        firestoreId
+                    ),
+
+                    {
+                        mainImage:
+                            uploadResult.url,
+
+                        updatedAt:
+                            serverTimestamp()
+                    }
+
+                );
+
+
+                /* -----------------------------------------
+                   UPDATE LOCAL PRODUCT CACHE
+                   ----------------------------------------- */
+
+                const localProduct =
+                    adminProducts.find(
+                        item =>
+                            item.firestoreId ===
+                            firestoreId
+                    );
+
+
+                if (localProduct) {
+
+                    localProduct.mainImage =
+                        uploadResult.url;
+                }
+
+
+                /* -----------------------------------------
+                   UPDATE CURRENT PREVIEW
+                   ----------------------------------------- */
+
+                if (preview) {
+
+                    preview.src =
+                        uploadResult.url;
+                }
+
+
+                if (message) {
+
+                    message.textContent =
+                        "Main image replaced successfully.";
+                }
+
+
+                replaceMainImageButton.textContent =
+                    "Uploaded ✓";
+
+
+                imageInput.value = "";
+
+
+                setTimeout(
+                    () => {
+
+                        renderManageProducts(
+                            adminProducts
+                        );
+
+                    },
+                    1200
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Unable to replace main image:",
+                    error
+                );
+
+
+                if (message) {
+
+                    message.textContent =
+                        error.message ||
+                        "Unable to replace main image.";
+                }
+
+
+                replaceMainImageButton.disabled =
+                    false;
+
+
+                replaceMainImageButton.textContent =
+                    "Upload New Main Image";
+            }
+
+
+            return;
+        }
 
 
         /* =================================================
