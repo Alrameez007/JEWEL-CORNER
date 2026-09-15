@@ -1536,6 +1536,15 @@ manageProductsList?.addEventListener(
     "click",
     async event => {
       
+              if (
+            event.target.closest(
+                ".manage-remove-additional-image-button"
+            )
+        ) {
+            alert(
+                "REMOVE CLICK DETECTED"
+            );
+              }
 
         /* =================================================
            REPLACE MAIN PRODUCT IMAGE
