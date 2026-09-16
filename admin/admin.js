@@ -2174,6 +2174,7 @@ manageProductsList?.addEventListener(
 
                 const newImageUrls = [];
                 const newImageFileIds = [];
+                const newAdditionalImageFiles = [];
 
 
                 for (
@@ -2209,6 +2210,10 @@ manageProductsList?.addEventListener(
                     newImageFileIds.push(
                         uploadedImage.fileId
                     );
+                  newAdditionalImageFiles.push({
+                        url: uploadedImage.url,
+                        fileId: uploadedImage.fileId
+                   });
                 }
 
 
@@ -2223,6 +2228,17 @@ manageProductsList?.addEventListener(
                 const updatedAdditionalImages = [
                     ...existingAdditionalImages,
                     ...newImageUrls
+                ];
+                const existingAdditionalImageFiles =
+                    Array.isArray(
+                    localProduct.additionalImageFiles
+                )
+                  ? localProduct.additionalImageFiles
+                : [];
+
+                const updatedAdditionalImageFiles = [
+                    ...existingAdditionalImageFiles,
+                    ...newAdditionalImageFiles
                 ];
 
                 const existingAdditionalImageFileIds =
@@ -2252,16 +2268,19 @@ manageProductsList?.addEventListener(
                         firestoreId
                     ),
 
-                    {
-                        additionalImages:
-                            updatedAdditionalImages,
+                  {
+ .              additionalImages:
+                    updatedAdditionalImages,
 
-                        additionalImageFileIds:
-                            updatedAdditionalImageFileIds,
+                additionalImageFileIds:
+                    updatedAdditionalImageFileIds,
 
-                        updatedAt:
-                            serverTimestamp()
-                    }
+                additionalImageFiles:
+                    updatedAdditionalImageFiles,
+
+                updatedAt:
+                    serverTimestamp()
+                  }
 
                 );
 
@@ -2270,6 +2289,8 @@ manageProductsList?.addEventListener(
                     updatedAdditionalImages;
                 localProduct.additionalImageFileIds =
                     updatedAdditionalImageFileIds;
+                localProduct.additionalImageFiles =
+                    updatedAdditionalImageFiles;
 
 
                 imageInput.value = "";
