@@ -395,8 +395,11 @@ productForm.addEventListener(
             .value
             .trim(),
 
+        mainImageFileId:
+          productMainImageFileId,
+
         additionalImages:
-            additionalImageUrls,
+          additionalImageUrls,
 
         additionalImageFileIds:
             additionalImageFileIds,
@@ -3266,6 +3269,12 @@ const productImagePreview =
 const productMainImage =
     document.getElementById("productMainImage");
 
+/*
+   Stores the ImageKit fileId of the
+   main image while creating a product.
+*/
+let productMainImageFileId = "";
+
 const imageUploadMessage =
     document.getElementById("imageUploadMessage");
 
@@ -3492,11 +3501,14 @@ productImageFile?.addEventListener("change", async () => {
         ===================================== */
 
         productMainImage.value =
-            uploadResult.url;
+        uploadResult.url;
+
+        productMainImageFileId =
+        uploadResult.fileId;
 
 
         productImagePreview.src =
-            uploadResult.url;
+        uploadResult.url;
 
 
         imageUploadMessage.textContent =
@@ -3521,6 +3533,7 @@ productImageFile?.addEventListener("change", async () => {
         console.error(error);
 
         productMainImage.value = "";
+        productMainImageFileId = "";
 
 
         imageUploadMessage.textContent =
