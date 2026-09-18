@@ -395,10 +395,14 @@ productForm.addEventListener(
             .value
             .trim(),
 
-        additionalImages: additionalImageUrls,
+        additionalImages:
+            additionalImageUrls,
 
         additionalImageFileIds:
-          additionalImageFileIds,
+            additionalImageFileIds,
+
+        additionalImageFiles:
+            additionalImageFiles,
 
         descriptionEn:
           document
@@ -3863,6 +3867,7 @@ const additionalImagesPreview =
 
 let additionalImageUrls = [];
 let additionalImageFileIds = [];
+let additionalImageFiles = [];
 
 
 additionalImagesInput.addEventListener(
@@ -3873,6 +3878,7 @@ additionalImagesInput.addEventListener(
 
         additionalImageUrls = [];
         additionalImageFileIds = [];
+        
 
         const files =
             Array.from(additionalImagesInput.files);
@@ -3943,6 +3949,11 @@ additionalImagesInput.addEventListener(
                 additionalImageFileIds.push(
                     uploadedImage.fileId
                 );
+
+                additionalImageFiles.push({
+                  url: uploadedImage.url,
+                  fileId: uploadedImage.fileId
+                });
 
 
                 /* -----------------------------------------
