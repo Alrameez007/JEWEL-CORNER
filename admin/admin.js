@@ -1930,6 +1930,24 @@ renderManageProducts(
             const firestoreId =
                 replaceMainImageButton.dataset.productId;
 
+/*
+   CAPTURE CURRENT MAIN IMAGE FILE ID
+
+   This must happen BEFORE uploading the
+   replacement because Firestore will later
+   receive the new fileId.
+*/
+
+const existingProduct =
+    adminProducts.find(
+        item =>
+            item.firestoreId ===
+            firestoreId
+    );
+
+const oldMainImageFileId =
+    existingProduct?.mainImageFileId || "";
+
 
             if (
                 !imageInput ||
@@ -2172,6 +2190,114 @@ renderManageProducts(
                         uploadResult.fileId;
                 }
 
+              /*
+   PERMANENTLY DELETE OLD MAIN IMAGE
+
+   The NEW image has already been uploaded
+   and Firestore has already been updated.
+
+   Never delete anything unless the OLD
+   main image has a safely tracked fileId.
+*/
+
+if (
+    oldMainImageFileId &&
+    oldMainImageFileId !== uploadResult.fileId
+) {
+
+    try {
+
+        if (!auth.currentUser) {
+            throw new Error(
+                "You are not logged in."
+            );
+        }
+
+        const deleteFirebaseToken =
+            await auth.currentUser.getIdToken();
+
+        const deleteResponse =
+            await fetch(
+                IMAGEKIT_AUTH_ENDPOINT,
+                {
+                    method: "DELETE",
+
+                    headers: {
+                        Authorization:
+                            "Bearer " +
+                            deleteFirebaseToken,
+
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        fileId:
+                            oldMainImageFileId
+                    })
+                }
+            );
+
+        const deleteResult =
+            await deleteResponse.json();
+
+        if (!deleteResponse.ok) {
+
+            console.error(
+                "Old main image ImageKit deletion failed:",
+                deleteResult
+            );
+
+            throw new Error(
+                deleteResult.error ||
+                "Old main image deletion failed."
+            );
+        }
+
+        console.log(
+            "Old main image permanently deleted from ImageKit:",
+            oldMainImageFileId
+        );
+
+    } catch (deleteError) {
+
+        /*
+           IMPORTANT:
+           Do NOT undo the replacement.
+
+           The new image is already safely
+           stored in Firestore.
+
+           Failure here only leaves the old
+           ImageKit file as an orphan.
+        */
+
+        console.error(
+            "Main image replaced, but old ImageKit cleanup failed:",
+            deleteError
+        );
+
+        if (message) {
+
+            message.textContent =
+                "Main image replaced, but the old ImageKit file could not be deleted.";
+        }
+    }
+
+} else if (!oldMainImageFileId) {
+
+    /*
+       Legacy main image.
+
+       There is no safely tracked old fileId,
+       so never guess which ImageKit file
+       should be deleted.
+    */
+
+    console.log(
+        "Main image replaced. Previous image had no tracked ImageKit fileId, so no permanent deletion was attempted."
+    );
+}
 
                 /* -----------------------------------------
                    UPDATE CURRENT PREVIEW
