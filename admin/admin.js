@@ -1539,160 +1539,259 @@ manageProductsList?.addEventListener(
     "click",
     async event => {
       
-              /* =================================================
+/* =================================================
            REMOVE ADDITIONAL PRODUCT IMAGE
-           ================================================= */
+================================================= */
 
-        const removeAdditionalImageButton =
-            event.target.closest(
-                ".manage-remove-additional-image-button"
+const removeAdditionalImageButton =
+    event.target.closest(
+        ".manage-remove-additional-image-button"
+    );
+
+if (removeAdditionalImageButton) {
+
+    const editor =
+        removeAdditionalImageButton.closest(
+            ".manage-product-editor"
+        );
+
+    if (!editor) {
+        return;
+    }
+
+    const firestoreId =
+        removeAdditionalImageButton.dataset.productId;
+
+    const imageIndex =
+        Number(
+            removeAdditionalImageButton.dataset.imageIndex
+        );
+
+    const localProduct =
+        adminProducts.find(
+            item =>
+                item.firestoreId ===
+                firestoreId
+        );
+
+    if (!localProduct) {
+
+        alert(
+            "Unable to find this product."
+        );
+
+        return;
+    }
+
+    const existingAdditionalImages =
+        Array.isArray(
+            localProduct.additionalImages
+        )
+            ? localProduct.additionalImages
+            : [];
+
+    if (
+        !Number.isInteger(imageIndex) ||
+        imageIndex < 0 ||
+        imageIndex >= existingAdditionalImages.length
+    ) {
+
+        alert(
+            "Unable to find this image."
+        );
+
+        return;
+    }
+
+    /*
+       IMPORTANT:
+       Capture the exact URL BEFORE removing it.
+
+       We use the URL to find the matching
+       { url, fileId } record.
+    */
+
+    const imageUrlToRemove =
+        existingAdditionalImages[imageIndex];
+
+    const existingAdditionalImageFiles =
+        Array.isArray(
+            localProduct.additionalImageFiles
+        )
+            ? localProduct.additionalImageFiles
+            : [];
+
+    const matchingImageFile =
+        existingAdditionalImageFiles.find(
+            imageFile =>
+                imageFile &&
+                imageFile.url === imageUrlToRemove
+        );
+
+    /*
+       Keep the fileId available for the future
+       ImageKit deletion step.
+
+       We DO NOT delete from ImageKit in Step 4D.
+    */
+
+    const imageKitFileId =
+        matchingImageFile?.fileId || "";
+
+    const shouldRemove =
+        window.confirm(
+            "Remove this additional image from the product?"
+        );
+
+    if (!shouldRemove) {
+        return;
+    }
+
+    removeAdditionalImageButton.disabled =
+        true;
+
+    removeAdditionalImageButton.textContent =
+        "Removing...";
+
+    try {
+
+        /*
+           Remove the selected URL from the
+           public additionalImages array.
+        */
+
+        const updatedAdditionalImages =
+            existingAdditionalImages.filter(
+                (image, index) =>
+                    index !== imageIndex
             );
 
+        /*
+           Remove the paired record ONLY when
+           its URL matches the selected image.
 
-        if (removeAdditionalImageButton) {
+           Legacy images without a paired record
+           are safely ignored here.
+        */
 
-            const editor =
-                removeAdditionalImageButton.closest(
-                    ".manage-product-editor"
-                );
+        const updatedAdditionalImageFiles =
+            existingAdditionalImageFiles.filter(
+                imageFile =>
+                    !imageFile ||
+                    imageFile.url !== imageUrlToRemove
+            );
 
+        /*
+           IMPORTANT:
+           additionalImageFileIds is an older
+           transitional field and may not align
+           with additionalImages.
 
-            if (!editor) {
-                return;
-            }
+           Only remove a fileId from it when we
+           have positively identified that fileId
+           through additionalImageFiles.
+        */
 
+        const existingAdditionalImageFileIds =
+            Array.isArray(
+                localProduct.additionalImageFileIds
+            )
+                ? localProduct.additionalImageFileIds
+                : [];
 
-            const firestoreId =
-                removeAdditionalImageButton.dataset.productId;
-
-
-            const imageIndex =
-                Number(
-                    removeAdditionalImageButton.dataset.imageIndex
-                );
-
-
-            const localProduct =
-                adminProducts.find(
-                    item =>
-                        item.firestoreId ===
-                        firestoreId
-                );
-
-
-            if (!localProduct) {
-
-                alert(
-                    "Unable to find this product."
-                );
-
-                return;
-            }
-
-
-            const existingAdditionalImages =
-                Array.isArray(
-                    localProduct.additionalImages
+        const updatedAdditionalImageFileIds =
+            imageKitFileId
+                ? existingAdditionalImageFileIds.filter(
+                    fileId =>
+                        fileId !== imageKitFileId
                 )
-                    ? localProduct.additionalImages
-                    : [];
+                : existingAdditionalImageFileIds;
 
+        await updateDoc(
 
-            if (
-                !Number.isInteger(imageIndex) ||
-                imageIndex < 0 ||
-                imageIndex >= existingAdditionalImages.length
-            ) {
+            doc(
+                db,
+                "products",
+                firestoreId
+            ),
 
-                alert(
-                    "Unable to find this image."
-                );
+            {
+                additionalImages:
+                    updatedAdditionalImages,
 
-                return;
+                additionalImageFiles:
+                    updatedAdditionalImageFiles,
+
+                additionalImageFileIds:
+                    updatedAdditionalImageFileIds,
+
+                updatedAt:
+                    serverTimestamp()
             }
 
+        );
 
-            const shouldRemove =
-                window.confirm(
-                    "Remove this additional image from the product?"
-                );
+        /*
+           Update local cache only AFTER
+           Firestore succeeds.
+        */
 
+        localProduct.additionalImages =
+            updatedAdditionalImages;
 
-            if (!shouldRemove) {
-                return;
-            }
+        localProduct.additionalImageFiles =
+            updatedAdditionalImageFiles;
 
+        localProduct.additionalImageFileIds =
+            updatedAdditionalImageFileIds;
 
-            removeAdditionalImageButton.disabled =
-                true;
+        /*
+           Diagnostic only.
 
+           This confirms whether the removed
+           image has an ImageKit fileId available
+           for our future permanent-delete step.
+        */
 
-            removeAdditionalImageButton.textContent =
-                "Removing...";
+        if (imageKitFileId) {
 
+            console.log(
+                "Removed tracked additional image. ImageKit fileId:",
+                imageKitFileId
+            );
 
-            try {
+        } else {
 
-                const updatedAdditionalImages =
-                    existingAdditionalImages.filter(
-                        (image, index) =>
-                            index !== imageIndex
-                    );
-
-
-                await updateDoc(
-
-                    doc(
-                        db,
-                        "products",
-                        firestoreId
-                    ),
-
-                    {
-                        additionalImages:
-                            updatedAdditionalImages,
-
-                        updatedAt:
-                            serverTimestamp()
-                    }
-
-                );
-
-
-                localProduct.additionalImages =
-                    updatedAdditionalImages;
-
-
-                renderManageProducts(
-                    adminProducts
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "Unable to remove additional image:",
-                    error
-                );
-
-
-                alert(
-                    error.message ||
-                    "Unable to remove additional image."
-                );
-
-
-                removeAdditionalImageButton.disabled =
-                    false;
-
-
-                removeAdditionalImageButton.textContent =
-                    "Remove";
-            }
-
-
-            return;
+            console.log(
+                "Removed legacy additional image. No ImageKit fileId is currently tracked."
+            );
         }
+
+        renderManageProducts(
+            adminProducts
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Unable to remove additional image:",
+            error
+        );
+
+        alert(
+            error.message ||
+            "Unable to remove additional image."
+        );
+
+        removeAdditionalImageButton.disabled =
+            false;
+
+        removeAdditionalImageButton.textContent =
+            "Remove";
+    }
+
+    return;
+}
 
         /* =================================================
            REPLACE MAIN PRODUCT IMAGE
