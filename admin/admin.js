@@ -850,6 +850,17 @@ function renderManageProducts(products) {
                         ? "Set Inactive"
                         : "Set Active"}
                 </button>
+                <button
+    type="button"
+    class="manage-delete-product"
+    data-product-id="${
+        escapeAdminHtml(
+            product.firestoreId
+        )
+    }"
+>
+    Delete Product
+</button>
 
             </div>
 
