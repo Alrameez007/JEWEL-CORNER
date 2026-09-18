@@ -1745,31 +1745,113 @@ if (removeAdditionalImageButton) {
         localProduct.additionalImageFileIds =
             updatedAdditionalImageFileIds;
 
-        /*
-           Diagnostic only.
 
-           This confirms whether the removed
-           image has an ImageKit fileId available
-           for our future permanent-delete step.
-        */
+/*
+   PERMANENT IMAGEKIT CLEANUP
 
-        if (imageKitFileId) {
+   Firestore has already been updated
+   successfully above.
 
-            console.log(
-                "Removed tracked additional image. ImageKit fileId:",
-                imageKitFileId
-            );
+   Only attempt physical deletion when
+   this image has a verified fileId.
+*/
 
-        } else {
+if (imageKitFileId) {
 
-            console.log(
-                "Removed legacy additional image. No ImageKit fileId is currently tracked."
+    try {
+
+        if (!auth.currentUser) {
+            throw new Error(
+                "You are not logged in."
             );
         }
 
-        renderManageProducts(
-            adminProducts
+        const firebaseToken =
+            await auth.currentUser.getIdToken();
+
+        const deleteResponse =
+            await fetch(
+                IMAGEKIT_AUTH_ENDPOINT,
+                {
+                    method: "DELETE",
+
+                    headers: {
+                        Authorization:
+                            "Bearer " +
+                            firebaseToken,
+
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        fileId:
+                            imageKitFileId
+                    })
+                }
+            );
+
+        const deleteResult =
+            await deleteResponse.json();
+
+        if (!deleteResponse.ok) {
+
+            console.error(
+                "ImageKit permanent deletion failed:",
+                deleteResult
+            );
+
+            throw new Error(
+                deleteResult.error ||
+                "ImageKit file deletion failed."
+            );
+        }
+
+        console.log(
+            "ImageKit file permanently deleted:",
+            imageKitFileId
         );
+
+    } catch (deleteError) {
+
+        /*
+           IMPORTANT:
+           Do not undo the Firestore removal.
+
+           The product is already correct.
+           A failed ImageKit deletion only
+           leaves an orphan file that can
+           be cleaned later.
+        */
+
+        console.error(
+            "Image removed from product, but ImageKit cleanup failed:",
+            deleteError
+        );
+
+        alert(
+            "The image was removed from the product, but its ImageKit file could not be permanently deleted."
+        );
+    }
+
+} else {
+
+    /*
+       Legacy image:
+       no safely matched fileId exists,
+       therefore never guess which
+       ImageKit file should be deleted.
+    */
+
+    console.log(
+        "Legacy image removed from product. No tracked ImageKit fileId was available for permanent deletion."
+    );
+}
+
+
+renderManageProducts(
+    adminProducts
+);
 
     } catch (error) {
 
