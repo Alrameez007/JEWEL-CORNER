@@ -14,8 +14,9 @@ import {
   getDocs,
   doc,
   updateDoc,
+  deleteDoc,
   serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+  } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
 /* =========================================================
@@ -1556,7 +1557,121 @@ manageProductsSearch?.addEventListener(
 manageProductsList?.addEventListener(
     "click",
     async event => {
-      
+
+/* =================================================
+   DELETE PRODUCT
+   STEP 7B — FIRESTORE PRODUCT ONLY
+   ================================================= */
+
+const deleteProductButton =
+    event.target.closest(
+        ".manage-delete-product"
+    );
+
+if (deleteProductButton) {
+
+    const firestoreId =
+        deleteProductButton.dataset.productId;
+
+    const localProduct =
+        adminProducts.find(
+            item =>
+                item.firestoreId ===
+                firestoreId
+        );
+
+    if (!localProduct) {
+
+        alert(
+            "Unable to find this product."
+        );
+
+        return;
+    }
+
+    const productName =
+        localProduct.nameEn ||
+        localProduct.productNameEn ||
+        localProduct.title ||
+        localProduct.name ||
+        "this product";
+
+    const shouldDelete =
+        window.confirm(
+            `Permanently delete "${productName}"?`
+        );
+
+    if (!shouldDelete) {
+        return;
+    }
+
+    /*
+       STEP 7B deliberately deletes ONLY
+       the Firestore product.
+
+       ImageKit cleanup will be connected
+       separately after this is tested.
+    */
+
+    deleteProductButton.disabled = true;
+    deleteProductButton.textContent =
+        "Deleting...";
+
+    try {
+
+        await deleteDoc(
+            doc(
+                db,
+                "products",
+                firestoreId
+            )
+        );
+
+        /*
+           Firestore succeeded.
+           Now remove the product from
+           the local Manage Products cache.
+        */
+
+        adminProducts =
+            adminProducts.filter(
+                item =>
+                    item.firestoreId !==
+                    firestoreId
+            );
+
+        renderManageProducts(
+            adminProducts
+        );
+
+        console.log(
+            "Product deleted from Firestore:",
+            firestoreId
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Unable to delete product:",
+            error
+        );
+
+        alert(
+            error.message ||
+            "Unable to delete this product."
+        );
+
+        deleteProductButton.disabled =
+            false;
+
+        deleteProductButton.textContent =
+            "Delete Product";
+    }
+
+    return;
+}
+
+
 /* =================================================
            REMOVE ADDITIONAL PRODUCT IMAGE
 ================================================= */
