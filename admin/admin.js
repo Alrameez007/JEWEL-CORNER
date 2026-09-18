@@ -2269,7 +2269,7 @@ manageProductsList?.addEventListener(
                     ),
 
                   {
- .              additionalImages:
+                additionalImages:
                     updatedAdditionalImages,
 
                 additionalImageFileIds:
