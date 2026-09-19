@@ -716,3 +716,32 @@ if (productToOpen) {
 }
 
 });
+/* =========================================================
+   FIRESTORE PRODUCT LOAD ERROR
+   ========================================================= */
+
+document.addEventListener("jcProductsLoadError", () => {
+  const container = document.getElementById("productsContainer");
+  const productCount = document.getElementById("productCount");
+
+  if (productCount) {
+    productCount.textContent = "";
+  }
+
+  if (container) {
+    const language =
+      typeof window.getCurrentLanguage === "function"
+        ? window.getCurrentLanguage()
+        : localStorage.getItem("jc_language") || "en";
+
+    container.innerHTML = `
+      <div class="empty-state">
+        ${
+          language === "ar"
+            ? "تعذر تحميل المنتجات حالياً. يرجى المحاولة مرة أخرى لاحقاً."
+            : "Products could not be loaded right now. Please try again later."
+        }
+      </div>
+    `;
+  }
+});
