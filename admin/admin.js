@@ -1596,6 +1596,62 @@ if (deleteProductButton) {
         localProduct.name ||
         "this product";
 
+/*
+   CAPTURE VERIFIED IMAGEKIT FILE IDS
+   BEFORE THE FIRESTORE PRODUCT IS DELETED
+*/
+
+const imageKitFileIds = [];
+
+
+/* MAIN IMAGE */
+
+if (localProduct.mainImageFileId) {
+
+    imageKitFileIds.push(
+        localProduct.mainImageFileId
+    );
+}
+
+
+/* ADDITIONAL IMAGES
+
+   additionalImageFiles is the authoritative
+   paired metadata created by our current
+   image system.
+*/
+
+const additionalImageFiles =
+    Array.isArray(
+        localProduct.additionalImageFiles
+    )
+        ? localProduct.additionalImageFiles
+        : [];
+
+additionalImageFiles.forEach(
+    imageFile => {
+
+        if (
+            imageFile &&
+            typeof imageFile.fileId === "string" &&
+            imageFile.fileId.trim()
+        ) {
+
+            imageKitFileIds.push(
+                imageFile.fileId.trim()
+            );
+        }
+    }
+);
+
+
+/*
+   Remove duplicates as an extra safety measure.
+*/
+
+const uniqueImageKitFileIds =
+    [...new Set(imageKitFileIds)];
+  
     const shouldDelete =
         window.confirm(
             `Permanently delete "${productName}"?`
@@ -1627,6 +1683,93 @@ if (deleteProductButton) {
             )
         );
 
+/*FIRESTORE PRODUCT IS NOW DELETED.
+
+   Permanently clean its VERIFIED
+   ImageKit files through our
+   authenticated Cloudflare Worker.
+*/
+
+const failedImageKitFileIds = [];
+
+if (uniqueImageKitFileIds.length) {
+
+    if (!auth.currentUser) {
+
+        console.error(
+            "Product deleted, but ImageKit cleanup could not start because the admin is no longer logged in."
+        );
+
+        failedImageKitFileIds.push(
+            ...uniqueImageKitFileIds
+        );
+
+    } else {
+
+        const firebaseToken =
+            await auth.currentUser.getIdToken();
+
+        for (
+            const imageKitFileId
+            of uniqueImageKitFileIds
+        ) {
+
+            try {
+
+                const deleteResponse =
+                    await fetch(
+                        IMAGEKIT_AUTH_ENDPOINT,
+                        {
+                            method: "DELETE",
+
+                            headers: {
+                                Authorization:
+                                    "Bearer " +
+                                    firebaseToken,
+
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                fileId:
+                                    imageKitFileId
+                            })
+                        }
+                    );
+
+                const deleteResult =
+                    await deleteResponse.json();
+
+                if (!deleteResponse.ok) {
+
+                    throw new Error(
+                        deleteResult.error ||
+                        "ImageKit file deletion failed."
+                    );
+                }
+
+                console.log(
+                    "Product ImageKit file permanently deleted:",
+                    imageKitFileId
+                );
+
+            } catch (deleteError) {
+
+                console.error(
+                    "Unable to permanently delete product ImageKit file:",
+                    imageKitFileId,
+                    deleteError
+                );
+
+                failedImageKitFileIds.push(
+                    imageKitFileId
+                );
+            }
+        }
+    }
+}
+
         /*
            Firestore succeeded.
            Now remove the product from
@@ -1648,6 +1791,16 @@ if (deleteProductButton) {
             "Product deleted from Firestore:",
             firestoreId
         );
+
+      if (failedImageKitFileIds.length) {
+
+    alert(
+        "The product was deleted, but " +
+        failedImageKitFileIds.length +
+        " ImageKit file(s) could not be permanently deleted."
+    );
+
+      }
 
     } catch (error) {
 
