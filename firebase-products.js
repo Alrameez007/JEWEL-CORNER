@@ -9,10 +9,11 @@ import { initializeApp } from
 import {
     getFirestore,
     collection,
-    getDocs
+    getDocs,
+    query,
+    where
 } from
     "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
 
 /* =========================================================
    FIREBASE CONFIG
@@ -133,10 +134,14 @@ async function loadProductsFromFirestore() {
 
     try {
 
-        const snapshot =
-            await getDocs(
-                collection(db, "products")
-            );
+        const productsQuery =
+    query(
+        collection(db, "products"),
+        where("status", "==", "active")
+    );
+
+const snapshot =
+    await getDocs(productsQuery);
 
         const products = [];
 
