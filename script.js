@@ -546,6 +546,9 @@ function initFeaturedProductSlider() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initSiteInteractions();
+});
+
+document.addEventListener("jcProductsLoaded", () => {
   initHomeProductSearch();
   initFeaturedProductSlider();
 });
