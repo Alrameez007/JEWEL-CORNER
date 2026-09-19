@@ -386,10 +386,11 @@ document.addEventListener("jcProductsLoaded", () => {
           ${newBadge}
 
           <img
-            src="${product.image || ""}"
-            alt="${name}"
-            loading="lazy"
-          >
+           src="${product.image || ""}"
+           alt="${name}"
+           loading="lazy"
+           onerror="this.onerror=null; this.style.display='none';"
+           >
         </div>
 
         <h3>${name}</h3>
