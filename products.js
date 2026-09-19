@@ -694,10 +694,10 @@ document.addEventListener("jcProductsLoaded", () => {
   );
 
   if (!productSource.length) {
-    console.error(
-      "Jewel Corner: no products loaded. Check products-data.js."
-    );
-  }
+  console.error(
+    "Jewel Corner: no active products loaded from Firestore."
+  );
+}
 
  refreshLanguage();
 
