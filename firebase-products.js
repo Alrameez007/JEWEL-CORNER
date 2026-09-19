@@ -19,12 +19,12 @@ import {
    ========================================================= */
 
 const firebaseConfig = {
-    apiKey: "YOUR_EXISTING_FIREBASE_API_KEY",
-    authDomain: "jewel-corner-admin.firebaseapp.com",
-    projectId: "jewel-corner-admin",
-    storageBucket: "jewel-corner-admin.firebasestorage.app",
-    messagingSenderId: "YOUR_EXISTING_MESSAGING_SENDER_ID",
-    appId: "YOUR_EXISTING_APP_ID"
+  apiKey: "AIzaSyDmbLQ4xm_RrNBegPIFY7UdhSR_eMDlTq4",
+  authDomain: "jewel-corner-admin.firebaseapp.com",
+  projectId: "jewel-corner-admin",
+  storageBucket: "jewel-corner-admin.firebasestorage.app",
+  messagingSenderId: "886169365350",
+  appId: "1:886169365350:web:5d0d432f11f87a61bb36a7"
 };
 
 
