@@ -1,4 +1,4 @@
-(() => {
+document.addEventListener("jcProductsLoaded", () => {
   "use strict";
 
   const productSource =
@@ -715,4 +715,4 @@ if (productToOpen) {
   }
 }
 
-})();
+});
