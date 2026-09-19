@@ -1653,9 +1653,10 @@ const uniqueImageKitFileIds =
     [...new Set(imageKitFileIds)];
   
     const shouldDelete =
-        window.confirm(
-            `Permanently delete "${productName}"?`
-        );
+    window.confirm(
+        `Permanently delete "${productName}"?\n\n` +
+        `ImageKit files detected: ${uniqueImageKitFileIds.length}`
+    );
 
     if (!shouldDelete) {
         return;
