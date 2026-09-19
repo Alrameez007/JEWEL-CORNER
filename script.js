@@ -552,3 +552,35 @@ document.addEventListener("jcProductsLoaded", () => {
   initHomeProductSearch();
   initFeaturedProductSlider();
 });
+document.addEventListener("jcProductsLoadError", () => {
+  const searchInput =
+    document.getElementById("collectionSearch");
+
+  const searchButton =
+    document.getElementById("collectionSearchButton");
+
+  const featuredSection =
+    document.getElementById("featured-products");
+
+  const language =
+    typeof window.getCurrentLanguage === "function"
+      ? window.getCurrentLanguage()
+      : localStorage.getItem("jc_language") || "en";
+
+  if (searchInput) {
+    searchInput.disabled = true;
+
+    searchInput.placeholder =
+      language === "ar"
+        ? "المنتجات غير متاحة حالياً"
+        : "Products temporarily unavailable";
+  }
+
+  if (searchButton) {
+    searchButton.disabled = true;
+  }
+
+  if (featuredSection) {
+    featuredSection.style.display = "none";
+  }
+});
