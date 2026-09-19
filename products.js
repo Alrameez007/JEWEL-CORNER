@@ -257,9 +257,16 @@ document.addEventListener("jcProductsLoaded", () => {
       "";
 
     if (modalImage) {
+      modalImage.style.display = "";
+
+      modalImage.onerror = () => {
+      modalImage.onerror = null;
+      modalImage.style.display = "none";
+     };
+
       modalImage.src = product.image || "";
       modalImage.alt = name;
-    }
+     }
 
     if (modalTitle) {
       modalTitle.textContent = name;
