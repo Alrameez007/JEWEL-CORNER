@@ -195,11 +195,12 @@ function initHomeProductSearch() {
       result.href = productUrl(product);
 
       result.innerHTML = `
-        <img
-          src="${product.image}"
-          alt="${productName}"
-          loading="lazy"
-        >
+            <img
+            src="${product.image || ""}"
+            alt="${productName}"
+            loading="lazy"
+            onerror="this.onerror=null; this.style.display='none';"
+          >
 
         <span class="collection-search-result-info">
           <span class="collection-search-result-name">
@@ -355,11 +356,12 @@ function initFeaturedProductSlider() {
         <div class="featured-slide-image">
 
           <a href="${productUrl(product)}">
-            <img
-              src="${product.image}"
-              alt="${productName}"
-              loading="${index === 0 ? "eager" : "lazy"}"
-            >
+        <img
+          src="${product.image || ""}"
+          alt="${productName}"
+          loading="${index === 0 ? "eager" : "lazy"}"
+          onerror="this.onerror=null; this.style.display='none';"
+          >
           </a>
 
         </div>
