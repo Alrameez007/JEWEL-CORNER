@@ -24,6 +24,8 @@ document.addEventListener("jcProductsLoaded", () => {
   const modalDescription = document.getElementById("modalDescription");
   const modalPrice = document.getElementById("modalPrice");
   const modalActions = document.getElementById("modalActions");
+  const rateProductBtn =
+  document.getElementById("rateProductBtn");
 
   const params = new URLSearchParams(window.location.search);
   
@@ -669,6 +671,64 @@ document.addEventListener("jcProductsLoaded", () => {
   );
 }
 
+  /* =========================================================
+   CUSTOMER RATE & REVIEW — GOOGLE SIGN-IN
+   ========================================================= */
+
+if (rateProductBtn) {
+
+  rateProductBtn.addEventListener(
+    "click",
+    async () => {
+
+      try {
+
+        const existingUser =
+          window.JewelCornerCustomerAuth
+            ?.getCurrentUser();
+
+        if (existingUser) {
+
+          console.log(
+            "Jewel Corner customer already signed in:",
+            existingUser.displayName
+          );
+
+          return;
+        }
+
+        if (
+          !window.JewelCornerCustomerAuth
+            ?.signInWithGoogle
+        ) {
+
+          console.error(
+            "Jewel Corner customer authentication is not ready."
+          );
+
+          return;
+        }
+
+        const user =
+          await window.JewelCornerCustomerAuth
+            .signInWithGoogle();
+
+        console.log(
+          "Jewel Corner customer signed in:",
+          user.displayName
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Unable to start customer review:",
+          error
+        );
+      }
+    }
+  );
+}
+  
   if (modalClose) {
     modalClose.addEventListener(
       "click",
