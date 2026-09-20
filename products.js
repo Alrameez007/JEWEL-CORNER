@@ -789,19 +789,19 @@ console.log(
   user.displayName
 );
 
-const reviewForm =
+const signedInReviewForm =
   document.getElementById("customerReviewForm");
 
-const reviewName =
+const signedInReviewName =
   document.getElementById("reviewDisplayName");
 
-if (reviewName && !reviewName.value) {
-  reviewName.value =
+if (signedInReviewName && !signedInReviewName.value) {
+  signedInReviewName.value =
     user.displayName || "";
 }
 
-if (reviewForm) {
-  reviewForm.hidden = false;
+if (signedInReviewForm) {
+  signedInReviewForm.hidden = false;
   initializeReviewStars();
 }
 
