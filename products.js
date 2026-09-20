@@ -689,13 +689,28 @@ if (rateProductBtn) {
 
         if (existingUser) {
 
-          console.log(
-            "Jewel Corner customer already signed in:",
-            existingUser.displayName
-          );
+  console.log(
+    "Jewel Corner customer already signed in:",
+    existingUser.displayName
+  );
 
-          return;
-        }
+  const reviewForm =
+    document.getElementById("customerReviewForm");
+
+  const reviewName =
+    document.getElementById("reviewDisplayName");
+
+  if (reviewName && !reviewName.value) {
+    reviewName.value =
+      existingUser.displayName || "";
+  }
+
+  if (reviewForm) {
+    reviewForm.hidden = false;
+  }
+
+  return;
+}
 
         if (
           !window.JewelCornerCustomerAuth
@@ -710,13 +725,28 @@ if (rateProductBtn) {
         }
 
         const user =
-          await window.JewelCornerCustomerAuth
-            .signInWithGoogle();
+  await window.JewelCornerCustomerAuth
+    .signInWithGoogle();
 
-        console.log(
-          "Jewel Corner customer signed in:",
-          user.displayName
-        );
+console.log(
+  "Jewel Corner customer signed in:",
+  user.displayName
+);
+
+const reviewForm =
+  document.getElementById("customerReviewForm");
+
+const reviewName =
+  document.getElementById("reviewDisplayName");
+
+if (reviewName && !reviewName.value) {
+  reviewName.value =
+    user.displayName || "";
+}
+
+if (reviewForm) {
+  reviewForm.hidden = false;
+}
 
       } catch (error) {
 
