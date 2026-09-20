@@ -762,11 +762,11 @@ if (rateProductBtn) {
   }
 
   if (reviewForm) {
-    reviewForm.hidden = false;
-  }
-
-  return;
+  reviewForm.hidden = false;
+  initializeReviewStars();
 }
+
+return;
 
         if (
           !window.JewelCornerCustomerAuth
@@ -804,8 +804,6 @@ if (reviewForm) {
   reviewForm.hidden = false;
   initializeReviewStars();
 }
-
-return;
 
       } catch (error) {
 
