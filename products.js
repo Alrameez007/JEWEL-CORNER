@@ -767,11 +767,12 @@ if (rateProductBtn) {
 }
 
 return;
+}
 
-        if (
-          !window.JewelCornerCustomerAuth
-            ?.signInWithGoogle
-        ) {
+if (
+  !window.JewelCornerCustomerAuth
+    ?.signInWithGoogle
+) {
 
           console.error(
             "Jewel Corner customer authentication is not ready."
