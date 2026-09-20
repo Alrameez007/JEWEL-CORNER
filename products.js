@@ -675,12 +675,16 @@ document.addEventListener("jcProductsLoaded", () => {
    CUSTOMER REVIEW — STAR PICKER
    ========================================================= */
 
-const reviewStarPicker =
-  document.getElementById("reviewStarPicker");
-
 let selectedReviewRating = 0;
 
-if (reviewStarPicker) {
+function initializeReviewStars() {
+
+  const reviewStarPicker =
+    document.getElementById("reviewStarPicker");
+
+  if (!reviewStarPicker) {
+    return;
+  }
 
   const starButtons =
     reviewStarPicker.querySelectorAll(
