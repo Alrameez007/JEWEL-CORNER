@@ -7,6 +7,15 @@ import { initializeApp } from
     "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signOut,
+    onAuthStateChanged
+} from
+    "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+import {
     getFirestore,
     collection,
     getDocs,
@@ -36,6 +45,62 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+
+/* =========================================================
+   CUSTOMER GOOGLE AUTH
+   ========================================================= */
+
+window.JewelCornerCustomerAuth = {
+
+    signInWithGoogle: async function () {
+        try {
+            const result =
+                await signInWithPopup(
+                    auth,
+                    googleProvider
+                );
+
+            return result.user;
+
+        } catch (error) {
+
+            console.error(
+                "Jewel Corner Google sign-in failed:",
+                error
+            );
+
+            throw error;
+        }
+    },
+
+    signOut: async function () {
+        await signOut(auth);
+    },
+
+    getCurrentUser: function () {
+        return auth.currentUser;
+    }
+};
+
+
+onAuthStateChanged(auth, user => {
+
+    window.JewelCornerCustomerUser =
+        user || null;
+
+    document.dispatchEvent(
+        new CustomEvent(
+            "jcCustomerAuthChanged",
+            {
+                detail: {
+                    user: user || null
+                }
+            }
+        )
+    );
+});
 
 
 /* =========================================================
