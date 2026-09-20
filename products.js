@@ -802,7 +802,10 @@ if (reviewName && !reviewName.value) {
 
 if (reviewForm) {
   reviewForm.hidden = false;
+  initializeReviewStars();
 }
+
+return;
 
       } catch (error) {
 
