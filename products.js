@@ -671,6 +671,58 @@ document.addEventListener("jcProductsLoaded", () => {
   );
 }
 
+/* =========================================================
+   CUSTOMER REVIEW — STAR PICKER
+   ========================================================= */
+
+const reviewStarPicker =
+  document.getElementById("reviewStarPicker");
+
+let selectedReviewRating = 0;
+
+if (reviewStarPicker) {
+
+  const starButtons =
+    reviewStarPicker.querySelectorAll(
+      "button[data-rating]"
+    );
+
+  starButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const rating =
+        Number(button.dataset.rating);
+
+      if (
+        !Number.isInteger(rating) ||
+        rating < 1 ||
+        rating > 5
+      ) {
+        return;
+      }
+
+      selectedReviewRating = rating;
+
+      starButtons.forEach(starButton => {
+
+        const starRating =
+          Number(starButton.dataset.rating);
+
+        starButton.textContent =
+          starRating <= selectedReviewRating
+            ? "★"
+            : "☆";
+      });
+
+      console.log(
+        "Jewel Corner selected rating:",
+        selectedReviewRating
+      );
+    });
+  });
+}
+  
   /* =========================================================
    CUSTOMER RATE & REVIEW — GOOGLE SIGN-IN
    ========================================================= */
