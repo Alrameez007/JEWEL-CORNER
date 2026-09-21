@@ -985,6 +985,9 @@ if (submitReviewBtn) {
 
         submitReviewBtn.disabled = true;
 
+        const wasExistingReview =
+        customerHasExistingReview;
+
         if (customerHasExistingReview) {
 
   await window.JewelCornerCustomerReviews
@@ -1020,12 +1023,24 @@ if (submitReviewBtn) {
     });
 
   customerHasExistingReview = true;
+
+submitReviewBtn.textContent =
+  "Update Review";
+
+const deleteReviewButton =
+  document.getElementById("deleteReviewBtn");
+
+if (deleteReviewButton) {
+  deleteReviewButton.hidden = false;
 }
+        }
 
         if (reviewMessage) {
-          reviewMessage.textContent =
-            "Thank you! Your review has been submitted.";
-        }
+        reviewMessage.textContent =
+        wasExistingReview
+        ? "Your review has been updated."
+        : "Thank you! Your review has been submitted.";
+}
 
       } catch (error) {
 
