@@ -820,6 +820,99 @@ if (signedInReviewForm) {
     }
   );
 }
+
+  /* =========================================================
+   CUSTOMER REVIEW — SUBMIT
+   ========================================================= */
+
+const submitReviewBtn =
+  document.getElementById("submitReviewBtn");
+
+if (submitReviewBtn) {
+
+  submitReviewBtn.addEventListener(
+    "click",
+    async () => {
+
+      const reviewName =
+        document.getElementById("reviewDisplayName");
+
+      const reviewComment =
+        document.getElementById("reviewComment");
+
+      const reviewMessage =
+        document.getElementById("reviewFormMessage");
+
+      try {
+
+        if (reviewMessage) {
+          reviewMessage.textContent = "";
+        }
+
+        if (!activeModalProduct?.firestoreId) {
+          throw new Error(
+            "Unable to identify this product."
+          );
+        }
+
+        if (!selectedReviewRating) {
+          throw new Error(
+            "Please choose a star rating."
+          );
+        }
+
+        if (
+          !window.JewelCornerCustomerReviews
+            ?.createReview
+        ) {
+          throw new Error(
+            "Review service is not ready."
+          );
+        }
+
+        submitReviewBtn.disabled = true;
+
+        await window.JewelCornerCustomerReviews
+          .createReview({
+            productId:
+              activeModalProduct.firestoreId,
+
+            displayName:
+              reviewName?.value || "",
+
+            rating:
+              selectedReviewRating,
+
+            comment:
+              reviewComment?.value || ""
+          });
+
+        if (reviewMessage) {
+          reviewMessage.textContent =
+            "Thank you! Your review has been submitted.";
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Jewel Corner review submission failed:",
+          error
+        );
+
+        if (reviewMessage) {
+          reviewMessage.textContent =
+            error.message ||
+            "Unable to submit your review.";
+        }
+
+      } finally {
+
+        submitReviewBtn.disabled = false;
+
+      }
+    }
+  );
+}
   
   if (modalClose) {
     modalClose.addEventListener(
