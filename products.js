@@ -923,6 +923,74 @@ if (signedInReviewForm) {
   initializeReviewStars();
 }
 
+  const existingReviewAfterSignIn =
+  await window.JewelCornerCustomerReviews
+    ?.getMyReview(
+      activeModalProduct?.firestoreId
+    );
+
+if (existingReviewAfterSignIn) {
+
+  customerHasExistingReview = true;
+
+  const submitReviewButton =
+    document.getElementById("submitReviewBtn");
+
+  const deleteReviewButton =
+    document.getElementById("deleteReviewBtn");
+
+  const reviewComment =
+    document.getElementById("reviewComment");
+
+  const reviewMessage =
+    document.getElementById("reviewFormMessage");
+
+  const starButtons =
+    document.querySelectorAll(
+      "#reviewStarPicker button[data-rating]"
+    );
+
+  if (submitReviewButton) {
+    submitReviewButton.textContent =
+      "Update Review";
+  }
+
+  if (deleteReviewButton) {
+    deleteReviewButton.hidden = false;
+  }
+
+  if (signedInReviewName) {
+    signedInReviewName.value =
+      existingReviewAfterSignIn.displayName || "";
+  }
+
+  if (reviewComment) {
+    reviewComment.value =
+      existingReviewAfterSignIn.comment || "";
+  }
+
+  selectedReviewRating =
+    Number(
+      existingReviewAfterSignIn.rating
+    ) || 0;
+
+  starButtons.forEach(starButton => {
+
+    const starRating =
+      Number(starButton.dataset.rating);
+
+    starButton.textContent =
+      starRating <= selectedReviewRating
+        ? "★"
+        : "☆";
+  });
+
+  if (reviewMessage) {
+    reviewMessage.textContent =
+      "You have already reviewed this product.";
+  }
+}
+
       } catch (error) {
 
         console.error(
