@@ -1,0 +1,3304 @@
+@import url(
+'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap'
+);
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background: #F4F0E4;
+    color: #000;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ================================
+   LOGIN
+================================ */
+
+/* =========================================================
+   LUXURY ADMIN LOGIN THEME
+   ========================================================= */
+
+.admin-login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+
+    background:
+        linear-gradient(
+            rgba(8, 38, 77, 0.34),
+            rgba(8, 38, 77, 0.22)
+        ),
+        url("images/admin-login-bg.webp")
+        center center / cover
+        no-repeat;
+
+    background-attachment: fixed;
+}
+    
+/* =========================================================
+   JEWEL CORNER — CRYSTAL DIAMOND LOGIN CARD
+   ========================================================= */
+
+.login-card {
+    width: 100%;
+    max-width: 430px;
+    padding: 34px 30px 38px;
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    /*
+       REAL TRANSPARENT CRYSTAL GLASS
+    */
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.18),
+            rgba(255, 255, 255, 0.055) 42%,
+            rgba(89, 192, 255, 0.08) 72%,
+            rgba(255, 215, 140, 0.08)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.78);
+
+    backdrop-filter:
+        blur(17px)
+        saturate(145%)
+        brightness(1.05);
+
+    -webkit-backdrop-filter:
+        blur(17px)
+        saturate(145%)
+        brightness(1.05);
+
+    box-shadow:
+        0 30px 70px rgba(0, 16, 38, 0.36),
+
+        inset 0 1px 1px
+        rgba(255, 255, 255, 0.90),
+
+        inset 1px 0 1px
+        rgba(125, 218, 255, 0.40),
+
+        inset -1px 0 1px
+        rgba(255, 220, 155, 0.36),
+
+        inset 0 -1px 1px
+        rgba(255, 255, 255, 0.40);
+}
+
+
+/* =========================================================
+   DIAMOND CUT / PRISM FRAME
+   ========================================================= */
+
+.login-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    border-radius: inherit;
+
+    background:
+
+        /* TOP LEFT DIAMOND */
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.95) 0%,
+            rgba(122,218,255,.46) 5%,
+            transparent 14%
+        ),
+
+        /* TOP RIGHT */
+        linear-gradient(
+            225deg,
+            rgba(255,255,255,.92) 0%,
+            rgba(255,210,115,.38) 5%,
+            transparent 14%
+        ),
+
+        /* BOTTOM LEFT */
+        linear-gradient(
+            45deg,
+            rgba(255,255,255,.72) 0%,
+            rgba(112,208,255,.32) 6%,
+            transparent 15%
+        ),
+
+        /* BOTTOM RIGHT */
+        linear-gradient(
+            315deg,
+            rgba(255,255,255,.88) 0%,
+            rgba(255,215,130,.34) 6%,
+            transparent 15%
+        ),
+
+        /* DIAGONAL CRYSTAL REFRACTIONS */
+        linear-gradient(
+            115deg,
+            transparent 20%,
+            rgba(110,209,255,.08) 32%,
+            transparent 44%
+        ),
+
+        linear-gradient(
+            65deg,
+            transparent 47%,
+            rgba(255,223,147,.09) 56%,
+            transparent 67%
+        );
+}
+
+
+/* =========================================================
+   FULL CARD DIAMOND GLASS REFLECTIONS
+   ========================================================= */
+
+.login-card::after {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    z-index: 1;
+    pointer-events: none;
+
+    border-radius: 19px;
+
+    background:
+
+        radial-gradient(
+            circle at 7% 6%,
+            rgba(255,255,255,.62),
+            transparent 7%
+        ),
+
+        radial-gradient(
+            circle at 94% 7%,
+            rgba(125,220,255,.35),
+            transparent 8%
+        ),
+
+        radial-gradient(
+            circle at 6% 94%,
+            rgba(255,219,145,.24),
+            transparent 8%
+        ),
+
+        radial-gradient(
+            circle at 94% 94%,
+            rgba(255,255,255,.38),
+            transparent 8%
+        ),
+
+        linear-gradient(
+            125deg,
+            transparent 0%,
+            rgba(255,255,255,.08) 25%,
+            transparent 46%
+        ),
+
+        linear-gradient(
+            55deg,
+            transparent 45%,
+            rgba(100,205,255,.075) 58%,
+            transparent 72%
+        );
+
+    opacity: .95;
+}
+
+
+/*
+   KEEP ALL REAL LOGIN CONTENT
+   ABOVE THE CRYSTAL EFFECT
+*/
+
+.login-card > * {
+    position: relative;
+    z-index: 5;
+}
+
+.admin-brand {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.admin-brand h1 {
+    font-family: "Cormorant Garamond", serif;
+
+    color: #d4af37;
+
+    font-size: 32px;
+    letter-spacing: 1px;
+
+    margin: 0 0 5px;
+}
+
+.admin-brand p {
+    color: #666;
+
+    font-size: 13px;
+
+    margin: 0;
+}
+
+/* =========================================================
+   ADMIN LOGIN LOGO
+   ========================================================= */
+
+.admin-login-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.admin-login-logo img {
+    width: 150px;
+    max-width: 60%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* ================================
+   FORMS
+================================ */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    margin-bottom: 7px;
+}
+
+.form-group input {
+    width: 100%;
+
+    height: 48px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    padding: 0 14px;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #d4af37;
+
+    box-shadow:
+        0 0 0 3px rgba(212, 175, 55, .12);
+}
+
+
+/* ================================
+   BUTTONS
+================================ */
+
+.primary-button {
+    width: 100%;
+
+    min-height: 48px;
+
+    border: none;
+    border-radius: 25px;
+
+    background: #d4af37;
+    color: #000;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+.primary-button:hover {
+    background: #c6a12c;
+}
+
+.primary-button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.login-message {
+    min-height: 18px;
+
+    text-align: center;
+
+    margin: 15px 0 0;
+
+    font-size: 12px;
+    color: #b00020;
+}
+
+
+/* ================================
+   DASHBOARD
+================================ */
+
+.admin-dashboard {
+    min-height: 100vh;
+}
+
+.admin-header {
+    height: 72px;
+
+    background: #fff;
+
+    border-bottom:
+        1px solid rgba(212, 175, 55, .25);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 24px;
+}
+
+.admin-header h1 {
+    font-family: "Cormorant Garamond", serif;
+
+    color: #d4af37;
+
+    font-size: 24px;
+
+    margin: 0;
+}
+
+.admin-header span {
+    display: block;
+
+    font-size: 10px;
+    color: #777;
+
+    margin-top: -3px;
+}
+
+.logout-button {
+    border: 1px solid #d4af37;
+
+    background: transparent;
+    color: #000;
+
+    border-radius: 20px;
+
+    padding: 8px 16px;
+
+    cursor: pointer;
+}
+
+.dashboard-content {
+    width: min(900px, calc(100% - 32px));
+
+    margin: 0 auto;
+
+    padding: 45px 0;
+}
+
+.welcome-area {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.welcome-area h2 {
+    font-family: "Cormorant Garamond", serif;
+
+    color: #d4af37;
+
+    font-size: 34px;
+
+    margin: 0 0 6px;
+}
+
+.welcome-area p {
+    color: #666;
+
+    font-size: 13px;
+}
+
+.dashboard-actions {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.dashboard-card {
+    min-height: 180px;
+
+    border:
+        1px solid rgba(212, 175, 55, .3);
+
+    border-radius: 18px;
+
+    background: #fff;
+
+    padding: 25px;
+
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, .05);
+
+    transition: .25s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, .08);
+}
+
+.dashboard-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(212, 175, 55, .12);
+
+    border-radius: 50%;
+
+    color: #d4af37;
+
+    font-size: 25px;
+
+    margin-bottom: 13px;
+}
+
+.dashboard-card strong {
+    font-family: "Cormorant Garamond", serif;
+
+    color: #d4af37;
+
+    font-size: 22px;
+}
+
+.dashboard-card small {
+    margin-top: 6px;
+
+    color: #777;
+
+    font-size: 11px;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .login-card {
+        padding: 32px 22px;
+    }
+
+    .dashboard-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-header {
+        padding: 0 16px;
+    }
+
+    .dashboard-content {
+        padding-top: 30px;
+    }
+
+    .dashboard-card {
+        min-height: 145px;
+    }
+}
+/* ================================
+   PRODUCT FORM
+================================ */
+
+.product-form-section {
+    margin-top: 35px;
+
+    background: #fff;
+
+    border:
+        1px solid rgba(212,175,55,.28);
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.05);
+}
+
+.form-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 28px;
+}
+
+.form-section-header h2 {
+    margin: 0 0 5px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    color: #d4af37;
+
+    font-size: 30px;
+}
+
+.form-section-header p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    border:
+        1px solid #ddd;
+
+    border-radius: 10px;
+
+    padding: 12px 14px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    background: #fff;
+}
+
+.form-group select {
+    min-height: 48px;
+}
+
+.form-group textarea {
+    resize: vertical;
+
+    min-height: 110px;
+}
+
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #d4af37;
+
+    box-shadow:
+        0 0 0 3px rgba(212,175,55,.12);
+}
+
+.toggle-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin: 25px 0;
+}
+
+.toggle-option {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    background: #faf8f1;
+
+    border-radius: 10px;
+
+    padding: 13px 14px;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.toggle-option input {
+    width: 18px;
+    height: 18px;
+
+    accent-color: #d4af37;
+}
+
+.secondary-button {
+    border:
+        1px solid #d4af37;
+
+    background: transparent;
+
+    color: #000;
+
+    border-radius: 20px;
+
+    padding: 8px 16px;
+
+    cursor: pointer;
+}
+
+.product-form-message {
+    min-height: 20px;
+
+    margin-top: 14px;
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+.product-form-message.success {
+    color: #1a7f37;
+}
+
+.product-form-message.error {
+    color: #b00020;
+}
+
+@media (max-width: 650px) {
+
+    .product-form-section {
+        padding: 20px 16px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .toggle-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-section-header {
+        align-items: flex-start;
+    }
+}
+/* ================================
+   PRODUCT IMAGE UPLOAD
+================================ */
+
+.image-preview-box {
+    width: 100%;
+    max-width: 320px;
+    margin-top: 15px;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #d4af37;
+    border-radius: 14px;
+}
+
+.image-preview-box img {
+    display: block;
+    width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.image-upload-message {
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.image-upload-message.success {
+    color: #16833b;
+}
+
+.image-upload-message.error {
+    color: #b3261e;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================================================
+   LUXURY LOGIN FORM CONTROLS
+   ========================================================= */
+
+.login-card label {
+    display: block;
+    margin-bottom: 8px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-shadow:
+        0 1px 4px rgba(0, 20, 45, 0.55);
+}
+
+.login-card .form-group {
+    margin-bottom: 20px;
+}
+
+.login-card input[type="email"],
+.login-card .password-field input {
+    width: 100%;
+    height: 54px;
+
+    padding: 0 18px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.20),
+            rgba(255,255,255,.08)
+        );
+
+    border: 1px solid rgba(255,255,255,.72);
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    outline: none;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.45),
+        0 7px 20px rgba(0,20,50,.12);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.login-card input::placeholder {
+    color: rgba(255,255,255,.76);
+}
+
+.login-card input:focus {
+    border-color: rgba(118,220,255,.95);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.25),
+            rgba(120,210,255,.11)
+        );
+
+    box-shadow:
+        0 0 0 3px rgba(46,174,232,.16),
+        inset 0 1px 0 rgba(255,255,255,.55),
+        0 8px 26px rgba(0,91,160,.20);
+}
+
+.login-card button[type="submit"] {
+    width: 100%;
+    min-height: 50px;
+
+    margin-top: 4px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #087fc1 0%,
+        #2597d3 50%,
+        #087fc1 100%
+    );
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(8, 127, 193, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.login-card button[type="submit"]:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 26px rgba(8, 127, 193, 0.30);
+}
+
+.login-card button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* =========================================================
+   JEWEL CORNER LOGIN BUTTON
+   ========================================================= */
+
+#loginButton {
+    width: 100%;
+    min-height: 54px;
+
+    margin-top: 5px;
+
+    border-radius: 14px;
+
+    border:
+        1px solid
+        rgba(139,225,255,.82);
+
+    background:
+        linear-gradient(
+            135deg,
+            #057ac4 0%,
+            #139fe2 48%,
+            #067dc5 100%
+        );
+
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.45),
+        0 9px 25px rgba(0,112,190,.35),
+        0 0 22px rgba(40,180,240,.12);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease;
+}
+
+#loginButton:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.08);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.55),
+        0 13px 30px rgba(0,112,190,.42),
+        0 0 28px rgba(57,193,250,.18);
+}
+
+#loginButton:active {
+    transform: translateY(0);
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 56px !important;
+}
+
+.password-toggle {
+    position: absolute;
+
+    right: 15px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    padding: 0;
+
+    background: transparent;
+
+    color: rgba(255,255,255,.94);
+
+    cursor: pointer;
+
+    border-radius: 50%;
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+}
+
+.password-toggle:hover {
+    background: rgba(255,255,255,.12);
+
+    transform:
+        translateY(-50%)
+        scale(1.06);
+}
+
+.password-toggle svg {
+    width: 23px;
+    height: 23px;
+
+    filter:
+        drop-shadow(
+            0 1px 3px
+            rgba(0,20,50,.35)
+        );
+}
+
+/* =========================================================
+   PASSWORD FIELD - KEEP GLASS STYLE WHEN EYE IS USED
+   ========================================================= */
+
+.login-card .password-field input {
+    width: 100%;
+    height: 54px;
+    padding: 0 56px 0 18px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.20),
+            rgba(255,255,255,.08)
+        );
+
+    border: 1px solid rgba(255,255,255,.72);
+
+    color: #ffffff;
+
+    font-size: 15px;
+    outline: none;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.45),
+        0 7px 20px rgba(0,20,50,.12);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.login-card .password-field input:focus {
+    border-color: rgba(118,220,255,.95);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.25),
+            rgba(120,210,255,.11)
+        );
+
+    box-shadow:
+        0 0 0 3px rgba(46,174,232,.16),
+        inset 0 1px 0 rgba(255,255,255,.55),
+        0 8px 26px rgba(0,91,160,.20);
+}
+
+.login-card .password-field input::placeholder {
+    color: rgba(255,255,255,.76);
+}
+
+/* =========================================================
+   FULL CRYSTAL / DIAMOND FACET SURFACE
+   ========================================================= */
+
+.login-card {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.20) 0%,
+            rgba(120,220,255,.08) 18%,
+            rgba(255,255,255,.07) 32%,
+            rgba(255,215,140,.07) 48%,
+            rgba(255,255,255,.09) 62%,
+            rgba(110,205,255,.07) 78%,
+            rgba(255,255,255,.18) 100%
+        );
+
+    backdrop-filter:
+        blur(14px)
+        saturate(150%)
+        brightness(1.08);
+
+    -webkit-backdrop-filter:
+        blur(14px)
+        saturate(150%)
+        brightness(1.08);
+}
+
+.login-card::before {
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.50) 0%,
+            transparent 18%
+        ),
+
+        linear-gradient(
+            35deg,
+            transparent 15%,
+            rgba(94,205,255,.12) 28%,
+            transparent 43%
+        ),
+
+        linear-gradient(
+            120deg,
+            transparent 22%,
+            rgba(255,220,145,.11) 38%,
+            transparent 54%
+        ),
+
+        linear-gradient(
+            60deg,
+            transparent 48%,
+            rgba(255,255,255,.12) 61%,
+            transparent 72%
+        ),
+
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.55),
+            transparent 12%
+        ),
+
+        linear-gradient(
+            225deg,
+            rgba(140,220,255,.30),
+            transparent 14%
+        ),
+
+        linear-gradient(
+            45deg,
+            rgba(255,220,150,.22),
+            transparent 14%
+        ),
+
+        linear-gradient(
+            315deg,
+            rgba(255,255,255,.38),
+            transparent 14%
+        );
+
+    opacity: 1;
+}
+
+.login-card::after {
+    content: "";
+    position: absolute;
+    inset: 8px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.28) 0 7%,
+            transparent 7% 30%
+        ),
+
+        linear-gradient(
+            225deg,
+            rgba(112,210,255,.18) 0 8%,
+            transparent 8% 31%
+        ),
+
+        linear-gradient(
+            45deg,
+            rgba(255,214,135,.14) 0 8%,
+            transparent 8% 32%
+        ),
+
+        linear-gradient(
+            315deg,
+            rgba(255,255,255,.18) 0 8%,
+            transparent 8% 32%
+        ),
+
+        linear-gradient(
+            118deg,
+            transparent 18%,
+            rgba(255,255,255,.08) 19%,
+            transparent 38%
+        ),
+
+        linear-gradient(
+            62deg,
+            transparent 45%,
+            rgba(98,202,255,.075) 52%,
+            transparent 66%
+        );
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* =========================================================
+   FINAL CRYSTAL DIAMOND CARD
+   ========================================================= */
+
+.login-card {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.12) 0%,
+            rgba(255,255,255,.035) 30%,
+            rgba(120,210,255,.035) 55%,
+            rgba(255,215,145,.035) 75%,
+            rgba(255,255,255,.10) 100%
+        );
+
+    border: 1px solid rgba(255,255,255,.75);
+
+    backdrop-filter:
+        blur(8px)
+        saturate(135%)
+        brightness(1.05);
+
+    -webkit-backdrop-filter:
+        blur(8px)
+        saturate(135%)
+        brightness(1.05);
+
+    box-shadow:
+        0 25px 60px rgba(0,15,40,.30),
+        inset 0 0 25px rgba(255,255,255,.06),
+        inset 0 1px 0 rgba(255,255,255,.85);
+}
+
+
+/* CRYSTAL FACETS THROUGH THE WHOLE PANEL */
+
+.login-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.38) 0%,
+            rgba(255,255,255,.08) 5%,
+            transparent 14%
+        ),
+
+        linear-gradient(
+            225deg,
+            rgba(116,215,255,.28) 0%,
+            rgba(255,255,255,.07) 6%,
+            transparent 15%
+        ),
+
+        linear-gradient(
+            45deg,
+            rgba(255,220,145,.20) 0%,
+            rgba(255,255,255,.05) 6%,
+            transparent 15%
+        ),
+
+        linear-gradient(
+            315deg,
+            rgba(255,255,255,.30) 0%,
+            rgba(120,210,255,.06) 6%,
+            transparent 15%
+        ),
+
+        linear-gradient(
+            118deg,
+            transparent 18%,
+            rgba(110,210,255,.075) 29%,
+            transparent 40%
+        ),
+
+        linear-gradient(
+            62deg,
+            transparent 39%,
+            rgba(255,222,150,.07) 50%,
+            transparent 61%
+        ),
+
+        linear-gradient(
+            145deg,
+            transparent 56%,
+            rgba(255,255,255,.075) 68%,
+            transparent 79%
+        );
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+
+/* THIN DIAMOND-CUT INNER EDGE */
+
+.login-card::after {
+    content: "";
+    position: absolute;
+    inset: 7px;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(255,255,255,.20);
+
+    background:
+        radial-gradient(
+            circle at 3% 3%,
+            rgba(255,255,255,.75),
+            transparent 3.5%
+        ),
+
+        radial-gradient(
+            circle at 97% 3%,
+            rgba(110,215,255,.48),
+            transparent 3.5%
+        ),
+
+        radial-gradient(
+            circle at 3% 97%,
+            rgba(255,218,135,.35),
+            transparent 3.5%
+        ),
+
+        radial-gradient(
+            circle at 97% 97%,
+            rgba(255,255,255,.55),
+            transparent 3.5%
+        );
+
+    box-shadow:
+        inset 0 0 12px rgba(255,255,255,.08);
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+.login-card > * {
+    position: relative;
+    z-index: 5;
+}
+
+.login-card {
+    border: 2px solid rgba(255, 255, 255, 0.72);
+
+    box-shadow:
+        0 25px 60px rgba(0, 15, 40, 0.30),
+
+        /* bright crystal rim */
+        inset 3px 3px 5px rgba(255,255,255,.42),
+        inset -3px -3px 5px rgba(92,195,255,.18),
+
+        /* thin external refraction */
+        0 0 0 1px rgba(116,210,255,.16),
+        0 0 18px rgba(255,255,255,.10);
+}
+
+.login-card::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+
+    border-radius: 17px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.34);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.55) 0%,
+            rgba(121,218,255,.22) 3%,
+            transparent 9%
+        ),
+
+        linear-gradient(
+            225deg,
+            rgba(255,255,255,.50) 0%,
+            rgba(115,205,255,.20) 3%,
+            transparent 9%
+        ),
+
+        linear-gradient(
+            45deg,
+            rgba(255,222,150,.30) 0%,
+            rgba(255,255,255,.14) 3%,
+            transparent 9%
+        ),
+
+        linear-gradient(
+            315deg,
+            rgba(255,255,255,.45) 0%,
+            rgba(100,205,255,.18) 3%,
+            transparent 9%
+        );
+
+    box-shadow:
+        inset 2px 2px 3px rgba(255,255,255,.18),
+        inset -2px -2px 3px rgba(92,195,255,.10);
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* =========================================================
+   JEWEL CORNER — LUXURY DASHBOARD HEADER
+   ========================================================= */
+
+.admin-header {
+    min-height: 92px;
+    padding: 12px 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.96),
+            rgba(240, 248, 252, 0.94)
+        );
+
+    border-bottom: 1px solid rgba(37, 151, 211, 0.22);
+
+    box-shadow:
+        0 5px 22px rgba(8, 38, 77, 0.08);
+}
+
+
+/* REAL JEWEL CORNER LOGO */
+
+.dashboard-brand {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-logo {
+    display: block;
+
+    width: 135px;
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* LOGOUT BUTTON */
+
+.admin-header .logout-button {
+    min-width: 92px;
+    min-height: 42px;
+
+    padding: 0 20px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(37, 151, 211, 0.65);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.88),
+            rgba(225,244,252,.72)
+        );
+
+    color: #087fc1;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(8, 127, 193, 0.10);
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+
+.admin-header .logout-button:hover {
+    transform: translateY(-1px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 20px rgba(8, 127, 193, 0.22);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .admin-header {
+        min-height: 78px;
+        padding: 10px 16px;
+    }
+
+    .dashboard-logo {
+        width: 105px;
+    }
+
+    .admin-header .logout-button {
+        min-width: 78px;
+        min-height: 38px;
+        padding: 0 15px;
+    }
+}
+
+/* =========================================================
+   DASHBOARD LOGO SIZE FIX
+   ========================================================= */
+
+.admin-header .dashboard-brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.admin-header .dashboard-logo {
+    display: block !important;
+
+    width: 120px !important;
+    max-width: 120px !important;
+    height: auto !important;
+    max-height: 70px !important;
+
+    object-fit: contain;
+}
+
+@media (max-width: 600px) {
+
+    .admin-header {
+        min-height: 76px;
+        height: 76px;
+        padding: 8px 16px;
+        overflow: hidden;
+    }
+
+    .admin-header .dashboard-logo {
+        width: 95px !important;
+        max-width: 95px !important;
+        max-height: 60px !important;
+    }
+}
+
+/* =========================================================
+   JEWEL CORNER — DASHBOARD CONTENT THEME
+   ========================================================= */
+
+.admin-dashboard {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(37, 151, 211, 0.10),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(8, 38, 77, 0.08),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #f8fbfd 0%,
+            #eef6fa 55%,
+            #f7f2e8 100%
+        );
+}
+
+.dashboard-content {
+    padding-top: 42px;
+}
+
+.welcome-area h2 {
+    color: #08264d;
+}
+
+.welcome-area p {
+    color: rgba(8, 38, 77, 0.68);
+}
+
+/* =========================================================
+   JEWEL CORNER — DASHBOARD ACTION CARDS
+   ========================================================= */
+
+.dashboard-card {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.78),
+            rgba(240,248,252,.62)
+        );
+
+    border:
+        1px solid
+        rgba(37,151,211,.20);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 16px 35px rgba(8,38,77,.10),
+        inset 0 1px 0 rgba(255,255,255,.80);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(37,151,211,.38);
+
+    box-shadow:
+        0 22px 45px rgba(8,38,77,.16),
+        inset 0 1px 0 rgba(255,255,255,.88);
+}
+
+.dashboard-card h3 {
+    color: #087fc1;
+}
+
+.dashboard-card p {
+    color: rgba(8,38,77,.66);
+}
+
+.dashboard-card .card-icon {
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 20px rgba(8,127,193,.22);
+}
+
+/* =========================================================
+   JEWEL CORNER — DASHBOARD ACTION CARDS
+   ========================================================= */
+
+.dashboard-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.dashboard-card {
+    min-height: 180px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 28px 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.80),
+            rgba(235,247,252,.62)
+        );
+
+    border: 1px solid rgba(37,151,211,.22);
+    border-radius: 20px;
+
+    box-shadow:
+        0 16px 35px rgba(8,38,77,.10),
+        inset 0 1px 0 rgba(255,255,255,.85);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    cursor: pointer;
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease,
+        background .22s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(37,151,211,.42);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.90),
+            rgba(225,244,252,.76)
+        );
+
+    box-shadow:
+        0 22px 45px rgba(8,38,77,.16),
+        inset 0 1px 0 rgba(255,255,255,.92);
+}
+
+
+/* ICON */
+
+.dashboard-icon {
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 16px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        );
+
+    color: #ffffff;
+
+    font-size: 26px;
+    font-weight: 500;
+
+    box-shadow:
+        0 9px 22px rgba(8,127,193,.25);
+}
+
+
+/* TITLE */
+
+.dashboard-card strong {
+    display: block;
+
+    color: #08264d;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+
+/* DESCRIPTION */
+
+.dashboard-card small {
+    color: rgba(8,38,77,.64);
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .dashboard-actions {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .dashboard-card {
+        min-height: 150px;
+        padding: 24px 18px;
+    }
+
+    .dashboard-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 23px;
+    }
+
+    .dashboard-card strong {
+        font-size: 18px;
+    }
+}
+
+/* =========================================================
+   DASHBOARD CARD COLOR OVERRIDE
+   ========================================================= */
+
+.dashboard-actions .dashboard-card .dashboard-icon {
+    background: linear-gradient(
+        135deg,
+        #087fc1,
+        #2597d3
+    ) !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 9px 22px rgba(8, 127, 193, 0.25) !important;
+}
+
+.dashboard-actions .dashboard-card strong {
+    color: #08264d !important;
+}
+
+.dashboard-actions .dashboard-card small {
+    color: rgba(8, 38, 77, 0.64) !important;
+}
+
+/* =========================================================
+   JEWEL CORNER — ADD PRODUCT FORM PANEL
+   ========================================================= */
+
+.product-form-section {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.88),
+            rgba(235, 247, 252, 0.72)
+        ) !important;
+
+    border:
+        1px solid
+        rgba(37, 151, 211, 0.20) !important;
+
+    border-radius: 22px !important;
+
+    box-shadow:
+        0 18px 45px rgba(8, 38, 77, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* =========================================================
+   ADD PRODUCT — HEADER + BACK BUTTON
+   ========================================================= */
+
+.product-form-section .form-section-header h2 {
+    color: #08264d !important;
+    font-weight: 700;
+}
+
+.product-form-section .form-section-header p {
+    color: rgba(8, 38, 77, 0.62) !important;
+}
+
+
+/* BACK BUTTON */
+
+.product-form-section .secondary-button {
+    color: #087fc1 !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.88),
+            rgba(225,244,252,.72)
+        ) !important;
+
+    border:
+        1px solid
+        rgba(37,151,211,.55) !important;
+
+    border-radius: 12px !important;
+
+    padding: 9px 18px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 5px 15px
+        rgba(8,127,193,.10);
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.product-form-section .secondary-button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        ) !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(8,127,193,.20);
+}
+
+/* =========================================================
+   ADD PRODUCT — SAVE BUTTON + CHECKBOXES
+   ========================================================= */
+
+/* SAVE PRODUCT BUTTON */
+
+.product-form-section button[type="submit"] {
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        ) !important;
+
+    color: #ffffff !important;
+
+    border: 1px solid rgba(255,255,255,.45) !important;
+
+    box-shadow:
+        0 10px 24px rgba(8,127,193,.22),
+        inset 0 1px 0 rgba(255,255,255,.30) !important;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease;
+}
+
+.product-form-section button[type="submit"]:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 14px 30px rgba(8,127,193,.30),
+        inset 0 1px 0 rgba(255,255,255,.35) !important;
+
+    filter: brightness(1.04);
+}
+
+
+/* CHECKBOX ACCENT */
+
+.product-form-section input[type="checkbox"] {
+    accent-color: #1594d0 !important;
+}
+
+/* =========================================================
+   JEWEL CORNER — MANAGE PRODUCTS PANEL
+   ========================================================= */
+
+.manage-products-section {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.88),
+            rgba(235, 247, 252, 0.72)
+        ) !important;
+
+    border:
+        1px solid
+        rgba(37, 151, 211, 0.20) !important;
+
+    border-radius: 22px !important;
+
+    box-shadow:
+        0 18px 45px rgba(8, 38, 77, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.manage-products-section .form-section-header h2 {
+    color: #08264d !important;
+    font-weight: 700;
+}
+
+.manage-products-section .form-section-header p {
+    color: rgba(8, 38, 77, 0.62) !important;
+}
+
+.manage-products-section .secondary-button {
+    color: #087fc1 !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.88),
+            rgba(225,244,252,.72)
+        ) !important;
+
+    border:
+        1px solid
+        rgba(37,151,211,.55) !important;
+
+    border-radius: 12px !important;
+
+    padding: 9px 18px;
+
+    font-weight: 600;
+}
+
+/* =========================================================
+   JEWEL CORNER — MANAGE PRODUCTS
+   ========================================================= */
+
+.manage-products-section {
+    width: calc(100% - 40px);
+    max-width: 1180px;
+
+    margin: 42px auto;
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.88),
+            rgba(235,247,252,.72)
+        ) !important;
+
+    border: 1px solid
+        rgba(37,151,211,.20) !important;
+
+    border-radius: 22px !important;
+
+    box-shadow:
+        0 18px 45px rgba(8,38,77,.10),
+        inset 0 1px 0 rgba(255,255,255,.90);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+
+/* HEADER */
+
+.manage-products-section
+.form-section-header h2 {
+    color: #08264d !important;
+}
+
+.manage-products-section
+.form-section-header p {
+    color: rgba(8,38,77,.62) !important;
+}
+
+
+/* TOOLBAR */
+
+.manage-products-toolbar {
+    display: flex;
+    gap: 12px;
+
+    margin: 26px 0 12px;
+}
+
+#manageProductsSearch {
+    flex: 1;
+
+    min-height: 46px;
+
+    padding: 0 16px;
+
+    border-radius: 12px;
+
+    border: 1px solid
+        rgba(37,151,211,.25);
+
+    background: rgba(255,255,255,.85);
+
+    color: #08264d;
+
+    outline: none;
+}
+
+#manageProductsSearch:focus {
+    border-color: #2597d3;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37,151,211,.10);
+}
+
+
+.manage-refresh-button {
+    min-height: 46px;
+
+    padding: 0 20px;
+
+    border: 0;
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        );
+
+    color: #ffffff;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px
+        rgba(8,127,193,.20);
+}
+
+
+/* COUNT */
+
+.manage-products-status {
+    margin: 12px 0 18px;
+
+    color: rgba(8,38,77,.62);
+
+    font-size: 13px;
+}
+
+
+/* LIST */
+
+.manage-products-list {
+    display: grid;
+    gap: 14px;
+}
+
+
+/* PRODUCT CARD */
+
+.manage-product-card {
+    display: grid;
+
+    grid-template-columns:
+        90px
+        minmax(0,1fr)
+        auto;
+
+    gap: 18px;
+    align-items: center;
+
+    padding: 14px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.92),
+            rgba(235,247,252,.70)
+        );
+
+    border:
+        1px solid
+        rgba(37,151,211,.16);
+
+    box-shadow:
+        0 8px 22px
+        rgba(8,38,77,.07);
+}
+
+
+/* IMAGE */
+
+.manage-product-image {
+    width: 90px;
+    height: 90px;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        rgba(8,38,77,.08);
+}
+
+.manage-product-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+.manage-no-image {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #7a8793;
+
+    font-size: 11px;
+}
+
+
+/* PRODUCT INFO */
+
+.manage-product-info h3 {
+    margin: 0 0 7px;
+
+    color: #08264d;
+
+    font-size: 17px;
+}
+
+.manage-product-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+
+    color:
+        rgba(8,38,77,.60);
+
+    font-size: 12px;
+}
+
+
+/* ACTIONS */
+
+.manage-product-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* STATUS */
+
+.manage-status-badge {
+    padding: 7px 10px;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.manage-status-badge.active {
+    background:
+        rgba(31,170,101,.12);
+
+    color: #167548;
+}
+
+.manage-status-badge.disabled {
+    background:
+        rgba(190,53,53,.10);
+
+    color: #a52e2e;
+}
+
+
+/* ENABLE / DISABLE */
+
+.manage-toggle-status {
+    min-height: 36px;
+
+    padding: 0 14px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.manage-toggle-status.disable {
+    border:
+        1px solid
+        rgba(190,53,53,.30);
+
+    background:
+        rgba(190,53,53,.06);
+
+    color: #a52e2e;
+}
+
+.manage-toggle-status.enable {
+    border:
+        1px solid
+        rgba(37,151,211,.35);
+
+    background:
+        rgba(37,151,211,.08);
+
+    color: #087fc1;
+}
+
+
+/* EMPTY STATE */
+
+.manage-empty-state {
+    padding: 50px 20px;
+
+    text-align: center;
+
+    border-radius: 16px;
+
+    color:
+        rgba(8,38,77,.58);
+
+    background:
+        rgba(255,255,255,.55);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .manage-products-section {
+        width: calc(100% - 24px);
+
+        margin: 24px auto;
+
+        padding: 20px 16px;
+    }
+
+    .manage-products-toolbar {
+        flex-direction: column;
+    }
+
+    .manage-refresh-button {
+        width: 100%;
+    }
+
+    .manage-product-card {
+        grid-template-columns:
+            72px
+            minmax(0,1fr);
+
+        gap: 12px;
+    }
+
+    .manage-product-image {
+        width: 72px;
+        height: 72px;
+    }
+
+    .manage-product-actions {
+        grid-column: 1 / -1;
+
+        justify-content:
+            space-between;
+
+        padding-top: 8px;
+    }
+}
+
+.manage-product-editor {
+    grid-column: 1 / -1;
+
+    margin-top: 6px;
+    padding: 20px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(238,248,252,.90),
+            rgba(255,255,255,.82)
+        );
+
+    border:
+        1px solid
+        rgba(37,151,211,.18);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.85);
+}
+
+.manage-product-editor.hidden {
+    display: none;
+}
+
+.manage-editor-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.manage-editor-field {
+    margin-bottom: 15px;
+}
+
+.manage-editor-field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #08264d;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.manage-editor-field input,
+.manage-editor-field textarea {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border-radius: 11px;
+
+    border:
+        1px solid
+        rgba(37,151,211,.24);
+
+    background:
+        rgba(255,255,255,.90);
+
+    color: #08264d;
+
+    outline: none;
+
+    font: inherit;
+
+    box-sizing: border-box;
+}
+
+.manage-editor-field input {
+    min-height: 44px;
+}
+
+.manage-editor-field textarea {
+    resize: vertical;
+    min-height: 95px;
+}
+
+.manage-editor-field input:focus,
+.manage-editor-field textarea:focus {
+    border-color: #2597d3;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37,151,211,.10);
+}
+
+.manage-edit-details {
+    min-height: 36px;
+
+    padding: 0 14px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid
+        rgba(37,151,211,.32);
+
+    background:
+        rgba(37,151,211,.08);
+
+    color: #087fc1;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.manage-save-details {
+    min-height: 42px;
+
+    padding: 0 22px;
+
+    border: 0;
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        );
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(8,127,193,.22);
+}
+
+.manage-editor-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 700px) {
+
+    .manage-editor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .manage-editor-actions {
+        justify-content: stretch;
+    }
+
+    .manage-save-details {
+        width: 100%;
+    }
+}
+
+#stockQuantity {
+    width: 100%;
+    min-height: 44px;
+
+    padding: 0 14px;
+
+    border-radius: 11px;
+
+    border:
+        1px solid
+        rgba(37,151,211,.20);
+
+    background:
+        rgba(255,255,255,.90);
+
+    color: #08264d;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+#stockQuantity:focus {
+    border-color: #2597d3;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37,151,211,.10);
+}
+
+/* =========================================================
+   FULL PRODUCT EDITOR
+   ========================================================= */
+
+.manage-product-editor {
+    grid-column: 1 / -1;
+
+    padding: 22px;
+    margin-top: 8px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(240,249,253,.96),
+            rgba(255,255,255,.92)
+        );
+
+    border:
+        1px solid
+        rgba(37,151,211,.18);
+}
+
+
+.manage-product-editor.hidden {
+    display: none;
+}
+
+
+.manage-editor-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+    gap: 15px;
+}
+
+
+.manage-editor-field {
+    margin-bottom: 16px;
+}
+
+
+.manage-editor-field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #08264d;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.manage-editor-field input,
+.manage-editor-field select,
+.manage-editor-field textarea {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid
+        rgba(37,151,211,.22);
+
+    background:
+        rgba(255,255,255,.92);
+
+    color: #08264d;
+
+    font: inherit;
+
+    outline: none;
+}
+
+
+.manage-editor-field input,
+.manage-editor-field select {
+    min-height: 44px;
+}
+
+
+.manage-editor-field textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+
+.manage-editor-field input:focus,
+.manage-editor-field select:focus,
+.manage-editor-field textarea:focus {
+
+    border-color: #2597d3;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37,151,211,.10);
+}
+
+
+/* OPTIONS */
+
+.manage-editor-options {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0,1fr));
+
+    gap: 10px;
+
+    margin:
+        6px 0 22px;
+}
+
+
+.manage-editor-options label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,.74);
+
+    border:
+        1px solid
+        rgba(37,151,211,.14);
+
+    color: #08264d;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.manage-editor-options input {
+
+    accent-color: #087fc1;
+}
+
+
+/* CURRENT IMAGES */
+
+.manage-current-images {
+
+    margin-top: 18px;
+
+    padding-top: 18px;
+
+    border-top:
+        1px solid
+        rgba(37,151,211,.16);
+}
+
+
+.manage-current-images h4 {
+
+    color: #08264d;
+
+    margin:
+        0 0 12px;
+}
+
+
+.manage-current-image-grid {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+
+.manage-current-image-grid div {
+
+    width: 90px;
+}
+
+
+.manage-current-image-grid span {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color:
+        rgba(8,38,77,.58);
+
+    font-size: 10px;
+}
+
+
+.manage-current-image-grid img {
+
+    width: 90px;
+
+    height: 90px;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        rgba(37,151,211,.16);
+}
+
+
+.manage-image-note {
+
+    margin-top: 10px;
+
+    color:
+        rgba(8,38,77,.55);
+
+    font-size: 11px;
+}
+
+
+/* SAVE */
+
+.manage-save-full-product {
+
+    min-height: 44px;
+
+    padding:
+        0 25px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        );
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(8,127,193,.20);
+}
+
+
+.manage-save-full-product:disabled {
+
+    opacity: .65;
+
+    cursor: wait;
+}
+
+
+.manage-editor-actions {
+
+    display: flex;
+
+    justify-content:
+        flex-end;
+
+    margin-top: 20px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .manage-editor-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .manage-editor-options {
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+
+    .manage-save-full-product {
+
+        width: 100%;
+
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .manage-editor-options {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+/* =========================================================
+   MANAGE PRODUCTS — IMAGE MANAGEMENT
+   ========================================================= */
+
+.manage-current-images {
+
+    margin-top: 24px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid
+        rgba(37,151,211,.16);
+}
+
+
+.manage-current-images > h4 {
+
+    margin:
+        0 0 16px;
+
+    color: #08264d;
+
+    font-size: 15px;
+}
+
+
+/* IMAGE MANAGEMENT BOX */
+
+.manage-image-management-section {
+
+    margin-bottom: 18px;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,.65);
+
+    border:
+        1px solid
+        rgba(37,151,211,.15);
+}
+
+
+.manage-image-section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content:
+        space-between;
+
+    gap: 15px;
+
+    margin-bottom: 14px;
+}
+
+
+.manage-image-section-header strong {
+
+    display: block;
+
+    color: #08264d;
+
+    font-size: 13px;
+}
+
+
+.manage-image-section-header small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color:
+        rgba(8,38,77,.52);
+
+    font-size: 10px;
+}
+
+
+/* IMAGE BUTTONS */
+
+.manage-replace-main-image,
+.manage-add-more-images {
+
+    min-height: 38px;
+
+    padding:
+        0 15px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid
+        rgba(37,151,211,.35);
+
+    background:
+        rgba(37,151,211,.08);
+
+    color: #087fc1;
+
+    font-weight: 700;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+
+.manage-replace-main-image:hover,
+.manage-add-more-images:hover {
+
+    background:
+        rgba(37,151,211,.14);
+}
+
+
+/* MAIN IMAGE */
+
+.manage-main-image-preview {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+}
+
+
+.manage-main-image-preview img {
+
+    width: 130px;
+
+    height: 130px;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        rgba(37,151,211,.16);
+}
+
+
+.manage-no-current-image {
+
+    padding:
+        35px 25px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(245,249,251,.90);
+
+    color:
+        rgba(8,38,77,.45);
+
+    font-size: 11px;
+}
+
+
+/* ADDITIONAL IMAGE GRID */
+
+.manage-current-image-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(105px, 1fr)
+        );
+
+    gap: 12px;
+}
+
+
+.manage-additional-image-item {
+
+    position: relative;
+
+    padding: 8px;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        rgba(37,151,211,.14);
+}
+
+
+.manage-additional-image-item img {
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: contain;
+
+    display: block;
+
+    border-radius: 8px;
+}
+
+
+/* REMOVE IMAGE */
+
+.manage-remove-additional-image {
+
+    width: 100%;
+
+    margin-top: 7px;
+
+    min-height: 30px;
+
+    border-radius: 8px;
+
+    border:
+        1px solid
+        rgba(190,53,53,.25);
+
+    background:
+        rgba(190,53,53,.06);
+
+    color: #a52e2e;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.manage-remove-additional-image:hover {
+
+    background:
+        rgba(190,53,53,.12);
+}
+
+
+/* NO ADDITIONAL IMAGES */
+
+.manage-no-additional-images {
+
+    grid-column:
+        1 / -1;
+
+    padding: 25px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    background:
+        rgba(245,249,251,.80);
+
+    color:
+        rgba(8,38,77,.45);
+
+    font-size: 11px;
+}
+
+
+/* UPLOAD STATUS */
+
+.manage-image-upload-status {
+
+    min-height: 16px;
+
+    margin:
+        9px 0 0;
+
+    color: #087fc1;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .manage-image-section-header {
+
+        align-items:
+            stretch;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .manage-replace-main-image,
+    .manage-add-more-images {
+
+        width: 100%;
+
+    }
+
+
+    .manage-main-image-preview img {
+
+        width: 110px;
+
+        height: 110px;
+
+    }
+
+
+    .manage-current-image-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+/* =========================================================
+   MOBILE APP — HEADER REFRESH BUTTON
+   ========================================================= */
+
+.admin-header .refresh-app-button {
+    min-width: 92px;
+    min-height: 42px;
+
+    padding: 0 20px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(37, 151, 211, 0.65);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.88),
+            rgba(225,244,252,.72)
+        );
+
+    color: #087fc1;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(8, 127, 193, 0.10);
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+
+.admin-header .refresh-app-button:hover {
+    transform: translateY(-1px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #2597d3
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 20px rgba(8, 127, 193, 0.22);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .admin-header .refresh-app-button {
+        min-width: 78px;
+        min-height: 38px;
+        padding: 0 15px;
+    }
+
+}

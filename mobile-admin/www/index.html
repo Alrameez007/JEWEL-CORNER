@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Jewel Corner Admin</title>
+
+    <meta name="theme-color" content="#d4af37">
+
+    <link rel="stylesheet" href="admin.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+    <!-- =========================
+         LOGIN SCREEN
+    ========================== -->
+
+    <main class="admin-login-page" id="loginPage">
+
+        <div class="login-card">
+
+            <div class="admin-login-logo">
+                <img
+                    src="images/jewel-corner-logo.png"
+                    alt="Jewel Corner"
+                >
+            </div>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="adminEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+               <div class="form-group">
+                   <label for="adminPassword">Password</label>
+                   <div class="password-field">
+                       <input
+                           type="password"
+                           id="adminPassword"
+                           placeholder="Enter your password"
+                           autocomplete="current-password"
+                           required
+                           >
+
+        <button
+            type="button"
+            class="password-toggle"
+            id="passwordToggle"
+            aria-label="Show password"
+        >
+            <svg
+                class="eye-open"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+                <path
+                    d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                />
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="3"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                />
+            </svg>
+        </button>
+    </div>
+</div>
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="loginButton"
+                >
+                    Login
+                </button>
+
+                <p
+                    class="login-message"
+                    id="loginMessage"
+                ></p>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         ADMIN DASHBOARD
+    ========================== -->
+
+    <main
+        class="admin-dashboard hidden"
+        id="dashboardPage"
+    >
+
+ <header class="admin-header">
+
+    <div class="dashboard-brand">
+        <img
+            src="images/jewel-corner-logo.png"
+            alt="Jewel Corner"
+            class="dashboard-logo"
+        >
+    </div>
+
+<div class="admin-header-actions">
+
+    <button
+        type="button"
+        class="refresh-app-button"
+        id="refreshAppButton"
+        aria-label="Refresh app"
+    >
+        ↻ Refresh
+    </button>
+
+    <button
+        type="button"
+        class="logout-button"
+        id="logoutButton"
+    >
+        Logout
+    </button>
+
+</div>
+
+ </header>
+
+
+        <section class="dashboard-content">
+
+            <div class="welcome-area">
+
+                <h2>Product Management</h2>
+
+                <p>
+                    Add and manage Jewel Corner products.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-actions">
+
+                <button
+                    type="button"
+                    class="dashboard-card"
+                    id="addProductButton"
+                >
+                    <span class="dashboard-icon">
+                        +
+                    </span>
+
+                    <strong>
+                        Add Product
+                    </strong>
+
+                    <small>
+                        Create a new catalogue item
+                    </small>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="dashboard-card"
+                    id="manageProductsButton"
+                >
+                    <span class="dashboard-icon">
+                        ☰
+                    </span>
+
+                    <strong>
+                        Manage Products
+                    </strong>
+
+                    <small>
+                        View, edit or disable products
+                    </small>
+                </button>
+
+            </div>
+
+        </section>
+        <!-- =========================
+     ADD PRODUCT FORM
+========================== -->
+
+<section
+    class="product-form-section hidden"
+    id="productFormSection"
+>
+
+    <div class="form-section-header">
+
+        <div>
+            <h2>Add Product</h2>
+            <p>Create a new Jewel Corner catalogue item.</p>
+        </div>
+
+        <button
+            type="button"
+            class="secondary-button"
+            id="backToDashboardButton"
+        >
+            Back
+        </button>
+
+    </div>
+
+
+    <form id="productForm">
+
+        <div class="form-grid">
+
+
+            <!-- PRODUCT ID -->
+
+            <div class="form-group">
+                <label for="productId">
+                    Product ID
+                </label>
+
+                <input
+                    type="text"
+                    id="productId"
+                    required
+                    placeholder="Example: BRC-0041"
+                >
+            </div>
+
+
+            <!-- SKU -->
+
+            <div class="form-group">
+                <label for="productSku">
+                    SKU
+                </label>
+
+                <input
+                    type="text"
+                    id="productSku"
+                    placeholder="Example: BRC-0041"
+                >
+            </div>
+
+
+            <!-- NAME EN -->
+
+            <div class="form-group">
+                <label for="productNameEn">
+                    Product Name EN
+                </label>
+
+                <input
+                    type="text"
+                    id="productNameEn"
+                    required
+                >
+            </div>
+
+
+            <!-- NAME AR -->
+
+            <div class="form-group">
+                <label for="productNameAr">
+                    Product Name AR
+                </label>
+
+                <input
+                    type="text"
+                    id="productNameAr"
+                    dir="rtl"
+                >
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="form-group">
+                <label for="productCategory">
+                    Category
+                </label>
+
+                <select
+                    id="productCategory"
+                    required
+                >
+
+                    <option value="">
+                        Select Category
+                    </option>
+
+                    <option value="jewellery">
+                        Jewellery
+                    </option>
+
+                    <option value="watches">
+                        Watches
+                    </option>
+
+                    <option value="perfumes">
+                        Perfumes
+                    </option>
+
+                    <option value="souvenirs">
+                        Souvenirs
+                    </option>
+
+                </select>
+            </div>
+
+
+            <!-- SUBCATEGORY -->
+
+            <div class="form-group">
+                <label for="productSubcategory">
+                    Subcategory
+                </label>
+
+                <input
+                    type="text"
+                    id="productSubcategory"
+                    required
+                    placeholder="Example: bracelets"
+                >
+            </div>
+
+
+            <!-- BRAND -->
+
+            <div class="form-group">
+                <label for="productBrand">
+                    Brand
+                </label>
+
+                <input
+                    type="text"
+                    id="productBrand"
+                >
+            </div>
+
+
+            <!-- PRICE -->
+
+            <div class="form-group">
+                <label for="productPrice">
+                    Price OMR
+                </label>
+
+                <input
+                    type="number"
+                    id="productPrice"
+                    min="0"
+                    step="0.001"
+                    placeholder="0.000"
+                >
+            </div>
+            
+    <div class="form-group">
+    <label for="stockQuantity">
+        Stock Quantity
+    </label>
+
+    <input
+        type="number"
+        id="stockQuantity"
+        min="0"
+        step="1"
+        value="0"
+        placeholder="Example: 12"
+    >
+</div>
+
+         <!-- MAIN IMAGE -->
+
+<div class="form-group full-width">
+
+    <label for="productImageFile">
+        Main Product Image
+    </label>
+
+    <input
+        type="file"
+        id="productImageFile"
+        accept="image/*"
+    >
+
+    
+<div class="form-group">
+  <label for="additionalImages">Additional Product Images</label>
+
+  <input
+    type="file"
+    id="additionalImages"
+    accept="image/*"
+    multiple
+  >
+</div>
+    
+<div id="additionalImagesPreview" class="additional-images-preview"></div>
+
+    <!-- IMAGE PREVIEW -->
+    <div
+        id="productImagePreviewBox"
+        class="image-preview-box hidden"
+    >
+        <img
+            id="productImagePreview"
+            alt="Product Image Preview"
+        >
+    </div>
+
+    <!-- UPLOAD STATUS -->
+    <p
+        id="imageUploadMessage"
+        class="image-upload-message"
+    ></p>
+
+    <!-- IMAGEKIT URL SAVED HERE -->
+    <input
+        type="hidden"
+        id="productMainImage"
+    >
+
+</div>
+
+
+            <!-- DESCRIPTION EN -->
+
+            <div class="form-group full-width">
+                <label for="productDescriptionEn">
+                    Description EN
+                </label>
+
+                <textarea
+                    id="productDescriptionEn"
+                    rows="4"
+                ></textarea>
+            </div>
+
+
+            <!-- DESCRIPTION AR -->
+
+            <div class="form-group full-width">
+                <label for="productDescriptionAr">
+                    Description AR
+                </label>
+
+                <textarea
+                    id="productDescriptionAr"
+                    rows="4"
+                    dir="rtl"
+                ></textarea>
+            </div>
+
+
+            <!-- TAGS -->
+
+            <div class="form-group full-width">
+                <label for="productTags">
+                    Tags
+                </label>
+
+                <input
+                    type="text"
+                    id="productTags"
+                    placeholder="bracelet, gold plated, ladies"
+                >
+            </div>
+
+        </div>
+
+
+        <!-- TOGGLES -->
+
+        <div class="toggle-grid">
+
+            <label class="toggle-option">
+
+                <input
+                    type="checkbox"
+                    id="showPrice"
+                >
+
+                <span>
+                    Show Price
+                </span>
+
+            </label>
+
+
+            <label class="toggle-option">
+
+                <input
+                    type="checkbox"
+                    id="featured"
+                >
+
+                <span>
+                    Featured
+                </span>
+
+            </label>
+
+
+            <label class="toggle-option">
+
+                <input
+                    type="checkbox"
+                    id="newArrival"
+                >
+
+                <span>
+                    New Arrival
+                </span>
+
+            </label>
+
+
+            <label class="toggle-option">
+
+                <input
+                    type="checkbox"
+                    id="whatsappEnquiry"
+                    checked
+                >
+
+                <span>
+                    WhatsApp Enquiry
+                </span>
+
+            </label>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="form-group">
+
+            <label for="productStatus">
+                Status
+            </label>
+
+            <select id="productStatus">
+
+                <option value="active">
+                    Active
+                </option>
+
+                <option value="inactive">
+                    Inactive
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- SAVE -->
+
+        <button
+            type="submit"
+            class="primary-button"
+            id="saveProductButton"
+        >
+            Save Product
+        </button>
+
+
+        <p
+            class="product-form-message"
+            id="productFormMessage"
+        ></p>
+
+    </form>
+
+</section>
+        
+<!-- =========================================================
+     MANAGE PRODUCTS SECTION
+     ========================================================= -->
+
+<section
+    class="manage-products-section hidden"
+    id="manageProductsSection"
+>
+
+    <div class="form-section-header">
+
+        <div>
+            <h2>Manage Products</h2>
+            <p>View, search and manage existing products.</p>
+        </div>
+
+        <button
+            type="button"
+            class="secondary-button"
+            id="backFromManageProductsButton"
+        >
+            Back
+        </button>
+
+    </div>
+
+
+    <!-- MANAGE PRODUCTS TOOLBAR -->
+
+    <div class="manage-products-toolbar">
+
+        <input
+            type="search"
+            id="manageProductsSearch"
+            placeholder="Search products..."
+            autocomplete="off"
+        >
+
+        <button
+            type="button"
+            id="refreshProductsButton"
+            class="manage-refresh-button"
+        >
+            Refresh
+        </button>
+
+    </div>
+
+
+    <!-- PRODUCT COUNT / STATUS -->
+
+    <div
+        class="manage-products-status"
+        id="manageProductsStatus"
+    >
+        Loading products...
+    </div>
+
+
+    <!-- PRODUCTS -->
+
+    <div
+        class="manage-products-list"
+        id="manageProductsList"
+    ></div>
+
+</section>
+
+    </main>
+
+
+    <script type="module" src="admin.js"></script>
+
+</body>
+</html>
