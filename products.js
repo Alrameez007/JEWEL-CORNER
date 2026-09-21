@@ -293,6 +293,12 @@ if (submitReviewButton) {
   submitReviewButton.textContent =
     "Submit Review";
 }
+  const deleteReviewButton =
+  document.getElementById("deleteReviewBtn");
+
+if (deleteReviewButton) {
+  deleteReviewButton.hidden = true;
+}
 
 starButtons.forEach(starButton => {
   starButton.textContent = "☆";
