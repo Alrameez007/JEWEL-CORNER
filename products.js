@@ -752,7 +752,7 @@ function initializeReviewStars() {
 
   starButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.onclick = () => {
 
       const rating =
         Number(button.dataset.rating);
@@ -781,8 +781,8 @@ function initializeReviewStars() {
       console.log(
         "Jewel Corner selected rating:",
         selectedReviewRating
-      );
-    });
+     );
+    };
   });
 }
   
