@@ -106,6 +106,121 @@ onAuthStateChanged(auth, user => {
     );
 });
 
+/* =========================================================
+   CUSTOMER REVIEWS — FIRESTORE
+   ========================================================= */
+
+window.JewelCornerCustomerReviews = {
+
+    createReview: async function ({
+        productId,
+        displayName,
+        rating,
+        comment
+    }) {
+
+        const user = auth.currentUser;
+
+        if (!user) {
+            throw new Error("Customer must be signed in.");
+        }
+
+        if (!productId) {
+            throw new Error("Missing product Firestore ID.");
+        }
+
+        const cleanName =
+            String(displayName || "").trim();
+
+        const cleanComment =
+            String(comment || "").trim();
+
+        const cleanRating =
+            Number(rating);
+
+        if (
+            cleanName.length < 2 ||
+            cleanName.length > 50
+        ) {
+            throw new Error(
+                "Name must be between 2 and 50 characters."
+            );
+        }
+
+        if (
+            !Number.isInteger(cleanRating) ||
+            cleanRating < 1 ||
+            cleanRating > 5
+        ) {
+            throw new Error(
+                "Please choose a rating from 1 to 5 stars."
+            );
+        }
+
+        if (cleanComment.length > 1000) {
+            throw new Error(
+                "Comment must be 1000 characters or less."
+            );
+        }
+
+        const ownershipRef =
+            doc(
+                db,
+                "customerReviews",
+                user.uid,
+                "products",
+                productId
+            );
+
+        const existingOwnership =
+            await getDoc(ownershipRef);
+
+        if (existingOwnership.exists()) {
+            throw new Error(
+                "You have already reviewed this product."
+            );
+        }
+
+        const reviewRef =
+            doc(
+                collection(
+                    db,
+                    "productReviews",
+                    productId,
+                    "reviews"
+                )
+            );
+
+        const batch =
+            writeBatch(db);
+
+        batch.set(
+            reviewRef,
+            {
+                displayName: cleanName,
+                rating: cleanRating,
+                comment: cleanComment,
+                createdAt: serverTimestamp(),
+                updatedAt: serverTimestamp(),
+                status: "published"
+            }
+        );
+
+        batch.set(
+            ownershipRef,
+            {
+                reviewId: reviewRef.id,
+                createdAt: serverTimestamp()
+            }
+        );
+
+        await batch.commit();
+
+        return {
+            reviewId: reviewRef.id
+        };
+    }
+};
 
 /* =========================================================
    CONVERT FIRESTORE PRODUCT
