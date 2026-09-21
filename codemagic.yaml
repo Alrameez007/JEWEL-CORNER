@@ -1,0 +1,36 @@
+workflows:
+  jewel-corner-ios-check:
+    name: Jewel Corner Admin - iOS Build Check
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+
+    environment:
+      node: 24
+      xcode: latest
+
+    scripts:
+      - name: Install Node dependencies
+        script: |
+          cd "$CM_BUILD_DIR/mobile-admin"
+          npm ci
+
+      - name: Sync Capacitor iOS
+        script: |
+          cd "$CM_BUILD_DIR/mobile-admin"
+          npx cap sync ios
+
+      - name: Build iOS without code signing
+        script: |
+          cd "$CM_BUILD_DIR/mobile-admin"
+          xcodebuild build \
+            -project ios/App/App.xcodeproj \
+            -scheme App \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+
+    artifacts:
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/Products/**/*.app
+      - /tmp/xcodebuild_logs/*.log
