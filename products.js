@@ -250,6 +250,54 @@ document.addEventListener("jcProductsLoaded", () => {
     
     activeModalProduct = product;
 
+customerHasExistingReview = false;
+selectedReviewRating = 0;
+
+const reviewForm =
+  document.getElementById("customerReviewForm");
+
+const reviewName =
+  document.getElementById("reviewDisplayName");
+
+const reviewComment =
+  document.getElementById("reviewComment");
+
+const reviewMessage =
+  document.getElementById("reviewFormMessage");
+
+const submitReviewButton =
+  document.getElementById("submitReviewBtn");
+
+const starButtons =
+  document.querySelectorAll(
+    "#reviewStarPicker button[data-rating]"
+  );
+
+if (reviewForm) {
+  reviewForm.hidden = true;
+}
+
+if (reviewName) {
+  reviewName.value = "";
+}
+
+if (reviewComment) {
+  reviewComment.value = "";
+}
+
+if (reviewMessage) {
+  reviewMessage.textContent = "";
+}
+
+if (submitReviewButton) {
+  submitReviewButton.textContent =
+    "Submit Review";
+}
+
+starButtons.forEach(starButton => {
+  starButton.textContent = "☆";
+});
+
     const language = getLanguage();
 
     const name =
