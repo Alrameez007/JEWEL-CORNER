@@ -770,6 +770,53 @@ if (rateProductBtn) {
   initializeReviewStars();
 }
 
+const existingReview =
+  await window.JewelCornerCustomerReviews
+    ?.getMyReview(
+      activeModalProduct?.firestoreId
+    );
+
+if (existingReview) {
+
+  const reviewComment =
+    document.getElementById("reviewComment");
+
+  const reviewMessage =
+    document.getElementById("reviewFormMessage");
+
+  const starButtons =
+    document.querySelectorAll(
+      "#reviewStarPicker button[data-rating]"
+    );
+
+  reviewName.value =
+    existingReview.displayName || "";
+
+  if (reviewComment) {
+    reviewComment.value =
+      existingReview.comment || "";
+  }
+
+  selectedReviewRating =
+    Number(existingReview.rating) || 0;
+
+  starButtons.forEach(starButton => {
+
+    const starRating =
+      Number(starButton.dataset.rating);
+
+    starButton.textContent =
+      starRating <= selectedReviewRating
+        ? "★"
+        : "☆";
+  });
+
+  if (reviewMessage) {
+    reviewMessage.textContent =
+      "You have already reviewed this product.";
+  }
+}
+
 return;
 }
 
