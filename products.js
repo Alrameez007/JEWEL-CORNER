@@ -1048,6 +1048,128 @@ if (submitReviewBtn) {
     }
   );
 }
+
+  /* =========================================================
+   CUSTOMER REVIEW — DELETE
+   ========================================================= */
+
+const deleteReviewBtn =
+  document.getElementById("deleteReviewBtn");
+
+if (deleteReviewBtn) {
+
+  deleteReviewBtn.addEventListener(
+    "click",
+    async () => {
+
+      const reviewMessage =
+        document.getElementById("reviewFormMessage");
+
+      const confirmed =
+        window.confirm(
+          "Are you sure you want to delete your review?"
+        );
+
+      if (!confirmed) {
+        return;
+      }
+
+      try {
+
+        if (reviewMessage) {
+          reviewMessage.textContent = "";
+        }
+
+        if (!activeModalProduct?.firestoreId) {
+          throw new Error(
+            "Unable to identify this product."
+          );
+        }
+
+        if (
+          !window.JewelCornerCustomerReviews
+            ?.deleteReview
+        ) {
+          throw new Error(
+            "Review service is not ready."
+          );
+        }
+
+        deleteReviewBtn.disabled = true;
+
+        await window.JewelCornerCustomerReviews
+          .deleteReview(
+            activeModalProduct.firestoreId
+          );
+
+        customerHasExistingReview = false;
+        selectedReviewRating = 0;
+
+        const reviewName =
+          document.getElementById(
+            "reviewDisplayName"
+          );
+
+        const reviewComment =
+          document.getElementById(
+            "reviewComment"
+          );
+
+        const submitReviewButton =
+          document.getElementById(
+            "submitReviewBtn"
+          );
+
+        const starButtons =
+          document.querySelectorAll(
+            "#reviewStarPicker button[data-rating]"
+          );
+
+        if (reviewName) {
+          reviewName.value = "";
+        }
+
+        if (reviewComment) {
+          reviewComment.value = "";
+        }
+
+        starButtons.forEach(starButton => {
+          starButton.textContent = "☆";
+        });
+
+        if (submitReviewButton) {
+          submitReviewButton.textContent =
+            "Submit Review";
+        }
+
+        deleteReviewBtn.hidden = true;
+
+        if (reviewMessage) {
+          reviewMessage.textContent =
+            "Your review has been deleted.";
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Jewel Corner review deletion failed:",
+          error
+        );
+
+        if (reviewMessage) {
+          reviewMessage.textContent =
+            error.message ||
+            "Unable to delete your review.";
+        }
+
+      } finally {
+
+        deleteReviewBtn.disabled = false;
+
+      }
+    }
+  );
+}
   
   if (modalClose) {
     modalClose.addEventListener(
