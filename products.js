@@ -778,6 +778,8 @@ const existingReview =
     );
 
 if (existingReview) {
+  
+  customerHasExistingReview = true;
 
   const reviewComment =
     document.getElementById("reviewComment");
@@ -920,20 +922,42 @@ if (submitReviewBtn) {
 
         submitReviewBtn.disabled = true;
 
-        await window.JewelCornerCustomerReviews
-          .createReview({
-            productId:
-              activeModalProduct.firestoreId,
+        if (customerHasExistingReview) {
 
-            displayName:
-              reviewName?.value || "",
+  await window.JewelCornerCustomerReviews
+    .updateReview({
+      productId:
+        activeModalProduct.firestoreId,
 
-            rating:
-              selectedReviewRating,
+      displayName:
+        reviewName?.value || "",
 
-            comment:
-              reviewComment?.value || ""
-          });
+      rating:
+        selectedReviewRating,
+
+      comment:
+        reviewComment?.value || ""
+    });
+
+} else {
+
+  await window.JewelCornerCustomerReviews
+    .createReview({
+      productId:
+        activeModalProduct.firestoreId,
+
+      displayName:
+        reviewName?.value || "",
+
+      rating:
+        selectedReviewRating,
+
+      comment:
+        reviewComment?.value || ""
+    });
+
+  customerHasExistingReview = true;
+}
 
         if (reviewMessage) {
           reviewMessage.textContent =
