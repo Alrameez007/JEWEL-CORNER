@@ -405,10 +405,75 @@ window.JewelCornerCustomerReviews = {
 
         await batch.commit();
 
-        return {
-            reviewId
-        };
+return {
+    reviewId
+};
+},
+
+deleteReview: async function (productId) {
+
+    const user = auth.currentUser;
+
+    if (!user) {
+        throw new Error(
+            "Customer must be signed in."
+        );
     }
+
+    if (!productId) {
+        throw new Error(
+            "Missing product Firestore ID."
+        );
+    }
+
+    const ownershipRef =
+        doc(
+            db,
+            "customerReviews",
+            user.uid,
+            "products",
+            productId
+        );
+
+    const ownershipSnapshot =
+        await getDoc(ownershipRef);
+
+    if (!ownershipSnapshot.exists()) {
+        throw new Error(
+            "No existing review was found."
+        );
+    }
+
+    const reviewId =
+        ownershipSnapshot.data().reviewId;
+
+    if (!reviewId) {
+        throw new Error(
+            "Review ownership information is missing."
+        );
+    }
+
+    const reviewRef =
+        doc(
+            db,
+            "productReviews",
+            productId,
+            "reviews",
+            reviewId
+        );
+
+    const batch =
+        writeBatch(db);
+
+    batch.delete(reviewRef);
+    batch.delete(ownershipRef);
+
+    await batch.commit();
+
+    return {
+        reviewId
+    };
+}
 };
 /* =========================================================
    CONVERT FIRESTORE PRODUCT
