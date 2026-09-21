@@ -837,6 +837,13 @@ if (submitReviewButton) {
     "Update Review";
 }
 
+  const deleteReviewButton =
+  document.getElementById("deleteReviewBtn");
+
+if (deleteReviewButton) {
+  deleteReviewButton.hidden = false;
+}
+
   const reviewComment =
     document.getElementById("reviewComment");
 
