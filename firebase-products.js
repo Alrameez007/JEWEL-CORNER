@@ -216,12 +216,72 @@ window.JewelCornerCustomerReviews = {
 
         await batch.commit();
 
-        return {
+                return {
             reviewId: reviewRef.id
+        };
+    },
+
+    getMyReview: async function (productId) {
+
+        const user = auth.currentUser;
+
+        if (!user) {
+            return null;
+        }
+
+        if (!productId) {
+            throw new Error(
+                "Missing product Firestore ID."
+            );
+        }
+
+        const ownershipRef =
+            doc(
+                db,
+                "customerReviews",
+                user.uid,
+                "products",
+                productId
+            );
+
+        const ownershipSnapshot =
+            await getDoc(ownershipRef);
+
+        if (!ownershipSnapshot.exists()) {
+            return null;
+        }
+
+        const reviewId =
+            ownershipSnapshot.data().reviewId;
+
+        if (!reviewId) {
+            return null;
+        }
+
+        const reviewRef =
+            doc(
+                db,
+                "productReviews",
+                productId,
+                "reviews",
+                reviewId
+            );
+
+        const reviewSnapshot =
+            await getDoc(reviewRef);
+
+        if (!reviewSnapshot.exists()) {
+            return null;
+        }
+
+        return {
+            reviewId:
+                reviewSnapshot.id,
+
+            ...reviewSnapshot.data()
         };
     }
 };
-
 /* =========================================================
    CONVERT FIRESTORE PRODUCT
    TO CUSTOMER WEBSITE FORMAT
