@@ -680,6 +680,7 @@ document.addEventListener("jcProductsLoaded", () => {
    ========================================================= */
 
 let selectedReviewRating = 0;
+let customerHasExistingReview = false;
 
 function initializeReviewStars() {
 
