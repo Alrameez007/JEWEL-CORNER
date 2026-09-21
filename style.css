@@ -1580,3 +1580,275 @@ h3 a {
     font-size: 14px;
   }
 }
+
+/* ========================================
+   JEWEL CORNER - PRODUCT RATING AREA
+======================================== */
+
+.customer-product-actions {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(181, 138, 58, 0.25);
+}
+
+
+/* ---------- RATING SUMMARY ---------- */
+
+.product-rating-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  margin-bottom: 16px;
+  padding: 12px 16px;
+
+  background: rgba(201, 164, 92, 0.08);
+  border: 1px solid rgba(181, 138, 58, 0.25);
+  border-radius: 10px;
+}
+
+#productAverageStars {
+  color: #b58a3a;
+  font-size: 20px;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+#productRatingText {
+  color: #333333;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* ---------- ADD TO FAVOURITES ---------- */
+
+.favourite-product-btn {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+
+  background: #ffffff;
+  border: 1px solid #b58a3a;
+  border-radius: 8px;
+
+  color: #9a702d;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  cursor: pointer;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.favourite-product-btn:hover {
+  background: #faf6eb;
+  color: #7f591e;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.10);
+}
+
+.favourite-product-btn:active {
+  transform: translateY(0);
+}
+
+
+/* ---------- RATE & REVIEW ---------- */
+
+.rate-product-btn {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+
+  background: #111111;
+  border: 1px solid #111111;
+  border-radius: 8px;
+
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.rate-product-btn:hover {
+  background: #292929;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+}
+
+.rate-product-btn:active {
+  transform: translateY(0);
+}
+
+
+/* ---------- REVIEW FORM ---------- */
+
+.customer-review-form {
+  margin-top: 18px;
+  padding: 20px;
+
+  background: #faf8f1;
+  border: 1px solid rgba(181, 138, 58, 0.28);
+  border-radius: 12px;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+}
+
+.customer-review-form h3 {
+  margin: 0 0 14px;
+  text-align: center;
+
+  color: #a97b2f;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+
+/* ---------- 5 STAR PICKER ---------- */
+
+.review-star-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+
+  margin: 5px 0 18px;
+}
+
+.review-star-picker button {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+
+  background: #ffffff;
+  border: 1px solid rgba(181, 138, 58, 0.35);
+  border-radius: 50%;
+
+  color: #b58a3a;
+  font-size: 25px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.06);
+
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.review-star-picker button:hover {
+  transform: translateY(-2px) scale(1.06);
+  background: #fffaf0;
+  border-color: #b58a3a;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+}
+
+.review-star-picker button:active {
+  transform: scale(0.96);
+}
+
+
+/* ---------- NAME + COMMENT ---------- */
+
+#reviewDisplayName,
+#reviewComment {
+  box-sizing: border-box;
+  width: 100%;
+
+  margin-bottom: 12px;
+  padding: 13px 14px;
+
+  background: #ffffff;
+  border: 1px solid #d7cfbd;
+  border-radius: 8px;
+
+  color: #111111;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#reviewDisplayName:focus,
+#reviewComment:focus {
+  border-color: #b58a3a;
+  box-shadow: 0 0 0 3px rgba(181, 138, 58, 0.12);
+}
+
+#reviewComment {
+  min-height: 100px;
+  resize: vertical;
+}
+
+
+/* ---------- STATUS MESSAGE ---------- */
+
+.review-form-message {
+  margin-top: 12px;
+
+  color: #555555;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+  .customer-review-form {
+    padding: 16px;
+  }
+
+  .review-star-picker {
+    gap: 5px;
+  }
+
+  .review-star-picker button {
+    width: 40px;
+    height: 40px;
+    font-size: 23px;
+  }
+
+  .product-rating-summary {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .favourite-product-btn,
+  .rate-product-btn {
+    min-height: 50px;
+  }
+}
