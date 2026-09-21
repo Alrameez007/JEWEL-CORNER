@@ -781,6 +781,14 @@ if (existingReview) {
   
   customerHasExistingReview = true;
 
+  const submitReviewButton =
+  document.getElementById("submitReviewBtn");
+
+if (submitReviewButton) {
+  submitReviewButton.textContent =
+    "Update Review";
+}
+
   const reviewComment =
     document.getElementById("reviewComment");
 
