@@ -34,7 +34,9 @@ document.addEventListener("jcProductsLoaded", () => {
   let selectedCategory = params.get("category") || "all";
   let selectedSubcategory = params.get("subcategory") || "all";
   let searchTerm = params.get("search") || "";
-
+  
+  let activeModalProduct = null;
+  
   const LABELS = {
     en: {
       allProducts: "All Products",
@@ -245,6 +247,8 @@ document.addEventListener("jcProductsLoaded", () => {
   
   function openModal(product) {
     if (!modal) return;
+    
+    activeModalProduct = product;
 
     const language = getLanguage();
 
